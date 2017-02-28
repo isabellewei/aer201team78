@@ -18,7 +18,7 @@ const char currtime[7] = {  0x30, //45 Seconds
                         0x02, //February
                         0x17};//2017
 unsigned char time[7];
-unsigned char keypress = NULL;
+volatile unsigned char keypress = NULL;
 
 void homescreen(void){
     lcd_home();
@@ -62,6 +62,13 @@ void set_time(void){
     I2C_Master_Stop(); //Stop condition
 }
 
+void readADC(char channel){
+    // Select A2D channel to read
+    ADCON0 = ((channel <<2));
+    ADCON0bits.GO = 1;
+    while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
+}
+
 int main(void) {
     OSCCON = 0xF2; // Set internal oscillator to 8MHZ, and enforce internal oscillator operation
     OSCTUNEbits.PLLEN = 1; // Enable PLL for the internal oscillator, Processor now runs at 32MHZ
@@ -94,7 +101,14 @@ int main(void) {
     initLCD();
 
     I2C_Master_Init(10000); //Initialize I2C Master with 100KHz clock
-
+    
+    //initialize ADC
+    nRBPU = 0;
+    ADCON0 = 00000001;  //Enable ADC
+    ADCON1 = 0x0B;  //AN0 to AN3 used as analog input
+    CVRCON = 0x00; // Disable CCP reference voltage output
+    CMCONbits.CIS = 0;
+    ADFM = 1;
     
     int standby = 1; //1=true, 0=false
     int s = 0;      //stepper motor counter
