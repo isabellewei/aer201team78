@@ -12,32 +12,33 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\UserInterface.X.production.obj
-cinit CODE 0 17C4 17C4 16 1
-text0 CODE 0 10BE 10BE 232 1
-text1 CODE 0 17DA 17DA 14 1
-text2 CODE 0 17EE 17EE 14 1
-text3 CODE 0 1714 1714 46 1
-text4 CODE 0 1566 1566 62 1
-text5 CODE 0 12F0 12F0 1F4 1
-text6 CODE 0 1814 1814 C 1
-text7 CODE 0 17A6 17A6 1E 1
-text8 CODE 0 175A 175A 26 1
-text9 CODE 0 1678 1678 52 1
-text10 CODE 0 1820 1820 C 1
-text11 CODE 0 1622 1622 56 1
-text12 CODE 0 182C 182C A 1
-text13 CODE 0 16CA 16CA 4A 1
-text14 CODE 0 1836 1836 A 1
-text15 CODE 0 1840 1840 8 1
-text16 CODE 0 1848 1848 8 1
-text17 CODE 0 1780 1780 26 1
-text18 CODE 0 1802 1802 12 1
-text19 CODE 0 15C8 15C8 5A 1
-text20 CODE 0 14E4 14E4 82 1
+cinit CODE 0 17C6 17C6 16 1
+text0 CODE 0 12B2 12B2 1BE 1
+text1 CODE 0 17DC 17DC 14 1
+text2 CODE 0 17F0 17F0 14 1
+text3 CODE 0 14F2 14F2 76 1
+text4 CODE 0 1716 1716 46 1
+text5 CODE 0 15CA 15CA 5A 1
+text6 CODE 0 1470 1470 82 1
+text7 CODE 0 1568 1568 62 1
+text8 CODE 0 10BE 10BE 1F4 1
+text9 CODE 0 1816 1816 C 1
+text10 CODE 0 17A8 17A8 1E 1
+text11 CODE 0 175C 175C 26 1
+text12 CODE 0 167A 167A 52 1
+text13 CODE 0 1822 1822 C 1
+text14 CODE 0 1624 1624 56 1
+text15 CODE 0 182E 182E A 1
+text16 CODE 0 16CC 16CC 4A 1
+text17 CODE 0 1838 1838 A 1
+text18 CODE 0 1842 1842 8 1
+text19 CODE 0 184A 184A 8 1
+text20 CODE 0 1782 1782 26 1
+text21 CODE 0 1804 1804 12 1
 cstackCOMRAM COMRAM 1 1 1 23 1
 smallconst SMALLCONST 0 1000 1000 BE 1
 bssCOMRAM COMRAM 1 24 24 8 1
-$C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+$C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 0 0 4 1
 config CONFIG 0 300000 300000 E 1
@@ -60,11 +61,11 @@ BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
 CONST 4-FFF 1
-CONST 1850-FFFF 1
+CONST 1852-FFFF 1
 STACK 80-F7F 1
-SMALLCONST 1850-FFFF 1
+SMALLCONST 1852-FFFF 1
 CODE 4-FFF 1
-CODE 1850-FFFF 1
+CODE 1852-FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
@@ -74,7 +75,7 @@ BANK15 F00-F7F 1
 BIGRAM 2C-F7F 1
 COMRAM 2C-7F 1
 EEDATA F00000-F003FF 1
-MEDIUMCONST 1850-FFFF 1
+MEDIUMCONST 1852-FFFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -89,282 +90,286 @@ MEDIUMCONST 1850-FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\UserInterface.X.production.obj
-14E4 text20 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-14E4 text20 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-14F4 text20 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1500 text20 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1504 text20 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1506 text20 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1510 text20 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1512 text20 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1516 text20 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1520 text20 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1534 text20 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1544 text20 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1546 text20 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1550 text20 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1554 text20 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1554 text20 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-1564 text20 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
-15C8 text19 CODE >12:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-15C8 text19 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-15CC text19 CODE >16:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-15D0 text19 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-15D4 text19 CODE >18:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-161C text19 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-161E text19 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1620 text19 CODE >21:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1802 text18 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1802 text18 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1780 text17 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1782 text17 CODE >55:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1786 text17 CODE >56:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1788 text17 CODE >57:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-178C text17 CODE >58:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1790 text17 CODE >59:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1794 text17 CODE >60:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-17A0 text17 CODE >61:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-17A2 text17 CODE >62:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1848 text16 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1848 text16 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-184C text16 CODE >31:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-184E text16 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1840 text15 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1840 text15 CODE >42:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1844 text15 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1846 text15 CODE >44:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1836 text14 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-1836 text14 CODE >48:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-183A text14 CODE >49:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-183E text14 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
-16CA text13 CODE >5:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-16CA text13 CODE >13:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-16DE text13 CODE >14:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-16FA text13 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-1712 text13 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-182C text12 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-182C text12 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-182E text12 CODE >21:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-1830 text12 CODE >22:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-1834 text12 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
-1622 text11 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1624 text11 CODE >34:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-162A text11 CODE >35:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1630 text11 CODE >36:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1636 text11 CODE >38:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1638 text11 CODE >39:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1640 text11 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1642 text11 CODE >41:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-164A text11 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1650 text11 CODE >45:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1656 text11 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-165C text11 CODE >47:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1662 text11 CODE >49:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1664 text11 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-166C text11 CODE >51:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-166E text11 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1676 text11 CODE >53:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1820 text10 CODE >22:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1822 text10 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1824 text10 CODE >24:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-182A text10 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1678 text9 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-1678 text9 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-1680 text9 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-1688 text9 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-168C text9 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-168E text9 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-1694 text9 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-1696 text9 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-169A text9 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16A0 text9 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16AC text9 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16B4 text9 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16B6 text9 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16BC text9 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16C0 text9 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16C0 text9 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-16C8 text9 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
-175A text8 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
-175A text8 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
-1766 text8 CODE >38:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
-176E text8 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
-1776 text8 CODE >52:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
-17A6 text7 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\isdigit.c
-17A8 text7 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\isdigit.c
-1814 text6 CODE >27:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1816 text6 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1818 text6 CODE >29:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-181E text6 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-12F0 text5 CODE >464:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-12F0 text5 CODE >533:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-12F8 text5 CODE >536:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-12FA text5 CODE >538:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1302 text5 CODE >541:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1308 text5 CODE >542:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-130A text5 CODE >546:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1312 text5 CODE >548:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1316 text5 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1318 text5 CODE >580:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-131A text5 CODE >581:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-131E text5 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1330 text5 CODE >597:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1344 text5 CODE >598:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-134C text5 CODE >600:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1368 text5 CODE >601:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1394 text5 CODE >602:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-13A8 text5 CODE >635:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-13C8 text5 CODE >1286:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-13E0 text5 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-13EC text5 CODE >1317:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-140C text5 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1410 text5 CODE >1381:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1426 text5 CODE >1382:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1434 text5 CODE >1384:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-143C text5 CODE >1387:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1440 text5 CODE >1415:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1448 text5 CODE >1417:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-144E text5 CODE >1418:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1456 text5 CODE >1428:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-145E text5 CODE >1430:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1464 text5 CODE >1431:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1472 text5 CODE >1469:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1472 text5 CODE >1472:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1476 text5 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1478 text5 CODE >1500:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-14A6 text5 CODE >1506:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-14BC text5 CODE >1524:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-14C2 text5 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-14C2 text5 CODE >1525:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-14CA text5 CODE >536:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
-1566 text4 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1566 text4 CODE >24:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-156C text4 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-158A text4 CODE >26:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1596 text4 CODE >27:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-159C text4 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-15BA text4 CODE >29:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-15C6 text4 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1714 text3 CODE >11:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1714 text3 CODE >12:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1724 text3 CODE >13:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-172A text3 CODE >14:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1730 text3 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1736 text3 CODE >16:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-173C text3 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1742 text3 CODE >18:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1748 text3 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-1758 text3 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
-17EE text2 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17EE text2 CODE >33:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17EE text2 CODE >36:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17F2 text2 CODE >37:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17FA text2 CODE >38:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17FA text2 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17FE text2 CODE >41:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1800 text2 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17DA text1 CODE >45:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17DA text1 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17DE text1 CODE >47:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17E6 text1 CODE >48:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17E6 text1 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17EA text1 CODE >51:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17EA text1 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17EC text1 CODE >53:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10BE text0 CODE >65:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10BE text0 CODE >66:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10C2 text0 CODE >67:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10C4 text0 CODE >69:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10C8 text0 CODE >70:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10CC text0 CODE >71:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10D0 text0 CODE >73:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10D4 text0 CODE >74:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10D8 text0 CODE >76:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10DA text0 CODE >77:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10DE text0 CODE >78:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10E2 text0 CODE >79:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10E6 text0 CODE >81:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10EA text0 CODE >82:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10EE text0 CODE >83:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10F2 text0 CODE >84:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10F6 text0 CODE >85:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10FA text0 CODE >86:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10FC text0 CODE >87:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-10FE text0 CODE >88:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1100 text0 CODE >89:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1102 text0 CODE >91:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1106 text0 CODE >92:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1108 text0 CODE >94:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-110C text0 CODE >96:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1120 text0 CODE >99:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1128 text0 CODE >100:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1130 text0 CODE >102:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1140 text0 CODE >105:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1144 text0 CODE >108:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1148 text0 CODE >109:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1154 text0 CODE >110:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1160 text0 CODE >111:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1164 text0 CODE >114:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1168 text0 CODE >115:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1174 text0 CODE >116:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1180 text0 CODE >117:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1198 text0 CODE >116:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-119C text0 CODE >119:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11A4 text0 CODE >120:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11A8 text0 CODE >122:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11B0 text0 CODE >123:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11B4 text0 CODE >124:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11B8 text0 CODE >125:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11BC text0 CODE >128:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11C4 text0 CODE >129:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11CC text0 CODE >130:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11E2 text0 CODE >131:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11EE text0 CODE >132:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-11F4 text0 CODE >133:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1200 text0 CODE >134:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-120C text0 CODE >135:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-120E text0 CODE >136:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1214 text0 CODE >137:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-122A text0 CODE >138:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1236 text0 CODE >139:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-123C text0 CODE >140:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1248 text0 CODE >141:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-124C text0 CODE >142:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1262 text0 CODE >143:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-126E text0 CODE >144:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1274 text0 CODE >145:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1280 text0 CODE >146:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-1284 text0 CODE >147:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-129A text0 CODE >148:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12A6 text0 CODE >149:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12AC text0 CODE >150:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12B8 text0 CODE >151:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12BC text0 CODE >154:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12BE text0 CODE >155:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12BE text0 CODE >156:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12C0 text0 CODE >157:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12C4 text0 CODE >158:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12C8 text0 CODE >159:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12CE text0 CODE >160:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12D6 text0 CODE >161:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12DA text0 CODE >167:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12DC text0 CODE >169:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12E0 text0 CODE >170:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-12EE text0 CODE >104:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
-17C4 cinit CODE >1824:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17C4 cinit CODE >1826:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17C4 cinit CODE >1829:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17C4 cinit CODE >1844:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17C8 cinit CODE >1845:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17CA cinit CODE >1846:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17CA cinit CODE >1847:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17CC cinit CODE >1848:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17CE cinit CODE >1849:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17D0 cinit CODE >1855:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17D0 cinit CODE >1858:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17D2 cinit CODE >1859:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17D4 cinit CODE >1860:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
-17D6 cinit CODE >1861:C:\Users\Isabelle\AppData\Local\Temp\sdrk.
+1804 text21 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1804 text21 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1782 text20 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1784 text20 CODE >55:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1788 text20 CODE >56:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+178A text20 CODE >57:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+178E text20 CODE >58:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1792 text20 CODE >59:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1796 text20 CODE >60:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+17A2 text20 CODE >61:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+17A4 text20 CODE >62:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+184A text19 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+184A text19 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+184E text19 CODE >31:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1850 text19 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1842 text18 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1842 text18 CODE >42:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1846 text18 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1848 text18 CODE >44:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1838 text17 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1838 text17 CODE >48:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+183C text17 CODE >49:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1840 text17 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+16CC text16 CODE >5:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+16CC text16 CODE >13:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+16E0 text16 CODE >14:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+16FC text16 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+1714 text16 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+182E text15 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+182E text15 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+1830 text15 CODE >21:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+1832 text15 CODE >22:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+1836 text15 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+1624 text14 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1626 text14 CODE >34:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+162C text14 CODE >35:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1632 text14 CODE >36:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1638 text14 CODE >38:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+163A text14 CODE >39:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1642 text14 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1644 text14 CODE >41:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+164C text14 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1652 text14 CODE >45:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1658 text14 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+165E text14 CODE >47:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1664 text14 CODE >49:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1666 text14 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+166E text14 CODE >51:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1670 text14 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1678 text14 CODE >53:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1822 text13 CODE >22:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1824 text13 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1826 text13 CODE >24:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+182C text13 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+167A text12 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+167A text12 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+1682 text12 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+168A text12 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+168E text12 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+1690 text12 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+1696 text12 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+1698 text12 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+169C text12 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16A2 text12 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16AE text12 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16B6 text12 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16B8 text12 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16BE text12 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16C2 text12 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16C2 text12 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+16CA text12 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
+175C text11 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+175C text11 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+1768 text11 CODE >38:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+1770 text11 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+1778 text11 CODE >52:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+17A8 text10 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\isdigit.c
+17AA text10 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\isdigit.c
+1816 text9 CODE >27:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1818 text9 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+181A text9 CODE >29:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1820 text9 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+10BE text8 CODE >464:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10BE text8 CODE >533:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10C6 text8 CODE >536:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10C8 text8 CODE >538:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10D0 text8 CODE >541:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10D6 text8 CODE >542:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10D8 text8 CODE >546:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10E0 text8 CODE >548:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10E4 text8 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10E6 text8 CODE >580:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10E8 text8 CODE >581:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10EC text8 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+10FE text8 CODE >597:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1112 text8 CODE >598:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+111A text8 CODE >600:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1136 text8 CODE >601:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1162 text8 CODE >602:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1176 text8 CODE >635:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1196 text8 CODE >1286:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+11AE text8 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+11BA text8 CODE >1317:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+11DA text8 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+11DE text8 CODE >1381:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+11F4 text8 CODE >1382:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1202 text8 CODE >1384:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+120A text8 CODE >1387:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+120E text8 CODE >1415:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1216 text8 CODE >1417:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+121C text8 CODE >1418:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1224 text8 CODE >1428:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+122C text8 CODE >1430:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1232 text8 CODE >1431:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1240 text8 CODE >1469:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1240 text8 CODE >1472:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1244 text8 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1246 text8 CODE >1500:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1274 text8 CODE >1506:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+128A text8 CODE >1524:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1290 text8 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1290 text8 CODE >1525:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1298 text8 CODE >536:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+1568 text7 CODE >23:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1568 text7 CODE >24:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+156E text7 CODE >25:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+158C text7 CODE >26:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1598 text7 CODE >27:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+159E text7 CODE >28:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+15BC text7 CODE >29:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+15C8 text7 CODE >30:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1470 text6 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+1470 text6 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+1480 text6 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+148C text6 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+1490 text6 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+1492 text6 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+149C text6 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+149E text6 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14A2 text6 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14AC text6 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14C0 text6 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14D0 text6 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14D2 text6 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14DC text6 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14E0 text6 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14E0 text6 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+14F0 text6 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
+15CA text5 CODE >12:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+15CA text5 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+15CE text5 CODE >16:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+15D2 text5 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+15D6 text5 CODE >18:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+161E text5 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1620 text5 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1622 text5 CODE >21:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
+1716 text4 CODE >11:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1716 text4 CODE >12:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1726 text4 CODE >13:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+172C text4 CODE >14:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1732 text4 CODE >15:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1738 text4 CODE >16:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+173E text4 CODE >17:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+1744 text4 CODE >18:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+174A text4 CODE >19:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+175A text4 CODE >20:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
+14F2 text3 CODE >118:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+14F2 text3 CODE >119:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+14F6 text3 CODE >120:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+14F8 text3 CODE >122:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+14FC text3 CODE >123:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1500 text3 CODE >124:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1504 text3 CODE >126:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1508 text3 CODE >127:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+150C text3 CODE >129:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+150E text3 CODE >130:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1512 text3 CODE >131:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1516 text3 CODE >132:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+151A text3 CODE >134:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+151E text3 CODE >135:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1522 text3 CODE >136:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1526 text3 CODE >137:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+152A text3 CODE >138:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+152E text3 CODE >139:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1530 text3 CODE >140:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1532 text3 CODE >141:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1534 text3 CODE >142:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1536 text3 CODE >144:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+153A text3 CODE >145:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+153C text3 CODE >147:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1540 text3 CODE >149:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1554 text3 CODE >152:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1556 text3 CODE >153:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+155A text3 CODE >154:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+155E text3 CODE >155:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1562 text3 CODE >156:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1564 text3 CODE >157:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1566 text3 CODE >158:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17F0 text2 CODE >32:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17F0 text2 CODE >33:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17F0 text2 CODE >36:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17F4 text2 CODE >37:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17FC text2 CODE >38:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17FC text2 CODE >40:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1800 text2 CODE >41:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1802 text2 CODE >43:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17DC text1 CODE >45:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17DC text1 CODE >46:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17E0 text1 CODE >47:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17E8 text1 CODE >48:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17E8 text1 CODE >50:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17EC text1 CODE >51:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17EC text1 CODE >52:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17EE text1 CODE >53:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12B2 text0 CODE >160:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12B2 text0 CODE >161:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12B6 text0 CODE >163:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12BE text0 CODE >164:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12C6 text0 CODE >166:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12D6 text0 CODE >169:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12DA text0 CODE >172:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12DE text0 CODE >173:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12EA text0 CODE >174:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12F6 text0 CODE >175:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12FA text0 CODE >178:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+12FE text0 CODE >179:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+130A text0 CODE >180:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1316 text0 CODE >181:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+132E text0 CODE >180:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1332 text0 CODE >183:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+133A text0 CODE >184:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+133E text0 CODE >186:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1346 text0 CODE >187:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+134A text0 CODE >188:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+134E text0 CODE >189:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1352 text0 CODE >192:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+135A text0 CODE >193:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1362 text0 CODE >194:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1378 text0 CODE >195:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1384 text0 CODE >196:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+138A text0 CODE >197:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1396 text0 CODE >198:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13A2 text0 CODE >199:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13A4 text0 CODE >200:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13AA text0 CODE >201:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13C0 text0 CODE >202:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13CC text0 CODE >203:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13D2 text0 CODE >204:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13DE text0 CODE >205:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13E2 text0 CODE >206:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+13F8 text0 CODE >207:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1404 text0 CODE >208:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+140A text0 CODE >209:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1416 text0 CODE >210:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+141A text0 CODE >211:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1430 text0 CODE >212:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+143C text0 CODE >213:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1442 text0 CODE >214:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+144E text0 CODE >215:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1452 text0 CODE >218:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1454 text0 CODE >220:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1458 text0 CODE >221:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+145C text0 CODE >222:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+1462 text0 CODE >223:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+146A text0 CODE >224:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+146E text0 CODE >168:C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+17C6 cinit CODE >1845:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17C6 cinit CODE >1847:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17C6 cinit CODE >1850:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17C6 cinit CODE >1865:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17CA cinit CODE >1866:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17CC cinit CODE >1867:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17CC cinit CODE >1868:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17CE cinit CODE >1869:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D0 cinit CODE >1870:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D2 cinit CODE >1876:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D2 cinit CODE >1879:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D4 cinit CODE >1880:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D6 cinit CODE >1881:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
+17D8 cinit CODE >1882:C:\Users\Isabelle\AppData\Local\Temp\s9sc.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -384,10 +389,11 @@ __Hspace_1 2C 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_IESO$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of_lcdInst 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-_PWM1off 182C 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
-_lcdNibble 1622 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
+__end_of_initialize 1568 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
+_PWM1off 182E 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
+_lcdNibble 1624 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\UserInterface.X.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 I2C_Master_Init@c E 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\UserInterface.X.production.obj
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -395,19 +401,20 @@ __size_of_homescreen 0 0 ABS 0 - dist/default/production\UserInterface.X.product
 main@j 23 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 main@s 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Lsmallconst 1000 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
+_ADFM 7E07 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATA F89 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATB F8A 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATC F8B 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATD F8C 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATE F8D 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-_PWM1 16CA 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
+_PWM1 16CC 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
 _RCEN 7E2B 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _RSEN 7E29 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+___sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 _keys 1001 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
-_main 10BE 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
+_main 12B2 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
 _time 24 0 COMRAM 1 bssCOMRAM dist/default/production\UserInterface.X.production.obj
-start 0 0 CODE 0 init C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+start 0 0 CODE 0 init C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 __size_of_PWM1 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of___lldiv 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -419,18 +426,19 @@ __Hpowerup 0 0 CODE 0 powerup dist/default/production\UserInterface.X.production
 printf@c 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 printf@f 8 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 I2C_Master_Read@a 2 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-__accesstop 80 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-intlevel0 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-intlevel1 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-intlevel2 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-intlevel3 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+__accesstop 80 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+intlevel0 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+intlevel1 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+intlevel2 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+intlevel3 0 0 CODE 0 text C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\UserInterface.X.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\UserInterface.X.production.obj
+_CMCONbits FB4 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_EBTR0$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_EBTR1$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_EBTR2$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_EBTR3$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_keyinterrupt 17EE 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
+__end_of_keyinterrupt 17F0 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
 I2C_Master_Read@temp 3 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __CFG_EBTRB$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 main@standby 21 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
@@ -441,20 +449,25 @@ printf@flag 17 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.p
 printf@prec 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 _ADCON0 FC2 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _ADCON1 FC1 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_lcdInst 182C 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+__end_of_lcdInst 182E 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 printf@width 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+_EECON1bits FA6 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _CCPR1L FBE 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of_initLCD 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
+_CVRCON FB5 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\UserInterface.X.production.obj
-__end_of___wmul 1780 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
+__end_of___wmul 1782 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
+_EEADRH FAA 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
+_EECON2 FA7 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
+_EEDATA FA8 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\UserInterface.X.production.obj
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\UserInterface.X.production.obj
 ?_printf 8 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Hintcodelo 0 0 CODE 0 intcodelo dist/default/production\UserInterface.X.production.obj
-__end_of___lldiv 1566 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
-__end_of___lwdiv 16CA 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
+__end_of___lldiv 14F2 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
+__end_of___lwdiv 16CC 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
 PWM1@duty 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __size_of_isdigit 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _OSCTUNEbits F9B 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -464,11 +477,12 @@ __size_of_keycheck 0 0 ABS 0 - dist/default/production\UserInterface.X.productio
 ___lldiv@counter D 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Lintcodelo 0 0 CODE 0 intcodelo dist/default/production\UserInterface.X.production.obj
 __CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-start_initialization 17C4 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
+start_initialization 17C6 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
 __CFG_PBADEN$ON 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __end_of_hexpowers 101A 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
 _OSCCON FD3 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\UserInterface.X.production.obj
+__size_of_initialize 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 ___lldiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 ___rparam_used 1 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_WDTPS$32768 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -477,9 +491,9 @@ _SSPBUF FC9 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISC3 7CA3 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISC4 7CA4 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _hexpowers 1012 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
-__end_of_printf 14E4 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
-_isdigit$708 2 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-__end_of_initLCD 175A 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
+__end_of_printf 12B2 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
+_isdigit$865 2 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
+__end_of_initLCD 175C 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\UserInterface.X.production.obj
 __Hbank1 0 0 ABS 0 bank1 dist/default/production\UserInterface.X.production.obj
 __Hbank2 0 0 ABS 0 bank2 dist/default/production\UserInterface.X.production.obj
@@ -518,8 +532,8 @@ __Hbank14 0 0 ABS 0 bank14 dist/default/production\UserInterface.X.production.ob
 __Hbank15 0 0 ABS 0 bank15 dist/default/production\UserInterface.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\UserInterface.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\UserInterface.X.production.obj
-__smallconst 1000 0 SMALLCONST 0 smallconst C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-_keycheck 17EE 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
+__smallconst 1000 0 SMALLCONST 0 smallconst C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+_keycheck 17F0 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
 _keypress 2B 0 COMRAM 1 bssCOMRAM dist/default/production\UserInterface.X.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production\UserInterface.X.production.obj
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\UserInterface.X.production.obj
@@ -534,7 +548,7 @@ __Lbank6 0 0 ABS 0 bank6 dist/default/production\UserInterface.X.production.obj
 __Lbank7 0 0 ABS 0 bank7 dist/default/production\UserInterface.X.production.obj
 __Lbank8 0 0 ABS 0 bank8 dist/default/production\UserInterface.X.production.obj
 __Lbank9 0 0 ABS 0 bank9 dist/default/production\UserInterface.X.production.obj
-__end_of_isdigit 17C4 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
+__end_of_isdigit 17C6 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
 __Lcinit 0 0 ABS 0 cinit dist/default/production\UserInterface.X.production.obj
 __Lconst 0 0 CONST 0 const dist/default/production\UserInterface.X.production.obj
 __Lidata 0 0 CODE 0 idata dist/default/production\UserInterface.X.production.obj
@@ -553,7 +567,7 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production\UserInterface.X.production.obj
 __Ltext7 0 0 ABS 0 text7 dist/default/production\UserInterface.X.production.obj
 __Ltext8 0 0 ABS 0 text8 dist/default/production\UserInterface.X.production.obj
 __Ltext9 0 0 ABS 0 text9 dist/default/production\UserInterface.X.production.obj
-__end_of_keycheck 1802 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
+__end_of_keycheck 1804 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production\UserInterface.X.production.obj
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\UserInterface.X.production.obj
 _PORTBbits F81 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -572,7 +586,7 @@ __Lrbss 0 0 COMRAM 1 rbss dist/default/production\UserInterface.X.production.obj
 __Ltemp 0 0 COMRAM 1 temp dist/default/production\UserInterface.X.production.obj
 __Ltext 0 0 ABS 0 text dist/default/production\UserInterface.X.production.obj
 __CFG_XINST$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-___wmul 175A 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
+___wmul 175C 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
 __size_of_PWM1off 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Hintret 0 0 ABS 0 intret dist/default/production\UserInterface.X.production.obj
@@ -583,15 +597,15 @@ _SEN 7E28 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __S0 30000E 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __S1 2C 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __S2 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Start 1848 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Write 1836 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Start 184A 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Write 1838 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\UserInterface.X.production.obj
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\UserInterface.X.production.obj
 lcdInst@data 3 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __CFG_CCP2MX$PORTC 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lintentry 0 0 ABS 0 intentry dist/default/production\UserInterface.X.production.obj
 ___lldiv@divisor 5 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-_lcdInst 1820 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
+_lcdInst 1822 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
 __Hramtop 1000 0 RAM 0 ramtop dist/default/production\UserInterface.X.production.obj
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\UserInterface.X.production.obj
 __activetblptr 2 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -608,22 +622,24 @@ __Htext17 0 0 ABS 0 text17 dist/default/production\UserInterface.X.production.ob
 __Htext18 0 0 ABS 0 text18 dist/default/production\UserInterface.X.production.obj
 __Htext19 0 0 ABS 0 text19 dist/default/production\UserInterface.X.production.obj
 __Htext20 0 0 ABS 0 text20 dist/default/production\UserInterface.X.production.obj
-_homescreen 1566 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
+__Htext21 0 0 ABS 0 text21 dist/default/production\UserInterface.X.production.obj
+_homescreen 1568 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
 lcdNibble@data 2 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 lcdNibble@temp 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-__ptext10 1820 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
-__ptext11 1622 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
-__ptext12 182C 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
-__ptext13 16CA 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
-__ptext14 1836 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
-__ptext15 1840 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
-__ptext16 1848 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
-__ptext17 1780 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
-__ptext18 1802 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
-__ptext19 15C8 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
-__ptext20 14E4 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
-___lldiv 14E4 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
-___lwdiv 1678 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
+__ptext10 17A8 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
+__ptext11 175C 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
+__ptext12 167A 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
+__ptext13 1822 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
+__ptext14 1624 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
+__ptext15 182E 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
+__ptext16 16CC 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
+__ptext17 1838 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
+__ptext18 1842 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
+__ptext19 184A 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
+__ptext20 1782 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
+__ptext21 1804 0 CODE 0 text21 dist/default/production\UserInterface.X.production.obj
+___lldiv 1470 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
+___lwdiv 167A 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
 __Lbank10 0 0 ABS 0 bank10 dist/default/production\UserInterface.X.production.obj
 __Lbank11 0 0 ABS 0 bank11 dist/default/production\UserInterface.X.production.obj
 __Lbank12 0 0 ABS 0 bank12 dist/default/production\UserInterface.X.production.obj
@@ -635,37 +651,38 @@ __Lbigram 0 0 ABS 0 bigram dist/default/production\UserInterface.X.production.ob
 __CFG_BORV$3 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lcomram 0 0 ABS 0 comram dist/default/production\UserInterface.X.production.obj
 __Lconfig 300000 0 CONFIG 0 config dist/default/production\UserInterface.X.production.obj
-_printf 12F0 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
+_printf 10BE 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
 ___wmul@multiplier 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
-_LATAbits F89 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATDbits F8C 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _LATEbits F8D 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\UserInterface.X.production.obj
 ___lwdiv@divisor 3 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\UserInterface.X.production.obj
-__end_of_PWM1off 1836 0 CODE 0 text12 dist/default/production\UserInterface.X.production.obj
-stackhi F7F 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
-stacklo 80 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+__end_of_PWM1off 1838 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
+stackhi F7F 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
+stacklo 80 0 ABS 0 - C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 __Lintcode 0 0 CODE 0 intcode dist/default/production\UserInterface.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Init 1622 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Read 17A6 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Stop 1848 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Wait 1814 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Init 1624 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Read 17A8 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Stop 184A 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Wait 1816 0 CODE 0 text21 dist/default/production\UserInterface.X.production.obj
 __Lirdata 0 0 CODE 0 irdata dist/default/production\UserInterface.X.production.obj
+_ADCON0bits FC2 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Start 1850 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Start 1852 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
 __Lspace_0 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lspace_1 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Lspace_2 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_I2C_Master_Write 1840 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
+__end_of_I2C_Master_Write 1842 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
 __pbssCOMRAM 24 0 COMRAM 1 bssCOMRAM dist/default/production\UserInterface.X.production.obj
+_PIR2bits FA1 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 printf@ap 14 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __size_of_I2C_Master_Start 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of_I2C_Master_Write 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-end_of_initialization 17D0 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
-__end_of_homescreen 15C8 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
+end_of_initialization 17D2 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
+__end_of_homescreen 15CA 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\UserInterface.X.production.obj
 __Hintentry 0 0 ABS 0 intentry dist/default/production\UserInterface.X.production.obj
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -675,20 +692,20 @@ ___lwdiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterfac
 ?___lldiv 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 ?___lwdiv 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Hreset_vec 0 0 CODE 0 reset_vec dist/default/production\UserInterface.X.production.obj
-_initLCD 1714 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
+_initLCD 1716 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
 __Lramtop 1000 0 RAM 0 ramtop dist/default/production\UserInterface.X.production.obj
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\UserInterface.X.production.obj
-__pcinit 17C4 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
-__ptext0 10BE 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
-__ptext1 17DA 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
-__ptext2 17EE 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
-__ptext3 1714 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
-__ptext4 1566 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
-__ptext5 12F0 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
-__ptext6 1814 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
-__ptext7 17A6 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
-__ptext8 175A 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
-__ptext9 1678 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
+__pcinit 17C6 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
+__ptext0 12B2 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
+__ptext1 17DC 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
+__ptext2 17F0 0 CODE 0 text2 dist/default/production\UserInterface.X.production.obj
+__ptext3 14F2 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
+__ptext4 1716 0 CODE 0 text4 dist/default/production\UserInterface.X.production.obj
+__ptext5 15CA 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
+__ptext6 1470 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
+__ptext7 1568 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
+__ptext8 10BE 0 CODE 0 text8 dist/default/production\UserInterface.X.production.obj
+__ptext9 1816 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\UserInterface.X.production.obj
 __Ltext10 0 0 ABS 0 text10 dist/default/production\UserInterface.X.production.obj
 __Ltext11 0 0 ABS 0 text11 dist/default/production\UserInterface.X.production.obj
@@ -701,22 +718,23 @@ __Ltext17 0 0 ABS 0 text17 dist/default/production\UserInterface.X.production.ob
 __Ltext18 0 0 ABS 0 text18 dist/default/production\UserInterface.X.production.obj
 __Ltext19 0 0 ABS 0 text19 dist/default/production\UserInterface.X.production.obj
 __Ltext20 0 0 ABS 0 text20 dist/default/production\UserInterface.X.production.obj
-__ramtop 1000 0 RAM 0 ramtop C:\Users\Isabelle\AppData\Local\Temp\sdrk.obj
+__Ltext21 0 0 ABS 0 text21 dist/default/production\UserInterface.X.production.obj
+__ramtop 1000 0 RAM 0 ramtop C:\Users\Isabelle\AppData\Local\Temp\s9sc.obj
 _currtime 101A 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\UserInterface.X.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Init 15C8 0 CODE 0 text19 dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Read 1780 0 CODE 0 text17 dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Stop 1840 0 CODE 0 text15 dist/default/production\UserInterface.X.production.obj
-_I2C_Master_Wait 1802 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
-_isdigit 17A6 0 CODE 0 text7 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Init 15CA 0 CODE 0 text5 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Read 1782 0 CODE 0 text20 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Stop 1842 0 CODE 0 text18 dist/default/production\UserInterface.X.production.obj
+_I2C_Master_Wait 1804 0 CODE 0 text21 dist/default/production\UserInterface.X.production.obj
+_isdigit 17A8 0 CODE 0 text10 dist/default/production\UserInterface.X.production.obj
 __psmallconst 1000 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\UserInterface.X.production.obj
 __end_of_currtime 1021 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
 ___param_bank 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_WDT$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\UserInterface.X.production.obj
-__end_of__initialization 17D0 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
+__end_of__initialization 17D2 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
 __CFG_WRT0$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_WRT1$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_WRT2$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -729,18 +747,20 @@ __Lclrtext 0 0 ABS 0 clrtext dist/default/production\UserInterface.X.production.
 __CFG_PWRT$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 ___lldiv@quotient 9 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
+_initialize 14F2 0 CODE 0 text3 dist/default/production\UserInterface.X.production.obj
 _SSPCON1 FC6 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _SSPCON2 FC5 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _SSPSTAT FC7 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_BOREN$SBORDIS 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_PWM1 1714 0 CODE 0 text13 dist/default/production\UserInterface.X.production.obj
+__end_of_PWM1 1716 0 CODE 0 text16 dist/default/production\UserInterface.X.production.obj
 __end_of_keys 1012 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
-__end_of_main 12F0 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
+__end_of_main 1470 0 CODE 0 text0 dist/default/production\UserInterface.X.production.obj
 isdigit@c 3 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 printf@idx 16 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 printf@val 18 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 _ACKDT 7E2D 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _ACKEN 7E2C 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
+_EEADR FA9 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _PORTB F81 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _T2CON FCA 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISA F92 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -748,7 +768,7 @@ _TRISB F93 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISC F94 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISD F95 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _TRISE F96 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__end_of_putch 1820 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
+__end_of_putch 1822 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
 __CFG_CP0$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_CP1$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __HRAM 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
@@ -761,12 +781,13 @@ __Lram 0 0 ABS 0 ram dist/default/production\UserInterface.X.production.obj
 __Lsfr 0 0 ABS 0 sfr dist/default/production\UserInterface.X.production.obj
 __CFG_CP2$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_CP3$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
+_nRBPU 7F8F 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __CFG_CPB$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-_putch 1814 0 CODE 0 text6 dist/default/production\UserInterface.X.production.obj
+_putch 1816 0 CODE 0 text9 dist/default/production\UserInterface.X.production.obj
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 _CCP1CON FBD 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
-__initialization 17C4 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
-__end_of_lcdNibble 1678 0 CODE 0 text11 dist/default/production\UserInterface.X.production.obj
+__initialization 17C6 0 CODE 0 cinit dist/default/production\UserInterface.X.production.obj
+__end_of_lcdNibble 167A 0 CODE 0 text14 dist/default/production\UserInterface.X.production.obj
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production\UserInterface.X.production.obj
 ___wmul@product 5 0 COMRAM 1 cstackCOMRAM dist/default/production\UserInterface.X.production.obj
 __Hsmallconst 10BE 0 SMALLCONST 0 smallconst dist/default/production\UserInterface.X.production.obj
@@ -779,7 +800,7 @@ __size_of_I2C_Master_Read 0 0 ABS 0 - dist/default/production\UserInterface.X.pr
 __size_of_I2C_Master_Stop 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __size_of_I2C_Master_Wait 0 0 ABS 0 - dist/default/production\UserInterface.X.production.obj
 __Hintcode 0 0 CODE 0 intcode dist/default/production\UserInterface.X.production.obj
-_keyinterrupt 17DA 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
+_keyinterrupt 17DC 0 CODE 0 text1 dist/default/production\UserInterface.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -805,7 +826,7 @@ _keyinterrupt 17DA 0 CODE 0 text1 dist/default/production\UserInterface.X.produc
 # All other numeric quantities are in decimal.
 %SEGMENTS
 idloc 0 200000 200000 8 1
-text0 0 10BE 10BE 792 1
+text8 0 10BE 10BE 794 1
 cstackCOMRAM 1 1 1 2B 1
 reset_vec 0 0 0 4 1
 smallconst 0 1000 1000 BE 1

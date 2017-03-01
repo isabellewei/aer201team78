@@ -3883,7 +3883,7 @@ const char currtime[7] = { 0x30,
 0x02,
 0x17};
 unsigned char time[7];
-unsigned char keypress = (0);
+volatile unsigned char keypress = (0);
 
 void homescreen(void){
 lcdInst(0b10000000);;
@@ -3927,7 +3927,60 @@ I2C_Master_Write(currtime[i]);
 I2C_Master_Stop();
 }
 
-int main(void) {
+void readADC(char channel){
+
+ADCON0 = ((channel <<2));
+ADCON0bits.GO = 1;
+while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
+}
+
+signed char eepromRead(signed char address)
+{
+
+
+EEADRH = (signed char)(address >> 8);
+EEADR = (signed char)address;
+
+EECON1bits.EEPGD = 0;
+EECON1bits.CFGS = 0;
+EECON1bits.RD = 1;
+
+
+
+while(EECON1bits.RD == 1);
+
+return EEDATA;
+
+}
+
+void eepromWrite(signed char address, signed char data)
+{
+
+EEADRH = (signed char)(address >> 8);
+EEADR = (signed char)address;
+
+EEDATA = data;
+EECON1bits.EEPGD = 0;
+EECON1bits.CFGS = 0;
+EECON1bits.WREN = 1;
+
+
+
+EECON2 = 0x55;
+EECON2 = 0xAA;
+EECON1bits.WR = 1;
+
+
+while(PIR2bits.EEIF == 0)
+{
+continue;
+}
+
+PIR2bits.EEIF = 0;
+EECON1bits.WREN = 0;
+}
+
+void initialize(void){
 OSCCON = 0xF2;
 OSCTUNEbits.PLLEN = 1;
 
@@ -3960,6 +4013,17 @@ initLCD();
 
 I2C_Master_Init(10000);
 
+
+nRBPU = 0;
+ADCON0 = 00000001;
+ADCON1 = 0x0B;
+CVRCON = 0x00;
+CMCONbits.CIS = 0;
+ADFM = 1;
+}
+
+int main(void) {
+initialize();
 
 int standby = 1;
 int s = 0;
@@ -4018,7 +4082,6 @@ keycheck();
 
 }
 else{
-LATAbits.LATA0 = 1;
 keypress = (0);
 keyinterrupt();
 if (keypress != (0)) {
@@ -4028,13 +4091,6 @@ PWM1off();
 
 
 
-
-LATAbits.LATA0 = 0;
-
-keyinterrupt();
-if (keypress != (0)) {standby = 1;}
-
-# 176
 }
 }
 return;

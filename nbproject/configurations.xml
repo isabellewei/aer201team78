@@ -20,6 +20,7 @@
       <itemPath>test.c</itemPath>
       <itemPath>I2C.c</itemPath>
       <itemPath>motors.c</itemPath>
+      <itemPath>interface.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -35,7 +36,7 @@
         <targetDevice>PIC18F4620</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.41</languageToolchainVersion>
         <platform>3</platform>
@@ -132,9 +133,6 @@
         <property key="opt-xc8-linker-serial" value=""/>
         <property key="program-the-device-with-default-config-words" value="true"/>
       </HI-TECH-LINK>
-      <PICkit3PlatformTool>
-        <property key="firmware.download.all" value="false"/>
-      </PICkit3PlatformTool>
       <XC8-config-global>
         <property key="advanced-elf" value="true"/>
         <property key="output-file-format" value="-mcof,+elf"/>

@@ -24,5 +24,14 @@ void delay_10ms(unsigned char n);
 void PWM1(int duty);
 void PWM1off();
 
+//interface
+void homescreen(void)
+void keycheck(void)
+void keyinterrupt(void)
+void set_time(void)
+signed char eepromRead(signed char address)
+void eepromWrite(signed char address, signed char data)
+
+
 #endif	/* FUNCTIONS_H */
 
