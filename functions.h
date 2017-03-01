@@ -19,19 +19,16 @@ void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 void I2C_Master_Stop();
 void delay_10ms(unsigned char n);
+void set_time(void);
 
 //motors
 void PWM1(int duty);
 void PWM1off();
 
 //interface
-void homescreen(void)
-void keycheck(void)
-void keyinterrupt(void)
-void set_time(void)
-signed char eepromRead(signed char address)
-void eepromWrite(signed char address, signed char data)
-
+signed char eepromRead(signed char address);
+void eepromWrite(signed char address, signed char data);
+void displayLogs(void);
 
 #endif	/* FUNCTIONS_H */
 

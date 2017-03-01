@@ -38,4 +38,14 @@
 #define S2_1
 #define S2_2
 
+//analog input channels
+#define tab         0
+#define label       1
+#define backlog     2
+#define soup        3
+#define soda        4
+
+//logic
+#define currMom()  time[0] + 60*time[1] + 3600*time[2]
+
 #endif	/* CONSTANTS_H */

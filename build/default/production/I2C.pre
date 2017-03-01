@@ -3812,10 +3812,16 @@ void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 void I2C_Master_Stop();
 void delay_10ms(unsigned char n);
+void set_time(void);
 
 
 void PWM1(int duty);
 void PWM1off();
+
+
+signed char eepromRead(signed char address);
+void eepromWrite(signed char address, signed char data);
+void displayLogs(void);
 
 
 # 9 "configBits.h"
@@ -3874,6 +3880,14 @@ void PWM1off();
 #pragma config EBTRB = OFF
 
 # 12 "I2C.c"
+const char currtime[7] = { 0x30,
+0x11,
+0x20,
+0x03,
+0x07,
+0x02,
+0x17};
+
 void I2C_Master_Init(const unsigned long c)
 {
 
@@ -3932,3 +3946,14 @@ while (n-- != 0) {
 _delay((unsigned long)((5)*(32000000/4000.0)));
 }
 }
+
+void set_time(void){
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+for(char i=0; i<7; i++){
+I2C_Master_Write(currtime[i]);
+}
+I2C_Master_Stop();
+}
+

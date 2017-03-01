@@ -9,6 +9,14 @@
 #include "constants.h"
 #include "configBits.h"
 
+const char currtime[7] = {  0x30, //45 Seconds
+                        0x11, //59 Minutes
+                        0x20, //24 hour mode, set to 8pm
+                        0x03, //Tuesday
+                        0x07, //07th
+                        0x02, //February
+                        0x17};//2017
+
 void I2C_Master_Init(const unsigned long c)
 {
   // See Datasheet pg171, I2C mode configuration
@@ -67,3 +75,15 @@ void delay_10ms(unsigned char n) {
         __delay_ms(5); 
     } 
 }
+
+void set_time(void){
+    I2C_Master_Start(); //Start condition
+    I2C_Master_Write(0b11010000); //7 bit RTC address + Write
+    I2C_Master_Write(0x00); //Set memory pointer to seconds
+    for(char i=0; i<7; i++){
+        I2C_Master_Write(currtime[i]);
+    }
+    I2C_Master_Stop(); //Stop condition
+}
+
+

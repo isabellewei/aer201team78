@@ -10,16 +10,33 @@
 
 //global variables
 const char keys[] = "123A456B789C*0#D";
-const char currtime[7] = {  0x30, //45 Seconds
-                        0x11, //59 Minutes
-                        0x20, //24 hour mode, set to 8pm
-                        0x03, //Tuesday
-                        0x07, //07th
-                        0x02, //February
-                        0x17};//2017
 unsigned char time[7];
 volatile unsigned char keypress = NULL;
 
+void readADC(char channel){
+    // Select A2D channel to read
+    ADCON0 = ((channel <<2));
+    ADCON0bits.GO = 1;
+    while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
+}
+
+//these 2 functions  use time variable
+void updateTime(void){
+    //Reset RTC memory pointer
+        I2C_Master_Start(); //Start condition
+        I2C_Master_Write(0b11010000); //7 bit RTC address + Write
+        I2C_Master_Write(0x00); //Set memory pointer to seconds
+        I2C_Master_Stop(); //Stop condition
+
+        //Read Current Time
+        I2C_Master_Start();
+        I2C_Master_Write(0b11010001); //7 bit RTC address + Read
+        for(unsigned char j=0;j<0x06;j++){
+            time[j] = I2C_Master_Read(1);
+        }
+        time[6] = I2C_Master_Read(0);       //Final Read without ack
+        I2C_Master_Stop();
+}
 void homescreen(void){
     lcd_home();
     printf("%02x/%02x/%02x ", time[6],time[5],time[4]);    //Print date in YY/MM/DD
@@ -29,6 +46,7 @@ void homescreen(void){
     printf(" 2:Logs");
 }
 
+//these 2 functions use keypress variable
 void keycheck(void){
     while(PORTBbits.RB1 == 0){
         // RB1 is the interrupt pin, so if there is no key pressed, RB1 will be 0
@@ -41,7 +59,6 @@ void keycheck(void){
     Nop();  //breakpoint b/c compiler optimizations
     return;
 }
-
 void keyinterrupt(void){
     if(PORTBbits.RB1 == 1){
                 keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
@@ -50,69 +67,6 @@ void keyinterrupt(void){
                 }
             }
             Nop();  //breakpoint b/c compiler optimizations
-}
-
-void set_time(void){
-    I2C_Master_Start(); //Start condition
-    I2C_Master_Write(0b11010000); //7 bit RTC address + Write
-    I2C_Master_Write(0x00); //Set memory pointer to seconds
-    for(char i=0; i<7; i++){
-        I2C_Master_Write(currtime[i]);
-    }
-    I2C_Master_Stop(); //Stop condition
-}
-
-void readADC(char channel){
-    // Select A2D channel to read
-    ADCON0 = ((channel <<2));
-    ADCON0bits.GO = 1;
-    while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
-}
-
-signed char eepromRead(signed char address)
-{
-
-    // Set address registers
-    EEADRH = (signed char)(address >> 8);
-    EEADR = (signed char)address;
-
-    EECON1bits.EEPGD = 0;       // Select EEPROM Data Memory
-    EECON1bits.CFGS = 0;        // Access flash/EEPROM NOT config. registers
-    EECON1bits.RD = 1;          // Start a read cycle
-
-    // A read should only take one cycle, and then the hardware will clear
-    // the RD bit
-    while(EECON1bits.RD == 1);
-
-    return EEDATA;              // Return data
-
-}
-
-void eepromWrite(signed char address, signed char data)
-{    
-    // Set address registers
-    EEADRH = (signed char)(address >> 8);
-    EEADR = (signed char)address;
-
-    EEDATA = data;          // Write data we want to write to SFR
-    EECON1bits.EEPGD = 0;   // Select EEPROM data memory
-    EECON1bits.CFGS = 0;    // Access flash/EEPROM NOT config. registers
-    EECON1bits.WREN = 1;    // Enable writing of EEPROM (this is disabled again after the write completes)
-
-    // The next three lines of code perform the required operations to
-    // initiate a EEPROM write
-    EECON2 = 0x55;          // Part of required sequence for write to internal EEPROM
-    EECON2 = 0xAA;          // Part of required sequence for write to internal EEPROM
-    EECON1bits.WR = 1;      // Part of required sequence for write to internal EEPROM
-
-    // Loop until write operation is complete
-    while(PIR2bits.EEIF == 0)
-    {
-        continue;   // Do nothing, are just waiting
-    }
-
-    PIR2bits.EEIF = 0;      //Clearing EEIF bit (this MUST be cleared in software after each write)
-    EECON1bits.WREN = 0;    // Disable write (for safety, it is re-enabled next time a EEPROM write is performed)
 }
 
 void initialize(void){
@@ -158,37 +112,23 @@ void initialize(void){
 }
 
 int main(void) {
-    initialize();
-    
+    initialize();   
     int standby = 1; //1=true, 0=false
     int s = 0;      //stepper motor counter
-
+    int dc = 0;
+    int startTime;
     __delay_ms(10);
 
     while(1){
-        LATA = 00000000;
+        //LATA = 00000000;
 
-        //Reset RTC memory pointer
-        I2C_Master_Start(); //Start condition
-        I2C_Master_Write(0b11010000); //7 bit RTC address + Write
-        I2C_Master_Write(0x00); //Set memory pointer to seconds
-        I2C_Master_Stop(); //Stop condition
-
-        //Read Current Time
-        I2C_Master_Start();
-        I2C_Master_Write(0b11010001); //7 bit RTC address + Read
-        for(unsigned char j=0;j<0x06;j++){
-            time[j] = I2C_Master_Read(1);
-        }
-        time[6] = I2C_Master_Read(0);       //Final Read without ack
-        I2C_Master_Stop();
+        updateTime();
 
         if (standby){
             keypress = NULL;
             homescreen();
             keyinterrupt();
-            //lcd_clear();
-
+            
             if(keypress == 2){ //user selected 3:Start sorting
                 standby = 0; //not standby
                 lcd_clear();
@@ -196,23 +136,11 @@ int main(void) {
                 lcd_newline();
                 printf("Any key to stop");
                 PWM1(100);
+                dc = 1; //ON
+                //startTime
             }
             else if(keypress == 1){ //user selected 2:Logs
-                lcd_clear();
-                printf("Run#1    A:Next");
-                lcd_newline();
-                printf("# of cans: 10");
-                keycheck();
-                lcd_clear();
-                printf("Run#1    A:Next");
-                lcd_newline();
-                printf("# soda cans: 6");
-                keycheck();
-                lcd_clear();
-                printf("Run#1    A:Next");
-                lcd_newline();
-                printf("# soup cans: 4");
-                keycheck();
+                displayLogs();
             }
 
         }
@@ -222,9 +150,16 @@ int main(void) {
             if (keypress != NULL) {//stop sorting
                 standby = 1;
                 PWM1off();
+                dc = 0; //OFF
             }
-
-           
+             
+            readADC(backlog);
+            if (ADRESH > 0){
+                PWM1off();                
+            }
+            else{
+                PWM1(100);
+            }
             
         }
     }

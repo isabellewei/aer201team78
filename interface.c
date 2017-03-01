@@ -1,49 +1,25 @@
 #include "constants.h"
 
-void homescreen(void){
-    lcd_home();
-    printf("%02x/%02x/%02x ", time[6],time[5],time[4]);    //Print date in YY/MM/DD
-    printf("3:Start");
+
+void displayLogs(void){
+    lcd_clear();
+    printf("Run#1    A:Next");
     lcd_newline();
-    printf("%02x:%02x:%02x", time[2],time[1],time[0]);    //HH:MM:SS
-    printf(" 2:Logs");
-}
-
-void keycheck(void){
-    while(PORTBbits.RB1 == 0){
-        // RB1 is the interrupt pin, so if there is no key pressed, RB1 will be 0
-            // the PIC will wait and do nothing until a key press is signaled
-        }
-        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-        while(PORTBbits.RB1 == 1){
-            // Wait until the key has been released
-        }
-    Nop();  //breakpoint b/c compiler optimizations
-    return;
-}
-
-void keyinterrupt(void){
-    if(PORTBbits.RB1 == 1){
-                keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-                while(PORTBbits.RB1 == 1){
-                    // Wait until the key has been released
-                }
-            }
-            Nop();  //breakpoint b/c compiler optimizations
-}
-
-void set_time(void){
-    I2C_Master_Start(); //Start condition
-    I2C_Master_Write(0b11010000); //7 bit RTC address + Write
-    I2C_Master_Write(0x00); //Set memory pointer to seconds
-    for(char i=0; i<7; i++){
-        I2C_Master_Write(currtime[i]);
-    }
-    I2C_Master_Stop(); //Stop condition
+    printf("# of cans: 10");
+    keycheck();
+    lcd_clear();
+    printf("Run#1    A:Next");
+    lcd_newline();
+    printf("# soda cans: 6");
+    keycheck();
+    lcd_clear();
+    printf("Run#1    A:Next");
+    lcd_newline();
+    printf("# soup cans: 4");
+    keycheck();
 }
 
 signed char eepromRead(signed char address){
-
     // Set address registers
     EEADRH = (signed char)(address >> 8);
     EEADR = (signed char)address;
@@ -57,7 +33,6 @@ signed char eepromRead(signed char address){
     while(EECON1bits.RD == 1);
 
     return EEDATA;              // Return data
-
 }
 
 void eepromWrite(signed char address, signed char data){    

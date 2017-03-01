@@ -2860,5 +2860,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 19: unsigned char I2C_Master_Read(unsigned char a);
 [; ;functions.h: 20: void I2C_Master_Stop();
 [; ;functions.h: 21: void delay_10ms(unsigned char n);
-[; ;functions.h: 24: void PWM1(int duty);
-[; ;functions.h: 25: void PWM1off();
+[; ;functions.h: 22: void set_time(void);
+[; ;functions.h: 25: void PWM1(int duty);
+[; ;functions.h: 26: void PWM1off();
+[; ;functions.h: 29: signed char eepromRead(signed char address);
+[; ;functions.h: 30: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 31: void displayLogs(void);

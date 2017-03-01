@@ -1,91 +1,44 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"12 functions.h
+[v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"12 functions.h
-[v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
-"1211 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
-[s S47 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S47 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-"1221
-[s S48 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S48 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
-"1210
-[u S46 `S47 1 `S48 1 ]
-[n S46 . . . ]
-"1232
-[v _LATDbits `VS46 ~T0 @X0 0 e@3980 ]
-"13 functions.h
-[v _lcdNibble `(v ~T0 @X0 0 ef1`uc ]
-"1205 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"9 configBits.h
-[p x OSC=HS ]
-"10
-[p x FCMEN=OFF ]
-"11
-[p x IESO=OFF ]
-"14
-[p x PWRT=OFF ]
-"15
-[p x BOREN=SBORDIS ]
-"16
-[p x BORV=3 ]
-"19
-[p x WDT=OFF ]
-"20
-[p x WDTPS=32768 ]
-"23
-[p x CCP2MX=PORTC ]
-"24
-[p x PBADEN=ON ]
-"25
-[p x LPT1OSC=OFF ]
-"26
-[p x MCLRE=ON ]
-"29
-[p x STVREN=ON ]
-"30
-[p x LVP=OFF ]
-"31
-[p x XINST=OFF ]
-"34
-[p x CP0=OFF ]
-"35
-[p x CP1=OFF ]
-"36
-[p x CP2=OFF ]
-"37
-[p x CP3=OFF ]
-"40
-[p x CPB=OFF ]
-"41
-[p x CPD=OFF ]
-"44
-[p x WRT0=OFF ]
-"45
-[p x WRT1=OFF ]
-"46
-[p x WRT2=OFF ]
-"47
-[p x WRT3=OFF ]
-"50
-[p x WRTC=OFF ]
-"51
-[p x WRTB=OFF ]
-"52
-[p x WRTD=OFF ]
-"55
-[p x EBTR0=OFF ]
-"56
-[p x EBTR1=OFF ]
-"57
-[p x EBTR2=OFF ]
-"58
-[p x EBTR3=OFF ]
-"61
-[p x EBTRB=OFF ]
+"195 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"9 interface.c
+[v _keycheck `(i ~T0 @X0 0 ef ]
+"2984 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
+[v _EEADRH `Vuc ~T0 @X0 0 e@4010 ]
+"2978
+[v _EEADR `Vuc ~T0 @X0 0 e@4009 ]
+"2907
+[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S104 . RD WR WREN WRERR FREE . CFGS EEPGD ]
+"2917
+[s S105 :6 `uc 1 :1 `uc 1 ]
+[n S105 . . EEFS ]
+"2906
+[u S103 `S104 1 `S105 1 ]
+[n S103 . . . ]
+"2922
+[v _EECON1bits `VS103 ~T0 @X0 0 e@4006 ]
+"2972
+[v _EEDATA `Vuc ~T0 @X0 0 e@4008 ]
+"2966
+[v _EECON2 `Vuc ~T0 @X0 0 e@4007 ]
+"2777
+[s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S98 . CCP2IF TMR3IF HLVDIF BCLIF EEIF . CMIF OSCFIF ]
+"2787
+[s S99 :2 `uc 1 :1 `uc 1 ]
+[n S99 . . LVDIF ]
+"2776
+[u S97 `S98 1 `S99 1 ]
+[n S97 . . . ]
+"2792
+[v _PIR2bits `VS97 ~T0 @X0 0 e@4001 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2887,128 +2840,167 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 29: signed char eepromRead(signed char address);
 [; ;functions.h: 30: void eepromWrite(signed char address, signed char data);
 [; ;functions.h: 31: void displayLogs(void);
-"11 lcd.c
-[v _initLCD `(v ~T0 @X0 1 ef ]
+"4 interface.c
+[v _displayLogs `(v ~T0 @X0 1 ef ]
 {
-[; ;lcd.c: 11: void initLCD(void) {
-[e :U _initLCD ]
+[; ;interface.c: 4: void displayLogs(void){
+[e :U _displayLogs ]
 [f ]
-[; ;lcd.c: 12: _delay((unsigned long)((15)*(32000000/4000.0)));
-"12
-[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;lcd.c: 13: lcdInst(0b00110011);
-"13
-[e ( _lcdInst (1 -> -> 51 `i `uc ]
-[; ;lcd.c: 14: lcdInst(0b00110010);
-"14
-[e ( _lcdInst (1 -> -> 50 `i `uc ]
-[; ;lcd.c: 15: lcdInst(0b00101000);
-"15
-[e ( _lcdInst (1 -> -> 40 `i `uc ]
-[; ;lcd.c: 16: lcdInst(0b00001111);
-"16
-[e ( _lcdInst (1 -> -> 15 `i `uc ]
-[; ;lcd.c: 17: lcdInst(0b00000110);
-"17
-[e ( _lcdInst (1 -> -> 6 `i `uc ]
-[; ;lcd.c: 18: lcdInst(0b00000001);
-"18
+[; ;interface.c: 5: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+"5
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 19: _delay((unsigned long)((15)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;interface.c: 6: printf("Run#1    A:Next");
+"6
+[e ( _printf :s 1C ]
+[; ;interface.c: 7: lcdInst(0b11000000);;
+"7
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;interface.c: 8: printf("# of cans: 10");
+"8
+[e ( _printf :s 2C ]
+[; ;interface.c: 9: keycheck();
+"9
+[e ( _keycheck ..  ]
+[; ;interface.c: 10: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+"10
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;interface.c: 11: printf("Run#1    A:Next");
+"11
+[e ( _printf :s 3C ]
+[; ;interface.c: 12: lcdInst(0b11000000);;
+"12
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;interface.c: 13: printf("# soda cans: 6");
+"13
+[e ( _printf :s 4C ]
+[; ;interface.c: 14: keycheck();
+"14
+[e ( _keycheck ..  ]
+[; ;interface.c: 15: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+"15
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;interface.c: 16: printf("Run#1    A:Next");
+"16
+[e ( _printf :s 5C ]
+[; ;interface.c: 17: lcdInst(0b11000000);;
+"17
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;interface.c: 18: printf("# soup cans: 4");
+"18
+[e ( _printf :s 6C ]
+[; ;interface.c: 19: keycheck();
 "19
-[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;lcd.c: 20: }
+[e ( _keycheck ..  ]
+[; ;interface.c: 20: }
 "20
 [e :UE 270 ]
 }
 "22
-[v _lcdInst `(v ~T0 @X0 1 ef1`uc ]
+[v _eepromRead `(c ~T0 @X0 1 ef1`c ]
 {
-[; ;lcd.c: 22: void lcdInst(char data) {
-[e :U _lcdInst ]
-[v _data `uc ~T0 @X0 1 r1 ]
+[; ;interface.c: 22: signed char eepromRead(signed char address){
+[e :U _eepromRead ]
+[v _address `c ~T0 @X0 1 r1 ]
 [f ]
-[; ;lcd.c: 23: LATDbits.LATD2 = 0;
-"23
-[e = . . _LATDbits 0 2 -> -> 0 `i `uc ]
-[; ;lcd.c: 24: lcdNibble(data);
+[; ;interface.c: 24: EEADRH = (signed char)(address >> 8);
 "24
-[e ( _lcdNibble (1 _data ]
-[; ;lcd.c: 25: }
+[e = _EEADRH -> -> >> -> _address `i -> 8 `i `c `uc ]
+[; ;interface.c: 25: EEADR = (signed char)address;
 "25
+[e = _EEADR -> _address `uc ]
+[; ;interface.c: 27: EECON1bits.EEPGD = 0;
+"27
+[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
+[; ;interface.c: 28: EECON1bits.CFGS = 0;
+"28
+[e = . . _EECON1bits 0 6 -> -> 0 `i `uc ]
+[; ;interface.c: 29: EECON1bits.RD = 1;
+"29
+[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
+[; ;interface.c: 33: while(EECON1bits.RD == 1);
+"33
+[e $U 272  ]
+[e :U 273 ]
+[e :U 272 ]
+[e $ == -> . . _EECON1bits 0 0 `i -> 1 `i 273  ]
+[e :U 274 ]
+[; ;interface.c: 35: return EEDATA;
+"35
+[e ) -> _EEDATA `c ]
+[e $UE 271  ]
+[; ;interface.c: 36: }
+"36
 [e :UE 271 ]
 }
-"27
-[v _putch `(v ~T0 @X0 1 ef1`uc ]
-{
-[; ;lcd.c: 27: void putch(char data){
-[e :U _putch ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;lcd.c: 28: LATDbits.LATD2 = 1;
-"28
-[e = . . _LATDbits 0 2 -> -> 1 `i `uc ]
-[; ;lcd.c: 29: lcdNibble(data);
-"29
-[e ( _lcdNibble (1 _data ]
-[; ;lcd.c: 30: }
-"30
-[e :UE 272 ]
-}
-"32
-[v _lcdNibble `(v ~T0 @X0 1 ef1`uc ]
-{
-[; ;lcd.c: 32: void lcdNibble(char data){
-[e :U _lcdNibble ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"34
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;lcd.c: 34: char temp = data & 0xF0;
-[e = _temp -> & -> _data `i -> 240 `i `uc ]
-[; ;lcd.c: 35: LATD = LATD & 0x0F;
-"35
-[e = _LATD -> & -> _LATD `i -> 15 `i `uc ]
-[; ;lcd.c: 36: LATD = temp | LATD;
-"36
-[e = _LATD -> | -> _temp `i -> _LATD `i `uc ]
-[; ;lcd.c: 38: LATDbits.LATD3 = 0;
 "38
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-[; ;lcd.c: 39: _delay((unsigned long)((25)*(32000000/4000000.0)));
-"39
-[e ( __delay (1 -> * -> -> 25 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;lcd.c: 40: LATDbits.LATD3 = 1;
+[v _eepromWrite `(v ~T0 @X0 1 ef2`c`c ]
+{
+[; ;interface.c: 38: void eepromWrite(signed char address, signed char data){
+[e :U _eepromWrite ]
+[v _address `c ~T0 @X0 1 r1 ]
+[v _data `c ~T0 @X0 1 r2 ]
+[f ]
+[; ;interface.c: 40: EEADRH = (signed char)(address >> 8);
 "40
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-[; ;lcd.c: 41: _delay((unsigned long)((25)*(32000000/4000000.0)));
+[e = _EEADRH -> -> >> -> _address `i -> 8 `i `c `uc ]
+[; ;interface.c: 41: EEADR = (signed char)address;
 "41
-[e ( __delay (1 -> * -> -> 25 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;lcd.c: 43: data = data << 4;
+[e = _EEADR -> _address `uc ]
+[; ;interface.c: 43: EEDATA = data;
 "43
-[e = _data -> << -> _data `i -> 4 `i `uc ]
-[; ;lcd.c: 45: temp = data & 0xF0;
+[e = _EEDATA -> _data `uc ]
+[; ;interface.c: 44: EECON1bits.EEPGD = 0;
+"44
+[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
+[; ;interface.c: 45: EECON1bits.CFGS = 0;
 "45
-[e = _temp -> & -> _data `i -> 240 `i `uc ]
-[; ;lcd.c: 46: LATD = LATD & 0x0F;
+[e = . . _EECON1bits 0 6 -> -> 0 `i `uc ]
+[; ;interface.c: 46: EECON1bits.WREN = 1;
 "46
-[e = _LATD -> & -> _LATD `i -> 15 `i `uc ]
-[; ;lcd.c: 47: LATD = temp | LATD;
-"47
-[e = _LATD -> | -> _temp `i -> _LATD `i `uc ]
-[; ;lcd.c: 49: LATDbits.LATD3 = 0;
-"49
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
-[; ;lcd.c: 50: _delay((unsigned long)((25)*(32000000/4000000.0)));
+[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
+[; ;interface.c: 50: EECON2 = 0x55;
 "50
-[e ( __delay (1 -> * -> -> 25 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;lcd.c: 51: LATDbits.LATD3 = 1;
+[e = _EECON2 -> -> 85 `i `uc ]
+[; ;interface.c: 51: EECON2 = 0xAA;
 "51
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
-[; ;lcd.c: 52: _delay((unsigned long)((25)*(32000000/4000000.0)));
+[e = _EECON2 -> -> 170 `i `uc ]
+[; ;interface.c: 52: EECON1bits.WR = 1;
 "52
-[e ( __delay (1 -> * -> -> 25 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;lcd.c: 53: }
-"53
-[e :UE 273 ]
+[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
+[; ;interface.c: 55: while(PIR2bits.EEIF == 0)
+"55
+[e $U 276  ]
+[e :U 277 ]
+[; ;interface.c: 56: {
+"56
+{
+[; ;interface.c: 57: continue;
+"57
+[e $U 276  ]
+"58
 }
+[e :U 276 ]
+"55
+[e $ == -> . . _PIR2bits 0 4 `i -> 0 `i 277  ]
+[e :U 278 ]
+[; ;interface.c: 58: }
+[; ;interface.c: 60: PIR2bits.EEIF = 0;
+"60
+[e = . . _PIR2bits 0 4 -> -> 0 `i `uc ]
+[; ;interface.c: 61: EECON1bits.WREN = 0;
+"61
+[e = . . _EECON1bits 0 2 -> -> 0 `i `uc ]
+[; ;interface.c: 62: }
+"62
+[e :UE 275 ]
+}
+[p f _printf 8388608 ]
+[a 1C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
+[a 3C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
+[a 5C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
+[a 4C 35 32 115 111 100 97 32 99 97 110 115 58 32 54 0 ]
+[a 6C 35 32 115 111 117 112 32 99 97 110 115 58 32 52 0 ]
+[a 2C 35 32 111 102 32 99 97 110 115 58 32 49 48 0 ]
