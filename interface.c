@@ -13,12 +13,12 @@ void displayLogs(void){
     lcd_clear();
     printf("Run#1    A:Next");
     lcd_newline();
-    printf("# of cans: 10");
+    printf("# of cans: %d", eepromRead(10));
     keycheck();
     lcd_clear();
     printf("Run#1    A:Next");
     lcd_newline();
-    printf("# soda cans: 6");
+    printf("# soda cans: %d", eepromRead(20));
     keycheck();
     lcd_clear();
     printf("Run#1    A:Next");
@@ -67,4 +67,11 @@ void eepromWrite(signed char address, signed char data){
 
     PIR2bits.EEIF = 0;      //Clearing EEIF bit (this MUST be cleared in software after each write)
     EECON1bits.WREN = 0;    // Disable write (for safety, it is re-enabled next time a EEPROM write is performed)
+}
+
+void updateEEPROM(int time){
+    eepromWrite(40, eepromRead(30));
+    eepromWrite(30, eepromRead(20));
+    eepromWrite(20, eepromRead(10));
+    eepromWrite(10, time);
 }

@@ -3827,6 +3827,7 @@ signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
+void updateEEPROM(int time);
 
 
 int backlogTest(int blockedTime, int motorStatus);
@@ -3849,12 +3850,12 @@ void displayLogs(void){
 lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
 lcdInst(0b11000000);;
-printf("# of cans: 10");
+printf("# of cans: %d", eepromRead(10));
 keycheck();
 lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
 lcdInst(0b11000000);;
-printf("# soda cans: 6");
+printf("# soda cans: %d", eepromRead(20));
 keycheck();
 lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
@@ -3903,4 +3904,11 @@ continue;
 
 PIR2bits.EEIF = 0;
 EECON1bits.WREN = 0;
+}
+
+void updateEEPROM(int time){
+eepromWrite(40, eepromRead(30));
+eepromWrite(30, eepromRead(20));
+eepromWrite(20, eepromRead(10));
+eepromWrite(10, time);
 }

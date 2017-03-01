@@ -2821,8 +2821,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
 [; ;functions.h: 35: void displayLogs(void);
 [; ;functions.h: 36: void homescreen(void);
-[; ;functions.h: 39: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 40: int timePassed(int start);
+[; ;functions.h: 37: void updateEEPROM(int time);
+[; ;functions.h: 40: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 41: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;

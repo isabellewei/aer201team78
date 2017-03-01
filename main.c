@@ -20,8 +20,6 @@ void readADC(char channel){
     while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
 }
 
-
-
 //these 2 functions use keypress variable
 void keycheck(void){
     while(PORTBbits.RB1 == 0){
@@ -37,19 +35,28 @@ void keycheck(void){
 }
 void keyinterrupt(void){
     if(PORTBbits.RB1 == 1){
-                keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-                while(PORTBbits.RB1 == 1){
-                    // Wait until the key has been released
-                }
-            }
-            Nop();  //breakpoint b/c compiler optimizations
+        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
+        while(PORTBbits.RB1 == 1){
+            // Wait until the key has been released
+            //lcd_home();
+            //printf("asdf");
+            
+        }
+        //lcd_clear();
+        //printf("%c", keypress);
+        //lcd_newline();
+        //printf("%x", PORTB & 0xF0);
+        //__delay_ms(2000);
+    }
+    Nop();  //breakpoint b/c compiler optimizations
+    
 }
 
 void initialize(void){
     OSCCON = 0xF2; // Set internal oscillator to 8MHZ, and enforce internal oscillator operation
     OSCTUNEbits.PLLEN = 1; // Enable PLL for the internal oscillator, Processor now runs at 32MHZ
 
-    TRISA = 0x00;   //All output
+    TRISA = 0x11000000;   //All output
     TRISB = 0b11110010; // Set Keypad Pins as input, rest are output
     TRISC = 0x00011100; // -,-,-,I2C, I2C, DC motor, -, -
                         //Set I2C pins as input, rest are output
@@ -93,15 +100,29 @@ int main(void) {
     int s = 0;      //stepper motor counter
     int dc = 0;
     int startTime;
+    int prevUnblock = 0;
+    int soupLoad = 1;
+    int sodaLoad = 1;
+    int canCheck;
+    //int sodaCheck;
+    
     __delay_ms(10);
-
+    
+    
     while(1){
         updateTime();
-
+        
         if (standby){
             keypress = NULL;
             homescreen();
             keyinterrupt();
+            /*
+            __delay_ms(500);
+            if(keypress != NULL){            
+                printf(keys[keypress]);
+                __delay_ms(2000);
+            }
+             */
             
             if(keypress == 2){ //user selected 3:Start sorting
                 standby = 0; //not standby
@@ -112,8 +133,11 @@ int main(void) {
                 PWM1(100);
                 dc = 1; //ON
                 startTime = currMom();
+                canCheck = startTime;
+                //soupCheck = startTime;
             }
             else if(keypress == 1){ //user selected 2:Logs
+                printf("asdf");
                 displayLogs();
             }
 
@@ -123,13 +147,38 @@ int main(void) {
             keyinterrupt();
             if (keypress != NULL) {//stop sorting
                 standby = 1;
-                PWM1off();
-                dc = 0; //OFF
             }
              
             readADC(backlog);
+            if (dc ^ backlogTest(prevUnblock, dc)){
+                dc = backlogTest(prevUnblock, dc);
+                if (dc){PWM1(500);}
+                else {
+                    PWM1off();
+                    prevUnblock = currMom();
+                }
+            }
             
+            if(timePassed(canCheck) > 10){
+                readADC(soup);
+                soupLoad = ADRESH;
+                readADC(soda);
+                sodaLoad = ADRESH;
+                if (!soupLoad & !sodaLoad){
+                    standby = 1;
+                }
+                canCheck = currMom();
+            }
+             
             
+            if(standby){
+                lcd_clear();
+                printf("Finished sorting! ");
+                __delay_ms(500);
+                PWM1off();
+                dc = 0; //OFF
+                updateEEPROM(timePassed(startTime));
+            }
         }
     }
     return;

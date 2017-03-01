@@ -2,13 +2,16 @@
 
 int backlogTest(int blockedStart, int motorStatus){
     if (ADRESH == 0){  //unblocked
-        PWM1(100);   
         return 1; //motor ON
     }   
     else{
         if (currMom() - blockedStart > 3){
-            PWM1(100);   
+            
             return 1; //motor ON
+        }
+        else{
+            
+            return 0;
         }
     }            
 }

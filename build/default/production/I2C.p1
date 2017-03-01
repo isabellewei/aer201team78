@@ -2837,8 +2837,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
 [; ;functions.h: 35: void displayLogs(void);
 [; ;functions.h: 36: void homescreen(void);
-[; ;functions.h: 39: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 40: int timePassed(int start);
+[; ;functions.h: 37: void updateEEPROM(int time);
+[; ;functions.h: 40: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 41: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 "9 configBits.h
 [p x OSC=HS ]
@@ -2912,25 +2913,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 :U ..
 -> -> 48 `i `uc
 "13
--> -> 17 `i `uc
+-> -> 38 `i `uc
 "14
--> -> 32 `i `uc
+-> -> 19 `i `uc
 "15
--> -> 3 `i `uc
+-> -> 4 `i `uc
 "16
--> -> 7 `i `uc
+-> -> 1 `i `uc
 "17
--> -> 2 `i `uc
+-> -> 3 `i `uc
 "18
 -> -> 23 `i `uc
 ..
 ]
 [; ;I2C.c: 12: const char currtime[7] = { 0x30,
-[; ;I2C.c: 13: 0x11,
-[; ;I2C.c: 14: 0x20,
-[; ;I2C.c: 15: 0x03,
-[; ;I2C.c: 16: 0x07,
-[; ;I2C.c: 17: 0x02,
+[; ;I2C.c: 13: 0x26,
+[; ;I2C.c: 14: 0x13,
+[; ;I2C.c: 15: 0x04,
+[; ;I2C.c: 16: 0x01,
+[; ;I2C.c: 17: 0x03,
 [; ;I2C.c: 18: 0x17};
 "20
 [v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]

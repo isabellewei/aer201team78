@@ -10,11 +10,11 @@
 #include "configBits.h"
 
 const char currtime[7] = {  0x30, //45 Seconds
-                        0x11, //59 Minutes
-                        0x20, //24 hour mode, set to 8pm
-                        0x03, //Tuesday
-                        0x07, //07th
-                        0x02, //February
+                        0x26, //24 Minutes
+                        0x13, //24 hour mode, set to 1pm
+                        0x04, //Wednesday
+                        0x01, //01st
+                        0x03, //March
                         0x17};//2017
 
 void I2C_Master_Init(const unsigned long c)

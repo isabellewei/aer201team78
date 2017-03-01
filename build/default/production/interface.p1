@@ -9,6 +9,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
+"33 functions.h
+[v _eepromRead `(c ~T0 @X0 0 ef1`c ]
 "17 interface.c
 [v _keycheck `(i ~T0 @X0 0 ef ]
 "2984 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
@@ -2847,8 +2849,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
 [; ;functions.h: 35: void displayLogs(void);
 [; ;functions.h: 36: void homescreen(void);
-[; ;functions.h: 39: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 40: int timePassed(int start);
+[; ;functions.h: 37: void updateEEPROM(int time);
+[; ;functions.h: 40: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 41: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 "3 interface.c
 [v _homescreen `(v ~T0 @X0 1 ef ]
@@ -2894,9 +2897,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interface.c: 15: lcdInst(0b11000000);;
 "15
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;interface.c: 16: printf("# of cans: 10");
+[; ;interface.c: 16: printf("# of cans: %d", eepromRead(10));
 "16
-[e ( _printf :s 6C ]
+[e ( _printf , (. :s 6C -> ( _eepromRead (1 -> -> 10 `i `c `i ]
 [; ;interface.c: 17: keycheck();
 "17
 [e ( _keycheck ..  ]
@@ -2910,9 +2913,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interface.c: 20: lcdInst(0b11000000);;
 "20
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;interface.c: 21: printf("# soda cans: 6");
+[; ;interface.c: 21: printf("# soda cans: %d", eepromRead(20));
 "21
-[e ( _printf :s 8C ]
+[e ( _printf , (. :s 8C -> ( _eepromRead (1 -> -> 20 `i `c `i ]
 [; ;interface.c: 22: keycheck();
 "22
 [e ( _keycheck ..  ]
@@ -3035,14 +3038,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 "70
 [e :UE 276 ]
 }
-[p f _printf 12615684 ]
+"72
+[v _updateEEPROM `(v ~T0 @X0 1 ef1`i ]
+{
+[; ;interface.c: 72: void updateEEPROM(int time){
+[e :U _updateEEPROM ]
+[v _time `i ~T0 @X0 1 r1 ]
+[f ]
+[; ;interface.c: 73: eepromWrite(40, eepromRead(30));
+"73
+[e ( _eepromWrite (2 , -> -> 40 `i `c ( _eepromRead (1 -> -> 30 `i `c ]
+[; ;interface.c: 74: eepromWrite(30, eepromRead(20));
+"74
+[e ( _eepromWrite (2 , -> -> 30 `i `c ( _eepromRead (1 -> -> 20 `i `c ]
+[; ;interface.c: 75: eepromWrite(20, eepromRead(10));
+"75
+[e ( _eepromWrite (2 , -> -> 20 `i `c ( _eepromRead (1 -> -> 10 `i `c ]
+[; ;interface.c: 76: eepromWrite(10, time);
+"76
+[e ( _eepromWrite (2 , -> -> 10 `i `c -> _time `c ]
+[; ;interface.c: 77: }
+"77
+[e :UE 280 ]
+}
+[p f _printf 12615812 ]
 [a 3C 37 48 50 120 58 37 48 50 120 58 37 48 50 120 0 ]
 [a 5C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
 [a 7C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
 [a 9C 82 117 110 35 49 32 32 32 32 65 58 78 101 120 116 0 ]
 [a 2C 51 58 83 116 97 114 116 0 ]
 [a 4C 32 50 58 76 111 103 115 0 ]
-[a 8C 35 32 115 111 100 97 32 99 97 110 115 58 32 54 0 ]
+[a 6C 35 32 111 102 32 99 97 110 115 58 32 37 100 0 ]
+[a 8C 35 32 115 111 100 97 32 99 97 110 115 58 32 37 100 0 ]
 [a 10C 35 32 115 111 117 112 32 99 97 110 115 58 32 52 0 ]
-[a 6C 35 32 111 102 32 99 97 110 115 58 32 49 48 0 ]
 [a 1C 37 48 50 120 47 37 48 50 120 47 37 48 50 120 32 0 ]

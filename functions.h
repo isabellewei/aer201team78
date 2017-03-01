@@ -34,6 +34,7 @@ signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
+void updateEEPROM(int time);
 
 //logic
 int backlogTest(int blockedTime, int motorStatus);

@@ -3827,6 +3827,7 @@ signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
+void updateEEPROM(int time);
 
 
 int backlogTest(int blockedTime, int motorStatus);
@@ -3893,11 +3894,11 @@ extern unsigned char time[7];
 
 # 12 "I2C.c"
 const char currtime[7] = { 0x30,
-0x11,
-0x20,
+0x26,
+0x13,
+0x04,
+0x01,
 0x03,
-0x07,
-0x02,
 0x17};
 
 void I2C_Master_Init(const unsigned long c)

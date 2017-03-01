@@ -3883,6 +3883,7 @@ signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
+void updateEEPROM(int time);
 
 
 int backlogTest(int blockedTime, int motorStatus);
@@ -3904,8 +3905,6 @@ while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
 }
 
 
-
-
 void keycheck(void){
 while(PORTBbits.RB1 == 0){
 
@@ -3923,16 +3922,22 @@ if(PORTBbits.RB1 == 1){
 keypress = (PORTB & 0xF0)>>4;
 while(PORTBbits.RB1 == 1){
 
+
+
+
 }
+
+# 50
 }
 __nop();
+
 }
 
 void initialize(void){
 OSCCON = 0xF2;
 OSCTUNEbits.PLLEN = 1;
 
-TRISA = 0x00;
+TRISA = 0x11000000;
 TRISB = 0b11110010;
 TRISC = 0x00011100;
 
@@ -3976,7 +3981,14 @@ int standby = 1;
 int s = 0;
 int dc = 0;
 int startTime;
+int prevUnblock = 0;
+int soupLoad = 1;
+int sodaLoad = 1;
+int canCheck;
+
+
 _delay((unsigned long)((10)*(32000000/4000.0)));
+
 
 while(1){
 updateTime();
@@ -3986,6 +3998,7 @@ keypress = (0);
 homescreen();
 keyinterrupt();
 
+# 127
 if(keypress == 2){
 standby = 0;
 lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
@@ -3995,8 +4008,11 @@ printf("Any key to stop");
 PWM1(100);
 dc = 1;
 startTime = time[0] + 60*time[1] + 3600*time[2];
+canCheck = startTime;
+
 }
 else if(keypress == 1){
+printf("asdf");
 displayLogs();
 }
 
@@ -4006,13 +4022,38 @@ keypress = (0);
 keyinterrupt();
 if (keypress != (0)) {
 standby = 1;
-PWM1off();
-dc = 0;
 }
 
 readADC(2);
+if (dc ^ backlogTest(prevUnblock, dc)){
+dc = backlogTest(prevUnblock, dc);
+if (dc){PWM1(500);}
+else {
+PWM1off();
+prevUnblock = time[0] + 60*time[1] + 3600*time[2];
+}
+}
+
+if(timePassed(canCheck) > 10){
+readADC(3);
+soupLoad = ADRESH;
+readADC(4);
+sodaLoad = ADRESH;
+if (!soupLoad & !sodaLoad){
+standby = 1;
+}
+canCheck = time[0] + 60*time[1] + 3600*time[2];
+}
 
 
+if(standby){
+lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+printf("Finished sorting! ");
+_delay((unsigned long)((500)*(32000000/4000.0)));
+PWM1off();
+dc = 0;
+updateEEPROM(timePassed(startTime));
+}
 }
 }
 return;
