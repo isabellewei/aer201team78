@@ -17,6 +17,8 @@
 #define _XTAL_FREQ 32000000      // Define osc freq for use in delay macros
 #define TMR2PRESCALE 4
 
+extern unsigned char time[7]; 
+
 //LCD Control Registers
 #define RS          LATDbits.LATD2
 #define E           LATDbits.LATD3
@@ -47,5 +49,6 @@
 
 //logic
 #define currMom()  time[0] + 60*time[1] + 3600*time[2]
+
 
 #endif	/* CONSTANTS_H */

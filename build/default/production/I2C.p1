@@ -29,6 +29,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
+"20 constants.h
+[v _time `uc ~T0 @X0 -> 0 `x e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2820,16 +2822,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 13: void lcdNibble(char data);
 [; ;functions.h: 14: void initLCD(void);
 [; ;functions.h: 17: void I2C_Master_Init(const unsigned long c);
-[; ;functions.h: 18: void I2C_Master_Write(unsigned d);
-[; ;functions.h: 19: unsigned char I2C_Master_Read(unsigned char a);
-[; ;functions.h: 20: void I2C_Master_Stop();
-[; ;functions.h: 21: void delay_10ms(unsigned char n);
-[; ;functions.h: 22: void set_time(void);
-[; ;functions.h: 25: void PWM1(int duty);
-[; ;functions.h: 26: void PWM1off();
-[; ;functions.h: 29: signed char eepromRead(signed char address);
-[; ;functions.h: 30: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 31: void displayLogs(void);
+[; ;functions.h: 18: void I2C_Master_Wait();
+[; ;functions.h: 19: void I2C_Master_Start();
+[; ;functions.h: 20: void I2C_Master_RepeatedStart();
+[; ;functions.h: 21: void I2C_Master_Write(unsigned d);
+[; ;functions.h: 22: unsigned char I2C_Master_Read(unsigned char a);
+[; ;functions.h: 23: void I2C_Master_Stop();
+[; ;functions.h: 24: void delay_10ms(unsigned char n);
+[; ;functions.h: 25: void set_time(void);
+[; ;functions.h: 26: void updateTime(void);
+[; ;functions.h: 29: void PWM1(int duty);
+[; ;functions.h: 30: void PWM1off();
+[; ;functions.h: 33: signed char eepromRead(signed char address);
+[; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 35: void displayLogs(void);
+[; ;functions.h: 36: void homescreen(void);
+[; ;functions.h: 39: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 40: int timePassed(int start);
+[; ;constants.h: 20: extern unsigned char time[7];
 "9 configBits.h
 [p x OSC=HS ]
 "10
@@ -3160,4 +3170,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;I2C.c: 87: }
 "87
 [e :UE 284 ]
+}
+"89
+[v _updateTime `(v ~T0 @X0 1 ef ]
+{
+[; ;I2C.c: 89: void updateTime(void){
+[e :U _updateTime ]
+[f ]
+[; ;I2C.c: 91: I2C_Master_Start();
+"91
+[e ( _I2C_Master_Start ..  ]
+[; ;I2C.c: 92: I2C_Master_Write(0b11010000);
+"92
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;I2C.c: 93: I2C_Master_Write(0x00);
+"93
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;I2C.c: 94: I2C_Master_Stop();
+"94
+[e ( _I2C_Master_Stop ..  ]
+[; ;I2C.c: 97: I2C_Master_Start();
+"97
+[e ( _I2C_Master_Start ..  ]
+[; ;I2C.c: 98: I2C_Master_Write(0b11010001);
+"98
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+[; ;I2C.c: 99: for(unsigned char j=0;j<0x06;j++){
+"99
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 6 `i 289  ]
+[e $U 290  ]
+[e :U 289 ]
+{
+[; ;I2C.c: 100: time[j] = I2C_Master_Read(1);
+"100
+[e = *U + &U _time * -> _j `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"101
+}
+"99
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 6 `i 289  ]
+[e :U 290 ]
+"101
+}
+[; ;I2C.c: 101: }
+[; ;I2C.c: 102: time[6] = I2C_Master_Read(0);
+"102
+[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;I2C.c: 103: I2C_Master_Stop();
+"103
+[e ( _I2C_Master_Stop ..  ]
+[; ;I2C.c: 104: }
+"104
+[e :UE 288 ]
 }

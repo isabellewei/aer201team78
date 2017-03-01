@@ -1,5 +1,13 @@
 #include "constants.h"
 
+void homescreen(void){
+    lcd_home();
+    printf("%02x/%02x/%02x ", time[6],time[5],time[4]);    //Print date in YY/MM/DD
+    printf("3:Start");
+    lcd_newline();
+    printf("%02x:%02x:%02x", time[2],time[1],time[0]);    //HH:MM:SS
+    printf(" 2:Logs");
+}
 
 void displayLogs(void){
     lcd_clear();

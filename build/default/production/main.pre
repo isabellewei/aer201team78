@@ -3864,11 +3864,15 @@ void initLCD(void);
 
 
 void I2C_Master_Init(const unsigned long c);
+void I2C_Master_Wait();
+void I2C_Master_Start();
+void I2C_Master_RepeatedStart();
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 void I2C_Master_Stop();
 void delay_10ms(unsigned char n);
 void set_time(void);
+void updateTime(void);
 
 
 void PWM1(int duty);
@@ -3878,6 +3882,14 @@ void PWM1off();
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
+void homescreen(void);
+
+
+int backlogTest(int blockedTime, int motorStatus);
+int timePassed(int start);
+
+# 20 "constants.h"
+extern unsigned char time[7];
 
 # 12 "main.c"
 const char keys[] = "123A456B789C*0#D";
@@ -3892,30 +3904,6 @@ while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
 }
 
 
-void updateTime(void){
-
-I2C_Master_Start();
-I2C_Master_Write(0b11010000);
-I2C_Master_Write(0x00);
-I2C_Master_Stop();
-
-
-I2C_Master_Start();
-I2C_Master_Write(0b11010001);
-for(unsigned char j=0;j<0x06;j++){
-time[j] = I2C_Master_Read(1);
-}
-time[6] = I2C_Master_Read(0);
-I2C_Master_Stop();
-}
-void homescreen(void){
-lcdInst(0b10000000);;
-printf("%02x/%02x/%02x ", time[6],time[5],time[4]);
-printf("3:Start");
-lcdInst(0b11000000);;
-printf("%02x:%02x:%02x", time[2],time[1],time[0]);
-printf(" 2:Logs");
-}
 
 
 void keycheck(void){
@@ -3991,8 +3979,6 @@ int startTime;
 _delay((unsigned long)((10)*(32000000/4000.0)));
 
 while(1){
-
-
 updateTime();
 
 if (standby){
@@ -4008,7 +3994,7 @@ lcdInst(0b11000000);;
 printf("Any key to stop");
 PWM1(100);
 dc = 1;
-
+startTime = time[0] + 60*time[1] + 3600*time[2];
 }
 else if(keypress == 1){
 displayLogs();
@@ -4025,12 +4011,7 @@ dc = 0;
 }
 
 readADC(2);
-if (ADRESH > 0){
-PWM1off();
-}
-else{
-PWM1(100);
-}
+
 
 }
 }

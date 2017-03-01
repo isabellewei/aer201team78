@@ -3808,11 +3808,15 @@ void initLCD(void);
 
 
 void I2C_Master_Init(const unsigned long c);
+void I2C_Master_Wait();
+void I2C_Master_Start();
+void I2C_Master_RepeatedStart();
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 void I2C_Master_Stop();
 void delay_10ms(unsigned char n);
 void set_time(void);
+void updateTime(void);
 
 
 void PWM1(int duty);
@@ -3822,6 +3826,14 @@ void PWM1off();
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
+void homescreen(void);
+
+
+int backlogTest(int blockedTime, int motorStatus);
+int timePassed(int start);
+
+# 20 "constants.h"
+extern unsigned char time[7];
 
 
 # 9 "configBits.h"
@@ -3954,6 +3966,23 @@ I2C_Master_Write(0x00);
 for(char i=0; i<7; i++){
 I2C_Master_Write(currtime[i]);
 }
+I2C_Master_Stop();
+}
+
+void updateTime(void){
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+I2C_Master_Stop();
+
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010001);
+for(unsigned char j=0;j<0x06;j++){
+time[j] = I2C_Master_Read(1);
+}
+time[6] = I2C_Master_Read(0);
 I2C_Master_Stop();
 }
 

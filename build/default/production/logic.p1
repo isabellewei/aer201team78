@@ -1,4 +1,10 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"4604 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
+[v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
+"29 functions.h
+[v _PWM1 `(v ~T0 @X0 0 ef1`i ]
+"20 constants.h
+[v _time `uc ~T0 @X0 -> 0 `x e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2790,13 +2796,98 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 13: void lcdNibble(char data);
 [; ;functions.h: 14: void initLCD(void);
 [; ;functions.h: 17: void I2C_Master_Init(const unsigned long c);
-[; ;functions.h: 18: void I2C_Master_Write(unsigned d);
-[; ;functions.h: 19: unsigned char I2C_Master_Read(unsigned char a);
-[; ;functions.h: 20: void I2C_Master_Stop();
-[; ;functions.h: 21: void delay_10ms(unsigned char n);
-[; ;functions.h: 22: void set_time(void);
-[; ;functions.h: 25: void PWM1(int duty);
-[; ;functions.h: 26: void PWM1off();
-[; ;functions.h: 29: signed char eepromRead(signed char address);
-[; ;functions.h: 30: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 31: void displayLogs(void);
+[; ;functions.h: 18: void I2C_Master_Wait();
+[; ;functions.h: 19: void I2C_Master_Start();
+[; ;functions.h: 20: void I2C_Master_RepeatedStart();
+[; ;functions.h: 21: void I2C_Master_Write(unsigned d);
+[; ;functions.h: 22: unsigned char I2C_Master_Read(unsigned char a);
+[; ;functions.h: 23: void I2C_Master_Stop();
+[; ;functions.h: 24: void delay_10ms(unsigned char n);
+[; ;functions.h: 25: void set_time(void);
+[; ;functions.h: 26: void updateTime(void);
+[; ;functions.h: 29: void PWM1(int duty);
+[; ;functions.h: 30: void PWM1off();
+[; ;functions.h: 33: signed char eepromRead(signed char address);
+[; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 35: void displayLogs(void);
+[; ;functions.h: 36: void homescreen(void);
+[; ;functions.h: 39: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 40: int timePassed(int start);
+[; ;constants.h: 20: extern unsigned char time[7];
+"3 logic.c
+[v _backlogTest `(i ~T0 @X0 1 ef2`i`i ]
+{
+[; ;logic.c: 3: int backlogTest(int blockedStart, int motorStatus){
+[e :U _backlogTest ]
+[v _blockedStart `i ~T0 @X0 1 r1 ]
+[v _motorStatus `i ~T0 @X0 1 r2 ]
+[f ]
+[; ;logic.c: 4: if (ADRESH == 0){
+"4
+[e $ ! == -> _ADRESH `i -> 0 `i 271  ]
+{
+[; ;logic.c: 5: PWM1(100);
+"5
+[e ( _PWM1 (1 -> 100 `i ]
+[; ;logic.c: 6: return 1;
+"6
+[e ) -> 1 `i ]
+[e $UE 270  ]
+"7
+}
+[; ;logic.c: 7: }
+[e $U 272  ]
+"8
+[e :U 271 ]
+[; ;logic.c: 8: else{
+{
+[; ;logic.c: 9: if (time[0] + 60*time[1] + 3600*time[2] - blockedStart > 3){
+"9
+[e $ ! > - + + -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 60 `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 3600 `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i _blockedStart -> 3 `i 273  ]
+{
+[; ;logic.c: 10: PWM1(100);
+"10
+[e ( _PWM1 (1 -> 100 `i ]
+[; ;logic.c: 11: return 1;
+"11
+[e ) -> 1 `i ]
+[e $UE 270  ]
+"12
+}
+[e :U 273 ]
+"13
+}
+[e :U 272 ]
+[; ;logic.c: 12: }
+[; ;logic.c: 13: }
+[; ;logic.c: 14: }
+"14
+[e :UE 270 ]
+}
+"16
+[v _timePassed `(i ~T0 @X0 1 ef1`i ]
+{
+[; ;logic.c: 16: int timePassed(int start){
+[e :U _timePassed ]
+[v _start `i ~T0 @X0 1 r1 ]
+[f ]
+[; ;logic.c: 17: if(time[0] + 60*time[1] + 3600*time[2] >= 86400){return time[0] + 60*time[1] + 3600*time[2] + 86400 - start;}
+"17
+[e $ ! >= -> + + -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 60 `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 3600 `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i `l -> 86400 `l 275  ]
+{
+[e ) -> - + -> + + -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 60 `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 3600 `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i `l -> 86400 `l -> _start `l `i ]
+[e $UE 274  ]
+}
+[e $U 276  ]
+"18
+[e :U 275 ]
+[; ;logic.c: 18: else{return time[0] + 60*time[1] + 3600*time[2] - start;}
+{
+[e ) - + + -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 60 `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i * -> 3600 `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i _start ]
+[e $UE 274  ]
+}
+[e :U 276 ]
+[; ;logic.c: 19: }
+"19
+[e :UE 274 ]
+}

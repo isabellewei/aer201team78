@@ -20,31 +20,7 @@ void readADC(char channel){
     while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
 }
 
-//these 2 functions  use time variable
-void updateTime(void){
-    //Reset RTC memory pointer
-        I2C_Master_Start(); //Start condition
-        I2C_Master_Write(0b11010000); //7 bit RTC address + Write
-        I2C_Master_Write(0x00); //Set memory pointer to seconds
-        I2C_Master_Stop(); //Stop condition
 
-        //Read Current Time
-        I2C_Master_Start();
-        I2C_Master_Write(0b11010001); //7 bit RTC address + Read
-        for(unsigned char j=0;j<0x06;j++){
-            time[j] = I2C_Master_Read(1);
-        }
-        time[6] = I2C_Master_Read(0);       //Final Read without ack
-        I2C_Master_Stop();
-}
-void homescreen(void){
-    lcd_home();
-    printf("%02x/%02x/%02x ", time[6],time[5],time[4]);    //Print date in YY/MM/DD
-    printf("3:Start");
-    lcd_newline();
-    printf("%02x:%02x:%02x", time[2],time[1],time[0]);    //HH:MM:SS
-    printf(" 2:Logs");
-}
 
 //these 2 functions use keypress variable
 void keycheck(void){
@@ -120,8 +96,6 @@ int main(void) {
     __delay_ms(10);
 
     while(1){
-        //LATA = 00000000;
-
         updateTime();
 
         if (standby){
@@ -137,7 +111,7 @@ int main(void) {
                 printf("Any key to stop");
                 PWM1(100);
                 dc = 1; //ON
-                //startTime
+                startTime = currMom();
             }
             else if(keypress == 1){ //user selected 2:Logs
                 displayLogs();
@@ -154,12 +128,7 @@ int main(void) {
             }
              
             readADC(backlog);
-            if (ADRESH > 0){
-                PWM1off();                
-            }
-            else{
-                PWM1(100);
-            }
+            
             
         }
     }
