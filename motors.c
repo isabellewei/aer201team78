@@ -58,7 +58,7 @@ void updateStepper(){
         if (s>4) {s=1;} 
 }
 
-void forward(void){
+void S2forward(void){
     if (s == 1){S2_1 = 1;}
     else{S2_1 = 0;} 
     if (s == 2){S2_2 = 1;}
@@ -69,7 +69,7 @@ void forward(void){
     else{S2_4 = 0;}
 }
 
-void backward(void){
+void S2backward(void){
     if (s == 4){S2_1 = 1;}
     else{S2_1 = 0;} 
     if (s == 3){S2_2 = 1;}
@@ -79,7 +79,7 @@ void backward(void){
     if (s == 1){S2_4 = 1;}
     else{S2_4 = 0;}
 }
-void off(void){
+void S2off(void){
     if (s == 4){S2_1 = 1;}
     else{S2_1 = 0;} 
     if (s == 2){S2_2 = 1;}
@@ -88,5 +88,69 @@ void off(void){
     else{S2_3 = 0;}
     if (s == 1){S2_4 = 1;}
     else{S2_4 = 0;}
+}
+
+void S1forward(void){
+    if (s == 1){S1_1 = 1;}
+    else{S1_1 = 0;} 
+    if (s == 2){S1_2 = 1;}
+    else{S1_2 = 0;}
+    if (s == 3){S1_3 = 1;}
+    else{S1_3 = 0;}
+    if (s == 4){S1_4 = 1;}
+    else{S1_4 = 0;}
+}
+
+void S1backward(void){
+    if (s == 4){S1_1 = 1;}
+    else{S1_1 = 0;} 
+    if (s == 3){S1_2 = 1;}
+    else{S1_2 = 0;}
+    if (s == 2){S1_3 = 1;}
+    else{S1_3 = 0;}
+    if (s == 1){S1_4 = 1;}
+    else{S1_4 = 0;}
+}
+void S1off(void){
+    if (s == 4){S1_1 = 1;}
+    else{S1_1 = 0;} 
+    if (s == 2){S1_2 = 1;}
+    else{S1_2 = 0;}
+    if (s == 3){S1_3 = 1;}
+    else{S1_3 = 0;}
+    if (s == 1){S1_4 = 1;}
+    else{S1_4 = 0;}
+}
+
+void S3forward(void){
+    if (s == 1){S3_1 = 1;}
+    else{S3_1 = 0;} 
+    if (s == 2){S3_2 = 1;}
+    else{S3_2 = 0;}
+    if (s == 3){S3_3 = 1;}
+    else{S3_3 = 0;}
+    if (s == 4){S3_4 = 1;}
+    else{S3_4 = 0;}
+}
+
+void S3backward(void){
+    if (s == 4){S3_1 = 1;}
+    else{S3_1 = 0;} 
+    if (s == 3){S3_2 = 1;}
+    else{S3_2 = 0;}
+    if (s == 2){S3_3 = 1;}
+    else{S3_3 = 0;}
+    if (s == 1){S3_4 = 1;}
+    else{S3_4 = 0;}
+}
+void S3off(void){
+    if (s == 4){S3_1 = 1;}
+    else{S3_1 = 0;} 
+    if (s == 2){S3_2 = 1;}
+    else{S3_2 = 0;}
+    if (s == 3){S3_3 = 1;}
+    else{S3_3 = 0;}
+    if (s == 1){S3_4 = 1;}
+    else{S3_4 = 0;}
 }
 

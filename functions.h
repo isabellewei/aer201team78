@@ -31,9 +31,15 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
-void forward(void);
-void backward(void);
-void off(void);
+void S1forward(void);
+void S1backward(void);
+void S1off(void);
+void S2forward(void);
+void S2backward(void);
+void S2off(void);
+void S3forward(void);
+void S3backward(void);
+void S3off(void);
 
 //interface
 signed char eepromRead(signed char address);

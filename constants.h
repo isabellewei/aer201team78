@@ -49,11 +49,12 @@ extern unsigned char time[7];
 #define S3_4        LATDbits.LATD0
 
 //analog input channels
-#define tab         0
-#define label       1
-#define backlog     2
-#define soup        3
-#define soda        4
+#define tab         4
+#define label       3
+#define IR1         0
+#define IR2         1
+#define soup        2
+#define soda        5
 
 //logic
 #define currMom()  time[0] + 60*time[1] + 3600*time[2]
