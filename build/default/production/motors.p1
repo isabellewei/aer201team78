@@ -15,6 +15,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CCP1CONbits `VS162 ~T0 @X0 0 e@4029 ]
 "4308
 [v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
+"4116
+[s S159 :4 `uc 1 :2 `uc 1 ]
+[n S159 . CCP2M DC2B ]
+"4120
+[s S160 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S160 . CCP2M0 CCP2M1 CCP2M2 CCP2M3 CCP2Y CCP2X ]
+"4128
+[s S161 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S161 . . DC2B0 DC2B1 ]
+"4115
+[u S158 `S159 1 `S160 1 `S161 1 ]
+[n S158 . . . . ]
+"4134
+[v _CCP2CONbits `VS158 ~T0 @X0 0 e@4026 ]
+"4194
+[v _CCPR2L `Vuc ~T0 @X0 0 e@4027 ]
+"5863
+[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
+"1100
+[s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S44 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"1110
+[s S45 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S45 . LC0 LC1 LC2 LC3 LC4 LC5 LC6 LC7 ]
+"1099
+[u S43 `S44 1 `S45 1 ]
+[n S43 . . . ]
+"1121
+[v _LATCbits `VS43 ~T0 @X0 0 e@3979 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2817,13 +2846,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 26: void updateTime(void);
 [; ;functions.h: 29: void PWM1(int duty);
 [; ;functions.h: 30: void PWM1off();
-[; ;functions.h: 33: signed char eepromRead(signed char address);
-[; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 35: void displayLogs(void);
-[; ;functions.h: 36: void homescreen(void);
-[; ;functions.h: 37: void updateEEPROM(int time);
-[; ;functions.h: 40: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 41: int timePassed(int start);
+[; ;functions.h: 31: void PWM2(int duty);
+[; ;functions.h: 32: void PWM2off();
+[; ;functions.h: 33: void updateStepper();
+[; ;functions.h: 34: void forward(void);
+[; ;functions.h: 35: void backward(void);
+[; ;functions.h: 36: void off(void);
+[; ;functions.h: 39: signed char eepromRead(signed char address);
+[; ;functions.h: 40: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 41: void displayLogs(void);
+[; ;functions.h: 42: void homescreen(void);
+[; ;functions.h: 43: void updateEEPROM(int time);
+[; ;functions.h: 46: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 47: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -2853,42 +2888,342 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-"5 motors.c
+"4 motors.c
+[v _s `i ~T0 @X0 1 e ]
+[i _s
+-> 0 `i
+]
+[; ;motors.c: 4: int s = 0;
+"5
+[v _prev `i ~T0 @X0 1 e ]
+[i _prev
+-> 0 `i
+]
+[; ;motors.c: 5: int prev = 0;
+"6
+[v _curr `i ~T0 @X0 1 e ]
+[; ;motors.c: 6: int curr;
+"8
 [v _PWM1 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;motors.c: 5: void PWM1(int duty){
+[; ;motors.c: 8: void PWM1(int duty){
 [e :U _PWM1 ]
 [v _duty `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;motors.c: 13: CCP1CONbits.DC1B0 = duty & 1;
-"13
+[; ;motors.c: 16: CCP1CONbits.DC1B0 = duty & 1;
+"16
 [e = . . _CCP1CONbits 2 1 -> & _duty -> 1 `i `uc ]
-[; ;motors.c: 14: CCP1CONbits.DC1B1 = (duty >> 1) & 1;
-"14
-[e = . . _CCP1CONbits 2 2 -> & >> _duty -> 1 `i -> 1 `i `uc ]
-[; ;motors.c: 15: CCPR1L = (duty >> 2);
-"15
-[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
-[; ;motors.c: 17: }
+[; ;motors.c: 17: CCP1CONbits.DC1B1 = (duty >> 1) & 1;
 "17
+[e = . . _CCP1CONbits 2 2 -> & >> _duty -> 1 `i -> 1 `i `uc ]
+[; ;motors.c: 18: CCPR1L = (duty >> 2);
+"18
+[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
+[; ;motors.c: 20: }
+"20
 [e :UE 270 ]
 }
-"19
+"22
 [v _PWM1off `(v ~T0 @X0 1 ef ]
 {
-[; ;motors.c: 19: void PWM1off(){
+[; ;motors.c: 22: void PWM1off(){
 [e :U _PWM1off ]
 [f ]
-[; ;motors.c: 20: CCP1CONbits.DC1B0 = 0;
-"20
-[e = . . _CCP1CONbits 2 1 -> -> 0 `i `uc ]
-[; ;motors.c: 21: CCP1CONbits.DC1B1 = 0;
-"21
-[e = . . _CCP1CONbits 2 2 -> -> 0 `i `uc ]
-[; ;motors.c: 22: CCPR1L = 0;
-"22
-[e = _CCPR1L -> -> 0 `i `uc ]
-[; ;motors.c: 23: }
+[; ;motors.c: 23: CCP1CONbits.DC1B0 = 0;
 "23
+[e = . . _CCP1CONbits 2 1 -> -> 0 `i `uc ]
+[; ;motors.c: 24: CCP1CONbits.DC1B1 = 0;
+"24
+[e = . . _CCP1CONbits 2 2 -> -> 0 `i `uc ]
+[; ;motors.c: 25: CCPR1L = 0;
+"25
+[e = _CCPR1L -> -> 0 `i `uc ]
+[; ;motors.c: 26: }
+"26
 [e :UE 271 ]
+}
+"28
+[v _PWM2 `(v ~T0 @X0 1 ef1`i ]
+{
+[; ;motors.c: 28: void PWM2(int duty){
+[e :U _PWM2 ]
+[v _duty `i ~T0 @X0 1 r1 ]
+[f ]
+[; ;motors.c: 36: CCP2CONbits.DC2B0 = duty & 1;
+"36
+[e = . . _CCP2CONbits 2 1 -> & _duty -> 1 `i `uc ]
+[; ;motors.c: 37: CCP2CONbits.DC2B1 = (duty >> 1) & 1;
+"37
+[e = . . _CCP2CONbits 2 2 -> & >> _duty -> 1 `i -> 1 `i `uc ]
+[; ;motors.c: 38: CCPR2L = (duty >> 2);
+"38
+[e = _CCPR2L -> >> _duty -> 2 `i `uc ]
+[; ;motors.c: 40: }
+"40
+[e :UE 272 ]
+}
+"42
+[v _PWM2off `(v ~T0 @X0 1 ef ]
+{
+[; ;motors.c: 42: void PWM2off(){
+[e :U _PWM2off ]
+[f ]
+[; ;motors.c: 43: CCP2CONbits.DC2B0 = 0;
+"43
+[e = . . _CCP2CONbits 2 1 -> -> 0 `i `uc ]
+[; ;motors.c: 44: CCP2CONbits.DC2B1 = 0;
+"44
+[e = . . _CCP2CONbits 2 2 -> -> 0 `i `uc ]
+[; ;motors.c: 46: CCPR2L = 0;
+"46
+[e = _CCPR2L -> -> 0 `i `uc ]
+[; ;motors.c: 47: }
+"47
+[e :UE 273 ]
+}
+"49
+[v _updateStepper `(v ~T0 @X0 1 ef ]
+{
+[; ;motors.c: 49: void updateStepper(){
+[e :U _updateStepper ]
+[f ]
+[; ;motors.c: 50: if (TMR0L>prev) {curr = TMR0L-prev;}
+"50
+[e $ ! > -> _TMR0L `i _prev 275  ]
+{
+[e = _curr - -> _TMR0L `i _prev ]
+}
+[e $U 276  ]
+"51
+[e :U 275 ]
+[; ;motors.c: 51: else {curr = TMR0L-prev + 255;}
+{
+[e = _curr + - -> _TMR0L `i _prev -> 255 `i ]
+}
+[e :U 276 ]
+[; ;motors.c: 53: if (curr > 50) {
+"53
+[e $ ! > _curr -> 50 `i 277  ]
+{
+[; ;motors.c: 54: s++;
+"54
+[e ++ _s -> 1 `i ]
+[; ;motors.c: 55: curr = 0;
+"55
+[e = _curr -> 0 `i ]
+[; ;motors.c: 56: prev = TMR0L;
+"56
+[e = _prev -> _TMR0L `i ]
+"57
+}
+[e :U 277 ]
+[; ;motors.c: 57: }
+[; ;motors.c: 58: if (s>4) {s=1;}
+"58
+[e $ ! > _s -> 4 `i 278  ]
+{
+[e = _s -> 1 `i ]
+}
+[e :U 278 ]
+[; ;motors.c: 59: }
+"59
+[e :UE 274 ]
+}
+"61
+[v _forward `(v ~T0 @X0 1 ef ]
+{
+[; ;motors.c: 61: void forward(void){
+[e :U _forward ]
+[f ]
+[; ;motors.c: 62: if (s == 1){LATCbits.LATC7 = 1;}
+"62
+[e $ ! == _s -> 1 `i 280  ]
+{
+[e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
+}
+[e $U 281  ]
+"63
+[e :U 280 ]
+[; ;motors.c: 63: else{LATCbits.LATC7 = 0;}
+{
+[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 281 ]
+[; ;motors.c: 64: if (s == 2){LATCbits.LATC6 = 1;}
+"64
+[e $ ! == _s -> 2 `i 282  ]
+{
+[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
+}
+[e $U 283  ]
+"65
+[e :U 282 ]
+[; ;motors.c: 65: else{LATCbits.LATC6 = 0;}
+{
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 283 ]
+[; ;motors.c: 66: if (s == 3){LATCbits.LATC0 = 1;}
+"66
+[e $ ! == _s -> 3 `i 284  ]
+{
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+}
+[e $U 285  ]
+"67
+[e :U 284 ]
+[; ;motors.c: 67: else{LATCbits.LATC0 = 0;}
+{
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 285 ]
+[; ;motors.c: 68: if (s == 4){LATCbits.LATC5 = 1;}
+"68
+[e $ ! == _s -> 4 `i 286  ]
+{
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+}
+[e $U 287  ]
+"69
+[e :U 286 ]
+[; ;motors.c: 69: else{LATCbits.LATC5 = 0;}
+{
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 287 ]
+[; ;motors.c: 70: }
+"70
+[e :UE 279 ]
+}
+"72
+[v _backward `(v ~T0 @X0 1 ef ]
+{
+[; ;motors.c: 72: void backward(void){
+[e :U _backward ]
+[f ]
+[; ;motors.c: 73: if (s == 4){LATCbits.LATC7 = 1;}
+"73
+[e $ ! == _s -> 4 `i 289  ]
+{
+[e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
+}
+[e $U 290  ]
+"74
+[e :U 289 ]
+[; ;motors.c: 74: else{LATCbits.LATC7 = 0;}
+{
+[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 290 ]
+[; ;motors.c: 75: if (s == 3){LATCbits.LATC6 = 1;}
+"75
+[e $ ! == _s -> 3 `i 291  ]
+{
+[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
+}
+[e $U 292  ]
+"76
+[e :U 291 ]
+[; ;motors.c: 76: else{LATCbits.LATC6 = 0;}
+{
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 292 ]
+[; ;motors.c: 77: if (s == 2){LATCbits.LATC0 = 1;}
+"77
+[e $ ! == _s -> 2 `i 293  ]
+{
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+}
+[e $U 294  ]
+"78
+[e :U 293 ]
+[; ;motors.c: 78: else{LATCbits.LATC0 = 0;}
+{
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 294 ]
+[; ;motors.c: 79: if (s == 1){LATCbits.LATC5 = 1;}
+"79
+[e $ ! == _s -> 1 `i 295  ]
+{
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+}
+[e $U 296  ]
+"80
+[e :U 295 ]
+[; ;motors.c: 80: else{LATCbits.LATC5 = 0;}
+{
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 296 ]
+[; ;motors.c: 81: }
+"81
+[e :UE 288 ]
+}
+"82
+[v _off `(v ~T0 @X0 1 ef ]
+{
+[; ;motors.c: 82: void off(void){
+[e :U _off ]
+[f ]
+[; ;motors.c: 83: if (s == 4){LATCbits.LATC7 = 1;}
+"83
+[e $ ! == _s -> 4 `i 298  ]
+{
+[e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
+}
+[e $U 299  ]
+"84
+[e :U 298 ]
+[; ;motors.c: 84: else{LATCbits.LATC7 = 0;}
+{
+[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
+}
+[e :U 299 ]
+[; ;motors.c: 85: if (s == 2){LATCbits.LATC6 = 1;}
+"85
+[e $ ! == _s -> 2 `i 300  ]
+{
+[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
+}
+[e $U 301  ]
+"86
+[e :U 300 ]
+[; ;motors.c: 86: else{LATCbits.LATC6 = 0;}
+{
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+}
+[e :U 301 ]
+[; ;motors.c: 87: if (s == 3){LATCbits.LATC0 = 1;}
+"87
+[e $ ! == _s -> 3 `i 302  ]
+{
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+}
+[e $U 303  ]
+"88
+[e :U 302 ]
+[; ;motors.c: 88: else{LATCbits.LATC0 = 0;}
+{
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 303 ]
+[; ;motors.c: 89: if (s == 1){LATCbits.LATC5 = 1;}
+"89
+[e $ ! == _s -> 1 `i 304  ]
+{
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+}
+[e $U 305  ]
+"90
+[e :U 304 ]
+[; ;motors.c: 90: else{LATCbits.LATC5 = 0;}
+{
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+}
+[e :U 305 ]
+[; ;motors.c: 91: }
+"91
+[e :UE 297 ]
 }

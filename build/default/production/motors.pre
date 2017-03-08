@@ -3821,6 +3821,12 @@ void updateTime(void);
 
 void PWM1(int duty);
 void PWM1off();
+void PWM2(int duty);
+void PWM2off();
+void updateStepper();
+void forward(void);
+void backward(void);
+void off(void);
 
 
 signed char eepromRead(signed char address);
@@ -3926,10 +3932,14 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 5 "motors.c"
+# 4 "motors.c"
+int s = 0;
+int prev = 0;
+int curr;
+
 void PWM1(int duty){
 
-# 13
+# 16
 CCP1CONbits.DC1B0 = duty & 1;
 CCP1CONbits.DC1B1 = (duty >> 1) & 1;
 CCPR1L = (duty >> 2);
@@ -3941,3 +3951,64 @@ CCP1CONbits.DC1B0 = 0;
 CCP1CONbits.DC1B1 = 0;
 CCPR1L = 0;
 }
+
+void PWM2(int duty){
+
+# 36
+CCP2CONbits.DC2B0 = duty & 1;
+CCP2CONbits.DC2B1 = (duty >> 1) & 1;
+CCPR2L = (duty >> 2);
+
+}
+
+void PWM2off(){
+CCP2CONbits.DC2B0 = 0;
+CCP2CONbits.DC2B1 = 0;
+
+CCPR2L = 0;
+}
+
+void updateStepper(){
+if (TMR0L>prev) {curr = TMR0L-prev;}
+else {curr = TMR0L-prev + 255;}
+
+if (curr > 50) {
+s++;
+curr = 0;
+prev = TMR0L;
+}
+if (s>4) {s=1;}
+}
+
+void forward(void){
+if (s == 1){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 2){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 3){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 4){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
+}
+
+void backward(void){
+if (s == 4){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 3){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 2){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 1){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
+}
+void off(void){
+if (s == 4){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 2){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 3){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 1){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
+}
+

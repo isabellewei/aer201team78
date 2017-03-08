@@ -13,9 +13,11 @@ const char keys[] = "123A456B789C*0#D";
 unsigned char time[7];
 volatile unsigned char keypress = NULL;
 
+
 void readADC(char channel){
     // Select A2D channel to read
     ADCON0 = ((channel <<2));
+    ADCON0bits.ADON = 1;
     ADCON0bits.GO = 1;
     while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
 }
@@ -56,9 +58,9 @@ void initialize(void){
     OSCCON = 0xF2; // Set internal oscillator to 8MHZ, and enforce internal oscillator operation
     OSCTUNEbits.PLLEN = 1; // Enable PLL for the internal oscillator, Processor now runs at 32MHZ
 
-    TRISA = 0x11000000;   //All output
+    TRISA = 0b11001111;   //All output
     TRISB = 0b11110010; // Set Keypad Pins as input, rest are output
-    TRISC = 0x00011100; // -,-,-,I2C, I2C, DC motor, -, -
+    TRISC = 0b00011100; // -,-,-,I2C, I2C, DC motor, -, -
                         //Set I2C pins as input, rest are output
     TRISD = 0x00;   //All output mode
     TRISE = 0x00;   //RE0 and RE1 output
@@ -88,10 +90,12 @@ void initialize(void){
     //initialize ADC
     nRBPU = 0;
     ADCON0 = 00000001;  //Enable ADC
-    ADCON1 = 0x0B;  //AN0 to AN3 used as analog input
+    ADCON1 = 0b00001001;  //AN0 to AN5 used as analog input
     CVRCON = 0x00; // Disable CCP reference voltage output
     CMCONbits.CIS = 0;
     ADFM = 1;
+    
+    T0CON = 11010010; //ON, 8-bit, internal clock, rising edge, prescale, 010 prescale value
 }
 
 int main(void) {
@@ -111,18 +115,13 @@ int main(void) {
     
     while(1){
         updateTime();
+        updateStepper();
         
         if (standby){
             keypress = NULL;
             homescreen();
             keyinterrupt();
-            /*
-            __delay_ms(500);
-            if(keypress != NULL){            
-                printf(keys[keypress]);
-                __delay_ms(2000);
-            }
-             */
+          
             
             if(keypress == 2){ //user selected 3:Start sorting
                 standby = 0; //not standby
@@ -137,7 +136,7 @@ int main(void) {
                 //soupCheck = startTime;
             }
             else if(keypress == 1){ //user selected 2:Logs
-                printf("asdf");
+                //printf("asdf");
                 displayLogs();
             }
 

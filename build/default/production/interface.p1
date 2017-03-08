@@ -9,7 +9,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"33 functions.h
+"39 functions.h
 [v _eepromRead `(c ~T0 @X0 0 ef1`c ]
 "17 interface.c
 [v _keycheck `(i ~T0 @X0 0 ef ]
@@ -2845,13 +2845,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 26: void updateTime(void);
 [; ;functions.h: 29: void PWM1(int duty);
 [; ;functions.h: 30: void PWM1off();
-[; ;functions.h: 33: signed char eepromRead(signed char address);
-[; ;functions.h: 34: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 35: void displayLogs(void);
-[; ;functions.h: 36: void homescreen(void);
-[; ;functions.h: 37: void updateEEPROM(int time);
-[; ;functions.h: 40: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 41: int timePassed(int start);
+[; ;functions.h: 31: void PWM2(int duty);
+[; ;functions.h: 32: void PWM2off();
+[; ;functions.h: 33: void updateStepper();
+[; ;functions.h: 34: void forward(void);
+[; ;functions.h: 35: void backward(void);
+[; ;functions.h: 36: void off(void);
+[; ;functions.h: 39: signed char eepromRead(signed char address);
+[; ;functions.h: 40: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 41: void displayLogs(void);
+[; ;functions.h: 42: void homescreen(void);
+[; ;functions.h: 43: void updateEEPROM(int time);
+[; ;functions.h: 46: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 47: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 "3 interface.c
 [v _homescreen `(v ~T0 @X0 1 ef ]

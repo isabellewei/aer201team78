@@ -19,6 +19,7 @@
 
 extern unsigned char time[7]; 
 
+
 //LCD Control Registers
 #define RS          LATDbits.LATD2
 #define E           LATDbits.LATD3
@@ -31,14 +32,21 @@ extern unsigned char time[7];
 #define bcd_to_num(num) (num & 0x0F) + ((num & 0xF0)>>4)*10
 
 //Stepper Motors
-#define period      8000000
-#define step        (period/8)
-#define S1_1        LATAbits.LATA4  //orange
-#define S1_2        LATEbits.LATE1  //yellow
-#define S1_3        LATEbits.LATE2  //pink
-#define S1_4        LATCbits.LATC0  //blue
-#define S2_1
-#define S2_2
+#define step        50
+#define S1_1        LATDbits.LATD1  
+#define S1_2        LATBbits.LATB3  
+#define S1_3        LATBbits.LATB2  
+#define S1_4        LATBbits.LATB0  
+
+#define S2_1        LATCbits.LATC7
+#define S2_2        LATCbits.LATC6
+#define S2_3        LATCbits.LATC0
+#define S2_4        LATCbits.LATC5
+
+#define S3_1        LATEbits.LATE2
+#define S3_2        LATEbits.LATE1
+#define S3_3        LATAbits.LATA4
+#define S3_4        LATDbits.LATD0
 
 //analog input channels
 #define tab         0

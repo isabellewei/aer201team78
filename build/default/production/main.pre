@@ -3877,6 +3877,12 @@ void updateTime(void);
 
 void PWM1(int duty);
 void PWM1off();
+void PWM2(int duty);
+void PWM2off();
+void updateStepper();
+void forward(void);
+void backward(void);
+void off(void);
 
 
 signed char eepromRead(signed char address);
@@ -3897,9 +3903,11 @@ const char keys[] = "123A456B789C*0#D";
 unsigned char time[7];
 volatile unsigned char keypress = (0);
 
+
 void readADC(char channel){
 
 ADCON0 = ((channel <<2));
+ADCON0bits.ADON = 1;
 ADCON0bits.GO = 1;
 while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
 }
@@ -3927,7 +3935,7 @@ while(PORTBbits.RB1 == 1){
 
 }
 
-# 50
+# 52
 }
 __nop();
 
@@ -3937,9 +3945,9 @@ void initialize(void){
 OSCCON = 0xF2;
 OSCTUNEbits.PLLEN = 1;
 
-TRISA = 0x11000000;
+TRISA = 0b11001111;
 TRISB = 0b11110010;
-TRISC = 0x00011100;
+TRISC = 0b00011100;
 
 TRISD = 0x00;
 TRISE = 0x00;
@@ -3969,10 +3977,12 @@ I2C_Master_Init(10000);
 
 nRBPU = 0;
 ADCON0 = 00000001;
-ADCON1 = 0x0B;
+ADCON1 = 0b00001001;
 CVRCON = 0x00;
 CMCONbits.CIS = 0;
 ADFM = 1;
+
+T0CON = 11010010;
 }
 
 int main(void) {
@@ -3992,13 +4002,14 @@ _delay((unsigned long)((10)*(32000000/4000.0)));
 
 while(1){
 updateTime();
+updateStepper();
 
 if (standby){
 keypress = (0);
 homescreen();
 keyinterrupt();
 
-# 127
+
 if(keypress == 2){
 standby = 0;
 lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
@@ -4012,7 +4023,7 @@ canCheck = startTime;
 
 }
 else if(keypress == 1){
-printf("asdf");
+
 displayLogs();
 }
 

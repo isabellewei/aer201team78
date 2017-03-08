@@ -28,6 +28,12 @@ void updateTime(void);
 //motors
 void PWM1(int duty);
 void PWM1off();
+void PWM2(int duty);
+void PWM2off();
+void updateStepper();
+void forward(void);
+void backward(void);
+void off(void);
 
 //interface
 signed char eepromRead(signed char address);
