@@ -3880,9 +3880,15 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
-void forward(void);
-void backward(void);
-void off(void);
+void S1forward(void);
+void S1backward(void);
+void S1off(void);
+void S2forward(void);
+void S2backward(void);
+void S2off(void);
+void S3forward(void);
+void S3backward(void);
+void S3off(void);
 
 
 signed char eepromRead(signed char address);
@@ -3947,28 +3953,23 @@ OSCTUNEbits.PLLEN = 1;
 
 TRISA = 0b11001111;
 TRISB = 0b11110010;
-TRISC = 0b00011100;
+TRISC = 0b00011000;
 
 TRISD = 0x00;
-TRISE = 0x00;
+TRISE = 0b00000001;
 
 PR2 = 0xff;
 CCP1CON = 0b00001100;
 CCPR1L = 0x00;
+CCP2CON = 0b00001100;
+CCPR2L = 0x00;
 T2CON = 0b00000101;
 
-LATA = 0b01010101;
-LATB = 0b01010101;
-LATC = 0b01010101;
+LATA = 0x00;
+LATB = 0x00;
+LATC = 0x00;
 LATD = 0x00;
 LATE = 0x00;
-LATDbits.LATD0 = 1;
-LATDbits.LATD1 = 0;
-LATEbits.LATE0 = 1;
-LATEbits.LATE1 = 0;
-
-ADCON0 = 0x00;
-ADCON1 = 0xFF;
 
 initLCD();
 
@@ -3996,6 +3997,7 @@ int soupLoad = 1;
 int sodaLoad = 1;
 int canCheck;
 
+int s;
 
 _delay((unsigned long)((10)*(32000000/4000.0)));
 
@@ -4004,7 +4006,7 @@ while(1){
 updateTime();
 updateStepper();
 
-if (standby){
+if (standby == 1){
 keypress = (0);
 homescreen();
 keyinterrupt();
@@ -4026,6 +4028,60 @@ else if(keypress == 1){
 
 displayLogs();
 }
+else if(keypress == 15){
+standby = 100;
+s = 1;
+}
+
+}
+else if(standby == 100){
+lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+keypress = (0);
+if (s==1){
+printf("testing S1 f");
+S1forward();
+keyinterrupt();
+}
+else if(s==2){
+printf("testing S1 b");
+S1backward();
+keyinterrupt();
+}
+else{
+S1off();
+
+lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+printf("testing PWM2");
+PWM2(500);
+keycheck();
+PWM2off();
+
+lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+printf("testing PWM1");
+PWM1(500);
+keycheck();
+PWM1off();
+
+keypress = (0);
+while(keypress==(0)){
+keypress = (0);
+_delay((unsigned long)((50)*(32000000/4000.0)));
+lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+printf("testing IR1");
+readADC(0);
+lcdInst(0b11000000);;
+printf("%x", ADRES);
+keyinterrupt();
+}
+
+# 198
+standby = 1;
+}
+
+if(keypress != (0)){
+s++;
+}
+
 
 }
 else{
@@ -4035,20 +4091,11 @@ if (keypress != (0)) {
 standby = 1;
 }
 
-readADC(2);
-if (dc ^ backlogTest(prevUnblock, dc)){
-dc = backlogTest(prevUnblock, dc);
-if (dc){PWM1(500);}
-else {
-PWM1off();
-prevUnblock = time[0] + 60*time[1] + 3600*time[2];
-}
-}
-
+# 226
 if(timePassed(canCheck) > 10){
-readADC(3);
+readADC(2);
 soupLoad = ADRESH;
-readADC(4);
+readADC(5);
 sodaLoad = ADRESH;
 if (!soupLoad & !sodaLoad){
 standby = 1;

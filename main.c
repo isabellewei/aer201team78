@@ -60,29 +60,24 @@ void initialize(void){
 
     TRISA = 0b11001111;   //All output
     TRISB = 0b11110010; // Set Keypad Pins as input, rest are output
-    TRISC = 0b00011100; // -,-,-,I2C, I2C, DC motor, -, -
+    TRISC = 0b00011000; // -,-,-,I2C, I2C, DC motor, -, -
                         //Set I2C pins as input, rest are output
     TRISD = 0x00;   //All output mode
-    TRISE = 0x00;   //RE0 and RE1 output
+    TRISE = 0b00000001;   //RE0 and RE1 output
 
     PR2 = 0xff; // load with PWM period value (fixed at 1.953 kHz)
     CCP1CON = 0b00001100; // setup for PWM mode 5:4 are PWM Duty Cycle LSB
     CCPR1L = 0x00; // eight high bits of duty cycle
+    CCP2CON = 0b00001100; // setup for PWM mode 5:4 are PWM Duty Cycle LSB
+    CCPR2L = 0x00; // eight high bits of duty cycle
     T2CON = 0b00000101; // Timer2 On, 1:1 Post, 4x prescale
     
-    LATA = 0b01010101;
-    LATB = 0b01010101;
-    LATC = 0b01010101;
+    LATA = 0x00;
+    LATB = 0x00;
+    LATC = 0x00;
     LATD = 0x00;
     LATE = 0x00;
-    LATDbits.LATD0 = 1;
-    LATDbits.LATD1 = 0;
-    LATEbits.LATE0 = 1;
-    LATEbits.LATE1 = 0;
-
-    ADCON0 = 0x00;  //Disable ADC
-    ADCON1 = 0xFF;  //Set PORTB to be digital instead of analog default
-
+    
     initLCD();
 
     I2C_Master_Init(10000); //Initialize I2C Master with 100KHz clock
@@ -109,6 +104,7 @@ int main(void) {
     int sodaLoad = 1;
     int canCheck;
     //int sodaCheck;
+    int s;
     
     __delay_ms(10);
     
@@ -117,7 +113,7 @@ int main(void) {
         updateTime();
         updateStepper();
         
-        if (standby){
+        if (standby == 1){
             keypress = NULL;
             homescreen();
             keyinterrupt();
@@ -139,7 +135,74 @@ int main(void) {
                 //printf("asdf");
                 displayLogs();
             }
+            else if(keypress == 15){ //testing mode
+                standby = 100;       
+                s = 1;
+            }
 
+        }
+        else if(standby == 100){
+            lcd_clear();
+            keypress = NULL;
+            if (s==1){
+                printf("testing S1 f");
+                S1forward();
+                keyinterrupt();
+            }
+            else if(s==2){
+                printf("testing S1 b");
+                S1backward();
+                keyinterrupt();
+            }
+            else{
+                S1off();  
+                
+                lcd_clear();
+                printf("testing PWM2");
+                PWM2(500);
+                keycheck();
+                PWM2off();
+                
+                lcd_clear();
+                printf("testing PWM1");
+                PWM1(500);
+                keycheck();
+                PWM1off();
+                
+                keypress = NULL;
+                while(keypress==NULL){
+                    keypress = NULL;
+                    __delay_ms(50);
+                    lcd_clear();
+                    printf("testing IR1");
+                    readADC(IR1);
+                    lcd_newline();
+                    printf("%x", ADRES);
+                    keyinterrupt();
+                }
+                
+                /*
+                keypress == NULL;
+                while(keypress == NULL){
+                    lcd_clear();
+                    printf("testing IR1");
+                    __delay_ms(500);
+                    readADC(IR1);
+                    lcd_newline();
+                    printf("%x", ADRES);
+                    keyinterrupt();
+                }
+                 */
+                
+                
+                standby = 1;
+            }
+                        
+            if(keypress != NULL){
+                s++;
+            }
+            
+               
         }
         else{ //sorting mode
             keypress = NULL;
@@ -148,6 +211,7 @@ int main(void) {
                 standby = 1;
             }
              
+            /*
             readADC(backlog);
             if (dc ^ backlogTest(prevUnblock, dc)){
                 dc = backlogTest(prevUnblock, dc);
@@ -157,6 +221,7 @@ int main(void) {
                     prevUnblock = currMom();
                 }
             }
+             */
             
             if(timePassed(canCheck) > 10){
                 readADC(soup);

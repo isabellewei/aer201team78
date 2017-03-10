@@ -3824,9 +3824,15 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
-void forward(void);
-void backward(void);
-void off(void);
+void S1forward(void);
+void S1backward(void);
+void S1off(void);
+void S2forward(void);
+void S2backward(void);
+void S2off(void);
+void S3forward(void);
+void S3backward(void);
+void S3off(void);
 
 
 signed char eepromRead(signed char address);
@@ -3980,7 +3986,7 @@ prev = TMR0L;
 if (s>4) {s=1;}
 }
 
-void forward(void){
+void S2forward(void){
 if (s == 1){LATCbits.LATC7 = 1;}
 else{LATCbits.LATC7 = 0;}
 if (s == 2){LATCbits.LATC6 = 1;}
@@ -3991,7 +3997,7 @@ if (s == 4){LATCbits.LATC5 = 1;}
 else{LATCbits.LATC5 = 0;}
 }
 
-void backward(void){
+void S2backward(void){
 if (s == 4){LATCbits.LATC7 = 1;}
 else{LATCbits.LATC7 = 0;}
 if (s == 3){LATCbits.LATC6 = 1;}
@@ -4001,7 +4007,7 @@ else{LATCbits.LATC0 = 0;}
 if (s == 1){LATCbits.LATC5 = 1;}
 else{LATCbits.LATC5 = 0;}
 }
-void off(void){
+void S2off(void){
 if (s == 4){LATCbits.LATC7 = 1;}
 else{LATCbits.LATC7 = 0;}
 if (s == 2){LATCbits.LATC6 = 1;}
@@ -4010,5 +4016,69 @@ if (s == 3){LATCbits.LATC0 = 1;}
 else{LATCbits.LATC0 = 0;}
 if (s == 1){LATCbits.LATC5 = 1;}
 else{LATCbits.LATC5 = 0;}
+}
+
+void S1forward(void){
+if (s == 1){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (s == 2){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (s == 3){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (s == 4){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+
+void S1backward(void){
+if (s == 4){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (s == 3){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (s == 2){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (s == 1){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+void S1off(void){
+if (s == 4){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (s == 2){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (s == 3){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (s == 1){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+
+void S3forward(void){
+if (s == 1){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 2){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 3){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 4){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
+}
+
+void S3backward(void){
+if (s == 4){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 3){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 2){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 1){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
+}
+void S3off(void){
+if (s == 4){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 2){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 3){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 1){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
 }
 

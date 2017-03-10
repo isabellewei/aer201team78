@@ -2836,16 +2836,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 31: void PWM2(int duty);
 [; ;functions.h: 32: void PWM2off();
 [; ;functions.h: 33: void updateStepper();
-[; ;functions.h: 34: void forward(void);
-[; ;functions.h: 35: void backward(void);
-[; ;functions.h: 36: void off(void);
-[; ;functions.h: 39: signed char eepromRead(signed char address);
-[; ;functions.h: 40: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 41: void displayLogs(void);
-[; ;functions.h: 42: void homescreen(void);
-[; ;functions.h: 43: void updateEEPROM(int time);
-[; ;functions.h: 46: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 47: int timePassed(int start);
+[; ;functions.h: 34: void S1forward(void);
+[; ;functions.h: 35: void S1backward(void);
+[; ;functions.h: 36: void S1off(void);
+[; ;functions.h: 37: void S2forward(void);
+[; ;functions.h: 38: void S2backward(void);
+[; ;functions.h: 39: void S2off(void);
+[; ;functions.h: 40: void S3forward(void);
+[; ;functions.h: 41: void S3backward(void);
+[; ;functions.h: 42: void S3off(void);
+[; ;functions.h: 45: signed char eepromRead(signed char address);
+[; ;functions.h: 46: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 47: void displayLogs(void);
+[; ;functions.h: 48: void homescreen(void);
+[; ;functions.h: 49: void updateEEPROM(int time);
+[; ;functions.h: 52: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 53: int timePassed(int start);
 [; ;constants.h: 20: extern unsigned char time[7];
 "9 configBits.h
 [p x OSC=HS ]
