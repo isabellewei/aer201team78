@@ -46,16 +46,32 @@ void PWM2off(){
     CCPR2L = 0;
 }
 
-void updateStepper(){
+void updateStepperN(){
     if (TMR0L>prev) {curr = TMR0L-prev;}
-        else {curr = TMR0L-prev + 255;}
+    else {curr = TMR0L-prev + 255;}
+
+    if (curr > step) {
+        s++;
+        curr = 0;
+        prev = TMR0L;
+    }
+    if (s>4) {s=1;} 
+}
+
+void updateStepperM(){
+    curr++;
         
-        if (curr > step) {
-            s++;
-            curr = 0;
-            prev = TMR0L;
-        }
-        if (s>4) {s=1;} 
+    if (curr > step) {
+        s++;
+        curr = 0;
+        
+    }
+    if (s>4) {s=1;} 
+}
+
+void updateStepper(){
+    s++;
+    if (s>4) {s=1;} 
 }
 
 void S2forward(void){

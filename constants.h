@@ -32,32 +32,32 @@ extern unsigned char time[7];
 #define bcd_to_num(num) (num & 0x0F) + ((num & 0xF0)>>4)*10
 
 //Stepper Motors
-#define step        50
+#define step        1
 #define S1_1        LATDbits.LATD1  
 #define S1_2        LATBbits.LATB3  
 #define S1_3        LATBbits.LATB2  
 #define S1_4        LATBbits.LATB0  
 
-#define S2_1        LATCbits.LATC7
-#define S2_2        LATCbits.LATC6
-#define S2_3        LATCbits.LATC0
-#define S2_4        LATCbits.LATC5
+#define S3_1        LATCbits.LATC7
+#define S3_2        LATCbits.LATC6
+#define S3_3        LATCbits.LATC0
+#define S3_4        LATCbits.LATC5
 
-#define S3_1        LATEbits.LATE2
-#define S3_2        LATEbits.LATE1
-#define S3_3        LATAbits.LATA4
-#define S3_4        LATDbits.LATD0
+#define S2_1        LATEbits.LATE2
+#define S2_2        LATEbits.LATE1
+#define S2_3        LATAbits.LATA4
+#define S2_4        LATDbits.LATD0
 
 //analog input channels
-#define tab         4
-#define label       3
-#define IR1         0
-#define IR2         1
-#define soup        2
-#define soda        5
+#define tab         3
+#define label       4   //cond1
+#define IR1         1
+#define IR2         0
+#define IR3         2
+#define IR4         5
 
 //logic
-#define currMom()  time[0] + 60*time[1] + 3600*time[2]
+#define currMom()  (bcd_to_num(time[0]) + 60*bcd_to_num(time[1]) + 3600*bcd_to_num(time[2]))
 
 
 #endif	/* CONSTANTS_H */

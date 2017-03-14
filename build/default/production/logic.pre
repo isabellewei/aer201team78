@@ -3854,7 +3854,7 @@ if (ADRESH == 0){
 return 1;
 }
 else{
-if (time[0] + 60*time[1] + 3600*time[2] - blockedStart > 3){
+if (((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - blockedStart > 3){
 
 return 1;
 }
@@ -3866,7 +3866,7 @@ return 0;
 }
 
 int timePassed(int start){
-if(time[0] + 60*time[1] + 3600*time[2] >= 86400){return time[0] + 60*time[1] + 3600*time[2] + 86400 - start;}
-else{return time[0] + 60*time[1] + 3600*time[2] - start;}
+if(((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) >= 86400){return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) + 86400 - start;}
+else{return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - start;}
 }
 

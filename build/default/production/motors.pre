@@ -3974,11 +3974,11 @@ CCP2CONbits.DC2B1 = 0;
 CCPR2L = 0;
 }
 
-void updateStepper(){
+void updateStepperN(){
 if (TMR0L>prev) {curr = TMR0L-prev;}
 else {curr = TMR0L-prev + 255;}
 
-if (curr > 50) {
+if (curr > 1) {
 s++;
 curr = 0;
 prev = TMR0L;
@@ -3986,36 +3986,52 @@ prev = TMR0L;
 if (s>4) {s=1;}
 }
 
+void updateStepperM(){
+curr++;
+
+if (curr > 1) {
+s++;
+curr = 0;
+
+}
+if (s>4) {s=1;}
+}
+
+void updateStepper(){
+s++;
+if (s>4) {s=1;}
+}
+
 void S2forward(void){
-if (s == 1){LATCbits.LATC7 = 1;}
-else{LATCbits.LATC7 = 0;}
-if (s == 2){LATCbits.LATC6 = 1;}
-else{LATCbits.LATC6 = 0;}
-if (s == 3){LATCbits.LATC0 = 1;}
-else{LATCbits.LATC0 = 0;}
-if (s == 4){LATCbits.LATC5 = 1;}
-else{LATCbits.LATC5 = 0;}
+if (s == 1){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 2){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 3){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 4){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
 }
 
 void S2backward(void){
-if (s == 4){LATCbits.LATC7 = 1;}
-else{LATCbits.LATC7 = 0;}
-if (s == 3){LATCbits.LATC6 = 1;}
-else{LATCbits.LATC6 = 0;}
-if (s == 2){LATCbits.LATC0 = 1;}
-else{LATCbits.LATC0 = 0;}
-if (s == 1){LATCbits.LATC5 = 1;}
-else{LATCbits.LATC5 = 0;}
+if (s == 4){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 3){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 2){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 1){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
 }
 void S2off(void){
-if (s == 4){LATCbits.LATC7 = 1;}
-else{LATCbits.LATC7 = 0;}
-if (s == 2){LATCbits.LATC6 = 1;}
-else{LATCbits.LATC6 = 0;}
-if (s == 3){LATCbits.LATC0 = 1;}
-else{LATCbits.LATC0 = 0;}
-if (s == 1){LATCbits.LATC5 = 1;}
-else{LATCbits.LATC5 = 0;}
+if (s == 4){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (s == 2){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (s == 3){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (s == 1){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
 }
 
 void S1forward(void){
@@ -4051,34 +4067,34 @@ else{LATBbits.LATB0 = 0;}
 }
 
 void S3forward(void){
-if (s == 1){LATEbits.LATE2 = 1;}
-else{LATEbits.LATE2 = 0;}
-if (s == 2){LATEbits.LATE1 = 1;}
-else{LATEbits.LATE1 = 0;}
-if (s == 3){LATAbits.LATA4 = 1;}
-else{LATAbits.LATA4 = 0;}
-if (s == 4){LATDbits.LATD0 = 1;}
-else{LATDbits.LATD0 = 0;}
+if (s == 1){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 2){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 3){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 4){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
 }
 
 void S3backward(void){
-if (s == 4){LATEbits.LATE2 = 1;}
-else{LATEbits.LATE2 = 0;}
-if (s == 3){LATEbits.LATE1 = 1;}
-else{LATEbits.LATE1 = 0;}
-if (s == 2){LATAbits.LATA4 = 1;}
-else{LATAbits.LATA4 = 0;}
-if (s == 1){LATDbits.LATD0 = 1;}
-else{LATDbits.LATD0 = 0;}
+if (s == 4){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 3){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 2){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 1){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
 }
 void S3off(void){
-if (s == 4){LATEbits.LATE2 = 1;}
-else{LATEbits.LATE2 = 0;}
-if (s == 2){LATEbits.LATE1 = 1;}
-else{LATEbits.LATE1 = 0;}
-if (s == 3){LATAbits.LATA4 = 1;}
-else{LATAbits.LATA4 = 0;}
-if (s == 1){LATDbits.LATD0 = 1;}
-else{LATDbits.LATD0 = 0;}
+if (s == 4){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (s == 2){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (s == 3){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (s == 1){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
 }
 

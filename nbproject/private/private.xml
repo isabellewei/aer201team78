@@ -5,19 +5,16 @@
             <url>main.c</url>
             <bookmark id="1">
                 <name/>
-                <line>237</line>
+                <line>247</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/logic.c</file>
-            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/functions.h</file>
-            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/motors.c</file>
             <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/main.c</file>
             <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/constants.h</file>
-            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/I2C.c</file>
+            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/motors.c</file>
         </group>
     </open-files>
 </project-private>
