@@ -18,6 +18,7 @@
 #define TMR2PRESCALE 4
 
 extern unsigned char time[7]; 
+extern volatile unsigned char keypress;
 
 
 //LCD Control Registers
@@ -53,7 +54,7 @@ extern unsigned char time[7];
 #define label       4   //cond1
 #define IR1         1
 #define IR2         0
-#define IR3         2
+#define IR3         2   //soupLoad
 #define IR4         5
 
 //logic

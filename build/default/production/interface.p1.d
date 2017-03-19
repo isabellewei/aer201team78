@@ -2,4 +2,4 @@
  build/default/production/interface.p1:  \
  interface.c  \
 functions.h  \
-constants.h 
+declarations.h 

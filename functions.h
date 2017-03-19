@@ -31,12 +31,14 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
+void updateS1(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
 void S2forward(void);
 void S2backward(void);
 void S2off(void);
+void S1shake(void);
 void S3forward(void);
 void S3backward(void);
 void S3off(void);
@@ -47,10 +49,13 @@ void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
 void updateEEPROM(int time);
+void keycheck(void);
+void keyinterrupt(void);
 
 //logic
 int backlogTest(int blockedTime, int motorStatus);
 int timePassed(int start);
+void readADC(char channel);
 
 #endif	/* FUNCTIONS_H */
 

@@ -6,7 +6,7 @@
  */
 
 #include "configBits.h"
-#include "constants.h"
+#include "declarations.h"
 
 void initLCD(void) {
     __delay_ms(15);

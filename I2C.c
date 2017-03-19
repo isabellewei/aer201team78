@@ -6,7 +6,7 @@
  */
 
 
-#include "constants.h"
+#include "declarations.h"
 #include "configBits.h"
 
 const char currtime[7] = {  0x30, //45 Seconds

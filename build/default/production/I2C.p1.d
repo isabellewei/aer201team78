@@ -2,5 +2,5 @@
  build/default/production/I2C.p1:  \
  I2C.c  \
 functions.h  \
-constants.h  \
+declarations.h  \
 configBits.h 

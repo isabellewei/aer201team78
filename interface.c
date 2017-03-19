@@ -1,4 +1,4 @@
-#include "constants.h"
+#include "declarations.h"
 
 void homescreen(void){
     lcd_home();
@@ -7,6 +7,37 @@ void homescreen(void){
     lcd_newline();
     printf("%02x:%02x:%02x", time[2],time[1],time[0]);    //HH:MM:SS
     printf(" 2:Logs");
+}
+
+void keycheck(void){
+    while(PORTBbits.RB1 == 0){
+        // RB1 is the interrupt pin, so if there is no key pressed, RB1 will be 0
+            // the PIC will wait and do nothing until a key press is signaled
+        }
+        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
+        while(PORTBbits.RB1 == 1){
+            // Wait until the key has been released
+        }
+    Nop();  //breakpoint b/c compiler optimizations
+    return;
+}
+void keyinterrupt(void){
+    if(PORTBbits.RB1 == 1){
+        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
+        while(PORTBbits.RB1 == 1){
+            // Wait until the key has been released
+            //lcd_home();
+            //printf("asdf");
+            
+        }
+        //lcd_clear();
+        //printf("%c", keypress);
+        //lcd_newline();
+        //printf("%x", PORTB & 0xF0);
+        //__delay_ms(2000);
+    }
+    Nop();  //breakpoint b/c compiler optimizations
+    
 }
 
 void displayLogs(void){

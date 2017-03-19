@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "configBits.h"
 #include <stdio.h>
-#include "constants.h"
+#include "declarations.h"
 
 /*void helloWorld(void) {
     TRISA  = 0x00;

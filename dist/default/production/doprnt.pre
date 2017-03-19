@@ -257,15 +257,18 @@ extern double round(double);
 #pragma warning disable 350
 
 # 354
-const static unsigned int dpowers[] = {1, 10, 100, 1000, 10000,
+const static unsigned long dpowers[] = {1, 10, 100, 1000, 10000,
 
-# 359
+100000, 1000000, 10000000, 100000000,
+1000000000
+
 };
 
 
-const static unsigned int hexpowers[] = {1, 0x10, 0x100, 0x1000,
+const static unsigned long hexpowers[] = {1, 0x10, 0x100, 0x1000,
 
-# 366
+0x10000, 0x100000, 0x1000000, 0x10000000
+
 };
 
 # 455
@@ -282,10 +285,9 @@ signed char c;
 int width;
 
 
+int prec;
 
-
-signed char prec;
-
+# 508
 unsigned char flag;
 
 # 523
@@ -294,7 +296,7 @@ unsigned long vd;
 double integ;
 } tmpval;
 
-unsigned int val;
+unsigned long val;
 unsigned len;
 const char * cp;
 
@@ -340,11 +342,19 @@ width += *f++ - '0';
 # 608
 }
 
-# 635
+# 633
+loop:
+
 switch(c = *f++) {
 
 case 0:
 goto alldone;
+
+
+case 'l':
+
+flag |= 0x10;
+goto loop;
 
 # 697
 case 'd':
@@ -365,18 +375,27 @@ default:
 # 813
 continue;
 
-# 822
+
+
+case 'u':
+flag |= 0xC0;
+break;
+
+
 }
 
 # 1251
-if((flag & 0x80) == 0x00)
+if((flag & (0xC0)) == 0x00)
 
 {
 
-# 1259
-val = (int)(*(int *)__va_arg((*(int **)ap), (int)0));
+if(flag & 0x10)
+val = (*(long *)__va_arg((*(long **)ap), (long)0));
+else
 
-if((int)val < 0) {
+val = (long)(*(int *)__va_arg((*(int **)ap), (int)0));
+
+if((long)val < 0) {
 flag |= 0x03;
 val = -val;
 }
@@ -390,19 +409,27 @@ else
 
 {
 
-# 1286
+# 1281
+if(flag & 0x10)
+val = (*(unsigned long *)__va_arg((*(unsigned long **)ap), (unsigned long)0));
+else
+
+
 val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
 }
 
 # 1294
-switch((unsigned char)(flag & 0x80)) {
+switch((unsigned char)(flag & (0xC0))) {
 
 
 
 
 case 0x00:
 
-# 1305
+
+case 0xC0:
+
+
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(val < dpowers[c])
 break;
@@ -472,7 +499,7 @@ prec = c;
 
 while(prec--) {
 
-switch((unsigned char)(flag & 0x80))
+switch((unsigned char)(flag & (0xC0)))
 
 {
 
@@ -481,7 +508,10 @@ switch((unsigned char)(flag & 0x80))
 
 case 0x00:
 
-# 1489
+
+case 0xC0:
+
+
 c = (val / dpowers[prec]) % 10 + '0';
 
 break;

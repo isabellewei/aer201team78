@@ -1,7 +1,9 @@
-#include "constants.h"
+#include "declarations.h"
 #include <stdint.h>
 
+int s1 = 0;
 int s = 0;
+int t = 0;
 int prev = 0;
 int curr;
 
@@ -72,7 +74,59 @@ void updateStepperM(){
 void updateStepper(){
     s++;
     if (s>4) {s=1;} 
+    t++;
+    if (t>8) {t=1;} 
 }
+
+void updateS1(int mode){
+    lcd_newline();
+    printf("%d  %d", mode, s);
+    //__delay_ms(50);
+        
+    if(mode == 0){
+        S1_1 = 0;
+        S1_2 = 0;
+        S1_3 = 0;
+        S1_4 = 0;
+    }
+    else{
+        s1 ++;
+        if (s1>4) {s1=1;} 
+        t++;
+        if (t>6) {t=1;} 
+        if(mode == 1){
+            if (s1 == 1){S1_1 = 1;}
+            else{S1_1 = 0;} 
+            if (s1 == 2){S1_2 = 1;}
+            else{S1_2 = 0;}
+            if (s1 == 3){S1_3 = 1;}
+            else{S1_3 = 0;}
+            if (s1 == 4){S1_4 = 1;}
+            else{S1_4 = 0;}        
+        }
+        else if(mode == 2){
+            if (s1 == 4){S1_1 = 1;}
+            else{S1_1 = 0;} 
+            if (s1 == 3){S1_2 = 1;}
+            else{S1_2 = 0;}
+            if (s1 == 2){S1_3 = 1;}
+            else{S1_3 = 0;}
+            if (s1 == 1){S1_4 = 1;}
+            else{S1_4 = 0;}
+        }
+        else if(mode == 3){
+             if (t == 1 || t==8){S1_1 = 1;}
+            else{S1_1 = 0;} 
+            if (t == 2 || t==7){S1_2 = 1;}
+            else{S1_2 = 0;}
+            if (t == 3 || t==6){S1_3 = 1;}
+            else{S1_3 = 0;}
+            if (t == 4 || t==5){S1_4 = 1;}
+            else{S1_4 = 0;}          
+        }
+    }
+}
+
 
 void S2forward(void){
     if (s == 1){S2_1 = 1;}
@@ -135,6 +189,17 @@ void S1off(void){
     if (s == 3){S1_3 = 1;}
     else{S1_3 = 0;}
     if (s == 1){S1_4 = 1;}
+    else{S1_4 = 0;}
+}
+
+void S1shake(void){
+    if (t == 1){S1_1 = 1;}
+    else{S1_1 = 0;} 
+    if (t == 2 || t==6){S1_2 = 1;}
+    else{S1_2 = 0;}
+    if (t == 3 || t==5){S1_3 = 1;}
+    else{S1_3 = 0;}
+    if (t == 4){S1_4 = 1;}
     else{S1_4 = 0;}
 }
 

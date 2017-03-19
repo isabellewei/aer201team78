@@ -2,5 +2,5 @@
  build/default/production/test.p1:  \
  test.c  \
 functions.h  \
-constants.h  \
+declarations.h  \
 configBits.h 

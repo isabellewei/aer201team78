@@ -3824,12 +3824,14 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
+void updateS1(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
 void S2forward(void);
 void S2backward(void);
 void S2off(void);
+void S1shake(void);
 void S3forward(void);
 void S3backward(void);
 void S3off(void);
@@ -3840,13 +3842,17 @@ void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
 void updateEEPROM(int time);
+void keycheck(void);
+void keyinterrupt(void);
 
 
 int backlogTest(int blockedTime, int motorStatus);
 int timePassed(int start);
+void readADC(char channel);
 
-# 20 "constants.h"
+# 20 "declarations.h"
 extern unsigned char time[7];
+extern volatile unsigned char keypress;
 
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdint.h"
 typedef signed char int8_t;
@@ -3939,13 +3945,15 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 
 # 4 "motors.c"
+int s1 = 0;
 int s = 0;
+int t = 0;
 int prev = 0;
 int curr;
 
 void PWM1(int duty){
 
-# 16
+# 18
 CCP1CONbits.DC1B0 = duty & 1;
 CCP1CONbits.DC1B1 = (duty >> 1) & 1;
 CCPR1L = (duty >> 2);
@@ -3960,7 +3968,7 @@ CCPR1L = 0;
 
 void PWM2(int duty){
 
-# 36
+# 38
 CCP2CONbits.DC2B0 = duty & 1;
 CCP2CONbits.DC2B1 = (duty >> 1) & 1;
 CCPR2L = (duty >> 2);
@@ -4000,7 +4008,59 @@ if (s>4) {s=1;}
 void updateStepper(){
 s++;
 if (s>4) {s=1;}
+t++;
+if (t>8) {t=1;}
 }
+
+void updateS1(int mode){
+lcdInst(0b11000000);;
+printf("%d  %d", mode, s);
+
+
+if(mode == 0){
+LATDbits.LATD1 = 0;
+LATBbits.LATB3 = 0;
+LATBbits.LATB2 = 0;
+LATBbits.LATB0 = 0;
+}
+else{
+s1 ++;
+if (s1>4) {s1=1;}
+t++;
+if (t>6) {t=1;}
+if(mode == 1){
+if (s1 == 1){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (s1 == 2){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (s1 == 3){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (s1 == 4){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+else if(mode == 2){
+if (s1 == 4){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (s1 == 3){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (s1 == 2){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (s1 == 1){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+else if(mode == 3){
+if (t == 1 || t==8){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (t == 2 || t==7){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (t == 3 || t==6){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (t == 4 || t==5){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+}
+}
+
 
 void S2forward(void){
 if (s == 1){LATEbits.LATE2 = 1;}
@@ -4063,6 +4123,17 @@ else{LATBbits.LATB3 = 0;}
 if (s == 3){LATBbits.LATB2 = 1;}
 else{LATBbits.LATB2 = 0;}
 if (s == 1){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+
+void S1shake(void){
+if (t == 1){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (t == 2 || t==6){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (t == 3 || t==5){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (t == 4){LATBbits.LATB0 = 1;}
 else{LATBbits.LATB0 = 0;}
 }
 

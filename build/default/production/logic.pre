@@ -3824,12 +3824,14 @@ void PWM1off();
 void PWM2(int duty);
 void PWM2off();
 void updateStepper();
+void updateS1(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
 void S2forward(void);
 void S2backward(void);
 void S2off(void);
+void S1shake(void);
 void S3forward(void);
 void S3backward(void);
 void S3off(void);
@@ -3840,13 +3842,17 @@ void eepromWrite(signed char address, signed char data);
 void displayLogs(void);
 void homescreen(void);
 void updateEEPROM(int time);
+void keycheck(void);
+void keyinterrupt(void);
 
 
 int backlogTest(int blockedTime, int motorStatus);
 int timePassed(int start);
+void readADC(char channel);
 
-# 20 "constants.h"
+# 20 "declarations.h"
 extern unsigned char time[7];
+extern volatile unsigned char keypress;
 
 # 3 "logic.c"
 int backlogTest(int blockedStart, int motorStatus){
@@ -3868,5 +3874,13 @@ return 0;
 int timePassed(int start){
 if(((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) >= 86400){return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) + 86400 - start;}
 else{return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - start;}
+}
+
+void readADC(char channel){
+
+ADCON0 = ((channel <<2));
+ADCON0bits.ADON = 1;
+ADCON0bits.GO = 1;
+while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
 }
 

@@ -5,7 +5,7 @@
  * Created on February 4, 2017, 3:17 PM
  */
 #include "configBits.h"
-#include "constants.h"
+#include "declarations.h"
 #include "functions.h"
 
 //global variables
@@ -14,48 +14,12 @@ unsigned char time[7];
 volatile unsigned char keypress = NULL;
 
 
-void readADC(char channel){
-    // Select A2D channel to read
-    ADCON0 = ((channel <<2));
-    ADCON0bits.ADON = 1;
-    ADCON0bits.GO = 1;
-    while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
-}
 
 //these 2 functions use keypress variable
-void keycheck(void){
-    while(PORTBbits.RB1 == 0){
-        // RB1 is the interrupt pin, so if there is no key pressed, RB1 will be 0
-            // the PIC will wait and do nothing until a key press is signaled
-        }
-        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-        while(PORTBbits.RB1 == 1){
-            // Wait until the key has been released
-        }
-    Nop();  //breakpoint b/c compiler optimizations
-    return;
-}
-void keyinterrupt(void){
-    if(PORTBbits.RB1 == 1){
-        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-        while(PORTBbits.RB1 == 1){
-            // Wait until the key has been released
-            //lcd_home();
-            //printf("asdf");
-            
-        }
-        //lcd_clear();
-        //printf("%c", keypress);
-        //lcd_newline();
-        //printf("%x", PORTB & 0xF0);
-        //__delay_ms(2000);
-    }
-    Nop();  //breakpoint b/c compiler optimizations
-    
-}
+
 
 void initialize(void){
-    OSCCON = 0xF2; // Set internal oscillator to 8MHZ, and enforce internal oscillator operation
+    OSCCON = 0b01110000; // Set internal oscillator to 8MHZ, and enforce internal oscillator operation
     OSCTUNEbits.PLLEN = 1; // Enable PLL for the internal oscillator, Processor now runs at 32MHZ
 
     TRISA = 0b11001111;   //All output
@@ -100,25 +64,31 @@ int main(void) {
     int dc = 0;
     int startTime;
     int prevUnblock = 0;
-    int soupLoad = 1;
-    int sodaLoad = 1;
+    int soupLoad = 1; //can waiting to be sorted?
+    int sodaLoad = 1; //can waiting to be sorted?
     int canCheck;
     int prevSodaTime = 0;
-    int prevSoupTime = 0;
+    int prevSoupTime = 0; //time of beginning of current can sort
     int sodaState = 0; //0:wait, 1:close+check, 2:open, 3:sort, 
     int tabState = 0; //0:no, 1: yes
-    int labelState = 0;
+    int labelState = 0; //current can has label or not?
     //int sodaCheck;
     int s = 1;
+    int soupSort; //sort soup  cans?
+    int prevSoupLoad; //most recent soup can pass
+    int S1mode = 0;
+    
+    unsigned long c = 0;  //fastStep counter
     
     __delay_ms(10);
     
     
     while(1){
         updateTime();
-        updateStepper();
+        updateS1(S1mode);
         readADC(IR3);
-        soupLoad = ADRESH;
+        if (ADRES >= 0x3d0){soupLoad = 1;}
+        else {soupLoad = 0;}
         readADC(IR4);
         sodaLoad = ADRESH;
         
@@ -129,7 +99,7 @@ int main(void) {
             keyinterrupt();
           
             
-            if(keypress == 2){ //user selected 3:Start sorting
+            if(keypress == 2){ //3: Start sorting
                 standby = 0; //not standby
                 lcd_clear();
                 printf("Sorting cans...");
@@ -141,57 +111,76 @@ int main(void) {
                 canCheck = startTime;
                 //soupCheck = startTime;
             }
-            else if(keypress == 1){ //user selected 2:Logs
+            else if(keypress == 1){ //2:Logs
                 //printf("asdf");
                 displayLogs();
             }
-            else if(keypress != NULL ) { //testing mode
-                standby = keypress;   
-                prevSoupTime = currMom();
+            else if(keypress == 15 ) { //D: testing components
+                standby = 2;   
+                s = 1;
+            }
+            else if(keypress == 14 ) { //#: testing soup can path
+                standby = 3;   
+                PWM2(500);
                 labelState = 0;
+                s = 1;
+                soupSort = 0;
+            }
+            else if(keypress == 13) { //0: testing soda can path
+                standby = 4;   
+                sodaState= 0;
+                prevSodaTime = currMom();
+                tabState = 0;
                 s = 1;
             }
 
         }
-        else if(standby == 15){ //D
+        else if(standby == 2){ //testing components
+            // <editor-fold defaultstate="collapsed" desc="Testing Components">
             lcd_clear();
             keypress = NULL; 
+            
             if (s==1){
                 printf("testing S f");
+                S1mode = 1;
+                updateS1(S1mode);
                 S2forward();
-                S1forward();
+                //S1forward();
                 S3forward();
                 keyinterrupt();
             }
             else if(s==2){
                 printf("testing S b");                
-                S1backward();
+                S1mode = 2;
+                updateS1(S1mode);
+                //S1backward();
                 S2backward();
                 S3backward();                
                 keyinterrupt();
             }
+            
             else if(s==3){
-                printf("testing S b");                
-                S3off(); 
-                S2off(); 
-                S1off(); 
+                printf("testing S1shake");                
+                //S1shake(); 
+                S1mode = 3;
+                updateS1(S1mode);
                 keyinterrupt();
             }
-            
+
             else{
-                
+
                 lcd_clear();
                 printf("testing PWM2");
                 PWM2(500);
                 keycheck();
                 PWM2off();
-                
+
                 lcd_clear();
                 printf("testing PWM1");
                 PWM1(500);
                 keycheck();
                 PWM1off();
-                
+
                 keypress = NULL;
                 startTime = currMom();
                 while(keypress==NULL){
@@ -202,7 +191,7 @@ int main(void) {
                     printf("time %x %x", currMom(), timePassed(startTime));
                     keyinterrupt();
                 }
-                
+
                 keypress = NULL;
                 while(keypress==NULL){
                     keypress = NULL;
@@ -214,7 +203,7 @@ int main(void) {
                     printf("%x", ADRES);
                     keyinterrupt();
                 }
-                
+
                 keypress = NULL;
                 while(keypress==NULL){
                     keypress = NULL;
@@ -226,7 +215,19 @@ int main(void) {
                     printf("%x", ADRES);
                     keyinterrupt();
                 }
-                
+
+                keypress = NULL;
+                while(keypress==NULL){
+                    keypress = NULL;
+                    __delay_ms(50);
+                    lcd_clear();
+                    printf("testing IR3");
+                    readADC(IR3);
+                    lcd_newline();
+                    printf("%x", ADRES);
+                    keyinterrupt();
+                }
+
                 keypress = NULL;
                 while(keypress==NULL){
                     keypress = NULL;
@@ -239,66 +240,182 @@ int main(void) {
                     keyinterrupt();
                 }
                 
+                keypress = NULL;
+                while(keypress==NULL){
+                    keypress = NULL;
+                    lcd_clear();
+                    printf("testing faststep");
+                    
+                    if (c == 1){S1_1 = 1;}
+                    else{S1_1 = 0;} 
+                    if (c == 2){S1_2 = 1;}
+                    else{S1_2 = 0;}
+                    if (c == 3){S1_3 = 1;}
+                    else{S1_3 = 0;}
+                    if (c == 4){S1_4 = 1;}
+                    else{S1_4 = 0;}
+                    
+                    c++;
+                    if (c>4) {s=1;} 
+                    __delay_ms(250);
+                    keyinterrupt();
+                }
                 
-                
+                c = 0;
+                keypress = NULL;
+                while(keypress==NULL){
+                    keypress = NULL;
+                    c++;
+                    if((c %10000)== 0){
+                        lcd_clear();
+                        printf("program speed");
+                        lcd_newline();
+                        printf("loops: %lu", c);
+                    }
+                            
+                    keyinterrupt();
+                }
                 
                 standby = 1;
-            }
-                        
+            }                     
+                                   
             if(keypress != NULL){
                 s++;
             }
-            
+        // </editor-fold>    
         } 
-        else if(standby == 14){ //#
+        else if(standby == 3){ //testing soup can path
+            // <editor-fold defaultstate="collapsed" desc="Testing soup can path">
             lcd_clear();
             printf("soup can test");
-            if (timePassed(prevSoupTime) < 3){
-                
-                S1off();
-                readADC(label);                
-                if(ADRESL<=0x1){labelState = 1;} //no label 
-                lcd_newline();
-                printf("value: %x", ADRESL);
-                lcd_clear();
-                printf("testing %d", timePassed(prevSoupTime));
-            }
-            else if (labelState == 1){
-                lcd_clear();
-                printf("no label");
-                lcd_newline();
-                if(timePassed(prevSoupTime) < 8){
-                    S1forward();
-                    printf("sorting %d", timePassed(prevSoupTime));
+            
+            if(soupLoad){
+                prevSoupLoad = currMom();
+                if (!soupSort){
+                    soupSort = 1;
+                    prevSoupTime = currMom();
+                    __delay_ms(250);
                 }
-                else if(timePassed(prevSoupTime) < 13){
-                    S1backward();
-                    printf("returning %d", timePassed(prevSoupTime));
+            }   
+            
+            if (soupSort){
+
+                if (timePassed(prevSoupTime) < 5){
+                    S1mode = 3;
+                    updateS1(S1mode);
+                    //S1shake();
+                    
+                    readADC(label);                
+                    if(ADRESL<=0x1){labelState = 1;} //no label 
+                    lcd_clear();
+                    printf("value: %x", ADRESL);
+                    lcd_newline();
+                    printf("testing %d", timePassed(prevSoupTime));
                 }
-                else{labelState = 100;}
-            }
-            else if(labelState == 0){
-                lcd_clear();
-                printf("label");
-                lcd_newline();
-                if(timePassed(prevSoupTime) < 8){
-                    S1backward();
-                    printf("sorting %d", timePassed(prevSoupTime));
+                else if (labelState == 1){
+                    keypress = NULL;
+                    keyinterrupt();
+                    if (keypress != NULL) {//stop sorting
+                        standby = 1;
+                    }
+
+                    lcd_clear();
+                    printf("no label");
+                    lcd_newline();
+                    if(timePassed(prevSoupTime) < 13){
+                        //S1forward();
+                        S1mode = 1;
+                        updateS1(S1mode);
+                        printf("sorting %d", timePassed(prevSoupTime));
+                    }
+                    else if(timePassed(prevSoupTime) < 21){
+                        //S1backward();
+                        S1mode = 2;
+                        updateS1(S1mode);
+                        printf("returning %d", timePassed(prevSoupTime));
+                    }
+                    else{labelState = 100;}
                 }
-                else if(timePassed(prevSoupTime) < 13){
-                    S1forward();
-                    printf("returning %d", timePassed(prevSoupTime));
+                else if(labelState == 0){
+                    lcd_clear();
+                    printf("label");
+                    lcd_newline();
+                    if(timePassed(prevSoupTime) < 12){
+                        //S1backward();
+                        S1mode = 2;
+                        updateS1(S1mode);
+                        printf("sorting %d", timePassed(prevSoupTime));
+                    }
+                    else if(timePassed(prevSoupTime) < 19){
+                        //S1forward();
+                        S1mode = 1;
+                        updateS1(S1mode);
+                        printf("returning %d", timePassed(prevSoupTime));
+                    }
+                    else{labelState = 100;}
                 }
-                else{labelState = 100;}
+                else{
+                    lcd_clear();
+                    printf("finished %d", timePassed(prevSoupTime));
+                    prevSoupTime = currMom();
+                    labelState = 0;
+                    if (timePassed(prevSoupLoad) > 9) {soupSort = 0;}
+                }
             }
             else{
-                lcd_clear();
-                printf("finished %d", timePassed(prevSoupTime));
-                prevSoupTime = currMom();
-                labelState = 0;
+                //S1shake();
+                S1mode = 3;
+                updateS1(S1mode);
             }
-                   
-        }            
+        // </editor-fold>           
+        } 
+        else if(standby == 4){ //testing soda can path
+            // <editor-fold defaultstate="collapsed" desc="Testing soda can path">
+            switch(sodaState){
+                case 0: //wait
+                    S1off();
+                    S2off();
+                    if(sodaLoad){
+                        prevSodaTime = currMom();
+                        sodaState ++;
+                    }
+                case 1: //close+check+open
+                    S2off();
+                    if(timePassed(prevSodaTime) < 3){
+                        S1backward(); //close
+                    }
+                    else if(timePassed(prevSodaTime) < 4){
+                        S1off();
+                        readADC(tab); //check
+                        tabState = ADRESH;
+
+                    }
+                    else if(timePassed(prevSodaTime) < 7){
+                        S1forward(); //open
+                    }
+                    else{
+                        prevSodaTime = currMom();
+                        sodaState ++;
+                    }
+                case 2: //sort
+                    S1off();
+                    if(timePassed(prevSodaTime) < 3){
+                        if(tabState){S2forward();}
+                        else{S2backward();}
+                    }
+                    else if(timePassed(prevSodaTime) < 6){
+                        if(tabState){S2backward();}
+                        else{S2forward();}
+                    }
+                    else{
+                        sodaState = 0;
+                    } 
+                default:
+                    sodaState = 0;
+                    break;
+            }
+            // </editor-fold>
+        }
         else{ //sorting mode
             lcd_clear();
             printf("sorting");

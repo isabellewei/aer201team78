@@ -1,8 +1,43 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "4604 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
-"20 constants.h
+"20 declarations.h
 [v _time `uc ~T0 @X0 -> 0 `x e ]
+"4474 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
+[v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
+"4480
+[s S174 :1 `uc 1 :1 `uc 1 ]
+[n S174 . . GO_NOT_DONE ]
+"4484
+[s S175 :1 `uc 1 :1 `uc 1 :4 `uc 1 ]
+[n S175 . ADON GO_nDONE CHS ]
+"4489
+[s S176 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S176 . . GO CHS0 CHS1 CHS2 CHS3 ]
+"4497
+[s S177 :1 `uc 1 :1 `uc 1 ]
+[n S177 . . DONE ]
+"4501
+[s S178 :1 `uc 1 :1 `uc 1 ]
+[n S178 . . NOT_DONE ]
+"4505
+[s S179 :1 `uc 1 :1 `uc 1 ]
+[n S179 . . nDONE ]
+"4509
+[s S180 :1 `uc 1 :1 `uc 1 ]
+[n S180 . . GO_DONE ]
+"4513
+[s S181 :1 `uc 1 :1 `uc 1 ]
+[n S181 . . GODONE ]
+"4479
+[u S173 `S174 1 `S175 1 `S176 1 `S177 1 `S178 1 `S179 1 `S180 1 `S181 1 ]
+[n S173 . . . . . . . . . ]
+"4518
+[v _ADCON0bits `VS173 ~T0 @X0 0 e@4034 ]
+[v F2878 `(v ~T0 @X0 1 tf1`ul ]
+"161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
+[v __delay `JF2878 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2808,23 +2843,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 31: void PWM2(int duty);
 [; ;functions.h: 32: void PWM2off();
 [; ;functions.h: 33: void updateStepper();
-[; ;functions.h: 34: void S1forward(void);
-[; ;functions.h: 35: void S1backward(void);
-[; ;functions.h: 36: void S1off(void);
-[; ;functions.h: 37: void S2forward(void);
-[; ;functions.h: 38: void S2backward(void);
-[; ;functions.h: 39: void S2off(void);
-[; ;functions.h: 40: void S3forward(void);
-[; ;functions.h: 41: void S3backward(void);
-[; ;functions.h: 42: void S3off(void);
-[; ;functions.h: 45: signed char eepromRead(signed char address);
-[; ;functions.h: 46: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 47: void displayLogs(void);
-[; ;functions.h: 48: void homescreen(void);
-[; ;functions.h: 49: void updateEEPROM(int time);
-[; ;functions.h: 52: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 53: int timePassed(int start);
-[; ;constants.h: 20: extern unsigned char time[7];
+[; ;functions.h: 34: void updateS1(int mode);
+[; ;functions.h: 35: void S1forward(void);
+[; ;functions.h: 36: void S1backward(void);
+[; ;functions.h: 37: void S1off(void);
+[; ;functions.h: 38: void S2forward(void);
+[; ;functions.h: 39: void S2backward(void);
+[; ;functions.h: 40: void S2off(void);
+[; ;functions.h: 41: void S1shake(void);
+[; ;functions.h: 42: void S3forward(void);
+[; ;functions.h: 43: void S3backward(void);
+[; ;functions.h: 44: void S3off(void);
+[; ;functions.h: 47: signed char eepromRead(signed char address);
+[; ;functions.h: 48: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 49: void displayLogs(void);
+[; ;functions.h: 50: void homescreen(void);
+[; ;functions.h: 51: void updateEEPROM(int time);
+[; ;functions.h: 52: void keycheck(void);
+[; ;functions.h: 53: void keyinterrupt(void);
+[; ;functions.h: 56: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 57: int timePassed(int start);
+[; ;functions.h: 58: void readADC(char channel);
+[; ;declarations.h: 20: extern unsigned char time[7];
+[; ;declarations.h: 21: extern volatile unsigned char keypress;
 "3 logic.c
 [v _backlogTest `(i ~T0 @X0 1 ef2`i`i ]
 {
@@ -2907,4 +2948,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;logic.c: 22: }
 "22
 [e :UE 275 ]
+}
+"24
+[v _readADC `(v ~T0 @X0 1 ef1`uc ]
+{
+[; ;logic.c: 24: void readADC(char channel){
+[e :U _readADC ]
+[v _channel `uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;logic.c: 26: ADCON0 = ((channel <<2));
+"26
+[e = _ADCON0 -> << -> _channel `i -> 2 `i `uc ]
+[; ;logic.c: 27: ADCON0bits.ADON = 1;
+"27
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;logic.c: 28: ADCON0bits.GO = 1;
+"28
+[e = . . _ADCON0bits 2 1 -> -> 1 `i `uc ]
+[; ;logic.c: 29: while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
+"29
+[e $U 279  ]
+[e :U 280 ]
+{
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+}
+[e :U 279 ]
+[e $ != -> . . _ADCON0bits 0 1 `i -> -> -> 0 `i `Vuc `i 280  ]
+[e :U 281 ]
+[; ;logic.c: 30: }
+"30
+[e :UE 278 ]
 }
