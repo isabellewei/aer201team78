@@ -3823,8 +3823,9 @@ void PWM1(int duty);
 void PWM1off();
 void PWM2(int duty);
 void PWM2off();
-void updateStepper();
 void updateS1(int mode);
+void updateS2(int mode);
+void updateS3(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
@@ -3853,6 +3854,9 @@ void readADC(char channel);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
+extern int t;
+extern int t2;
+extern int t3;
 
 # 3 "interface.c"
 void homescreen(void){
@@ -3893,17 +3897,17 @@ __nop();
 }
 
 void displayLogs(void){
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
 lcdInst(0b11000000);;
 printf("# of cans: %d", eepromRead(10));
 keycheck();
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
 lcdInst(0b11000000);;
 printf("# soda cans: %d", eepromRead(20));
 keycheck();
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#1    A:Next");
 lcdInst(0b11000000);;
 printf("# soup cans: 4");

@@ -21,7 +21,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1205 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _LATD `Vuc ~T0 @X0 0 e@3980 ]
 "9 configBits.h
-[p x OSC=HS ]
+[p x OSC=INTIO67 ]
 "10
 [p x FCMEN=OFF ]
 "11
@@ -2890,30 +2890,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 30: void PWM1off();
 [; ;functions.h: 31: void PWM2(int duty);
 [; ;functions.h: 32: void PWM2off();
-[; ;functions.h: 33: void updateStepper();
-[; ;functions.h: 34: void updateS1(int mode);
-[; ;functions.h: 35: void S1forward(void);
-[; ;functions.h: 36: void S1backward(void);
-[; ;functions.h: 37: void S1off(void);
-[; ;functions.h: 38: void S2forward(void);
-[; ;functions.h: 39: void S2backward(void);
-[; ;functions.h: 40: void S2off(void);
-[; ;functions.h: 41: void S1shake(void);
-[; ;functions.h: 42: void S3forward(void);
-[; ;functions.h: 43: void S3backward(void);
-[; ;functions.h: 44: void S3off(void);
-[; ;functions.h: 47: signed char eepromRead(signed char address);
-[; ;functions.h: 48: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 49: void displayLogs(void);
-[; ;functions.h: 50: void homescreen(void);
-[; ;functions.h: 51: void updateEEPROM(int time);
-[; ;functions.h: 52: void keycheck(void);
-[; ;functions.h: 53: void keyinterrupt(void);
-[; ;functions.h: 56: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 57: int timePassed(int start);
-[; ;functions.h: 58: void readADC(char channel);
+[; ;functions.h: 33: void updateS1(int mode);
+[; ;functions.h: 34: void updateS2(int mode);
+[; ;functions.h: 35: void updateS3(int mode);
+[; ;functions.h: 36: void S1forward(void);
+[; ;functions.h: 37: void S1backward(void);
+[; ;functions.h: 38: void S1off(void);
+[; ;functions.h: 39: void S2forward(void);
+[; ;functions.h: 40: void S2backward(void);
+[; ;functions.h: 41: void S2off(void);
+[; ;functions.h: 42: void S1shake(void);
+[; ;functions.h: 43: void S3forward(void);
+[; ;functions.h: 44: void S3backward(void);
+[; ;functions.h: 45: void S3off(void);
+[; ;functions.h: 48: signed char eepromRead(signed char address);
+[; ;functions.h: 49: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 50: void displayLogs(void);
+[; ;functions.h: 51: void homescreen(void);
+[; ;functions.h: 52: void updateEEPROM(int time);
+[; ;functions.h: 53: void keycheck(void);
+[; ;functions.h: 54: void keyinterrupt(void);
+[; ;functions.h: 57: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 58: int timePassed(int start);
+[; ;functions.h: 59: void readADC(char channel);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
+[; ;declarations.h: 22: extern int t;
+[; ;declarations.h: 23: extern int t2;
+[; ;declarations.h: 24: extern int t3;
 "11 lcd.c
 [v _initLCD `(v ~T0 @X0 1 ef ]
 {

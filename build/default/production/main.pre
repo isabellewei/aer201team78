@@ -3,7 +3,7 @@
 
 
 # 9 "configBits.h"
-#pragma config OSC = HS
+#pragma config OSC = INTIO67
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
 
@@ -3879,8 +3879,9 @@ void PWM1(int duty);
 void PWM1off();
 void PWM2(int duty);
 void PWM2off();
-void updateStepper();
 void updateS1(int mode);
+void updateS2(int mode);
+void updateS3(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
@@ -3909,6 +3910,9 @@ void readADC(char channel);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
+extern int t;
+extern int t2;
+extern int t3;
 
 # 12 "main.c"
 const char keys[] = "123A456B789C*0#D";
@@ -3917,12 +3921,13 @@ volatile unsigned char keypress = (0);
 
 # 21
 void initialize(void){
-OSCCON = 0b01110000;
+
+OSCCON = 0xF0;
 OSCTUNEbits.PLLEN = 1;
 
-TRISA = 0b11001111;
+TRISA = 0b11101111;
 TRISB = 0b11110010;
-TRISC = 0b00011000;
+TRISC = 0b00000000;
 
 TRISD = 0x00;
 TRISE = 0b00000001;
@@ -3948,6 +3953,7 @@ I2C_Master_Init(10000);
 nRBPU = 0;
 ADCON0 = 00000001;
 ADCON1 = 0b00001001;
+ADCON2 = 0b10001010;
 CVRCON = 0x00;
 CMCONbits.CIS = 0;
 ADFM = 1;
@@ -3971,10 +3977,18 @@ int sodaState = 0;
 int tabState = 0;
 int labelState = 0;
 
-int s = 1;
+
 int soupSort;
 int prevSoupLoad;
+int sodaSort;
+int prevSodaLoad;
 int S1mode = 0;
+int S2mode = 0;
+int S3mode = 0;
+int S1steps;
+int S3steps;
+int firstrun;
+int sodaThresh;
 
 unsigned long c = 0;
 
@@ -3984,11 +3998,13 @@ _delay((unsigned long)((10)*(32000000/4000.0)));
 while(1){
 updateTime();
 updateS1(S1mode);
+updateS2(S2mode);
+updateS3(S3mode);
+
 readADC(2);
 if (ADRES >= 0x3d0){soupLoad = 1;}
 else {soupLoad = 0;}
-readADC(5);
-sodaLoad = ADRESH;
+
 
 if (standby == 1){
 
@@ -3999,15 +4015,25 @@ keyinterrupt();
 
 if(keypress == 2){
 standby = 0;
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Sorting cans...");
 lcdInst(0b11000000);;
 printf("Any key to stop");
-PWM1(100);
+
 dc = 1;
 startTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
 canCheck = startTime;
+PWM2(600);
 
+labelState = 0;
+soupSort = 0;
+prevSodaTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+tabState = 0;
+sodaSort = 0;
+for(s=0;s<40;s++){
+S2mode = 2;
+updateS2(S2mode);
+}
 }
 else if(keypress == 1){
 
@@ -4020,60 +4046,123 @@ s = 1;
 else if(keypress == 14 ) {
 standby = 3;
 PWM2(500);
+
 labelState = 0;
-s = 1;
+
 soupSort = 0;
 }
-else if(keypress == 13) {
+else if(keypress == 10) {
 standby = 4;
-sodaState= 0;
+
 prevSodaTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
 tabState = 0;
-s = 1;
+sodaSort = 0;
+startTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+
+for(s=0;s<40;s++){
+S2mode = 2;
+updateS2(S2mode);
+}
+
 }
 
 }
 else if(standby == 2){
 
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 keypress = (0);
 
 if (s==1){
 printf("testing S f");
 S1mode = 1;
 updateS1(S1mode);
-S2forward();
-
-S3forward();
+S2mode = 1;
+updateS2(S2mode);
+S3mode = 1;
+updateS3(S3mode);
 keyinterrupt();
 }
 else if(s==2){
 printf("testing S b");
 S1mode = 2;
 updateS1(S1mode);
-
-S2backward();
-S3backward();
+S2mode = 2;
+updateS2(S2mode);
+S3mode = 2;
+updateS3(S3mode);
 keyinterrupt();
 }
 
 else if(s==3){
-printf("testing S1shake");
-
+printf("testing S shake");
 S1mode = 3;
 updateS1(S1mode);
+S2mode = 3;
+updateS2(S2mode);
+S3mode = 3;
+updateS3(S3mode);
 keyinterrupt();
 }
 
 else{
+keypress = (0);
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("testing S1 pins");
+while(keypress!=3){
 
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+keyinterrupt();
+
+if (keypress == 2){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (keypress == 6){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+if (keypress == 10){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (keypress == 14){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+}
+
+keypress = (0);
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("testing S2 pins");
+while(keypress!=3){
+
+keyinterrupt();
+
+if (keypress == 2){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (keypress == 6){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
+if (keypress == 10){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (keypress == 14){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
+}
+
+keypress = (0);
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("testing S3 pins");
+while(keypress!=3){
+
+keyinterrupt();
+
+if (keypress == 2){LATCbits.LATC7 = 1;}
+else{LATCbits.LATC7 = 0;}
+if (keypress == 6){LATCbits.LATC6 = 1;}
+else{LATCbits.LATC6 = 0;}
+if (keypress == 10){LATCbits.LATC0 = 1;}
+else{LATCbits.LATC0 = 0;}
+if (keypress == 14){LATCbits.LATC5 = 1;}
+else{LATCbits.LATC5 = 0;}
+}
+
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing PWM2");
 PWM2(500);
 keycheck();
 PWM2off();
 
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing PWM1");
 PWM1(500);
 keycheck();
@@ -4085,7 +4174,7 @@ while(keypress==(0)){
 updateTime();
 keypress = (0);
 _delay((unsigned long)((50)*(32000000/4000.0)));
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("time %x %x", ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10), timePassed(startTime));
 keyinterrupt();
 }
@@ -4094,7 +4183,7 @@ keypress = (0);
 while(keypress==(0)){
 keypress = (0);
 _delay((unsigned long)((50)*(32000000/4000.0)));
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing IR1");
 readADC(1);
 lcdInst(0b11000000);;
@@ -4106,7 +4195,7 @@ keypress = (0);
 while(keypress==(0)){
 keypress = (0);
 _delay((unsigned long)((50)*(32000000/4000.0)));
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing IR2");
 readADC(0);
 lcdInst(0b11000000);;
@@ -4118,7 +4207,7 @@ keypress = (0);
 while(keypress==(0)){
 keypress = (0);
 _delay((unsigned long)((50)*(32000000/4000.0)));
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing IR3");
 readADC(2);
 lcdInst(0b11000000);;
@@ -4130,7 +4219,7 @@ keypress = (0);
 while(keypress==(0)){
 keypress = (0);
 _delay((unsigned long)((50)*(32000000/4000.0)));
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing label");
 readADC(4);
 lcdInst(0b11000000);;
@@ -4141,21 +4230,12 @@ keyinterrupt();
 keypress = (0);
 while(keypress==(0)){
 keypress = (0);
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
-printf("testing faststep");
-
-if (c == 1){LATDbits.LATD1 = 1;}
-else{LATDbits.LATD1 = 0;}
-if (c == 2){LATBbits.LATB3 = 1;}
-else{LATBbits.LATB3 = 0;}
-if (c == 3){LATBbits.LATB2 = 1;}
-else{LATBbits.LATB2 = 0;}
-if (c == 4){LATBbits.LATB0 = 1;}
-else{LATBbits.LATB0 = 0;}
-
-c++;
-if (c>4) {s=1;}
-_delay((unsigned long)((250)*(32000000/4000.0)));
+_delay((unsigned long)((50)*(32000000/4000.0)));
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("testing tab");
+readADC(3);
+lcdInst(0b11000000);;
+printf("%x   %x", ADRESH, ADRESL);
 keyinterrupt();
 }
 
@@ -4165,7 +4245,7 @@ while(keypress==(0)){
 keypress = (0);
 c++;
 if((c %10000)== 0){
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("program speed");
 lcdInst(0b11000000);;
 printf("loops: %lu", c);
@@ -4184,80 +4264,81 @@ s++;
 }
 else if(standby == 3){
 
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("soup can test");
+lcdInst(0b11000000);;
+printf("%d  %d", S1mode, soupSort);
 
 if(soupLoad){
 prevSoupLoad = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
 if (!soupSort){
 soupSort = 1;
-prevSoupTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
-_delay((unsigned long)((250)*(32000000/4000.0)));
+
+S1steps = 0;
+_delay((unsigned long)((150)*(32000000/4000.0)));
 }
 }
 
 if (soupSort){
 
-if (timePassed(prevSoupTime) < 5){
+S1steps ++;
+
+if (S1steps < 20){
 S1mode = 3;
 updateS1(S1mode);
 
 
 readADC(4);
 if(ADRESL<=0x1){labelState = 1;}
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("value: %x", ADRESL);
 lcdInst(0b11000000);;
-printf("testing %d", timePassed(prevSoupTime));
+printf("testing %d", S1steps);
 }
 else if (labelState == 1){
-keypress = (0);
-keyinterrupt();
-if (keypress != (0)) {
-standby = 1;
-}
 
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+# 403
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("no label");
 lcdInst(0b11000000);;
-if(timePassed(prevSoupTime) < 13){
-
+if(S1steps < (20+30)){
 S1mode = 1;
 updateS1(S1mode);
-printf("sorting %d", timePassed(prevSoupTime));
+printf("sorting %d", S1steps);
 }
-else if(timePassed(prevSoupTime) < 21){
+else if(S1steps < (20+30+29)){
 
 S1mode = 2;
 updateS1(S1mode);
-printf("returning %d", timePassed(prevSoupTime));
+printf("returning %d", S1steps);
 }
 else{labelState = 100;}
 }
 else if(labelState == 0){
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("label");
 lcdInst(0b11000000);;
-if(timePassed(prevSoupTime) < 12){
+if(S1steps < (20+26)){
 
 S1mode = 2;
 updateS1(S1mode);
-printf("sorting %d", timePassed(prevSoupTime));
+printf("sorting %d", S1steps);
 }
-else if(timePassed(prevSoupTime) < 19){
+else if(S1steps < (20+26+26)){
 
 S1mode = 1;
 updateS1(S1mode);
-printf("returning %d", timePassed(prevSoupTime));
+printf("returning %d", S1steps);
 }
 else{labelState = 100;}
 }
 else{
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
-printf("finished %d", timePassed(prevSoupTime));
-prevSoupTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("finished %d", S1steps);
+
+S1steps = 0;
 labelState = 0;
-if (timePassed(prevSoupLoad) > 9) {soupSort = 0;}
+if (timePassed(prevSoupLoad) > 2) {soupSort = 0;}
 }
 }
 else{
@@ -4269,81 +4350,327 @@ updateS1(S1mode);
 }
 else if(standby == 4){
 
-switch(sodaState){
-case 0:
-S1off();
-S2off();
-if(sodaLoad){
-prevSodaTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
-sodaState ++;
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("soda can test");
+
+
+readADC(0);
+if(ADRES >= 0x3b0){
+prevSodaLoad = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+if (!sodaSort && (t3== 1 || t3==8)){
+sodaSort = 1;
+
+
+S3steps = 0;
+
 }
-case 1:
-S2off();
-if(timePassed(prevSodaTime) < 3){
-S1backward();
+if(timePassed(startTime) < 1){sodaSort = 0;}
 }
-else if(timePassed(prevSodaTime) < 4){
-S1off();
+
+lcdInst(0b11000000);;
+printf("%d %x %d %x", sodaSort, ADRES, prevSodaLoad, sodaThresh);
+
+if (sodaSort){
+
+
+S3steps ++;
+
+if(S3steps < 24){
+S3mode = 3;
+updateS3(S3mode);
+S2mode = 4;
+}
+else if (S3steps < (24+22)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+
+
+}
+else if (S3steps < (24+22+8)){
+S3mode = 4;
+
+S2mode = 1;
+updateS2(S2mode);
+
+
+}
+else if (S3steps < (24+22+8+3)){
+S2mode = 4;
+S3mode = 4;
 readADC(3);
-tabState = ADRESH;
+if(ADRESH==0){tabState = 1;}
+
+
+
 
 }
-else if(timePassed(prevSodaTime) < 7){
-S1forward();
+else if (S3steps < (24+22+8+3+8)){
+S2mode = 2;
+updateS2(S2mode);
+S3mode = 4;
+
+
+
+}
+else if (tabState == 1){
+
+
+
+
+if(S3steps < (24+22+8+3+8+9)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else if(S3steps < (24+22+8+3+8+7+(9+22))){
+S3mode = 2;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else{tabState = 100;}
+}
+else if(tabState == 0){
+
+
+
+if(S3steps < (24+22+8+3+8+(22+29))){
+S3mode = 2;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else if(S3steps < (24+22+8+3+8+(22+29)+28)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else{tabState = 100;}
 }
 else{
-prevSodaTime = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
-sodaState ++;
+
+
+
+S3steps = 0;
+tabState = 0;
+if (timePassed(prevSodaLoad) > 2) {sodaSort = 0;}
 }
-case 2:
-S1off();
-if(timePassed(prevSodaTime) < 3){
-if(tabState){S2forward();}
-else{S2backward();}
-}
-else if(timePassed(prevSodaTime) < 6){
-if(tabState){S2backward();}
-else{S2forward();}
 }
 else{
-sodaState = 0;
-}
-default:
-sodaState = 0;
-break;
+
+S3mode = 3;
+updateS3(S3mode);
+S2mode = 4;
 }
 
+}
+
+
+else{
+
+
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("soup can test");
+lcdInst(0b11000000);;
+printf("%d  %d", S1mode, soupSort);
+
+if(soupLoad){
+prevSoupLoad = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+if (!soupSort){
+soupSort = 1;
+
+S1steps = 0;
+_delay((unsigned long)((150)*(32000000/4000.0)));
+}
+}
+
+if (soupSort){
+
+S1steps ++;
+
+if (S1steps < 20){
+S1mode = 3;
+updateS1(S1mode);
+
+
+readADC(4);
+if(ADRESL<=0x1){labelState = 1;}
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("value: %x", ADRESL);
+lcdInst(0b11000000);;
+printf("testing %d", S1steps);
+}
+else if (labelState == 1){
+
+# 616
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("no label");
+lcdInst(0b11000000);;
+if(S1steps < (20+30)){
+S1mode = 1;
+updateS1(S1mode);
+printf("sorting %d", S1steps);
+}
+else if(S1steps < (20+30+29)){
+
+S1mode = 2;
+updateS1(S1mode);
+printf("returning %d", S1steps);
+}
+else{labelState = 100;}
+}
+else if(labelState == 0){
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("label");
+lcdInst(0b11000000);;
+if(S1steps < (20+26)){
+
+S1mode = 2;
+updateS1(S1mode);
+printf("sorting %d", S1steps);
+}
+else if(S1steps < (20+26+26)){
+
+S1mode = 1;
+updateS1(S1mode);
+printf("returning %d", S1steps);
+}
+else{labelState = 100;}
 }
 else{
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
-printf("sorting");
-keypress = (0);
-keyinterrupt();
-if (keypress != (0)) {
-standby = 1;
-}
+lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+printf("finished %d", S1steps);
 
-# 440
-if(timePassed(canCheck) > 10){
-readADC(5);
-soupLoad = ADRESH;
-readADC(2);
-sodaLoad = ADRESH;
-if (!soupLoad & !sodaLoad){
-standby = 1;
+S1steps = 0;
+labelState = 0;
+if (timePassed(prevSoupLoad) > 2) {soupSort = 0;}
 }
-canCheck = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+}
+else{
+
+S1mode = 3;
+updateS1(S1mode);
 }
 
 
-if(standby==1){
-lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
-printf("Finished sorting! ");
-_delay((unsigned long)((500)*(32000000/4000.0)));
-PWM1off();
-dc = 0;
-updateEEPROM(timePassed(startTime));
+
+readADC(0);
+if(ADRES >= 0x3b5){
+prevSodaLoad = ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10);
+if (!sodaSort && (t3== 1 || t3==8)){
+sodaSort = 1;
+
+
+S3steps = 0;
+
 }
+if(timePassed(startTime) < 1){sodaSort = 0;}
+}
+
+lcdInst(0b11000000);;
+printf("%d %x %d %x", sodaSort, ADRES, prevSodaLoad, sodaThresh);
+
+if (sodaSort){
+
+
+S3steps ++;
+
+if(S3steps < 24){
+S3mode = 3;
+updateS3(S3mode);
+S2mode = 4;
+}
+else if (S3steps < (24+20)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+
+
+}
+else if (S3steps < (24+20+8)){
+S3mode = 4;
+
+S2mode = 1;
+updateS2(S2mode);
+
+
+}
+else if (S3steps < (24+20+8+6)){
+S2mode = 4;
+S3mode = 4;
+readADC(3);
+if(ADRESH==0){tabState = 1;}
+
+
+
+
+}
+else if (S3steps < (24+20+8+6+8)){
+S2mode = 2;
+updateS2(S2mode);
+S3mode = 4;
+
+
+
+}
+else if (tabState == 1){
+
+
+
+
+if(S3steps < (24+20+8+6+8+9)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else if(S3steps < (24+20+8+6+8+7+(9+22)-2)){
+S3mode = 2;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else{tabState = 100;}
+}
+else if(tabState == 0){
+
+
+
+if(S3steps < (24+20+8+6+8+(22+29))){
+S3mode = 2;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else if(S3steps < (24+20+8+6+8+(22+29)+29)){
+S3mode = 1;
+updateS3(S3mode);
+S2mode = 4;
+
+}
+else{tabState = 100;}
+}
+else{
+
+
+
+S3steps = 0;
+tabState = 0;
+if (timePassed(prevSodaLoad) > 2) {sodaSort = 0;}
+}
+}
+else{
+S3mode = 3;
+updateS3(S3mode);
+S2mode = 4;
+}
+
+# 789
 }
 }
 return;

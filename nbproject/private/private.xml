@@ -5,7 +5,7 @@
             <url>main.c</url>
             <bookmark id="1">
                 <name/>
-                <line>425</line>
+                <line>492</line>
                 <key/>
             </bookmark>
         </file>
@@ -18,6 +18,7 @@
             <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/motors.c</file>
             <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/declarations.h</file>
             <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/interface.c</file>
+            <file>file:/C:/Users/Isabelle/Documents/Academia/AER201/UserInterface.X/configBits.h</file>
         </group>
     </open-files>
 </project-private>

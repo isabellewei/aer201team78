@@ -3823,8 +3823,9 @@ void PWM1(int duty);
 void PWM1off();
 void PWM2(int duty);
 void PWM2off();
-void updateStepper();
 void updateS1(int mode);
+void updateS2(int mode);
+void updateS3(int mode);
 void S1forward(void);
 void S1backward(void);
 void S1off(void);
@@ -3853,10 +3854,13 @@ void readADC(char channel);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
+extern int t;
+extern int t2;
+extern int t3;
 
 
 # 9 "configBits.h"
-#pragma config OSC = HS
+#pragma config OSC = INTIO67
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
 

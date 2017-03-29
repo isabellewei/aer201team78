@@ -33,7 +33,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"47 functions.h
+"48 functions.h
 [v _eepromRead `(c ~T0 @X0 0 ef1`c ]
 "2984 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _EEADRH `Vuc ~T0 @X0 0 e@4010 ]
@@ -2869,30 +2869,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 30: void PWM1off();
 [; ;functions.h: 31: void PWM2(int duty);
 [; ;functions.h: 32: void PWM2off();
-[; ;functions.h: 33: void updateStepper();
-[; ;functions.h: 34: void updateS1(int mode);
-[; ;functions.h: 35: void S1forward(void);
-[; ;functions.h: 36: void S1backward(void);
-[; ;functions.h: 37: void S1off(void);
-[; ;functions.h: 38: void S2forward(void);
-[; ;functions.h: 39: void S2backward(void);
-[; ;functions.h: 40: void S2off(void);
-[; ;functions.h: 41: void S1shake(void);
-[; ;functions.h: 42: void S3forward(void);
-[; ;functions.h: 43: void S3backward(void);
-[; ;functions.h: 44: void S3off(void);
-[; ;functions.h: 47: signed char eepromRead(signed char address);
-[; ;functions.h: 48: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 49: void displayLogs(void);
-[; ;functions.h: 50: void homescreen(void);
-[; ;functions.h: 51: void updateEEPROM(int time);
-[; ;functions.h: 52: void keycheck(void);
-[; ;functions.h: 53: void keyinterrupt(void);
-[; ;functions.h: 56: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 57: int timePassed(int start);
-[; ;functions.h: 58: void readADC(char channel);
+[; ;functions.h: 33: void updateS1(int mode);
+[; ;functions.h: 34: void updateS2(int mode);
+[; ;functions.h: 35: void updateS3(int mode);
+[; ;functions.h: 36: void S1forward(void);
+[; ;functions.h: 37: void S1backward(void);
+[; ;functions.h: 38: void S1off(void);
+[; ;functions.h: 39: void S2forward(void);
+[; ;functions.h: 40: void S2backward(void);
+[; ;functions.h: 41: void S2off(void);
+[; ;functions.h: 42: void S1shake(void);
+[; ;functions.h: 43: void S3forward(void);
+[; ;functions.h: 44: void S3backward(void);
+[; ;functions.h: 45: void S3off(void);
+[; ;functions.h: 48: signed char eepromRead(signed char address);
+[; ;functions.h: 49: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 50: void displayLogs(void);
+[; ;functions.h: 51: void homescreen(void);
+[; ;functions.h: 52: void updateEEPROM(int time);
+[; ;functions.h: 53: void keycheck(void);
+[; ;functions.h: 54: void keyinterrupt(void);
+[; ;functions.h: 57: int backlogTest(int blockedTime, int motorStatus);
+[; ;functions.h: 58: int timePassed(int start);
+[; ;functions.h: 59: void readADC(char channel);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
+[; ;declarations.h: 22: extern int t;
+[; ;declarations.h: 23: extern int t2;
+[; ;declarations.h: 24: extern int t3;
 "3 interface.c
 [v _homescreen `(v ~T0 @X0 1 ef ]
 {
@@ -3006,10 +3010,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interface.c: 43: void displayLogs(void){
 [e :U _displayLogs ]
 [f ]
-[; ;interface.c: 44: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+[; ;interface.c: 44: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 "44
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 [; ;interface.c: 45: printf("Run#1    A:Next");
 "45
 [e ( _printf :s 5C ]
@@ -3022,10 +3026,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interface.c: 48: keycheck();
 "48
 [e ( _keycheck ..  ]
-[; ;interface.c: 49: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+[; ;interface.c: 49: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 "49
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 [; ;interface.c: 50: printf("Run#1    A:Next");
 "50
 [e ( _printf :s 7C ]
@@ -3038,10 +3042,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interface.c: 53: keycheck();
 "53
 [e ( _keycheck ..  ]
-[; ;interface.c: 54: lcdInst(0b00000001); _delay((unsigned long)((10)*(32000000/4000.0)));;
+[; ;interface.c: 54: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 "54
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 [; ;interface.c: 55: printf("Run#1    A:Next");
 "55
 [e ( _printf :s 9C ]

@@ -5,8 +5,8 @@
  * Created on August 11, 2016, 2:41 PM
  */
 
-#ifndef CONSTANTS_H
-#define	CONSTANTS_H         //Prevent multiple inclusion
+#ifndef DECLARATIONS_H
+#define	DECLARATIONS_H         //Prevent multiple inclusion
 
 #include <xc.h>
 #include <string.h>
@@ -19,6 +19,9 @@
 
 extern unsigned char time[7]; 
 extern volatile unsigned char keypress;
+extern int t;
+extern int t2;
+extern int t3;
 
 
 //LCD Control Registers
@@ -28,7 +31,7 @@ extern volatile unsigned char keypress;
 #define LCD_DELAY   25
 //LCD macros
 #define lcd_newline() lcdInst(0b11000000);
-#define lcd_clear() lcdInst(0b00000001);  __delay_ms(10);
+#define lcd_clear() lcdInst(0b00000001);  __delay_ms(5);
 #define lcd_home() lcdInst(0b10000000);
 #define bcd_to_num(num) (num & 0x0F) + ((num & 0xF0)>>4)*10
 
@@ -61,4 +64,4 @@ extern volatile unsigned char keypress;
 #define currMom()  (bcd_to_num(time[0]) + 60*bcd_to_num(time[1]) + 3600*bcd_to_num(time[2]))
 
 
-#endif	/* CONSTANTS_H */
+#endif	/* DECLARATIONS_H */
