@@ -6,56 +6,22 @@ void homescreen(void){
     printf("3:Start");
     lcd_newline();
     printf("%02x:%02x:%02x", time[2],time[1],time[0]);    //HH:MM:SS
-    printf(" 2:Logs");
+    printf(" A:Logs");
 }
 
 void keycheck(void){
-    while(PORTBbits.RB1 == 0){
-        // RB1 is the interrupt pin, so if there is no key pressed, RB1 will be 0
-            // the PIC will wait and do nothing until a key press is signaled
-        }
-        keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-        while(PORTBbits.RB1 == 1){
-            // Wait until the key has been released
-        }
+    while(PORTBbits.RB1 == 0){} //wait for keypad interrupt pin to be triggered
+    keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
+    while(PORTBbits.RB1 == 1){} // Wait until the key has been release
     Nop();  //breakpoint b/c compiler optimizations
     return;
 }
 void keyinterrupt(void){
-    if(PORTBbits.RB1 == 1){
+    if(PORTBbits.RB1 == 1){ //check status of keypad
         keypress = (PORTB & 0xF0)>>4; // Read the 4 bit character code
-        while(PORTBbits.RB1 == 1){
-            // Wait until the key has been released
-            //lcd_home();
-            //printf("asdf");
-            
-        }
-        //lcd_clear();
-        //printf("%c", keypress);
-        //lcd_newline();
-        //printf("%x", PORTB & 0xF0);
-        //__delay_ms(2000);
+        while(PORTBbits.RB1 == 1){}  // Wait until the key has been released   
     }
     Nop();  //breakpoint b/c compiler optimizations
-    
-}
-
-void displayLogs(void){
-    lcd_clear();
-    printf("Run#1    A:Next");
-    lcd_newline();
-    printf("# of cans: %d", eepromRead(10));
-    keycheck();
-    lcd_clear();
-    printf("Run#1    A:Next");
-    lcd_newline();
-    printf("# soda cans: %d", eepromRead(20));
-    keycheck();
-    lcd_clear();
-    printf("Run#1    A:Next");
-    lcd_newline();
-    printf("# soup cans: 4");
-    keycheck();
 }
 
 signed char eepromRead(signed char address){
@@ -100,9 +66,69 @@ void eepromWrite(signed char address, signed char data){
     EECON1bits.WREN = 0;    // Disable write (for safety, it is re-enabled next time a EEPROM write is performed)
 }
 
-void updateEEPROM(int time){
-    eepromWrite(40, eepromRead(30));
-    eepromWrite(30, eepromRead(20));
-    eepromWrite(20, eepromRead(10));
-    eepromWrite(10, time);
+void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL){
+    int currRun = eepromRead(0)-1;
+    if (currRun < 1){currRun = 4;}
+    eepromWrite(0, currRun);
+    
+    eepromWrite(currRun*0x10 + 1, dur);
+    eepromWrite(currRun*0x10 + 2, year);
+    eepromWrite(currRun*0x10 + 3, month);
+    eepromWrite(currRun*0x10 + 4, date);
+    eepromWrite(currRun*0x10 + 5, hours);
+    eepromWrite(currRun*0x10 + 6, mins);
+    eepromWrite(currRun*0x10 + 7, secs);
+    eepromWrite(currRun*0x10 + 8, sodaT);
+    eepromWrite(currRun*0x10 + 9, sodaNT);
+    eepromWrite(currRun*0x10 + 0xa, soupL);
+    eepromWrite(currRun*0x10 + 0xb, soupNL);
+}
+
+void displayLog(int run){
+    int currRun = eepromRead(0);
+    int i;
+    for (i=1;i<(run);i++){
+        currRun++;
+        if (currRun > 4){currRun = 1;}
+    }
+    
+    lcd_clear();
+    lcd_home();
+    printf("%d %d", eepromRead(0), currRun);
+    keycheck();
+    lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Runtime: %d", eepromRead(currRun*0x10 + 1));
+    keycheck();    
+    lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Date: %02x/%02x/%02x", eepromRead(currRun*0x10 + 2),eepromRead(currRun*0x10 + 3),eepromRead(currRun*0x10 + 4));
+    keycheck();    
+    lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Start: %d:%d:%d", eepromRead(currRun*0x10 + 5), eepromRead(currRun*0x10 + 6), eepromRead(currRun*0x10 + 7));
+    keycheck();        
+    lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Soda w/ tab: %d", eepromRead(currRun*0x10 + 8));
+    keycheck();
+    lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Soda w/o tab: %d", eepromRead(currRun*0x10 + 9));
+    keycheck();
+     lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Soup w/ lbl: %d", eepromRead(currRun*0x10 + 0xa));
+    keycheck();
+     lcd_clear();
+    printf("Run#%d    A:Next", run);
+    lcd_newline();
+    printf("Soup w/o lbl: %d", eepromRead(currRun*0x10 + 0xb));
+    keycheck();
 }

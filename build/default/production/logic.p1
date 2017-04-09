@@ -1,6 +1,4 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4604 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
-[v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
 "20 declarations.h
 [v _time `uc ~T0 @X0 -> 0 `x e ]
 "4474 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
@@ -38,6 +36,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
+"3493 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
+[v _T3CON `Vuc ~T0 @X0 0 e@4017 ]
+"3616
+[v _TMR3H `Vuc ~T0 @X0 0 e@4019 ]
+"3610
+[v _TMR3L `Vuc ~T0 @X0 0 e@4018 ]
+"7596
+[v _TMR3ON `Vb ~T0 @X0 0 e@32136 ]
+"5157
+[v _T1CON `Vuc ~T0 @X0 0 e@4045 ]
+"5271
+[v _TMR1H `Vuc ~T0 @X0 0 e@4047 ]
+"5265
+[v _TMR1L `Vuc ~T0 @X0 0 e@4046 ]
+"7578
+[v _TMR1ON `Vb ~T0 @X0 0 e@32360 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2845,141 +2859,120 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 33: void updateS1(int mode);
 [; ;functions.h: 34: void updateS2(int mode);
 [; ;functions.h: 35: void updateS3(int mode);
-[; ;functions.h: 36: void S1forward(void);
-[; ;functions.h: 37: void S1backward(void);
-[; ;functions.h: 38: void S1off(void);
-[; ;functions.h: 39: void S2forward(void);
-[; ;functions.h: 40: void S2backward(void);
-[; ;functions.h: 41: void S2off(void);
-[; ;functions.h: 42: void S1shake(void);
-[; ;functions.h: 43: void S3forward(void);
-[; ;functions.h: 44: void S3backward(void);
-[; ;functions.h: 45: void S3off(void);
-[; ;functions.h: 48: signed char eepromRead(signed char address);
-[; ;functions.h: 49: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 50: void displayLogs(void);
-[; ;functions.h: 51: void homescreen(void);
-[; ;functions.h: 52: void updateEEPROM(int time);
-[; ;functions.h: 53: void keycheck(void);
-[; ;functions.h: 54: void keyinterrupt(void);
-[; ;functions.h: 57: int backlogTest(int blockedTime, int motorStatus);
-[; ;functions.h: 58: int timePassed(int start);
-[; ;functions.h: 59: void readADC(char channel);
+[; ;functions.h: 39: signed char eepromRead(signed char address);
+[; ;functions.h: 40: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 41: void displayLog(int run);
+[; ;functions.h: 42: void homescreen(void);
+[; ;functions.h: 44: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
+[; ;functions.h: 45: void keycheck(void);
+[; ;functions.h: 46: void keyinterrupt(void);
+[; ;functions.h: 49: void interrupt handler(void);
+[; ;functions.h: 50: int timePassed(int start);
+[; ;functions.h: 51: void readADC(char channel);
+[; ;functions.h: 52: void startTMR3(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
 [; ;declarations.h: 22: extern int t;
 [; ;declarations.h: 23: extern int t2;
 [; ;declarations.h: 24: extern int t3;
-"3 logic.c
-[v _backlogTest `(i ~T0 @X0 1 ef2`i`i ]
-{
-[; ;logic.c: 3: int backlogTest(int blockedStart, int motorStatus){
-[e :U _backlogTest ]
-[v _blockedStart `i ~T0 @X0 1 r1 ]
-[v _motorStatus `i ~T0 @X0 1 r2 ]
-[f ]
-[; ;logic.c: 4: if (ADRESH == 0){
-"4
-[e $ ! == -> _ADRESH `i -> 0 `i 271  ]
-{
-[; ;logic.c: 5: return 1;
-"5
-[e ) -> 1 `i ]
-[e $UE 270  ]
-"6
-}
-[; ;logic.c: 6: }
-[e $U 272  ]
-"7
-[e :U 271 ]
-[; ;logic.c: 7: else{
-{
-[; ;logic.c: 8: if (((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - blockedStart > 3){
-"8
-[e $ ! > - + + + + + & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 60 `i & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 3600 `i & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i _blockedStart -> 3 `i 273  ]
-{
-[; ;logic.c: 10: return 1;
-"10
-[e ) -> 1 `i ]
-[e $UE 270  ]
-"11
-}
-[; ;logic.c: 11: }
-[e $U 274  ]
-"12
-[e :U 273 ]
-[; ;logic.c: 12: else{
-{
-[; ;logic.c: 14: return 0;
-"14
-[e ) -> 0 `i ]
-[e $UE 270  ]
-"15
-}
-[e :U 274 ]
-"16
-}
-[e :U 272 ]
-[; ;logic.c: 15: }
-[; ;logic.c: 16: }
-[; ;logic.c: 17: }
-"17
-[e :UE 270 ]
-}
-"19
+"4 logic.c
 [v _timePassed `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;logic.c: 19: int timePassed(int start){
+[; ;logic.c: 4: int timePassed(int start){
 [e :U _timePassed ]
 [v _start `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;logic.c: 20: if(((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) >= 86400){return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF
-"20
-[e $ ! >= -> + + + + + & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 60 `i & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 3600 `i & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i `l -> 86400 `l 276  ]
+[; ;logic.c: 5: if(((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) >= 86400){return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF
+"5
+[e $ ! >= -> + + + + + & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 60 `i & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 3600 `i & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i `l -> 86400 `l 271  ]
 {
 [e ) -> - + -> + + + + + & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 60 `i & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 3600 `i & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i `l -> 86400 `l -> _start `l `i ]
-[e $UE 275  ]
+[e $UE 270  ]
 }
-[e $U 277  ]
-"21
-[e :U 276 ]
-[; ;logic.c: 21: else{return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - start;}
+[e $U 272  ]
+"6
+[e :U 271 ]
+[; ;logic.c: 6: else{return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - start;}
 {
 [e ) - + + + + + & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 60 `i & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i * -> 3600 `i & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 15 `i * >> & -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> 240 `i -> 4 `i -> 10 `i _start ]
-[e $UE 275  ]
+[e $UE 270  ]
 }
-[e :U 277 ]
-[; ;logic.c: 22: }
-"22
-[e :UE 275 ]
+[e :U 272 ]
+[; ;logic.c: 7: }
+"7
+[e :UE 270 ]
 }
-"24
+"9
 [v _readADC `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;logic.c: 24: void readADC(char channel){
+[; ;logic.c: 9: void readADC(char channel){
 [e :U _readADC ]
 [v _channel `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;logic.c: 26: ADCON0 = ((channel <<2));
-"26
+[; ;logic.c: 11: ADCON0 = ((channel <<2));
+"11
 [e = _ADCON0 -> << -> _channel `i -> 2 `i `uc ]
-[; ;logic.c: 27: ADCON0bits.ADON = 1;
-"27
+[; ;logic.c: 12: ADCON0bits.ADON = 1;
+"12
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
-[; ;logic.c: 28: ADCON0bits.GO = 1;
-"28
+[; ;logic.c: 13: ADCON0bits.GO = 1;
+"13
 [e = . . _ADCON0bits 2 1 -> -> 1 `i `uc ]
-[; ;logic.c: 29: while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
-"29
-[e $U 279  ]
-[e :U 280 ]
+[; ;logic.c: 14: while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
+"14
+[e $U 274  ]
+[e :U 275 ]
 {
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 }
-[e :U 279 ]
-[e $ != -> . . _ADCON0bits 0 1 `i -> -> -> 0 `i `Vuc `i 280  ]
-[e :U 281 ]
-[; ;logic.c: 30: }
-"30
+[e :U 274 ]
+[e $ != -> . . _ADCON0bits 0 1 `i -> -> -> 0 `i `Vuc `i 275  ]
+[e :U 276 ]
+[; ;logic.c: 15: }
+"15
+[e :UE 273 ]
+}
+"17
+[v _startTMR3 `(v ~T0 @X0 1 ef ]
+{
+[; ;logic.c: 17: void startTMR3(void){
+[e :U _startTMR3 ]
+[f ]
+[; ;logic.c: 18: T3CON = 0b10110000;
+"18
+[e = _T3CON -> -> 176 `i `uc ]
+[; ;logic.c: 19: TMR3H = 0b10011001;
+"19
+[e = _TMR3H -> -> 153 `i `uc ]
+[; ;logic.c: 20: TMR3L = 0b01011011;
+"20
+[e = _TMR3L -> -> 91 `i `uc ]
+[; ;logic.c: 21: TMR3ON = 1;
+"21
+[e = _TMR3ON -> -> 1 `i `b ]
+[; ;logic.c: 22: }
+"22
+[e :UE 277 ]
+}
+"24
+[v _startTMR1 `(v ~T0 @X0 1 ef ]
+{
+[; ;logic.c: 24: void startTMR1(void){
+[e :U _startTMR1 ]
+[f ]
+[; ;logic.c: 25: T1CON = 0b10110000;
+"25
+[e = _T1CON -> -> 176 `i `uc ]
+[; ;logic.c: 26: TMR1H = 0b11101001;
+"26
+[e = _TMR1H -> -> 233 `i `uc ]
+[; ;logic.c: 27: TMR1L = 0b01011011;
+"27
+[e = _TMR1L -> -> 91 `i `uc ]
+[; ;logic.c: 28: TMR1ON = 1;
+"28
+[e = _TMR1ON -> -> 1 `i `b ]
+[; ;logic.c: 29: }
+"29
 [e :UE 278 ]
 }

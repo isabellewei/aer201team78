@@ -3826,30 +3826,23 @@ void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);
 void updateS3(int mode);
-void S1forward(void);
-void S1backward(void);
-void S1off(void);
-void S2forward(void);
-void S2backward(void);
-void S2off(void);
-void S1shake(void);
-void S3forward(void);
-void S3backward(void);
-void S3off(void);
+
 
 
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
-void displayLogs(void);
+void displayLog(int run);
 void homescreen(void);
-void updateEEPROM(int time);
+
+void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
 void keycheck(void);
 void keyinterrupt(void);
 
 
-int backlogTest(int blockedTime, int motorStatus);
+void interrupt handler(void);
 int timePassed(int start);
 void readADC(char channel);
+void startTMR3(void);
 
 # 20 "declarations.h"
 extern unsigned char time[7];
@@ -3858,23 +3851,7 @@ extern int t;
 extern int t2;
 extern int t3;
 
-# 3 "logic.c"
-int backlogTest(int blockedStart, int motorStatus){
-if (ADRESH == 0){
-return 1;
-}
-else{
-if (((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - blockedStart > 3){
-
-return 1;
-}
-else{
-
-return 0;
-}
-}
-}
-
+# 4 "logic.c"
 int timePassed(int start){
 if(((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) >= 86400){return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) + 86400 - start;}
 else{return ((time[0] & 0x0F) + ((time[0] & 0xF0)>>4)*10 + 60*(time[1] & 0x0F) + ((time[1] & 0xF0)>>4)*10 + 3600*(time[2] & 0x0F) + ((time[2] & 0xF0)>>4)*10) - start;}
@@ -3886,5 +3863,19 @@ ADCON0 = ((channel <<2));
 ADCON0bits.ADON = 1;
 ADCON0bits.GO = 1;
 while(ADCON0bits.GO_NOT_DONE){_delay((unsigned long)((5)*(32000000/4000.0)));}
+}
+
+void startTMR3(void){
+T3CON = 0b10110000;
+TMR3H = 0b10011001;
+TMR3L = 0b01011011;
+TMR3ON = 1;
+}
+
+void startTMR1(void){
+T1CON = 0b10110000;
+TMR1H = 0b11101001;
+TMR1L = 0b01011011;
+TMR1ON = 1;
 }
 

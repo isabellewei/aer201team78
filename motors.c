@@ -13,7 +13,7 @@ int curr;
 
 void PWM1(int duty){
     // Tosc = 1/32 Mhz = 0.0000003125
-    // PWM Period = 256 x 4 x (1/_XTAL_FREQ) x TMR2PRESCALE 
+    // PWM Period = (PR2+1) x 4 x (1/_XTAL_FREQ) x TMR2PRESCALE 
     // PWM Frequency = 1/PWM Period
     // duty = duty% * (PWM period) / (1/_XTAL_FREQ)/ TMR2PRESCALE
     //       = duty% * (256 x 4 x (1/_XTAL_FREQ) x TMR2PRESCALE ) / (1/_XTAL_FREQ)/ TMR2PRESCALE
@@ -65,36 +65,44 @@ void updateS1(int mode){
         t++;
         if (t>8) {t=1;} 
         __delay_ms(5);
-        if (t == 1 || t==8){S1_1 = 1; printf("1");}
+        if (t == 1 || t==8){S1_1 = 1;}
         else{S1_1 = 0;} 
-        if (t == 2 || t==7){S1_2 = 1; printf("2");}
+        if (t == 2 || t==7){S1_2 = 1;}
         else{S1_2 = 0;}
-        if (t == 3 || t==6){S1_3 = 1; printf("3");}
+        if (t == 3 || t==6){S1_3 = 1;}
         else{S1_3 = 0;}
-        if (t == 4 || t==5){S1_4 = 1; printf("4");}
+        if (t == 4 || t==5){S1_4 = 1;}
         else{S1_4 = 0;}          
     }
     else{
         __delay_ms(10);
         
-        if(mode == 1){
+        if(mode == 1 || mode == 5){
             s1 ++;
             if (s1>4) {s1=1;} 
             
         }
-        else if(mode == 2){
+        else if(mode == 2 || mode==6){
             s1 --;
             if (s1<1) {s1=4;}            
         }
         
-        if (s1 == 1){S1_1 = 1; printf("1");}
-        else{S1_1 = 0;} 
-        if (s1 == 2){S1_2 = 1; printf("2");}
-        else{S1_2 = 0;}
-        if (s1 == 3){S1_3 = 1; printf("3");}
-        else{S1_3 = 0;}
-        if (s1 == 4){S1_4 = 1; printf("4");}
-        else{S1_4 = 0;}        
+        if(mode == 1 || mode ==2){
+            if (s1 == 1){S1_1 = 1;}
+            else{S1_1 = 0;} 
+            if (s1 == 2){S1_2 = 1;}
+            else{S1_2 = 0;}
+            if (s1 == 3){S1_3 = 1;}
+            else{S1_3 = 0;}
+            if (s1 == 4){S1_4 = 1;}
+            else{S1_4 = 0;}   
+        }
+        if(mode == 5 || mode ==6){
+            if (s1 == 1){S1_1 = 1; S1_2 = 1; S1_3 = 0; S1_4 = 0;}
+            if (s1 == 2){S1_1 = 0; S1_2 = 1; S1_3 = 1; S1_4 = 0;}
+            if (s1 == 3){S1_1 = 0; S1_2 = 0; S1_3 = 1; S1_4 = 1;}
+            if (s1 == 4){S1_1 = 1; S1_2 = 0; S1_3 = 0; S1_4 = 1;}
+        }
         
     }
 }
@@ -193,112 +201,3 @@ void updateS3(int mode){
         
     }
 }
-
-
-void S2forward(void){
-    if (s == 1){S2_1 = 1;}
-    else{S2_1 = 0;} 
-    if (s == 2){S2_2 = 1;}
-    else{S2_2 = 0;}
-    if (s == 3){S2_3 = 1;}
-    else{S2_3 = 0;}
-    if (s == 4){S2_4 = 1;}
-    else{S2_4 = 0;}
-}
-
-void S2backward(void){
-    if (s == 4){S2_1 = 1;}
-    else{S2_1 = 0;} 
-    if (s == 3){S2_2 = 1;}
-    else{S2_2 = 0;}
-    if (s == 2){S2_3 = 1;}
-    else{S2_3 = 0;}
-    if (s == 1){S2_4 = 1;}
-    else{S2_4 = 0;}
-}
-void S2off(void){
-    if (s == 4){S2_1 = 1;}
-    else{S2_1 = 0;} 
-    if (s == 2){S2_2 = 1;}
-    else{S2_2 = 0;}
-    if (s == 3){S2_3 = 1;}
-    else{S2_3 = 0;}
-    if (s == 1){S2_4 = 1;}
-    else{S2_4 = 0;}
-}
-
-void S1forward(void){
-    if (s == 1){S1_1 = 1;}
-    else{S1_1 = 0;} 
-    if (s == 2){S1_2 = 1;}
-    else{S1_2 = 0;}
-    if (s == 3){S1_3 = 1;}
-    else{S1_3 = 0;}
-    if (s == 4){S1_4 = 1;}
-    else{S1_4 = 0;}
-}
-
-void S1backward(void){
-    if (s == 4){S1_1 = 1;}
-    else{S1_1 = 0;} 
-    if (s == 3){S1_2 = 1;}
-    else{S1_2 = 0;}
-    if (s == 2){S1_3 = 1;}
-    else{S1_3 = 0;}
-    if (s == 1){S1_4 = 1;}
-    else{S1_4 = 0;}
-}
-void S1off(void){
-    if (s == 4){S1_1 = 1;}
-    else{S1_1 = 0;} 
-    if (s == 2){S1_2 = 1;}
-    else{S1_2 = 0;}
-    if (s == 3){S1_3 = 1;}
-    else{S1_3 = 0;}
-    if (s == 1){S1_4 = 1;}
-    else{S1_4 = 0;}
-}
-
-void S1shake(void){
-    if (t == 1){S1_1 = 1;}
-    else{S1_1 = 0;} 
-    if (t == 2 || t==6){S1_2 = 1;}
-    else{S1_2 = 0;}
-    if (t == 3 || t==5){S1_3 = 1;}
-    else{S1_3 = 0;}
-    if (t == 4){S1_4 = 1;}
-    else{S1_4 = 0;}
-}
-
-void S3forward(void){
-    if (s == 1){S3_1 = 1;}
-    else{S3_1 = 0;} 
-    if (s == 2){S3_2 = 1;}
-    else{S3_2 = 0;}
-    if (s == 3){S3_3 = 1;}
-    else{S3_3 = 0;}
-    if (s == 4){S3_4 = 1;}
-    else{S3_4 = 0;}
-}
-
-void S3backward(void){
-    if (s == 4){S3_1 = 1;}
-    else{S3_1 = 0;} 
-    if (s == 3){S3_2 = 1;}
-    else{S3_2 = 0;}
-    if (s == 2){S3_3 = 1;}
-    else{S3_3 = 0;}
-    if (s == 1){S3_4 = 1;}
-    else{S3_4 = 0;}
-}
-void S3off(void){
-    if (s == 4){S3_1 = 1;}
-    else{S3_1 = 0;} 
-    if (s == 2){S3_2 = 1;}
-    else{S3_2 = 0;}
-    if (s == 3){S3_3 = 1;}
-    else{S3_3 = 0;}
-    if (s == 1){S3_4 = 1;}
-    else{S3_4 = 0;}
-}
-

@@ -15,7 +15,7 @@
 #include "functions.h"
 
 #define _XTAL_FREQ 32000000      // Define osc freq for use in delay macros
-#define TMR2PRESCALE 4
+#define TMR2PRESCALE 32
 
 extern unsigned char time[7]; 
 extern volatile unsigned char keypress;
@@ -42,23 +42,26 @@ extern int t3;
 #define S1_3        LATBbits.LATB2  
 #define S1_4        LATBbits.LATB0  
 
-#define S3_1        LATCbits.LATC7
-#define S3_2        LATCbits.LATC6
-#define S3_3        LATCbits.LATC0
-#define S3_4        LATCbits.LATC5
+#define S2_1        LATCbits.LATC7
+#define S2_2        LATCbits.LATC6
+#define S2_3        LATCbits.LATC0
+#define S2_4        LATCbits.LATC5
 
-#define S2_1        LATEbits.LATE2
-#define S2_2        LATEbits.LATE1
-#define S2_3        LATAbits.LATA4
-#define S2_4        LATDbits.LATD0
+#define S3_1        LATEbits.LATE2
+#define S3_2        LATEbits.LATE1
+#define S3_3        LATAbits.LATA4
+#define S3_4        LATDbits.LATD0
 
 //analog input channels
 #define tab         3
 #define label       4   //cond1
-#define IR1         1
-#define IR2         0
+#define IR1         1   //soupWheel
+#define IR2         0   //sodaLoad
 #define IR3         2   //soupLoad
-#define IR4         5
+#define IR4         5   //sodaWheel
+
+#define wheelThresh     0x3aa
+#define canThresh       0x250
 
 //logic
 #define currMom()  (bcd_to_num(time[0]) + 60*bcd_to_num(time[1]) + 3600*bcd_to_num(time[2]))

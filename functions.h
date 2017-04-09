@@ -33,30 +33,23 @@ void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);
 void updateS3(int mode);
-void S1forward(void);
-void S1backward(void);
-void S1off(void);
-void S2forward(void);
-void S2backward(void);
-void S2off(void);
-void S1shake(void);
-void S3forward(void);
-void S3backward(void);
-void S3off(void);
+
 
 //interface
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
-void displayLogs(void);
+void displayLog(int run);
 void homescreen(void);
-void updateEEPROM(int time);
+//void updateEEPROM(int year, int month, int date, int time, int sodaT, int sodaNT, int soupL, int soupNL);
+void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
 void keycheck(void);
 void keyinterrupt(void);
 
 //logic
-int backlogTest(int blockedTime, int motorStatus);
+void interrupt handler(void);
 int timePassed(int start);
 void readADC(char channel);
+void startTMR3(void);
 
 #endif	/* FUNCTIONS_H */
 

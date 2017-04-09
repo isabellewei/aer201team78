@@ -1,20 +1,5 @@
 #include "declarations.h"
 
-int backlogTest(int blockedStart, int motorStatus){
-    if (ADRESH == 0){  //unblocked
-        return 1; //motor ON
-    }   
-    else{
-        if (currMom() - blockedStart > 3){
-            
-            return 1; //motor ON
-        }
-        else{
-            
-            return 0;
-        }
-    }            
-}
 
 int timePassed(int start){
     if(currMom() >= 86400){return currMom() + 86400 - start;}
@@ -29,6 +14,18 @@ void readADC(char channel){
     while(ADCON0bits.GO_NOT_DONE){__delay_ms(5);} 
 }
 
+void startTMR3(void){
+    T3CON = 0b10110000;
+     TMR3H = 0b10011001;
+    TMR3L = 0b01011011;
+    TMR3ON = 1; 
+}
 
+void startTMR1(void){
+    T1CON = 0b10110000;
+    TMR1H = 0b11101001;
+    TMR1L = 0b01011011;
+    TMR1ON = 1; 
+}
 
     

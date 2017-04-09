@@ -31,8 +31,8 @@ void I2C_Master_Init(const unsigned long c)
 void I2C_Master_Wait()
 {
   while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-}
-
+      }
+      
 void I2C_Master_Start()
 {
   I2C_Master_Wait();
@@ -92,7 +92,7 @@ void updateTime(void){
         I2C_Master_Write(0b11010000); //7 bit RTC address + Write
         I2C_Master_Write(0x00); //Set memory pointer to seconds
         I2C_Master_Stop(); //Stop condition
-
+          
         //Read Current Time
         I2C_Master_Start();
         I2C_Master_Write(0b11010001); //7 bit RTC address + Read
