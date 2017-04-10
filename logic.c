@@ -28,4 +28,35 @@ void startTMR1(void){
     TMR1ON = 1; 
 }
 
+void calibrateWheels(void){
+    TMR1ON = 0;
+    int i = 1;
+    int prev;
+    do{
+        if (i < 20){updateS1(1);}
+        else if(i<(20+40)){updateS1(2);}
+        else if(i<(20+40+80)){updateS1(1);}
+        else if(i<(20+40+80+100)){updateS1(2);}
+        else{i=1;}
+        
+        i++;
+        if (i==1){prev = 0;}
+        else{prev = ADRES;}
+        readADC(IR1);
+    }while(ADRES>prev || ADRES<wheelThresh);
+    
+    do{
+        if (i < 20){updateS3(1);}
+        else if(i<(20+40)){updateS3(2);}
+        else if(i<(20+40+80)){updateS3(1);}
+        else if(i<(20+40+80+100)){updateS3(2);}
+        else{i=1;}
+        
+        i++;
+        if (i==1){prev = 0;}
+        else{prev = ADRES;}
+        readADC(IR4);
+    }while(ADRES>prev || ADRES<wheelThresh);       
+    startTMR1();     
+}
     

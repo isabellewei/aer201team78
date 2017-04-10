@@ -52,6 +52,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR1L `Vuc ~T0 @X0 0 e@4046 ]
 "7578
 [v _TMR1ON `Vb ~T0 @X0 0 e@32360 ]
+"33 functions.h
+[v _updateS1 `(v ~T0 @X0 0 ef1`i ]
+"4592 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
+[v _ADRES `Vus ~T0 @X0 0 e@4035 ]
+"35 functions.h
+[v _updateS3 `(v ~T0 @X0 0 ef1`i ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2866,10 +2872,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 44: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
 [; ;functions.h: 45: void keycheck(void);
 [; ;functions.h: 46: void keyinterrupt(void);
-[; ;functions.h: 49: void interrupt handler(void);
-[; ;functions.h: 50: int timePassed(int start);
-[; ;functions.h: 51: void readADC(char channel);
-[; ;functions.h: 52: void startTMR3(void);
+[; ;functions.h: 49: int timePassed(int start);
+[; ;functions.h: 50: void readADC(char channel);
+[; ;functions.h: 51: void startTMR3(void);
+[; ;functions.h: 52: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
 [; ;declarations.h: 22: extern int t;
@@ -2975,4 +2981,167 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;logic.c: 29: }
 "29
 [e :UE 278 ]
+}
+"31
+[v _calibrateWheels `(v ~T0 @X0 1 ef ]
+{
+[; ;logic.c: 31: void calibrateWheels(void){
+[e :U _calibrateWheels ]
+[f ]
+[; ;logic.c: 32: TMR1ON = 0;
+"32
+[e = _TMR1ON -> -> 0 `i `b ]
+"33
+[v _i `i ~T0 @X0 1 a ]
+[; ;logic.c: 33: int i = 1;
+[e = _i -> 1 `i ]
+"34
+[v _prev `i ~T0 @X0 1 a ]
+[; ;logic.c: 34: int prev;
+[; ;logic.c: 35: do{
+"35
+[e :U 282 ]
+{
+[; ;logic.c: 36: if (i < 20){updateS1(1);}
+"36
+[e $ ! < _i -> 20 `i 283  ]
+{
+[e ( _updateS1 (1 -> 1 `i ]
+}
+[e $U 284  ]
+"37
+[e :U 283 ]
+[; ;logic.c: 37: else if(i<(20+40)){updateS1(2);}
+[e $ ! < _i + -> 20 `i -> 40 `i 285  ]
+{
+[e ( _updateS1 (1 -> 2 `i ]
+}
+[e $U 286  ]
+"38
+[e :U 285 ]
+[; ;logic.c: 38: else if(i<(20+40+80)){updateS1(1);}
+[e $ ! < _i + + -> 20 `i -> 40 `i -> 80 `i 287  ]
+{
+[e ( _updateS1 (1 -> 1 `i ]
+}
+[e $U 288  ]
+"39
+[e :U 287 ]
+[; ;logic.c: 39: else if(i<(20+40+80+100)){updateS1(2);}
+[e $ ! < _i + + + -> 20 `i -> 40 `i -> 80 `i -> 100 `i 289  ]
+{
+[e ( _updateS1 (1 -> 2 `i ]
+}
+[e $U 290  ]
+"40
+[e :U 289 ]
+[; ;logic.c: 40: else{i=1;}
+{
+[e = _i -> 1 `i ]
+}
+[e :U 290 ]
+[e :U 288 ]
+[e :U 286 ]
+[e :U 284 ]
+[; ;logic.c: 42: i++;
+"42
+[e ++ _i -> 1 `i ]
+[; ;logic.c: 43: if (i==1){prev = 0;}
+"43
+[e $ ! == _i -> 1 `i 291  ]
+{
+[e = _prev -> 0 `i ]
+}
+[e $U 292  ]
+"44
+[e :U 291 ]
+[; ;logic.c: 44: else{prev = ADRES;}
+{
+[e = _prev -> _ADRES `i ]
+}
+[e :U 292 ]
+[; ;logic.c: 45: readADC(1);
+"45
+[e ( _readADC (1 -> -> 1 `i `uc ]
+"46
+}
+[; ;logic.c: 46: }while(ADRES>prev || ADRES<0x3aa);
+[e $ || > -> _ADRES `ui -> _prev `ui < -> _ADRES `ui -> -> 938 `i `ui 282  ]
+[e :U 281 ]
+[; ;logic.c: 48: do{
+"48
+[e :U 295 ]
+{
+[; ;logic.c: 49: if (i < 20){updateS3(1);}
+"49
+[e $ ! < _i -> 20 `i 296  ]
+{
+[e ( _updateS3 (1 -> 1 `i ]
+}
+[e $U 297  ]
+"50
+[e :U 296 ]
+[; ;logic.c: 50: else if(i<(20+40)){updateS3(2);}
+[e $ ! < _i + -> 20 `i -> 40 `i 298  ]
+{
+[e ( _updateS3 (1 -> 2 `i ]
+}
+[e $U 299  ]
+"51
+[e :U 298 ]
+[; ;logic.c: 51: else if(i<(20+40+80)){updateS3(1);}
+[e $ ! < _i + + -> 20 `i -> 40 `i -> 80 `i 300  ]
+{
+[e ( _updateS3 (1 -> 1 `i ]
+}
+[e $U 301  ]
+"52
+[e :U 300 ]
+[; ;logic.c: 52: else if(i<(20+40+80+100)){updateS3(2);}
+[e $ ! < _i + + + -> 20 `i -> 40 `i -> 80 `i -> 100 `i 302  ]
+{
+[e ( _updateS3 (1 -> 2 `i ]
+}
+[e $U 303  ]
+"53
+[e :U 302 ]
+[; ;logic.c: 53: else{i=1;}
+{
+[e = _i -> 1 `i ]
+}
+[e :U 303 ]
+[e :U 301 ]
+[e :U 299 ]
+[e :U 297 ]
+[; ;logic.c: 55: i++;
+"55
+[e ++ _i -> 1 `i ]
+[; ;logic.c: 56: if (i==1){prev = 0;}
+"56
+[e $ ! == _i -> 1 `i 304  ]
+{
+[e = _prev -> 0 `i ]
+}
+[e $U 305  ]
+"57
+[e :U 304 ]
+[; ;logic.c: 57: else{prev = ADRES;}
+{
+[e = _prev -> _ADRES `i ]
+}
+[e :U 305 ]
+[; ;logic.c: 58: readADC(5);
+"58
+[e ( _readADC (1 -> -> 5 `i `uc ]
+"59
+}
+[; ;logic.c: 59: }while(ADRES>prev || ADRES<0x3aa);
+[e $ || > -> _ADRES `ui -> _prev `ui < -> _ADRES `ui -> -> 938 `i `ui 295  ]
+[e :U 294 ]
+[; ;logic.c: 60: startTMR1();
+"60
+[e ( _startTMR1 ..  ]
+[; ;logic.c: 61: }
+"61
+[e :UE 279 ]
 }

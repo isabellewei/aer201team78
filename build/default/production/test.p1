@@ -2879,10 +2879,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 44: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
 [; ;functions.h: 45: void keycheck(void);
 [; ;functions.h: 46: void keyinterrupt(void);
-[; ;functions.h: 49: void interrupt handler(void);
-[; ;functions.h: 50: int timePassed(int start);
-[; ;functions.h: 51: void readADC(char channel);
-[; ;functions.h: 52: void startTMR3(void);
+[; ;functions.h: 49: int timePassed(int start);
+[; ;functions.h: 50: void readADC(char channel);
+[; ;functions.h: 51: void startTMR3(void);
+[; ;functions.h: 52: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
 [; ;declarations.h: 22: extern int t;

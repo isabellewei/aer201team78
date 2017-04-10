@@ -3895,10 +3895,10 @@ void keycheck(void);
 void keyinterrupt(void);
 
 
-void interrupt handler(void);
 int timePassed(int start);
 void readADC(char channel);
 void startTMR3(void);
+void calibrateWheels(void);
 
 # 20 "declarations.h"
 extern unsigned char time[7];

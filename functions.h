@@ -46,10 +46,10 @@ void keycheck(void);
 void keyinterrupt(void);
 
 //logic
-void interrupt handler(void);
 int timePassed(int start);
 void readADC(char channel);
 void startTMR3(void);
+void calibrateWheels(void);
 
 #endif	/* FUNCTIONS_H */
 
