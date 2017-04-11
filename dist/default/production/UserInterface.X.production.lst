@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.41 build -162212810 
-                                                                                               Mon Apr 10 02:20:03 2017
+                                                                                               Mon Apr 10 04:31:12 2017
 
 Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250102
      1                           	processor	18F4620
@@ -1606,10 +1606,10 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   1587                           ;main.c: 202: calibrateWheels();
   1588  000174  EC95  F00C         	call	_calibrateWheels	;wreg free
   1589                           
-  1590                           ;main.c: 203: PWM2(400);
-  1591  000178  0E01               	movlw	1
+  1590                           ;main.c: 203: PWM2(600);
+  1591  000178  0E02               	movlw	2
   1592  00017A  6E16               	movwf	PWM2@duty+1,c
-  1593  00017C  0E90               	movlw	144
+  1593  00017C  0E58               	movlw	88
   1594  00017E  6E15               	movwf	PWM2@duty,c
   1595  000180  EC7F  F011         	call	_PWM2	;wreg free
   1596                           
@@ -3137,12 +3137,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3118  000A0A                     l6080:
   3119                           
   3120                           ; BSR set to: 0
-  3121                           ;main.c: 486: else if (sodaSteps < (48+44)){
+  3121                           ;main.c: 486: else if (sodaSteps < (48+43)){
   3122  000A0A  BE57               	btfsc	_sodaSteps+1,7,c
   3123  000A0C  D006               	goto	l6082
   3124  000A0E  5057               	movf	_sodaSteps+1,w,c
   3125  000A10  E108               	bnz	l6084
-  3126  000A12  0E5C               	movlw	92
+  3126  000A12  0E5B               	movlw	91
   3127  000A14  5C56               	subwf	_sodaSteps,w,c
   3128  000A16  B0D8               	btfsc	status,0,c
   3129  000A18  D004               	goto	l6084
@@ -3157,12 +3157,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3138  000A22                     l6084:
   3139                           
   3140                           ; BSR set to: 0
-  3141                           ;main.c: 490: else if (sodaSteps < (48+44+10)){
+  3141                           ;main.c: 490: else if (sodaSteps < (48+43+10)){
   3142  000A22  BE57               	btfsc	_sodaSteps+1,7,c
   3143  000A24  D006               	goto	l6086
   3144  000A26  5057               	movf	_sodaSteps+1,w,c
   3145  000A28  E10D               	bnz	l6088
-  3146  000A2A  0E66               	movlw	102
+  3146  000A2A  0E65               	movlw	101
   3147  000A2C  5C56               	subwf	_sodaSteps,w,c
   3148  000A2E  B0D8               	btfsc	status,0,c
   3149  000A30  D009               	goto	l6088
@@ -3184,12 +3184,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3165  000A44                     l6088:
   3166                           
   3167                           ; BSR set to: 0
-  3168                           ;main.c: 494: else if (sodaSteps < (48+44+10+12)){
+  3168                           ;main.c: 494: else if (sodaSteps < (48+43+10+12)){
   3169  000A44  BE57               	btfsc	_sodaSteps+1,7,c
   3170  000A46  D006               	goto	l6090
   3171  000A48  5057               	movf	_sodaSteps+1,w,c
   3172  000A4A  E121               	bnz	l6100
-  3173  000A4C  0E72               	movlw	114
+  3173  000A4C  0E71               	movlw	113
   3174  000A4E  5C56               	subwf	_sodaSteps,w,c
   3175  000A50  B0D8               	btfsc	status,0,c
   3176  000A52  D01D               	goto	l6100
@@ -3237,12 +3237,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3218  000A8C  D101               	goto	l6176
   3219  000A8E                     l6100:
   3220                           
-  3221                           ;main.c: 501: else if (sodaSteps < (48+44+10+12+10)){
+  3221                           ;main.c: 501: else if (sodaSteps < (48+43+10+12+10)){
   3222  000A8E  BE57               	btfsc	_sodaSteps+1,7,c
   3223  000A90  D006               	goto	l6102
   3224  000A92  5057               	movf	_sodaSteps+1,w,c
   3225  000A94  E10E               	bnz	l6104
-  3226  000A96  0E7C               	movlw	124
+  3226  000A96  0E7B               	movlw	123
   3227  000A98  5C56               	subwf	_sodaSteps,w,c
   3228  000A9A  B0D8               	btfsc	status,0,c
   3229  000A9C  D00A               	goto	l6104
@@ -3271,12 +3271,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3252  000AB6  A4D8               	btfss	status,2,c
   3253  000AB8  D054               	goto	l6130
   3254                           
-  3255                           ;main.c: 506: if(sodaSteps < (48+44+10+12+10+30)){
+  3255                           ;main.c: 506: if(sodaSteps < (48+43+10+12+10+30)){
   3256  000ABA  BE57               	btfsc	_sodaSteps+1,7,c
   3257  000ABC  D006               	goto	l6108
   3258  000ABE  5057               	movf	_sodaSteps+1,w,c
   3259  000AC0  E108               	bnz	l6110
-  3260  000AC2  0E9A               	movlw	154
+  3260  000AC2  0E99               	movlw	153
   3261  000AC4  5C56               	subwf	_sodaSteps,w,c
   3262  000AC6  B0D8               	btfsc	status,0,c
   3263  000AC8  D004               	goto	l6110
@@ -3289,12 +3289,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3270  000AD0  D057               	goto	L6
   3271  000AD2                     l6110:
   3272                           
-  3273                           ;main.c: 511: else if(sodaSteps < (48+44+10+12+10+30+57)){
+  3273                           ;main.c: 511: else if(sodaSteps < (48+43+10+12+10+30+57)){
   3274  000AD2  BE57               	btfsc	_sodaSteps+1,7,c
   3275  000AD4  D006               	goto	l6112
   3276  000AD6  5057               	movf	_sodaSteps+1,w,c
   3277  000AD8  E111               	bnz	l6114
-  3278  000ADA  0ED3               	movlw	211
+  3278  000ADA  0ED2               	movlw	210
   3279  000ADC  5C56               	subwf	_sodaSteps,w,c
   3280  000ADE  B0D8               	btfsc	status,0,c
   3281  000AE0  D00D               	goto	l6114
@@ -3395,12 +3395,12 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3376  000B66  A4D8               	btfss	status,2,c
   3377  000B68  D060               	goto	l6156
   3378                           
-  3379                           ;main.c: 527: if(sodaSteps < (48+44+10+12+10+(44+75))){
+  3379                           ;main.c: 527: if(sodaSteps < (48+43+10+12+10+(44+75))){
   3380  000B6A  BE57               	btfsc	_sodaSteps+1,7,c
   3381  000B6C  D006               	goto	l6134
   3382  000B6E  5057               	movf	_sodaSteps+1,w,c
   3383  000B70  E113               	bnz	l6136
-  3384  000B72  0EF3               	movlw	243
+  3384  000B72  0EF2               	movlw	242
   3385  000B74  5C56               	subwf	_sodaSteps,w,c
   3386  000B76  B0D8               	btfsc	status,0,c
   3387  000B78  D00F               	goto	l6136
@@ -3431,10 +3431,10 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
   3412  000B96  D07C               	goto	l6176
   3413  000B98                     l6136:
   3414                           
-  3415                           ;main.c: 532: else if(sodaSteps < (48+44+10+12+10+(44+75)+62)){
+  3415                           ;main.c: 532: else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){
   3416  000B98  BE57               	btfsc	_sodaSteps+1,7,c
   3417  000B9A  D006               	goto	l6138
-  3418  000B9C  0E31               	movlw	49
+  3418  000B9C  0E30               	movlw	48
   3419  000B9E  5C56               	subwf	_sodaSteps,w,c
   3420  000BA0  0E01               	movlw	1
   3421  000BA2  5857               	subwfb	_sodaSteps+1,w,c
@@ -11079,7 +11079,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.41 build -162212810 
-Symbol Table                                                                                   Mon Apr 10 02:20:03 2017
+Symbol Table                                                                                   Mon Apr 10 04:31:12 2017
 
                         _s 00A9                          _t 0046                         _s1 004C  
                        _s2 004A                         _s3 0048                         _t2 0044  

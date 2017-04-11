@@ -200,7 +200,7 @@ int main(void) {
                 }                
                 S2mode = 4;
                 calibrateWheels();                
-                PWM2(400);
+                PWM2(600);
                 PWM1(400);
                 
                 keypress = NULL;  
@@ -483,32 +483,32 @@ int main(void) {
                         S3mode = 3; //motor shake
                         S2mode = 4; //arm steady
                     }
-                    else if (sodaSteps < (48+44)){      //go to sorting position
+                    else if (sodaSteps < (48+43)){      //go to sorting position
                         S3mode = 1; //motor outwards
                         S2mode = 4; //arm steady
                     }
-                    else if (sodaSteps < (48+44+10)){ //bring arm in
+                    else if (sodaSteps < (48+43+10)){ //bring arm in
                         S3mode = 4; //motor steady  
                         S2mode = 1; //arm in
                     }
-                    else if (sodaSteps < (48+44+10+12)){ //test
+                    else if (sodaSteps < (48+43+10+12)){ //test
                         S2mode = 4;
                         S3mode = 4;
                         readADC(tab);                
                         if(ADRESH<=1){tabState = 1;} //tab
                         printf(" %x",ADRESH);
                     }
-                    else if (sodaSteps < (48+44+10+12+10)){ //bring arm out
+                    else if (sodaSteps < (48+43+10+12+10)){ //bring arm out
                         S2mode = 2; //arm out
                         S3mode = 4; //motor steady
                     }
                     else if (tabState == 1){ //tab
-                        if(sodaSteps < (48+44+10+12+10+30)){ //sort                        
+                        if(sodaSteps < (48+43+10+12+10+30)){ //sort                        
                             S3mode = 1;  //motor outwards
                             S2mode = 4;  //arm steady
                             prevSodaLoad = 0;                        
                         }
-                        else if(sodaSteps < (48+44+10+12+10+30+57)){ //return                    
+                        else if(sodaSteps < (48+43+10+12+10+30+57)){ //return                    
                             S3mode = 2;  //motor inwards
                             S2mode = 4;  //arm steady
                             sodaAlign = 2;
@@ -524,12 +524,12 @@ int main(void) {
                         }
                     }
                     else if(tabState == 0){ //no tab
-                        if(sodaSteps < (48+44+10+12+10+(44+75))){ //sort                        
+                        if(sodaSteps < (48+43+10+12+10+(44+75))){ //sort                        
                             S3mode = 2;  //motor inwards
                             S2mode = 4;  //arm steady
                             prevSodaLoad = 0;
                         }
-                        else if(sodaSteps < (48+44+10+12+10+(44+75)+62)){ //return                        
+                        else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){ //return                        
                             S3mode = 1;  //motor outwards
                             S2mode = 4;  //arm steady
                             sodaAlign = 1;

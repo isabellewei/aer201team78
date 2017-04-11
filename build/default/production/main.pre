@@ -4095,7 +4095,7 @@ S2mode = 2;
 }
 S2mode = 4;
 calibrateWheels();
-PWM2(400);
+PWM2(600);
 PWM1(400);
 
 keypress = (0);
@@ -4375,32 +4375,32 @@ if(sodaSteps < 48){
 S3mode = 3;
 S2mode = 4;
 }
-else if (sodaSteps < (48+44)){
+else if (sodaSteps < (48+43)){
 S3mode = 1;
 S2mode = 4;
 }
-else if (sodaSteps < (48+44+10)){
+else if (sodaSteps < (48+43+10)){
 S3mode = 4;
 S2mode = 1;
 }
-else if (sodaSteps < (48+44+10+12)){
+else if (sodaSteps < (48+43+10+12)){
 S2mode = 4;
 S3mode = 4;
 readADC(3);
 if(ADRESH<=1){tabState = 1;}
 printf(" %x",ADRESH);
 }
-else if (sodaSteps < (48+44+10+12+10)){
+else if (sodaSteps < (48+43+10+12+10)){
 S2mode = 2;
 S3mode = 4;
 }
 else if (tabState == 1){
-if(sodaSteps < (48+44+10+12+10+30)){
+if(sodaSteps < (48+43+10+12+10+30)){
 S3mode = 1;
 S2mode = 4;
 prevSodaLoad = 0;
 }
-else if(sodaSteps < (48+44+10+12+10+30+57)){
+else if(sodaSteps < (48+43+10+12+10+30+57)){
 S3mode = 2;
 S2mode = 4;
 sodaAlign = 2;
@@ -4416,12 +4416,12 @@ printf(" %x", ADRES);
 }
 }
 else if(tabState == 0){
-if(sodaSteps < (48+44+10+12+10+(44+75))){
+if(sodaSteps < (48+43+10+12+10+(44+75))){
 S3mode = 2;
 S2mode = 4;
 prevSodaLoad = 0;
 }
-else if(sodaSteps < (48+44+10+12+10+(44+75)+62)){
+else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){
 S3mode = 1;
 S2mode = 4;
 sodaAlign = 1;

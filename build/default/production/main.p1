@@ -3660,9 +3660,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 202: calibrateWheels();
 "202
 [e ( _calibrateWheels ..  ]
-[; ;main.c: 203: PWM2(400);
+[; ;main.c: 203: PWM2(600);
 "203
-[e ( _PWM2 (1 -> 400 `i ]
+[e ( _PWM2 (1 -> 600 `i ]
 [; ;main.c: 204: PWM1(400);
 "204
 [e ( _PWM1 (1 -> 400 `i ]
@@ -4624,8 +4624,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 386  ]
 "486
 [e :U 385 ]
-[; ;main.c: 486: else if (sodaSteps < (48+44)){
-[e $ ! < _sodaSteps + -> 48 `i -> 44 `i 387  ]
+[; ;main.c: 486: else if (sodaSteps < (48+43)){
+[e $ ! < _sodaSteps + -> 48 `i -> 43 `i 387  ]
 {
 [; ;main.c: 487: S3mode = 1;
 "487
@@ -4639,8 +4639,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 388  ]
 "490
 [e :U 387 ]
-[; ;main.c: 490: else if (sodaSteps < (48+44+10)){
-[e $ ! < _sodaSteps + + -> 48 `i -> 44 `i -> 10 `i 389  ]
+[; ;main.c: 490: else if (sodaSteps < (48+43+10)){
+[e $ ! < _sodaSteps + + -> 48 `i -> 43 `i -> 10 `i 389  ]
 {
 [; ;main.c: 491: S3mode = 4;
 "491
@@ -4654,8 +4654,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 390  ]
 "494
 [e :U 389 ]
-[; ;main.c: 494: else if (sodaSteps < (48+44+10+12)){
-[e $ ! < _sodaSteps + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i 391  ]
+[; ;main.c: 494: else if (sodaSteps < (48+43+10+12)){
+[e $ ! < _sodaSteps + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i 391  ]
 {
 [; ;main.c: 495: S2mode = 4;
 "495
@@ -4682,8 +4682,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 393  ]
 "501
 [e :U 391 ]
-[; ;main.c: 501: else if (sodaSteps < (48+44+10+12+10)){
-[e $ ! < _sodaSteps + + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i -> 10 `i 394  ]
+[; ;main.c: 501: else if (sodaSteps < (48+43+10+12+10)){
+[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i 394  ]
 {
 [; ;main.c: 502: S2mode = 2;
 "502
@@ -4700,9 +4700,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 505: else if (tabState == 1){
 [e $ ! == _tabState -> 1 `i 396  ]
 {
-[; ;main.c: 506: if(sodaSteps < (48+44+10+12+10+30)){
+[; ;main.c: 506: if(sodaSteps < (48+43+10+12+10+30)){
 "506
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i 397  ]
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i 397  ]
 {
 [; ;main.c: 507: S3mode = 1;
 "507
@@ -4719,8 +4719,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 398  ]
 "511
 [e :U 397 ]
-[; ;main.c: 511: else if(sodaSteps < (48+44+10+12+10+30+57)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i -> 57 `i 399  ]
+[; ;main.c: 511: else if(sodaSteps < (48+43+10+12+10+30+57)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i -> 57 `i 399  ]
 {
 [; ;main.c: 512: S3mode = 2;
 "512
@@ -4778,9 +4778,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 526: else if(tabState == 0){
 [e $ ! == _tabState -> 0 `i 403  ]
 {
-[; ;main.c: 527: if(sodaSteps < (48+44+10+12+10+(44+75))){
+[; ;main.c: 527: if(sodaSteps < (48+43+10+12+10+(44+75))){
 "527
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i 404  ]
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i 404  ]
 {
 [; ;main.c: 528: S3mode = 2;
 "528
@@ -4797,8 +4797,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 405  ]
 "532
 [e :U 404 ]
-[; ;main.c: 532: else if(sodaSteps < (48+44+10+12+10+(44+75)+62)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 44 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i -> 62 `i 406  ]
+[; ;main.c: 532: else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i -> 62 `i 406  ]
 {
 [; ;main.c: 533: S3mode = 1;
 "533
