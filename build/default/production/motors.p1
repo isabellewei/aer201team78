@@ -31,6 +31,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CCP2CONbits `VS158 ~T0 @X0 0 e@4026 ]
 "4194
 [v _CCPR2L `Vuc ~T0 @X0 0 e@4027 ]
+"878
+[s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S38 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"888
+[s S39 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S39 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"877
+[u S37 `S38 1 `S39 1 ]
+[n S37 . . . ]
+"899
+[v _LATAbits `VS37 ~T0 @X0 0 e@3977 ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
 "161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
@@ -79,17 +90,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S49 . . . ]
 "1333
 [v _LATEbits `VS49 ~T0 @X0 0 e@3981 ]
-"878
-[s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S38 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"888
-[s S39 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S39 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"877
-[u S37 `S38 1 `S39 1 ]
-[n S37 . . . ]
-"899
-[v _LATAbits `VS37 ~T0 @X0 0 e@3977 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2892,22 +2892,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 26: void updateTime(void);
 [; ;functions.h: 29: void PWM1(int duty);
 [; ;functions.h: 30: void PWM1off();
-[; ;functions.h: 31: void PWM2(int duty);
+[; ;functions.h: 31: void PWM2(int duty, int dir);
 [; ;functions.h: 32: void PWM2off();
 [; ;functions.h: 33: void updateS1(int mode);
 [; ;functions.h: 34: void updateS2(int mode);
 [; ;functions.h: 35: void updateS3(int mode);
-[; ;functions.h: 39: signed char eepromRead(signed char address);
-[; ;functions.h: 40: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 41: void displayLog(int run);
-[; ;functions.h: 42: void homescreen(void);
-[; ;functions.h: 44: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
-[; ;functions.h: 45: void keycheck(void);
-[; ;functions.h: 46: void keyinterrupt(void);
-[; ;functions.h: 49: int timePassed(int start);
-[; ;functions.h: 50: void readADC(char channel);
-[; ;functions.h: 51: void startTMR3(void);
-[; ;functions.h: 52: void calibrateWheels(void);
+[; ;functions.h: 41: signed char eepromRead(signed char address);
+[; ;functions.h: 42: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 43: void displayLog(int run);
+[; ;functions.h: 44: void homescreen(void);
+[; ;functions.h: 46: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
+[; ;functions.h: 47: void keycheck(void);
+[; ;functions.h: 48: void keyinterrupt(void);
+[; ;functions.h: 51: int timePassed(int start);
+[; ;functions.h: 52: void readADC(char channel);
+[; ;functions.h: 53: void startTMR3(void);
+[; ;functions.h: 54: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
 [; ;declarations.h: 22: extern int t;
@@ -3032,11 +3032,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 271 ]
 }
 "34
-[v _PWM2 `(v ~T0 @X0 1 ef1`i ]
+[v _PWM2 `(v ~T0 @X0 1 ef2`i`i ]
 {
-[; ;motors.c: 34: void PWM2(int duty){
+[; ;motors.c: 34: void PWM2(int duty, int dir){
 [e :U _PWM2 ]
 [v _duty `i ~T0 @X0 1 r1 ]
+[v _dir `i ~T0 @X0 1 r2 ]
 [f ]
 [; ;motors.c: 42: CCP2CONbits.DC2B0 = duty & 1;
 "42
@@ -3047,768 +3048,805 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;motors.c: 44: CCPR2L = (duty >> 2);
 "44
 [e = _CCPR2L -> >> _duty -> 2 `i `uc ]
-[; ;motors.c: 46: }
+[; ;motors.c: 46: LATAbits.LATA6 = 0;
 "46
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+[; ;motors.c: 47: LATAbits.LATA7 = 0;
+"47
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+[; ;motors.c: 48: _delay((unsigned long)((50)*(32000000/4000.0)));
+"48
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;motors.c: 49: if(dir==1){
+"49
+[e $ ! == _dir -> 1 `i 273  ]
+{
+[; ;motors.c: 50: LATAbits.LATA6 = 1;
+"50
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
+[; ;motors.c: 51: LATAbits.LATA7 = 0;
+"51
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+"52
+}
+[; ;motors.c: 52: }
+[e $U 274  ]
+"53
+[e :U 273 ]
+[; ;motors.c: 53: else{
+{
+[; ;motors.c: 54: LATAbits.LATA6 = 0;
+"54
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+[; ;motors.c: 55: LATAbits.LATA7 = 1;
+"55
+[e = . . _LATAbits 0 7 -> -> 1 `i `uc ]
+"56
+}
+[e :U 274 ]
+[; ;motors.c: 56: }
+[; ;motors.c: 58: }
+"58
 [e :UE 272 ]
 }
-"48
+"60
 [v _PWM2off `(v ~T0 @X0 1 ef ]
 {
-[; ;motors.c: 48: void PWM2off(){
+[; ;motors.c: 60: void PWM2off(){
 [e :U _PWM2off ]
 [f ]
-[; ;motors.c: 49: CCP2CONbits.DC2B0 = 0;
-"49
+[; ;motors.c: 61: CCP2CONbits.DC2B0 = 0;
+"61
 [e = . . _CCP2CONbits 2 1 -> -> 0 `i `uc ]
-[; ;motors.c: 50: CCP2CONbits.DC2B1 = 0;
-"50
+[; ;motors.c: 62: CCP2CONbits.DC2B1 = 0;
+"62
 [e = . . _CCP2CONbits 2 2 -> -> 0 `i `uc ]
-[; ;motors.c: 52: CCPR2L = 0;
-"52
+[; ;motors.c: 63: CCPR2L = 0;
+"63
 [e = _CCPR2L -> -> 0 `i `uc ]
-[; ;motors.c: 53: }
-"53
-[e :UE 273 ]
+[; ;motors.c: 64: }
+"64
+[e :UE 275 ]
 }
-"55
+"66
 [v _updateS1 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;motors.c: 55: void updateS1(int mode){
+[; ;motors.c: 66: void updateS1(int mode){
 [e :U _updateS1 ]
 [v _mode `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;motors.c: 56: _delay((unsigned long)((5)*(32000000/4000.0)));
-"56
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;motors.c: 58: if(mode == 0){
-"58
-[e $ ! == _mode -> 0 `i 275  ]
-{
-[; ;motors.c: 59: LATDbits.LATD1 = 0;
-"59
-[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-[; ;motors.c: 60: LATBbits.LATB3 = 0;
-"60
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-[; ;motors.c: 61: LATBbits.LATB2 = 0;
-"61
-[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
-[; ;motors.c: 62: LATBbits.LATB0 = 0;
-"62
-[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
-"63
-}
-[; ;motors.c: 63: }
-[e $U 276  ]
-"64
-[e :U 275 ]
-[; ;motors.c: 64: else if(mode == 3){
-[e $ ! == _mode -> 3 `i 277  ]
-{
-[; ;motors.c: 65: t++;
-"65
-[e ++ _t -> 1 `i ]
-[; ;motors.c: 66: if (t>8) {t=1;}
-"66
-[e $ ! > _t -> 8 `i 278  ]
-{
-[e = _t -> 1 `i ]
-}
-[e :U 278 ]
 [; ;motors.c: 67: _delay((unsigned long)((5)*(32000000/4000.0)));
 "67
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;motors.c: 68: if (t == 1 || t==8){LATDbits.LATD1 = 1;}
-"68
-[e $ ! || == _t -> 1 `i == _t -> 8 `i 279  ]
+[; ;motors.c: 69: if(mode == 0){
+"69
+[e $ ! == _mode -> 0 `i 277  ]
+{
+[; ;motors.c: 70: LATDbits.LATD1 = 0;
+"70
+[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
+[; ;motors.c: 71: LATBbits.LATB3 = 0;
+"71
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;motors.c: 72: LATBbits.LATB2 = 0;
+"72
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+[; ;motors.c: 73: LATBbits.LATB0 = 0;
+"73
+[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
+"74
+}
+[; ;motors.c: 74: }
+[e $U 278  ]
+"75
+[e :U 277 ]
+[; ;motors.c: 75: else if(mode == 3){
+[e $ ! == _mode -> 3 `i 279  ]
+{
+[; ;motors.c: 76: t++;
+"76
+[e ++ _t -> 1 `i ]
+[; ;motors.c: 77: if (t>8) {t=1;}
+"77
+[e $ ! > _t -> 8 `i 280  ]
+{
+[e = _t -> 1 `i ]
+}
+[e :U 280 ]
+[; ;motors.c: 78: _delay((unsigned long)((5)*(32000000/4000.0)));
+"78
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;motors.c: 79: if (t == 1 || t==8){LATDbits.LATD1 = 1;}
+"79
+[e $ ! || == _t -> 1 `i == _t -> 8 `i 281  ]
 {
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
 }
-[e $U 280  ]
-"69
-[e :U 279 ]
-[; ;motors.c: 69: else{LATDbits.LATD1 = 0;}
+[e $U 282  ]
+"80
+[e :U 281 ]
+[; ;motors.c: 80: else{LATDbits.LATD1 = 0;}
 {
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 280 ]
-[; ;motors.c: 70: if (t == 2 || t==7){LATBbits.LATB3 = 1;}
-"70
-[e $ ! || == _t -> 2 `i == _t -> 7 `i 281  ]
+[e :U 282 ]
+[; ;motors.c: 81: if (t == 2 || t==7){LATBbits.LATB3 = 1;}
+"81
+[e $ ! || == _t -> 2 `i == _t -> 7 `i 283  ]
 {
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
 }
-[e $U 282  ]
-"71
-[e :U 281 ]
-[; ;motors.c: 71: else{LATBbits.LATB3 = 0;}
+[e $U 284  ]
+"82
+[e :U 283 ]
+[; ;motors.c: 82: else{LATBbits.LATB3 = 0;}
 {
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 }
-[e :U 282 ]
-[; ;motors.c: 72: if (t == 3 || t==6){LATBbits.LATB2 = 1;}
-"72
-[e $ ! || == _t -> 3 `i == _t -> 6 `i 283  ]
+[e :U 284 ]
+[; ;motors.c: 83: if (t == 3 || t==6){LATBbits.LATB2 = 1;}
+"83
+[e $ ! || == _t -> 3 `i == _t -> 6 `i 285  ]
 {
 [e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
 }
-[e $U 284  ]
-"73
-[e :U 283 ]
-[; ;motors.c: 73: else{LATBbits.LATB2 = 0;}
+[e $U 286  ]
+"84
+[e :U 285 ]
+[; ;motors.c: 84: else{LATBbits.LATB2 = 0;}
 {
 [e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 284 ]
-[; ;motors.c: 74: if (t == 4 || t==5){LATBbits.LATB0 = 1;}
-"74
-[e $ ! || == _t -> 4 `i == _t -> 5 `i 285  ]
+[e :U 286 ]
+[; ;motors.c: 85: if (t == 4 || t==5){LATBbits.LATB0 = 1;}
+"85
+[e $ ! || == _t -> 4 `i == _t -> 5 `i 287  ]
 {
 [e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 286  ]
-"75
-[e :U 285 ]
-[; ;motors.c: 75: else{LATBbits.LATB0 = 0;}
+[e $U 288  ]
+"86
+[e :U 287 ]
+[; ;motors.c: 86: else{LATBbits.LATB0 = 0;}
 {
 [e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 286 ]
-"76
+[e :U 288 ]
+"87
 }
-[; ;motors.c: 76: }
-[e $U 287  ]
-"77
-[e :U 277 ]
-[; ;motors.c: 77: else{
+[; ;motors.c: 87: }
+[e $U 289  ]
+"88
+[e :U 279 ]
+[; ;motors.c: 88: else{
 {
-[; ;motors.c: 78: _delay((unsigned long)((10)*(32000000/4000.0)));
-"78
+[; ;motors.c: 89: _delay((unsigned long)((10)*(32000000/4000.0)));
+"89
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;motors.c: 80: if(mode == 1 || mode == 5){
-"80
-[e $ ! || == _mode -> 1 `i == _mode -> 5 `i 288  ]
+[; ;motors.c: 91: if(mode == 1 || mode == 5){
+"91
+[e $ ! || == _mode -> 1 `i == _mode -> 5 `i 290  ]
 {
-[; ;motors.c: 81: s1 ++;
-"81
+[; ;motors.c: 92: s1 ++;
+"92
 [e ++ _s1 -> 1 `i ]
-[; ;motors.c: 82: if (s1>4) {s1=1;}
-"82
-[e $ ! > _s1 -> 4 `i 289  ]
+[; ;motors.c: 93: if (s1>4) {s1=1;}
+"93
+[e $ ! > _s1 -> 4 `i 291  ]
 {
 [e = _s1 -> 1 `i ]
 }
-[e :U 289 ]
-"84
+[e :U 291 ]
+"95
 }
-[; ;motors.c: 84: }
-[e $U 290  ]
-"85
-[e :U 288 ]
-[; ;motors.c: 85: else if(mode == 2 || mode==6){
-[e $ ! || == _mode -> 2 `i == _mode -> 6 `i 291  ]
+[; ;motors.c: 95: }
+[e $U 292  ]
+"96
+[e :U 290 ]
+[; ;motors.c: 96: else if(mode == 2 || mode==6){
+[e $ ! || == _mode -> 2 `i == _mode -> 6 `i 293  ]
 {
-[; ;motors.c: 86: s1 --;
-"86
+[; ;motors.c: 97: s1 --;
+"97
 [e -- _s1 -> 1 `i ]
-[; ;motors.c: 87: if (s1<1) {s1=4;}
-"87
-[e $ ! < _s1 -> 1 `i 292  ]
+[; ;motors.c: 98: if (s1<1) {s1=4;}
+"98
+[e $ ! < _s1 -> 1 `i 294  ]
 {
 [e = _s1 -> 4 `i ]
 }
-[e :U 292 ]
-"88
-}
-[e :U 291 ]
-"90
-[e :U 290 ]
-[; ;motors.c: 88: }
-[; ;motors.c: 90: if(mode == 1 || mode ==2){
-[e $ ! || == _mode -> 1 `i == _mode -> 2 `i 293  ]
-{
-[; ;motors.c: 91: if (s1 == 1){LATDbits.LATD1 = 1;}
-"91
-[e $ ! == _s1 -> 1 `i 294  ]
-{
-[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
-}
-[e $U 295  ]
-"92
 [e :U 294 ]
-[; ;motors.c: 92: else{LATDbits.LATD1 = 0;}
-{
-[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-}
-[e :U 295 ]
-[; ;motors.c: 93: if (s1 == 2){LATBbits.LATB3 = 1;}
-"93
-[e $ ! == _s1 -> 2 `i 296  ]
-{
-[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
-}
-[e $U 297  ]
-"94
-[e :U 296 ]
-[; ;motors.c: 94: else{LATBbits.LATB3 = 0;}
-{
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-}
-[e :U 297 ]
-[; ;motors.c: 95: if (s1 == 3){LATBbits.LATB2 = 1;}
-"95
-[e $ ! == _s1 -> 3 `i 298  ]
-{
-[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
-}
-[e $U 299  ]
-"96
-[e :U 298 ]
-[; ;motors.c: 96: else{LATBbits.LATB2 = 0;}
-{
-[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
-}
-[e :U 299 ]
-[; ;motors.c: 97: if (s1 == 4){LATBbits.LATB0 = 1;}
-"97
-[e $ ! == _s1 -> 4 `i 300  ]
-{
-[e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
-}
-[e $U 301  ]
-"98
-[e :U 300 ]
-[; ;motors.c: 98: else{LATBbits.LATB0 = 0;}
-{
-[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
-}
-[e :U 301 ]
 "99
 }
 [e :U 293 ]
-[; ;motors.c: 99: }
-[; ;motors.c: 100: if(mode == 5 || mode ==6){
-"100
-[e $ ! || == _mode -> 5 `i == _mode -> 6 `i 302  ]
-{
-[; ;motors.c: 101: if (s1 == 1){LATDbits.LATD1 = 1; LATBbits.LATB3 = 1; LATBbits.LATB2 = 0; LATBbits.LATB0 = 0;}
 "101
-[e $ ! == _s1 -> 1 `i 303  ]
+[e :U 292 ]
+[; ;motors.c: 99: }
+[; ;motors.c: 101: if(mode == 1 || mode ==2){
+[e $ ! || == _mode -> 1 `i == _mode -> 2 `i 295  ]
+{
+[; ;motors.c: 102: if (s1 == 1){LATDbits.LATD1 = 1;}
+"102
+[e $ ! == _s1 -> 1 `i 296  ]
 {
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
+}
+[e $U 297  ]
+"103
+[e :U 296 ]
+[; ;motors.c: 103: else{LATDbits.LATD1 = 0;}
+{
+[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
+}
+[e :U 297 ]
+[; ;motors.c: 104: if (s1 == 2){LATBbits.LATB3 = 1;}
+"104
+[e $ ! == _s1 -> 2 `i 298  ]
+{
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+}
+[e $U 299  ]
+"105
+[e :U 298 ]
+[; ;motors.c: 105: else{LATBbits.LATB3 = 0;}
+{
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+}
+[e :U 299 ]
+[; ;motors.c: 106: if (s1 == 3){LATBbits.LATB2 = 1;}
+"106
+[e $ ! == _s1 -> 3 `i 300  ]
+{
+[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
+}
+[e $U 301  ]
+"107
+[e :U 300 ]
+[; ;motors.c: 107: else{LATBbits.LATB2 = 0;}
+{
 [e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+}
+[e :U 301 ]
+[; ;motors.c: 108: if (s1 == 4){LATBbits.LATB0 = 1;}
+"108
+[e $ ! == _s1 -> 4 `i 302  ]
+{
+[e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
+}
+[e $U 303  ]
+"109
+[e :U 302 ]
+[; ;motors.c: 109: else{LATBbits.LATB0 = 0;}
+{
 [e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 }
 [e :U 303 ]
-[; ;motors.c: 102: if (s1 == 2){LATDbits.LATD1 = 0; LATBbits.LATB3 = 1; LATBbits.LATB2 = 1; LATBbits.LATB0 = 0;}
-"102
-[e $ ! == _s1 -> 2 `i 304  ]
+"110
+}
+[e :U 295 ]
+[; ;motors.c: 110: }
+[; ;motors.c: 111: if(mode == 5 || mode ==6){
+"111
+[e $ ! || == _mode -> 5 `i == _mode -> 6 `i 304  ]
+{
+[; ;motors.c: 112: if (s1 == 1){LATDbits.LATD1 = 1; LATBbits.LATB3 = 1; LATBbits.LATB2 = 0; LATBbits.LATB0 = 0;}
+"112
+[e $ ! == _s1 -> 1 `i 305  ]
+{
+[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 305 ]
+[; ;motors.c: 113: if (s1 == 2){LATDbits.LATD1 = 0; LATBbits.LATB3 = 1; LATBbits.LATB2 = 1; LATBbits.LATB0 = 0;}
+"113
+[e $ ! == _s1 -> 2 `i 306  ]
 {
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
 [e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
 [e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 304 ]
-[; ;motors.c: 103: if (s1 == 3){LATDbits.LATD1 = 0; LATBbits.LATB3 = 0; LATBbits.LATB2 = 1; LATBbits.LATB0 = 1;}
-"103
-[e $ ! == _s1 -> 3 `i 305  ]
+[e :U 306 ]
+[; ;motors.c: 114: if (s1 == 3){LATDbits.LATD1 = 0; LATBbits.LATB3 = 0; LATBbits.LATB2 = 1; LATBbits.LATB0 = 1;}
+"114
+[e $ ! == _s1 -> 3 `i 307  ]
 {
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
 [e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
 }
-[e :U 305 ]
-[; ;motors.c: 104: if (s1 == 4){LATDbits.LATD1 = 1; LATBbits.LATB3 = 0; LATBbits.LATB2 = 0; LATBbits.LATB0 = 1;}
-"104
-[e $ ! == _s1 -> 4 `i 306  ]
+[e :U 307 ]
+[; ;motors.c: 115: if (s1 == 4){LATDbits.LATD1 = 1; LATBbits.LATB3 = 0; LATBbits.LATB2 = 0; LATBbits.LATB0 = 1;}
+"115
+[e $ ! == _s1 -> 4 `i 308  ]
 {
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
 }
-[e :U 306 ]
-"105
+[e :U 308 ]
+"116
 }
-[e :U 302 ]
-"107
+[e :U 304 ]
+"118
 }
-[e :U 287 ]
-[e :U 276 ]
-[; ;motors.c: 105: }
-[; ;motors.c: 107: }
-[; ;motors.c: 108: }
-"108
-[e :UE 274 ]
+[e :U 289 ]
+[e :U 278 ]
+[; ;motors.c: 116: }
+[; ;motors.c: 118: }
+[; ;motors.c: 119: }
+"119
+[e :UE 276 ]
 }
-"110
+"121
 [v _updateS2 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;motors.c: 110: void updateS2(int mode){
+[; ;motors.c: 121: void updateS2(int mode){
 [e :U _updateS2 ]
 [v _mode `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;motors.c: 111: _delay((unsigned long)((5)*(32000000/4000.0)));
-"111
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;motors.c: 113: if(mode == 0){
-"113
-[e $ ! == _mode -> 0 `i 308  ]
-{
-[; ;motors.c: 114: LATCbits.LATC7 = 0;
-"114
-[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
-[; ;motors.c: 115: LATCbits.LATC6 = 0;
-"115
-[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
-[; ;motors.c: 116: LATCbits.LATC0 = 0;
-"116
-[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
-[; ;motors.c: 117: LATCbits.LATC5 = 0;
-"117
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
-"118
-}
-[; ;motors.c: 118: }
-[e $U 309  ]
-"119
-[e :U 308 ]
-[; ;motors.c: 119: else if(mode == 4){
-[e $ ! == _mode -> 4 `i 310  ]
-{
-[; ;motors.c: 120: LATCbits.LATC7 = 1;
-"120
-[e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
-[; ;motors.c: 121: LATCbits.LATC6 = 0;
-"121
-[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
-[; ;motors.c: 122: LATCbits.LATC0 = 0;
+[; ;motors.c: 122: _delay((unsigned long)((5)*(32000000/4000.0)));
 "122
-[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
-[; ;motors.c: 123: LATCbits.LATC5 = 0;
-"123
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;motors.c: 124: if(mode == 0){
 "124
-}
-[; ;motors.c: 124: }
-[e $U 311  ]
-"125
-[e :U 310 ]
-[; ;motors.c: 125: else if(mode == 3){
-[e $ ! == _mode -> 3 `i 312  ]
+[e $ ! == _mode -> 0 `i 310  ]
 {
-[; ;motors.c: 126: t2++;
+[; ;motors.c: 125: LATCbits.LATC7 = 0;
+"125
+[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
+[; ;motors.c: 126: LATCbits.LATC6 = 0;
 "126
-[e ++ _t2 -> 1 `i ]
-[; ;motors.c: 127: if (t2>8) {t2=1;}
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+[; ;motors.c: 127: LATCbits.LATC0 = 0;
 "127
-[e $ ! > _t2 -> 8 `i 313  ]
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;motors.c: 128: LATCbits.LATC5 = 0;
+"128
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+"129
+}
+[; ;motors.c: 129: }
+[e $U 311  ]
+"130
+[e :U 310 ]
+[; ;motors.c: 130: else if(mode == 4){
+[e $ ! == _mode -> 4 `i 312  ]
+{
+[; ;motors.c: 131: LATCbits.LATC7 = 1;
+"131
+[e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
+[; ;motors.c: 132: LATCbits.LATC6 = 0;
+"132
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+[; ;motors.c: 133: LATCbits.LATC0 = 0;
+"133
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;motors.c: 134: LATCbits.LATC5 = 0;
+"134
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+"135
+}
+[; ;motors.c: 135: }
+[e $U 313  ]
+"136
+[e :U 312 ]
+[; ;motors.c: 136: else if(mode == 3){
+[e $ ! == _mode -> 3 `i 314  ]
+{
+[; ;motors.c: 137: t2++;
+"137
+[e ++ _t2 -> 1 `i ]
+[; ;motors.c: 138: if (t2>8) {t2=1;}
+"138
+[e $ ! > _t2 -> 8 `i 315  ]
 {
 [e = _t2 -> 1 `i ]
 }
-[e :U 313 ]
-[; ;motors.c: 128: if (t2 == 1 || t2==8){LATCbits.LATC7 = 1;}
-"128
-[e $ ! || == _t2 -> 1 `i == _t2 -> 8 `i 314  ]
+[e :U 315 ]
+[; ;motors.c: 139: if (t2 == 1 || t2==8){LATCbits.LATC7 = 1;}
+"139
+[e $ ! || == _t2 -> 1 `i == _t2 -> 8 `i 316  ]
 {
 [e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
 }
-[e $U 315  ]
-"129
-[e :U 314 ]
-[; ;motors.c: 129: else{LATCbits.LATC7 = 0;}
+[e $U 317  ]
+"140
+[e :U 316 ]
+[; ;motors.c: 140: else{LATCbits.LATC7 = 0;}
 {
 [e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 315 ]
-[; ;motors.c: 130: if (t2 == 2 || t2==7){LATCbits.LATC6 = 1;}
-"130
-[e $ ! || == _t2 -> 2 `i == _t2 -> 7 `i 316  ]
+[e :U 317 ]
+[; ;motors.c: 141: if (t2 == 2 || t2==7){LATCbits.LATC6 = 1;}
+"141
+[e $ ! || == _t2 -> 2 `i == _t2 -> 7 `i 318  ]
 {
 [e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
 }
-[e $U 317  ]
-"131
-[e :U 316 ]
-[; ;motors.c: 131: else{LATCbits.LATC6 = 0;}
+[e $U 319  ]
+"142
+[e :U 318 ]
+[; ;motors.c: 142: else{LATCbits.LATC6 = 0;}
 {
 [e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 317 ]
-[; ;motors.c: 132: if (t2 == 3 || t2==6){LATCbits.LATC0 = 1;}
-"132
-[e $ ! || == _t2 -> 3 `i == _t2 -> 6 `i 318  ]
+[e :U 319 ]
+[; ;motors.c: 143: if (t2 == 3 || t2==6){LATCbits.LATC0 = 1;}
+"143
+[e $ ! || == _t2 -> 3 `i == _t2 -> 6 `i 320  ]
 {
 [e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 319  ]
-"133
-[e :U 318 ]
-[; ;motors.c: 133: else{LATCbits.LATC0 = 0;}
+[e $U 321  ]
+"144
+[e :U 320 ]
+[; ;motors.c: 144: else{LATCbits.LATC0 = 0;}
 {
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 319 ]
-[; ;motors.c: 134: if (t2 == 4 || t2==5){LATCbits.LATC5 = 1;}
-"134
-[e $ ! || == _t2 -> 4 `i == _t2 -> 5 `i 320  ]
+[e :U 321 ]
+[; ;motors.c: 145: if (t2 == 4 || t2==5){LATCbits.LATC5 = 1;}
+"145
+[e $ ! || == _t2 -> 4 `i == _t2 -> 5 `i 322  ]
 {
 [e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
 }
-[e $U 321  ]
-"135
-[e :U 320 ]
-[; ;motors.c: 135: else{LATCbits.LATC5 = 0;}
+[e $U 323  ]
+"146
+[e :U 322 ]
+[; ;motors.c: 146: else{LATCbits.LATC5 = 0;}
 {
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 321 ]
-"136
+[e :U 323 ]
+"147
 }
-[; ;motors.c: 136: }
-[e $U 322  ]
-"137
-[e :U 312 ]
-[; ;motors.c: 137: else{
+[; ;motors.c: 147: }
+[e $U 324  ]
+"148
+[e :U 314 ]
+[; ;motors.c: 148: else{
 {
-[; ;motors.c: 138: if(mode == 1){
-"138
-[e $ ! == _mode -> 1 `i 323  ]
+[; ;motors.c: 149: if(mode == 1){
+"149
+[e $ ! == _mode -> 1 `i 325  ]
 {
-[; ;motors.c: 139: s2 ++;
-"139
+[; ;motors.c: 150: s2 ++;
+"150
 [e ++ _s2 -> 1 `i ]
-[; ;motors.c: 140: if (s2>4) {s2=1;}
-"140
-[e $ ! > _s2 -> 4 `i 324  ]
+[; ;motors.c: 151: if (s2>4) {s2=1;}
+"151
+[e $ ! > _s2 -> 4 `i 326  ]
 {
 [e = _s2 -> 1 `i ]
 }
-[e :U 324 ]
-"141
+[e :U 326 ]
+"152
 }
-[; ;motors.c: 141: }
-[e $U 325  ]
-"142
-[e :U 323 ]
-[; ;motors.c: 142: else if(mode == 2){
-[e $ ! == _mode -> 2 `i 326  ]
+[; ;motors.c: 152: }
+[e $U 327  ]
+"153
+[e :U 325 ]
+[; ;motors.c: 153: else if(mode == 2){
+[e $ ! == _mode -> 2 `i 328  ]
 {
-[; ;motors.c: 143: s2 --;
-"143
+[; ;motors.c: 154: s2 --;
+"154
 [e -- _s2 -> 1 `i ]
-[; ;motors.c: 144: if (s2<1) {s2=4;}
-"144
-[e $ ! < _s2 -> 1 `i 327  ]
+[; ;motors.c: 155: if (s2<1) {s2=4;}
+"155
+[e $ ! < _s2 -> 1 `i 329  ]
 {
 [e = _s2 -> 4 `i ]
 }
-[e :U 327 ]
-"145
+[e :U 329 ]
+"156
 }
-[e :U 326 ]
-"146
-[e :U 325 ]
-[; ;motors.c: 145: }
-[; ;motors.c: 146: if (s2 == 1){LATCbits.LATC7 = 1;}
-[e $ ! == _s2 -> 1 `i 328  ]
+[e :U 328 ]
+"157
+[e :U 327 ]
+[; ;motors.c: 156: }
+[; ;motors.c: 157: if (s2 == 1){LATCbits.LATC7 = 1;}
+[e $ ! == _s2 -> 1 `i 330  ]
 {
 [e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
 }
-[e $U 329  ]
-"147
-[e :U 328 ]
-[; ;motors.c: 147: else{LATCbits.LATC7 = 0;}
+[e $U 331  ]
+"158
+[e :U 330 ]
+[; ;motors.c: 158: else{LATCbits.LATC7 = 0;}
 {
 [e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 329 ]
-[; ;motors.c: 148: if (s2 == 2){LATCbits.LATC6 = 1;}
-"148
-[e $ ! == _s2 -> 2 `i 330  ]
+[e :U 331 ]
+[; ;motors.c: 159: if (s2 == 2){LATCbits.LATC6 = 1;}
+"159
+[e $ ! == _s2 -> 2 `i 332  ]
 {
 [e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
 }
-[e $U 331  ]
-"149
-[e :U 330 ]
-[; ;motors.c: 149: else{LATCbits.LATC6 = 0;}
+[e $U 333  ]
+"160
+[e :U 332 ]
+[; ;motors.c: 160: else{LATCbits.LATC6 = 0;}
 {
 [e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 331 ]
-[; ;motors.c: 150: if (s2 == 3){LATCbits.LATC0 = 1;}
-"150
-[e $ ! == _s2 -> 3 `i 332  ]
+[e :U 333 ]
+[; ;motors.c: 161: if (s2 == 3){LATCbits.LATC0 = 1;}
+"161
+[e $ ! == _s2 -> 3 `i 334  ]
 {
 [e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 333  ]
-"151
-[e :U 332 ]
-[; ;motors.c: 151: else{LATCbits.LATC0 = 0;}
+[e $U 335  ]
+"162
+[e :U 334 ]
+[; ;motors.c: 162: else{LATCbits.LATC0 = 0;}
 {
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 333 ]
-[; ;motors.c: 152: if (s2 == 4){LATCbits.LATC5 = 1;}
-"152
-[e $ ! == _s2 -> 4 `i 334  ]
+[e :U 335 ]
+[; ;motors.c: 163: if (s2 == 4){LATCbits.LATC5 = 1;}
+"163
+[e $ ! == _s2 -> 4 `i 336  ]
 {
 [e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
 }
-[e $U 335  ]
-"153
-[e :U 334 ]
-[; ;motors.c: 153: else{LATCbits.LATC5 = 0;}
+[e $U 337  ]
+"164
+[e :U 336 ]
+[; ;motors.c: 164: else{LATCbits.LATC5 = 0;}
 {
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 335 ]
-"154
+[e :U 337 ]
+"165
 }
-[e :U 322 ]
+[e :U 324 ]
+[e :U 313 ]
 [e :U 311 ]
-[e :U 309 ]
-[; ;motors.c: 154: }
-[; ;motors.c: 155: }
-"155
-[e :UE 307 ]
+[; ;motors.c: 165: }
+[; ;motors.c: 166: }
+"166
+[e :UE 309 ]
 }
-"157
+"168
 [v _updateS3 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;motors.c: 157: void updateS3(int mode){
+[; ;motors.c: 168: void updateS3(int mode){
 [e :U _updateS3 ]
 [v _mode `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;motors.c: 158: _delay((unsigned long)((5)*(32000000/4000.0)));
-"158
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;motors.c: 160: if(mode == 0){
-"160
-[e $ ! == _mode -> 0 `i 337  ]
-{
-[; ;motors.c: 161: LATEbits.LATE2 = 0;
-"161
-[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
-[; ;motors.c: 162: LATEbits.LATE1 = 0;
-"162
-[e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
-[; ;motors.c: 163: LATAbits.LATA4 = 0;
-"163
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-[; ;motors.c: 164: LATDbits.LATD0 = 0;
-"164
-[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
-"165
-}
-[; ;motors.c: 165: }
-[e $U 338  ]
-"166
-[e :U 337 ]
-[; ;motors.c: 166: else if(mode == 4){
-[e $ ! == _mode -> 4 `i 339  ]
-{
-[; ;motors.c: 167: LATEbits.LATE2 = 1;
-"167
-[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
-[; ;motors.c: 168: LATEbits.LATE1 = 0;
-"168
-[e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
-[; ;motors.c: 169: LATAbits.LATA4 = 0;
+[; ;motors.c: 169: _delay((unsigned long)((5)*(32000000/4000.0)));
 "169
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-[; ;motors.c: 170: LATDbits.LATD0 = 0;
-"170
-[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;motors.c: 171: if(mode == 0){
 "171
-}
-[; ;motors.c: 171: }
-[e $U 340  ]
-"172
-[e :U 339 ]
-[; ;motors.c: 172: else if(mode == 3){
-[e $ ! == _mode -> 3 `i 341  ]
+[e $ ! == _mode -> 0 `i 339  ]
 {
-[; ;motors.c: 173: t3++;
+[; ;motors.c: 172: LATEbits.LATE2 = 0;
+"172
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;motors.c: 173: LATEbits.LATE1 = 0;
 "173
-[e ++ _t3 -> 1 `i ]
-[; ;motors.c: 174: if (t3>8) {t3=1;}
+[e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
+[; ;motors.c: 174: LATAbits.LATA4 = 0;
 "174
-[e $ ! > _t3 -> 8 `i 342  ]
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+[; ;motors.c: 175: LATDbits.LATD0 = 0;
+"175
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
+"176
+}
+[; ;motors.c: 176: }
+[e $U 340  ]
+"177
+[e :U 339 ]
+[; ;motors.c: 177: else if(mode == 4){
+[e $ ! == _mode -> 4 `i 341  ]
+{
+[; ;motors.c: 178: LATEbits.LATE2 = 1;
+"178
+[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
+[; ;motors.c: 179: LATEbits.LATE1 = 0;
+"179
+[e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
+[; ;motors.c: 180: LATAbits.LATA4 = 0;
+"180
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+[; ;motors.c: 181: LATDbits.LATD0 = 0;
+"181
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
+"182
+}
+[; ;motors.c: 182: }
+[e $U 342  ]
+"183
+[e :U 341 ]
+[; ;motors.c: 183: else if(mode == 3){
+[e $ ! == _mode -> 3 `i 343  ]
+{
+[; ;motors.c: 184: t3++;
+"184
+[e ++ _t3 -> 1 `i ]
+[; ;motors.c: 185: if (t3>8) {t3=1;}
+"185
+[e $ ! > _t3 -> 8 `i 344  ]
 {
 [e = _t3 -> 1 `i ]
 }
-[e :U 342 ]
-[; ;motors.c: 175: if (t3 == 1 || t3==8){LATEbits.LATE2 = 1;}
-"175
-[e $ ! || == _t3 -> 1 `i == _t3 -> 8 `i 343  ]
+[e :U 344 ]
+[; ;motors.c: 186: if (t3 == 1 || t3==8){LATEbits.LATE2 = 1;}
+"186
+[e $ ! || == _t3 -> 1 `i == _t3 -> 8 `i 345  ]
 {
 [e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
 }
-[e $U 344  ]
-"176
-[e :U 343 ]
-[; ;motors.c: 176: else{LATEbits.LATE2 = 0;}
+[e $U 346  ]
+"187
+[e :U 345 ]
+[; ;motors.c: 187: else{LATEbits.LATE2 = 0;}
 {
 [e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 344 ]
-[; ;motors.c: 177: if (t3 == 2 || t3==7){LATEbits.LATE1 = 1;}
-"177
-[e $ ! || == _t3 -> 2 `i == _t3 -> 7 `i 345  ]
+[e :U 346 ]
+[; ;motors.c: 188: if (t3 == 2 || t3==7){LATEbits.LATE1 = 1;}
+"188
+[e $ ! || == _t3 -> 2 `i == _t3 -> 7 `i 347  ]
 {
 [e = . . _LATEbits 0 1 -> -> 1 `i `uc ]
 }
-[e $U 346  ]
-"178
-[e :U 345 ]
-[; ;motors.c: 178: else{LATEbits.LATE1 = 0;}
+[e $U 348  ]
+"189
+[e :U 347 ]
+[; ;motors.c: 189: else{LATEbits.LATE1 = 0;}
 {
 [e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 346 ]
-[; ;motors.c: 179: if (t3 == 3 || t3==6){LATAbits.LATA4 = 1;}
-"179
-[e $ ! || == _t3 -> 3 `i == _t3 -> 6 `i 347  ]
+[e :U 348 ]
+[; ;motors.c: 190: if (t3 == 3 || t3==6){LATAbits.LATA4 = 1;}
+"190
+[e $ ! || == _t3 -> 3 `i == _t3 -> 6 `i 349  ]
 {
 [e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 }
-[e $U 348  ]
-"180
-[e :U 347 ]
-[; ;motors.c: 180: else{LATAbits.LATA4 = 0;}
+[e $U 350  ]
+"191
+[e :U 349 ]
+[; ;motors.c: 191: else{LATAbits.LATA4 = 0;}
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 348 ]
-[; ;motors.c: 181: if (t3 == 4 || t3==5){LATDbits.LATD0 = 1;}
-"181
-[e $ ! || == _t3 -> 4 `i == _t3 -> 5 `i 349  ]
+[e :U 350 ]
+[; ;motors.c: 192: if (t3 == 4 || t3==5){LATDbits.LATD0 = 1;}
+"192
+[e $ ! || == _t3 -> 4 `i == _t3 -> 5 `i 351  ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 350  ]
-"182
-[e :U 349 ]
-[; ;motors.c: 182: else{LATDbits.LATD0 = 0;}
+[e $U 352  ]
+"193
+[e :U 351 ]
+[; ;motors.c: 193: else{LATDbits.LATD0 = 0;}
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 350 ]
-"183
+[e :U 352 ]
+"194
 }
-[; ;motors.c: 183: }
-[e $U 351  ]
-"184
-[e :U 341 ]
-[; ;motors.c: 184: else{
+[; ;motors.c: 194: }
+[e $U 353  ]
+"195
+[e :U 343 ]
+[; ;motors.c: 195: else{
 {
-[; ;motors.c: 185: if(mode == 1){
-"185
-[e $ ! == _mode -> 1 `i 352  ]
+[; ;motors.c: 196: if(mode == 1){
+"196
+[e $ ! == _mode -> 1 `i 354  ]
 {
-[; ;motors.c: 186: s3 ++;
-"186
+[; ;motors.c: 197: s3 ++;
+"197
 [e ++ _s3 -> 1 `i ]
-[; ;motors.c: 187: if (s3>4) {s3=1;}
-"187
-[e $ ! > _s3 -> 4 `i 353  ]
+[; ;motors.c: 198: if (s3>4) {s3=1;}
+"198
+[e $ ! > _s3 -> 4 `i 355  ]
 {
 [e = _s3 -> 1 `i ]
 }
-[e :U 353 ]
-"188
+[e :U 355 ]
+"199
 }
-[; ;motors.c: 188: }
-[e $U 354  ]
-"189
-[e :U 352 ]
-[; ;motors.c: 189: else if(mode == 2){
-[e $ ! == _mode -> 2 `i 355  ]
+[; ;motors.c: 199: }
+[e $U 356  ]
+"200
+[e :U 354 ]
+[; ;motors.c: 200: else if(mode == 2){
+[e $ ! == _mode -> 2 `i 357  ]
 {
-[; ;motors.c: 190: s3 --;
-"190
+[; ;motors.c: 201: s3 --;
+"201
 [e -- _s3 -> 1 `i ]
-[; ;motors.c: 191: if (s3<1) {s3=4;}
-"191
-[e $ ! < _s3 -> 1 `i 356  ]
+[; ;motors.c: 202: if (s3<1) {s3=4;}
+"202
+[e $ ! < _s3 -> 1 `i 358  ]
 {
 [e = _s3 -> 4 `i ]
 }
-[e :U 356 ]
-"192
+[e :U 358 ]
+"203
 }
-[e :U 355 ]
-"193
-[e :U 354 ]
-[; ;motors.c: 192: }
-[; ;motors.c: 193: if (s3 == 1){LATEbits.LATE2 = 1;}
-[e $ ! == _s3 -> 1 `i 357  ]
+[e :U 357 ]
+"204
+[e :U 356 ]
+[; ;motors.c: 203: }
+[; ;motors.c: 204: if (s3 == 1){LATEbits.LATE2 = 1;}
+[e $ ! == _s3 -> 1 `i 359  ]
 {
 [e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
 }
-[e $U 358  ]
-"194
-[e :U 357 ]
-[; ;motors.c: 194: else{LATEbits.LATE2 = 0;}
+[e $U 360  ]
+"205
+[e :U 359 ]
+[; ;motors.c: 205: else{LATEbits.LATE2 = 0;}
 {
 [e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 358 ]
-[; ;motors.c: 195: if (s3 == 2){LATEbits.LATE1 = 1;}
-"195
-[e $ ! == _s3 -> 2 `i 359  ]
+[e :U 360 ]
+[; ;motors.c: 206: if (s3 == 2){LATEbits.LATE1 = 1;}
+"206
+[e $ ! == _s3 -> 2 `i 361  ]
 {
 [e = . . _LATEbits 0 1 -> -> 1 `i `uc ]
 }
-[e $U 360  ]
-"196
-[e :U 359 ]
-[; ;motors.c: 196: else{LATEbits.LATE1 = 0;}
+[e $U 362  ]
+"207
+[e :U 361 ]
+[; ;motors.c: 207: else{LATEbits.LATE1 = 0;}
 {
 [e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 360 ]
-[; ;motors.c: 197: if (s3 == 3){LATAbits.LATA4 = 1;}
-"197
-[e $ ! == _s3 -> 3 `i 361  ]
+[e :U 362 ]
+[; ;motors.c: 208: if (s3 == 3){LATAbits.LATA4 = 1;}
+"208
+[e $ ! == _s3 -> 3 `i 363  ]
 {
 [e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 }
-[e $U 362  ]
-"198
-[e :U 361 ]
-[; ;motors.c: 198: else{LATAbits.LATA4 = 0;}
+[e $U 364  ]
+"209
+[e :U 363 ]
+[; ;motors.c: 209: else{LATAbits.LATA4 = 0;}
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 362 ]
-[; ;motors.c: 199: if (s3 == 4){LATDbits.LATD0 = 1;}
-"199
-[e $ ! == _s3 -> 4 `i 363  ]
+[e :U 364 ]
+[; ;motors.c: 210: if (s3 == 4){LATDbits.LATD0 = 1;}
+"210
+[e $ ! == _s3 -> 4 `i 365  ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 364  ]
-"200
-[e :U 363 ]
-[; ;motors.c: 200: else{LATDbits.LATD0 = 0;}
+[e $U 366  ]
+"211
+[e :U 365 ]
+[; ;motors.c: 211: else{LATDbits.LATD0 = 0;}
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 364 ]
-"202
+[e :U 366 ]
+"213
 }
-[e :U 351 ]
+[e :U 353 ]
+[e :U 342 ]
 [e :U 340 ]
-[e :U 338 ]
-[; ;motors.c: 202: }
-[; ;motors.c: 203: }
-"203
-[e :UE 336 ]
+[; ;motors.c: 213: }
+[; ;motors.c: 214: }
+"214
+[e :UE 338 ]
 }

@@ -31,7 +31,7 @@ void PWM1off(){
     CCPR1L = 0;
 }
 
-void PWM2(int duty){
+void PWM2(int duty, int dir){ //1:CW, 2:CCW
     // Tosc = 1/32 Mhz = 0.0000003125
     // PWM Period = 256 x 4 x (1/_XTAL_FREQ) x TMR2PRESCALE 
     // PWM Frequency = 1/PWM Period
@@ -42,13 +42,24 @@ void PWM2(int duty){
     CCP2CONbits.DC2B0 = duty & 1; //set low bit
     CCP2CONbits.DC2B1 = (duty >> 1) & 1;  //set second lowest
     CCPR2L = (duty >> 2); //set highest eight
+       
+    LATAbits.LATA6 = 0;
+    LATAbits.LATA7 = 0;
+    __delay_ms(50);
+    if(dir==1){ //CW
+        LATAbits.LATA6 = 1;
+        LATAbits.LATA7 = 0; 
+    }
+    else{       //CCW
+        LATAbits.LATA6 = 0;
+        LATAbits.LATA7 = 1; 
+    }
         
 }
 
 void PWM2off(){
     CCP2CONbits.DC2B0 = 0;
     CCP2CONbits.DC2B1 = 0;
-    //CCP2CON = 0;
     CCPR2L = 0;
 }
 

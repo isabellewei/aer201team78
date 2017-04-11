@@ -52,6 +52,8 @@ extern int t3;
 #define S3_3        LATAbits.LATA4
 #define S3_4        LATDbits.LATD0
 
+#define drumSpeed   800
+
 //analog input channels
 #define tab         3
 #define label       4   //cond1

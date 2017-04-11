@@ -3821,14 +3821,13 @@ void updateTime(void);
 
 void PWM1(int duty);
 void PWM1off();
-void PWM2(int duty);
+void PWM2(int duty, int dir);
 void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);
 void updateS3(int mode);
 
-
-
+# 41
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLog(int run);
@@ -3967,19 +3966,30 @@ CCP1CONbits.DC1B1 = 0;
 CCPR1L = 0;
 }
 
-void PWM2(int duty){
+void PWM2(int duty, int dir){
 
 # 42
 CCP2CONbits.DC2B0 = duty & 1;
 CCP2CONbits.DC2B1 = (duty >> 1) & 1;
 CCPR2L = (duty >> 2);
 
+LATAbits.LATA6 = 0;
+LATAbits.LATA7 = 0;
+_delay((unsigned long)((50)*(32000000/4000.0)));
+if(dir==1){
+LATAbits.LATA6 = 1;
+LATAbits.LATA7 = 0;
+}
+else{
+LATAbits.LATA6 = 0;
+LATAbits.LATA7 = 1;
+}
+
 }
 
 void PWM2off(){
 CCP2CONbits.DC2B0 = 0;
 CCP2CONbits.DC2B1 = 0;
-
 CCPR2L = 0;
 }
 

@@ -5,6 +5,7 @@
 [d frameptr 4065 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
+[v i2___awmod __awmod `(i  1 e 2 0 ]
 "464 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\float.c
@@ -92,19 +93,19 @@
 [v _PWM1off PWM1off `(v  1 e 1 0 ]
 "34
 [v _PWM2 PWM2 `(v  1 e 1 0 ]
-"48
+"60
 [v _PWM2off PWM2off `(v  1 e 1 0 ]
-"55
+"66
 [v _updateS1 updateS1 `(v  1 e 1 0 ]
 [v i2_updateS1 updateS1 `(v  1 e 1 0 ]
-"110
+"121
 [v _updateS2 updateS2 `(v  1 e 1 0 ]
-"157
+"168
 [v _updateS3 updateS3 `(v  1 e 1 0 ]
 [v i2_updateS3 updateS3 `(v  1 e 1 0 ]
 "185 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
-[s S894 . 1 `uc 1 RB0 1 0 :1:0 
+[s S895 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -114,7 +115,7 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "226
-[s S903 . 1 `uc 1 INT0 1 0 :1:0 
+[s S904 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 CCP2 1 0 :1:3 
@@ -123,7 +124,7 @@
 `uc 1 KBI2 1 0 :1:6 
 `uc 1 KBI3 1 0 :1:7 
 ]
-[s S912 . 1 `uc 1 AN12 1 0 :1:0 
+[s S913 . 1 `uc 1 AN12 1 0 :1:0 
 `uc 1 AN10 1 0 :1:1 
 `uc 1 AN8 1 0 :1:2 
 `uc 1 AN9 1 0 :1:3 
@@ -132,14 +133,14 @@
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S921 . 1 `uc 1 . 1 0 :3:0 
+[s S922 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S924 . 1 `S894 1 . 1 0 `S903 1 . 1 0 `S912 1 . 1 0 `S921 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES924  1 e 1 @3969 ]
+[u S925 . 1 `S895 1 . 1 0 `S904 1 . 1 0 `S913 1 . 1 0 `S922 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES925  1 e 1 @3969 ]
 "872
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S418 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S423 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -149,7 +150,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "899
-[s S427 . 1 `uc 1 LA0 1 0 :1:0 
+[s S432 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -158,11 +159,11 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S436 . 1 `S418 1 . 1 0 `S427 1 . 1 0 ]
-[v _LATAbits LATAbits `VES436  1 e 1 @3977 ]
+[u S441 . 1 `S423 1 . 1 0 `S432 1 . 1 0 ]
+[v _LATAbits LATAbits `VES441  1 e 1 @3977 ]
 "983
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S312 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S317 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -172,7 +173,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "1010
-[s S321 . 1 `uc 1 LB0 1 0 :1:0 
+[s S326 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -181,11 +182,11 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S330 . 1 `S312 1 . 1 0 `S321 1 . 1 0 ]
-[v _LATBbits LATBbits `VES330  1 e 1 @3978 ]
+[u S335 . 1 `S317 1 . 1 0 `S326 1 . 1 0 ]
+[v _LATBbits LATBbits `VES335  1 e 1 @3978 ]
 "1094
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S358 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S363 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -195,7 +196,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1121
-[s S367 . 1 `uc 1 LC0 1 0 :1:0 
+[s S372 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -204,11 +205,11 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S376 . 1 `S358 1 . 1 0 `S367 1 . 1 0 ]
-[v _LATCbits LATCbits `VES376  1 e 1 @3979 ]
+[u S381 . 1 `S363 1 . 1 0 `S372 1 . 1 0 ]
+[v _LATCbits LATCbits `VES381  1 e 1 @3979 ]
 "1205
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S272 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S277 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -218,7 +219,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "1232
-[s S281 . 1 `uc 1 LD0 1 0 :1:0 
+[s S286 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -227,21 +228,21 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S290 . 1 `S272 1 . 1 0 `S281 1 . 1 0 ]
-[v _LATDbits LATDbits `VES290  1 e 1 @3980 ]
+[u S295 . 1 `S277 1 . 1 0 `S286 1 . 1 0 ]
+[v _LATDbits LATDbits `VES295  1 e 1 @3980 ]
 "1316
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
-[s S398 . 1 `uc 1 LATE0 1 0 :1:0 
+[s S403 . 1 `uc 1 LATE0 1 0 :1:0 
 `uc 1 LATE1 1 0 :1:1 
 `uc 1 LATE2 1 0 :1:2 
 ]
 "1333
-[s S402 . 1 `uc 1 LE0 1 0 :1:0 
+[s S407 . 1 `uc 1 LE0 1 0 :1:0 
 `uc 1 LE1 1 0 :1:1 
 `uc 1 LE2 1 0 :1:2 
 ]
-[u S406 . 1 `S398 1 . 1 0 `S402 1 . 1 0 ]
-[v _LATEbits LATEbits `VES406  1 e 1 @3981 ]
+[u S411 . 1 `S403 1 . 1 0 `S407 1 . 1 0 ]
+[v _LATEbits LATEbits `VES411  1 e 1 @3981 ]
 "1367
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
 "1588
@@ -266,7 +267,7 @@
 ]
 [u S108 . 1 `S97 1 . 1 0 `S102 1 . 1 0 ]
 [v _OSCTUNEbits OSCTUNEbits `VES108  1 e 1 @3995 ]
-[s S998 . 1 `uc 1 CCP2IF 1 0 :1:0 
+[s S999 . 1 `uc 1 CCP2IF 1 0 :1:0 
 `uc 1 TMR3IF 1 0 :1:1 
 `uc 1 HLVDIF 1 0 :1:2 
 `uc 1 BCLIF 1 0 :1:3 
@@ -276,12 +277,12 @@
 `uc 1 OSCFIF 1 0 :1:7 
 ]
 "2792
-[s S1007 . 1 `uc 1 . 1 0 :2:0 
+[s S1008 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LVDIF 1 0 :1:2 
 ]
-[u S1010 . 1 `S998 1 . 1 0 `S1007 1 . 1 0 ]
-[v _PIR2bits PIR2bits `VES1010  1 e 1 @4001 ]
-[s S968 . 1 `uc 1 RD 1 0 :1:0 
+[u S1011 . 1 `S999 1 . 1 0 `S1008 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES1011  1 e 1 @4001 ]
+[s S969 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -291,11 +292,11 @@
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "2922
-[s S977 . 1 `uc 1 . 1 0 :6:0 
+[s S978 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 EEFS 1 0 :1:6 
 ]
-[u S980 . 1 `S968 1 . 1 0 `S977 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES980  1 e 1 @4006 ]
+[u S981 . 1 `S969 1 . 1 0 `S978 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES981  1 e 1 @4006 ]
 "2966
 [v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
 "2972
@@ -381,38 +382,38 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "4474
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S1100 . 1 `uc 1 . 1 0 :1:0 
+[s S1101 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "4518
-[s S1103 . 1 `uc 1 ADON 1 0 :1:0 
+[s S1104 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 ]
-[s S1107 . 1 `uc 1 . 1 0 :1:0 
+[s S1108 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S1114 . 1 `uc 1 . 1 0 :1:0 
+[s S1115 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S1117 . 1 `uc 1 . 1 0 :1:0 
+[s S1118 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S1120 . 1 `uc 1 . 1 0 :1:0 
+[s S1121 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S1123 . 1 `uc 1 . 1 0 :1:0 
+[s S1124 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S1126 . 1 `uc 1 . 1 0 :1:0 
+[s S1127 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S1129 . 1 `S1100 1 . 1 0 `S1103 1 . 1 0 `S1107 1 . 1 0 `S1114 1 . 1 0 `S1117 1 . 1 0 `S1120 1 . 1 0 `S1123 1 . 1 0 `S1126 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES1129  1 e 1 @4034 ]
+[u S1130 . 1 `S1101 1 . 1 0 `S1104 1 . 1 0 `S1108 1 . 1 0 `S1115 1 . 1 0 `S1118 1 . 1 0 `S1121 1 . 1 0 `S1124 1 . 1 0 `S1127 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES1130  1 e 1 @4034 ]
 "4592
 [v _ADRES ADRES `VEus  1 e 2 @4035 ]
 "4604
@@ -597,7 +598,7 @@
 [v main@sodaLoad sodaLoad `i  1 a 2 2 ]
 "141
 [v main@soupLoad soupLoad `i  1 a 2 0 ]
-"585
+"576
 } 0
 "89 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
 [v _updateTime updateTime `(v  1 e 1 0 ]
@@ -792,17 +793,17 @@
 [v calibrateWheels@prev prev `i  1 a 2 23 ]
 "61
 } 0
-"157 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"168 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _updateS3 updateS3 `(v  1 e 1 0 ]
 {
 [v updateS3@mode mode `i  1 p 2 20 ]
-"203
+"214
 } 0
-"55
+"66
 [v _updateS1 updateS1 `(v  1 e 1 0 ]
 {
 [v updateS1@mode mode `i  1 p 2 20 ]
-"108
+"119
 } 0
 "24 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\logic.c
 [v _startTMR1 startTMR1 `(i  1 e 2 0 ]
@@ -856,16 +857,28 @@
 [v eepromRead@address address `c  1 a 1 22 ]
 "41
 } 0
-"48 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"11
+[v ___awmod@sign sign `uc  1 a 1 25 ]
+[v ___awmod@counter counter `uc  1 a 1 24 ]
+"8
+[v ___awmod@dividend dividend `i  1 p 2 20 ]
+[v ___awmod@divisor divisor `i  1 p 2 22 ]
+"35
+} 0
+"60 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _PWM2off PWM2off `(v  1 e 1 0 ]
 {
-"53
+"64
 } 0
 "34
 [v _PWM2 PWM2 `(v  1 e 1 0 ]
 {
 [v PWM2@duty duty `i  1 p 2 20 ]
-"46
+[v PWM2@dir dir `i  1 p 2 22 ]
+"58
 } 0
 "28
 [v _PWM1off PWM1off `(v  1 e 1 0 ]
@@ -883,37 +896,35 @@
 {
 "84
 } 0
-"157 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"168 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v i2_updateS3 updateS3 `(v  1 e 1 0 ]
 {
 [v i2updateS3@mode mode `i  1 p 2 0 ]
-"203
+"214
 } 0
-"55
+"66
 [v i2_updateS1 updateS1 `(v  1 e 1 0 ]
 {
 [v i2updateS1@mode mode `i  1 p 2 0 ]
-"108
+"119
 } 0
 "24 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\logic.c
 [v i2_startTMR1 startTMR1 `(i  1 e 2 0 ]
 {
 "29
 } 0
-"110 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
+[v i2___awmod __awmod `(i  1 e 2 0 ]
+{
+[v i2___awmod@sign __awmod `uc  1 a 1 5 ]
+[v i2___awmod@counter __awmod `uc  1 a 1 4 ]
+[v i2___awmod@dividend dividend `i  1 p 2 0 ]
+[v i2___awmod@divisor divisor `i  1 p 2 2 ]
+"35
+} 0
+"121 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _updateS2 updateS2 `(v  1 e 1 0 ]
 {
 [v updateS2@mode mode `i  1 p 2 0 ]
-"155
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
-{
-"11
-[v ___awmod@sign sign `uc  1 a 1 5 ]
-[v ___awmod@counter counter `uc  1 a 1 4 ]
-"8
-[v ___awmod@dividend dividend `i  1 p 2 0 ]
-[v ___awmod@divisor divisor `i  1 p 2 2 ]
-"35
+"166
 } 0

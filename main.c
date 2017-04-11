@@ -88,7 +88,7 @@ void initialize(void){
     OSCCON = 0xF0; //8MHz
     OSCTUNEbits.PLLEN = 1; // Enable PLL for the internal oscillator, Processor now runs at 32MHZ
 
-    TRISA = 0b11101111;   //All output
+    TRISA = 0b00101111;   //
     TRISB = 0b11110010; // Set Keypad Pins as input, rest are output
     TRISC = 0b00000000; // -,-,-,I2C, I2C, DC motor, -, -
                         //Set I2C pins as input, rest are output
@@ -200,7 +200,7 @@ int main(void) {
                 }                
                 S2mode = 4;
                 calibrateWheels();                
-                PWM2(600);
+                PWM2(drumSpeed, 1); //CW
                 PWM1(400);
                 
                 keypress = NULL;  
@@ -220,25 +220,18 @@ int main(void) {
         }
         else if(standby == 2){ //testing components
             // <editor-fold defaultstate="collapsed" desc="Testing Components">
-            keypress = NULL; 
-            
-            keypress = NULL;
+                        
             lcd_clear();
-            printf("testing Sf slow");
-            while(keypress!=NULL){ 
-                keyinterrupt();
-                updateS1(1);
-                updateS3(1);
-            }
-            
-            keypress = NULL;
+            printf("testing PWM2 CW");
+            PWM2(drumSpeed, 1);                     
+            keycheck();
+                        
             lcd_clear();
-            printf("testing Sb slow");
-            while(keypress!=NULL){ 
-                keyinterrupt();
-                updateS1(2);
-                updateS3(2);
-            }
+            printf("testing PWM2 CCW");
+            PWM2(drumSpeed, 2);
+            keycheck();
+            
+            PWM2off();
             
             lcd_clear();
             printf("testing S f");
@@ -323,12 +316,6 @@ int main(void) {
                 lcd_newline();
                 printf("%x", ADRES);
             }
-
-            lcd_clear();
-            printf("testing PWM2");
-            PWM2(400);
-            keycheck();
-            PWM2off();
 
             lcd_clear();
             printf("testing PWM1");
@@ -558,9 +545,13 @@ int main(void) {
                     S2mode = 4; //arm steady   
                 }
                 // </editor-fold>
+                
+                if(seconds%12==10){PWM2(drumSpeed,2);}
+                else if(seconds%12 == 0){PWM2(drumSpeed, 1);}
 
                 keyinterrupt();
             }while(/*((seconds -prevSoupLoad) > 10 && (seconds-prevSodaLoad) > 10)||*/keypress==NULL);   
+            
             standby = 1;   
             PWM2off();
             PWM1off();

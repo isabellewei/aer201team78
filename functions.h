@@ -28,11 +28,13 @@ void updateTime(void);
 //motors
 void PWM1(int duty);
 void PWM1off();
-void PWM2(int duty);
+void PWM2(int duty, int dir);
 void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);
 void updateS3(int mode);
+//void drumCW(void);
+//void drumCCW(void);
 
 
 //interface
