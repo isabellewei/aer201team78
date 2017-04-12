@@ -3822,12 +3822,13 @@ void updateTime(void);
 void PWM1(int duty);
 void PWM1off();
 void PWM2(int duty, int dir);
+void PWM2slow(int duty);
 void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);
 void updateS3(int mode);
 
-# 41
+# 42
 signed char eepromRead(signed char address);
 void eepromWrite(signed char address, signed char data);
 void displayLog(int run);
@@ -3850,6 +3851,7 @@ extern int s3;
 extern int t3;
 extern int s1;
 extern int t;
+extern int s2;
 
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdint.h"
 typedef signed char int8_t;
@@ -3986,6 +3988,15 @@ LATAbits.LATA6 = 0;
 LATAbits.LATA7 = 1;
 }
 
+}
+
+void PWM2slow(int duty){
+CCP2CONbits.DC2B0 = duty & 1;
+CCP2CONbits.DC2B1 = (duty >> 1) & 1;
+CCPR2L = (duty >> 2);
+
+LATAbits.LATA6 = 1;
+LATAbits.LATA7 = 0;
 }
 
 void PWM2off(){

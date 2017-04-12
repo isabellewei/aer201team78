@@ -23,6 +23,7 @@ extern int s3;
 extern int t3;
 extern int s1;
 extern int t;
+extern int s2;
 
 
 //LCD Control Registers
@@ -53,7 +54,7 @@ extern int t;
 #define S3_3        LATAbits.LATA4
 #define S3_4        LATDbits.LATD0
 
-#define drumSpeed   800
+#define drumSpeed   900
 
 //analog input channels
 #define tab         3

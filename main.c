@@ -52,13 +52,13 @@ void interrupt handler(void) {
         sodaSteps ++;
         
         if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
-           ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 300)))){
+           ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 350)))){
             if(sodaAlign == 1){sodaAlign = 2;}
             else{sodaAlign = 1;}  
             sodaI++;
         }
                 
-        if(soupSteps == (soupI*(soupI+1)/2*100 + 400)){
+        if(soupSteps == (soupI*(soupI+1)/2*100 + 420)){
             if(soupAlign == 1){soupAlign = 2;}
             else{soupAlign = 1;}
             soupI ++;
@@ -356,7 +356,7 @@ int main(void) {
         } 
         else{ //sorting mode  
             do{
-                lcd_clear();
+                //lcd_clear();
                 // <editor-fold defaultstate="collapsed" desc="soup can path">
                 readADC(IR3);
                 if(ADRES <= canThresh){
@@ -369,51 +369,51 @@ int main(void) {
                     }
                 }   
 
-                printf("soup: %x %d", ADRES, soupSteps);
+                //printf("soup: %x %d", ADRES, soupSteps);
 
                 if (soupSort){    
-                    if (soupSteps < 80){
+                    if (soupSteps < 120){
                         readADC(label);                
                         if(ADRES<0x200){labelState = 1;} //no label 
-                        printf(" %x",ADRES);
+                        //printf(" %x",ADRES);
                     }
                     else if (labelState == 1){ //no label
-                        if(soupSteps < (80+70)){
+                        if(soupSteps < (120+70)){
                             S1mode = 1;
                             soupCnt = 0;
                         }
-                        else if(soupSteps < (80+70+55)){
+                        else if(soupSteps < (120+70+55)){
                             S1mode = 2;     
                             soupAlign = 2;
                             soupI = 1;
                         }
                         else{
                             S1mode = 4;  
-                            printf(" %d", soupAlign);
+                            //printf(" %d", soupAlign);
                             updateS1(soupAlign);
                             readADC(IR1);                        
-                            printf(" %x", ADRES);
+                            //printf(" %x", ADRES);
                             if (ADRES < prevSoupIR && ADRES > wheelThresh){labelState = 101;}
                             prevSoupIR = ADRES;
 
                         }
                     }
                     else if(labelState == 0){ //label
-                        if(soupSteps < (80+70)){
+                        if(soupSteps < (120+70)){
                             S1mode = 2;     
                             soupCnt = 0;
                         }
-                        else if(soupSteps < (80+70+58)){
+                        else if(soupSteps < (120+70+58)){
                             S1mode = 1;    
                             soupAlign = 1;
                             soupI = 1;
                         }
                         else{
                             S1mode = 4;
-                            printf(" %d", soupAlign);
+                            //printf(" %d", soupAlign);
                             updateS1(soupAlign);
                             readADC(IR1);                       
-                            printf(" %x", ADRES);
+                            //printf(" %x", ADRES);
                             if(ADRES < prevSoupIR && ADRES > wheelThresh){labelState = 100;}
                             prevSoupIR = ADRES;
                         }
@@ -446,7 +446,7 @@ int main(void) {
                     }
                 }                          
 
-                printf("soda: %x %d", ADRES, sodaSteps);
+                //printf("soda: %x %d", ADRES, sodaSteps);
 
                 if (sodaSort){
                     if(sodaSteps < 48){
@@ -466,11 +466,19 @@ int main(void) {
                         S2mode = 0;
                         readADC(tab);                
                         if(ADRESH<=1){tabState = 1;} //tab
-                        printf(" %x",ADRESH);
+                        //printf(" %x",ADRESH);
+                        s2 = 1;
+                    }
+                    else if (sodaSteps < (48+43+10+15+4)){ //bring arm out
+                        S3mode = 4; //motor steady
+                        S2mode = 1;    
+                        readADC(tab);                
+                        if(ADRESH<=1){tabState = 1;} //tab
+                        //printf(" %x",ADRESH);
                     }
                     else if (sodaSteps < (48+43+10+15+14)){ //bring arm out
                         S3mode = 4; //motor steady
-                        S2mode = 2; //arm out                        
+                        S2mode = 2;                         
                     }
                     else if (tabState == 1){ //tab
                         if(sodaSteps < (48+43+10+15+14+30)){ //sort                        
@@ -478,7 +486,7 @@ int main(void) {
                             S2mode = 4;  //arm steady
                             sodaCnt = 0;                        
                         }
-                        else if(sodaSteps < (48+43+10+15+14+30+50)){ //return                    
+                        else if(sodaSteps < (48+43+10+15+14+30+55)){ //return                    
                             S3mode = 2;  //motor inwards
                             S2mode = 4;  //arm steady
                             sodaAlign = 2;
@@ -491,7 +499,7 @@ int main(void) {
                             readADC(IR4);
                             if(ADRES <prevSodaIR && ADRES > wheelThresh){tabState = 101;}
                             prevSodaIR = ADRES;
-                            printf(" %x", ADRES);
+                            //printf(" %x", ADRES);
                         }
                     }
                     else if(tabState == 0){ //no tab
@@ -513,7 +521,7 @@ int main(void) {
                             readADC(IR4);
                             if(ADRES <prevSodaIR && ADRES > wheelThresh){tabState = 100;}
                             prevSodaIR = ADRES;
-                            printf(" %x", ADRES);
+                            //printf(" %x", ADRES);
                         }
                     }
                     else{
@@ -530,12 +538,13 @@ int main(void) {
                 }
                 // </editor-fold>
                 
-                if(seconds%6==4){PWM2(drumSpeed,2);}         //CCW
-                else if(seconds%6 == 0){PWM2(drumSpeed, 1);} //CW
+                if(seconds%7==2){PWM2slow(750);} 
+                else if(seconds%7==5){PWM2(drumSpeed,2);}         //CCW
+                else if(seconds%7 == 0){PWM2(drumSpeed, 1);} //CW
 
                 keyinterrupt();
             }while(keypress==NULL &&
-                   ((seconds -prevSoupLoad) < 10 || (seconds-prevSodaLoad) < 10)
+                   ((seconds -prevSoupLoad) < 13 || (seconds-prevSodaLoad) < 13)
                     && seconds < 180);   
             
             standby = 1;   

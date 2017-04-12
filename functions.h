@@ -29,6 +29,7 @@ void updateTime(void);
 void PWM1(int duty);
 void PWM1off();
 void PWM2(int duty, int dir);
+void PWM2slow(int duty);
 void PWM2off();
 void updateS1(int mode);
 void updateS2(int mode);

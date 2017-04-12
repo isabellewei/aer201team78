@@ -57,6 +57,15 @@ void PWM2(int duty, int dir){ //1:CW, 2:CCW
         
 }
 
+void PWM2slow(int duty){ //CW
+    CCP2CONbits.DC2B0 = duty & 1; //set low bit
+    CCP2CONbits.DC2B1 = (duty >> 1) & 1;  //set second lowest
+    CCPR2L = (duty >> 2); //set highest eight
+          
+    LATAbits.LATA6 = 1;
+    LATAbits.LATA7 = 0;     
+}
+
 void PWM2off(){
     CCP2CONbits.DC2B0 = 0;
     CCP2CONbits.DC2B1 = 0;

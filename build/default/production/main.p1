@@ -25,11 +25,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
 "7574
 [v _TMR1IF `Vb ~T0 @X0 0 e@31984 ]
-"33 functions.h
+"34 functions.h
 [v _updateS1 `(v ~T0 @X0 0 ef1`i ]
-"34
-[v _updateS2 `(v ~T0 @X0 0 ef1`i ]
 "35
+[v _updateS2 `(v ~T0 @X0 0 ef1`i ]
+"36
 [v _updateS3 `(v ~T0 @X0 0 ef1`i ]
 "7578 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _TMR1ON `Vb ~T0 @X0 0 e@32360 ]
@@ -132,15 +132,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "26 functions.h
 [v _updateTime `(v ~T0 @X0 0 ef ]
-"44
+"45
 [v _homescreen `(v ~T0 @X0 0 ef ]
-"48
+"49
 [v _keyinterrupt `(v ~T0 @X0 0 ef ]
 "12
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"54 functions.h
+"55 functions.h
 [v _calibrateWheels `(v ~T0 @X0 0 ef ]
 "24 declarations.h
 [v _s1 `i ~T0 @X0 0 e ]
@@ -150,11 +150,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PWM2 `(v ~T0 @X0 0 ef2`i`i ]
 "29
 [v _PWM1 `(v ~T0 @X0 0 ef1`i ]
-"43
+"44
 [v _displayLog `(v ~T0 @X0 0 ef1`i ]
-"47
+"48
 [v _keycheck `(v ~T0 @X0 0 ef ]
-"32
+"33
 [v _PWM2off `(v ~T0 @X0 0 ef ]
 "1211 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [s S47 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -178,7 +178,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S40 . . . ]
 "1010
 [v _LATBbits `VS40 ~T0 @X0 0 e@3978 ]
-"52 functions.h
+"53 functions.h
 [v _readADC `(v ~T0 @X0 0 ef1`uc ]
 "4592 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _ADRES `Vus ~T0 @X0 0 e@4035 ]
@@ -219,7 +219,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PWM1off `(v ~T0 @X0 0 ef ]
 "4604 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
-"46 functions.h
+"26 declarations.h
+[v _s2 `i ~T0 @X0 0 e ]
+"32 functions.h
+[v _PWM2slow `(v ~T0 @X0 0 ef1`i ]
+"47
 [v _addRun `(v ~T0 @X0 0 ef11`i`i`i`i`i`i`i`i`i`i`i ]
 "9 configBits.h
 [p x OSC=INTIO67 ]
@@ -3090,27 +3094,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 29: void PWM1(int duty);
 [; ;functions.h: 30: void PWM1off();
 [; ;functions.h: 31: void PWM2(int duty, int dir);
-[; ;functions.h: 32: void PWM2off();
-[; ;functions.h: 33: void updateS1(int mode);
-[; ;functions.h: 34: void updateS2(int mode);
-[; ;functions.h: 35: void updateS3(int mode);
-[; ;functions.h: 41: signed char eepromRead(signed char address);
-[; ;functions.h: 42: void eepromWrite(signed char address, signed char data);
-[; ;functions.h: 43: void displayLog(int run);
-[; ;functions.h: 44: void homescreen(void);
-[; ;functions.h: 46: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
-[; ;functions.h: 47: void keycheck(void);
-[; ;functions.h: 48: void keyinterrupt(void);
-[; ;functions.h: 51: int timePassed(int start);
-[; ;functions.h: 52: void readADC(char channel);
-[; ;functions.h: 53: void startTMR3(void);
-[; ;functions.h: 54: void calibrateWheels(void);
+[; ;functions.h: 32: void PWM2slow(int duty);
+[; ;functions.h: 33: void PWM2off();
+[; ;functions.h: 34: void updateS1(int mode);
+[; ;functions.h: 35: void updateS2(int mode);
+[; ;functions.h: 36: void updateS3(int mode);
+[; ;functions.h: 42: signed char eepromRead(signed char address);
+[; ;functions.h: 43: void eepromWrite(signed char address, signed char data);
+[; ;functions.h: 44: void displayLog(int run);
+[; ;functions.h: 45: void homescreen(void);
+[; ;functions.h: 47: void addRun(int dur, int year, int month, int date, int hours, int mins, int secs, int sodaT, int sodaNT, int soupL, int soupNL);
+[; ;functions.h: 48: void keycheck(void);
+[; ;functions.h: 49: void keyinterrupt(void);
+[; ;functions.h: 52: int timePassed(int start);
+[; ;functions.h: 53: void readADC(char channel);
+[; ;functions.h: 54: void startTMR3(void);
+[; ;functions.h: 55: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
 [; ;declarations.h: 22: extern int s3;
 [; ;declarations.h: 23: extern int t3;
 [; ;declarations.h: 24: extern int s1;
 [; ;declarations.h: 25: extern int t;
+[; ;declarations.h: 26: extern int s2;
 "12 main.c
 [v _keys `Cuc ~T0 @X0 -> 0 `x e ]
 [i _keys
@@ -3204,9 +3210,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "28
 [v _sodaCnt `i ~T0 @X0 1 e ]
 [; ;main.c: 28: int sodaCnt;
-[v F3241 `(v ~T0 @X0 1 tf ]
+[v F3244 `(v ~T0 @X0 1 tf ]
 "31
-[v _handler `IF3241 ~T0 @X0 1 e ]
+[v _handler `IF3244 ~T0 @X0 1 e ]
 {
 [; ;main.c: 31: void interrupt handler(void) {
 [e :U _handler ]
@@ -3266,9 +3272,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "52
 [e ++ _sodaSteps -> 1 `i ]
 [; ;main.c: 54: if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
-[; ;main.c: 55: ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 300)))){
+[; ;main.c: 55: ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 350)))){
 "55
-[e $ ! || && == _tabState -> 0 `i == _sodaSteps + * / * _sodaI + _sodaI -> 2 `i -> 2 `i -> 100 `i -> 500 `i && == _tabState -> 1 `i == _sodaSteps + * / * _sodaI + _sodaI -> 1 `i -> 2 `i -> 100 `i -> 300 `i 273  ]
+[e $ ! || && == _tabState -> 0 `i == _sodaSteps + * / * _sodaI + _sodaI -> 2 `i -> 2 `i -> 100 `i -> 500 `i && == _tabState -> 1 `i == _sodaSteps + * / * _sodaI + _sodaI -> 1 `i -> 2 `i -> 100 `i -> 350 `i 273  ]
 {
 [; ;main.c: 56: if(sodaAlign == 1){sodaAlign = 2;}
 "56
@@ -3291,9 +3297,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 273 ]
 [; ;main.c: 59: }
-[; ;main.c: 61: if(soupSteps == (soupI*(soupI+1)/2*100 + 400)){
+[; ;main.c: 61: if(soupSteps == (soupI*(soupI+1)/2*100 + 420)){
 "61
-[e $ ! == _soupSteps + * / * _soupI + _soupI -> 1 `i -> 2 `i -> 100 `i -> 400 `i 276  ]
+[e $ ! == _soupSteps + * / * _soupI + _soupI -> 1 `i -> 2 `i -> 100 `i -> 420 `i 276  ]
 {
 [; ;main.c: 62: if(soupAlign == 1){soupAlign = 2;}
 "62
@@ -3646,9 +3652,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _S3mode -> 5 `i ]
 }
 [e :U 295 ]
-[; ;main.c: 190: PWM2(800, 1);
+[; ;main.c: 190: PWM2(900, 1);
 "190
-[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
+[e ( _PWM2 (2 , -> 900 `i -> 1 `i ]
 [; ;main.c: 191: PWM1(400);
 "191
 [e ( _PWM1 (1 -> 400 `i ]
@@ -3713,9 +3719,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 212: printf("testing PWM2 CW");
 "212
 [e ( _printf :s 3C ]
-[; ;main.c: 213: PWM2(800, 1);
+[; ;main.c: 213: PWM2(900, 1);
 "213
-[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
+[e ( _PWM2 (2 , -> 900 `i -> 1 `i ]
 [; ;main.c: 214: keycheck();
 "214
 [e ( _keycheck ..  ]
@@ -3726,9 +3732,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 217: printf("testing PWM2 CCW");
 "217
 [e ( _printf :s 4C ]
-[; ;main.c: 218: PWM2(800, 2);
+[; ;main.c: 218: PWM2(900, 2);
 "218
-[e ( _PWM2 (2 , -> 800 `i -> 2 `i ]
+[e ( _PWM2 (2 , -> 900 `i -> 2 `i ]
 [; ;main.c: 219: keycheck();
 "219
 [e ( _keycheck ..  ]
@@ -4206,10 +4212,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "358
 [e :U 344 ]
 {
-[; ;main.c: 359: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"359
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 [; ;main.c: 361: readADC(2);
 "361
 [e ( _readADC (1 -> -> 2 `i `uc ]
@@ -4244,16 +4246,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 345 ]
 [; ;main.c: 369: }
 [; ;main.c: 370: }
-[; ;main.c: 372: printf("soup: %x %d", ADRES, soupSteps);
-"372
-[e ( _printf , , (. :s 22C -> _ADRES `i _soupSteps ]
 [; ;main.c: 374: if (soupSort){
 "374
 [e $ ! != _soupSort -> 0 `i 347  ]
 {
-[; ;main.c: 375: if (soupSteps < 80){
+[; ;main.c: 375: if (soupSteps < 120){
 "375
-[e $ ! < _soupSteps -> 80 `i 348  ]
+[e $ ! < _soupSteps -> 120 `i 348  ]
 {
 [; ;main.c: 376: readADC(4);
 "376
@@ -4265,9 +4264,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _labelState -> 1 `i ]
 }
 [e :U 349 ]
-[; ;main.c: 378: printf(" %x",ADRES);
-"378
-[e ( _printf , (. :s 23C -> _ADRES `i ]
 "379
 }
 [; ;main.c: 379: }
@@ -4277,9 +4273,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 380: else if (labelState == 1){
 [e $ ! == _labelState -> 1 `i 351  ]
 {
-[; ;main.c: 381: if(soupSteps < (80+70)){
+[; ;main.c: 381: if(soupSteps < (120+70)){
 "381
-[e $ ! < _soupSteps + -> 80 `i -> 70 `i 352  ]
+[e $ ! < _soupSteps + -> 120 `i -> 70 `i 352  ]
 {
 [; ;main.c: 382: S1mode = 1;
 "382
@@ -4293,8 +4289,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 353  ]
 "385
 [e :U 352 ]
-[; ;main.c: 385: else if(soupSteps < (80+70+55)){
-[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 55 `i 354  ]
+[; ;main.c: 385: else if(soupSteps < (120+70+55)){
+[e $ ! < _soupSteps + + -> 120 `i -> 70 `i -> 55 `i 354  ]
 {
 [; ;main.c: 386: S1mode = 2;
 "386
@@ -4316,18 +4312,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 391: S1mode = 4;
 "391
 [e = _S1mode -> 4 `i ]
-[; ;main.c: 392: printf(" %d", soupAlign);
-"392
-[e ( _printf , (. :s 24C _soupAlign ]
 [; ;main.c: 393: updateS1(soupAlign);
 "393
 [e ( _updateS1 (1 _soupAlign ]
 [; ;main.c: 394: readADC(1);
 "394
 [e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 395: printf(" %x", ADRES);
-"395
-[e ( _printf , (. :s 25C -> _ADRES `i ]
 [; ;main.c: 396: if (ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 101;}
 "396
 [e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 356  ]
@@ -4352,9 +4342,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 401: else if(labelState == 0){
 [e $ ! == _labelState -> 0 `i 358  ]
 {
-[; ;main.c: 402: if(soupSteps < (80+70)){
+[; ;main.c: 402: if(soupSteps < (120+70)){
 "402
-[e $ ! < _soupSteps + -> 80 `i -> 70 `i 359  ]
+[e $ ! < _soupSteps + -> 120 `i -> 70 `i 359  ]
 {
 [; ;main.c: 403: S1mode = 2;
 "403
@@ -4368,8 +4358,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 360  ]
 "406
 [e :U 359 ]
-[; ;main.c: 406: else if(soupSteps < (80+70+58)){
-[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 58 `i 361  ]
+[; ;main.c: 406: else if(soupSteps < (120+70+58)){
+[e $ ! < _soupSteps + + -> 120 `i -> 70 `i -> 58 `i 361  ]
 {
 [; ;main.c: 407: S1mode = 1;
 "407
@@ -4391,18 +4381,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 412: S1mode = 4;
 "412
 [e = _S1mode -> 4 `i ]
-[; ;main.c: 413: printf(" %d", soupAlign);
-"413
-[e ( _printf , (. :s 26C _soupAlign ]
 [; ;main.c: 414: updateS1(soupAlign);
 "414
 [e ( _updateS1 (1 _soupAlign ]
 [; ;main.c: 415: readADC(1);
 "415
 [e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 416: printf(" %x", ADRES);
-"416
-[e ( _printf , (. :s 27C -> _ADRES `i ]
 [; ;main.c: 417: if(ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 100;}
 "417
 [e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 363  ]
@@ -4519,9 +4503,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 371 ]
 [; ;main.c: 446: }
 [; ;main.c: 447: }
-[; ;main.c: 449: printf("soda: %x %d", ADRES, sodaSteps);
-"449
-[e ( _printf , , (. :s 28C -> _ADRES `i _sodaSteps ]
 [; ;main.c: 451: if (sodaSort){
 "451
 [e $ ! != _sodaSort -> 0 `i 373  ]
@@ -4585,369 +4566,388 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _tabState -> 1 `i ]
 }
 [e :U 381 ]
-[; ;main.c: 469: printf(" %x",ADRESH);
-"469
-[e ( _printf , (. :s 29C -> _ADRESH `i ]
+[; ;main.c: 470: s2 = 1;
 "470
-}
-[; ;main.c: 470: }
-[e $U 382  ]
+[e = _s2 -> 1 `i ]
 "471
-[e :U 380 ]
-[; ;main.c: 471: else if (sodaSteps < (48+43+10+15+14)){
-[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i 383  ]
-{
-[; ;main.c: 472: S3mode = 4;
+}
+[; ;main.c: 471: }
+[e $U 382  ]
 "472
-[e = _S3mode -> 4 `i ]
-[; ;main.c: 473: S2mode = 2;
+[e :U 380 ]
+[; ;main.c: 472: else if (sodaSteps < (48+43+10+15+4)){
+[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 4 `i 383  ]
+{
+[; ;main.c: 473: S3mode = 4;
 "473
-[e = _S2mode -> 2 `i ]
-"474
-}
-[; ;main.c: 474: }
-[e $U 384  ]
-"475
-[e :U 383 ]
-[; ;main.c: 475: else if (tabState == 1){
-[e $ ! == _tabState -> 1 `i 385  ]
-{
-[; ;main.c: 476: if(sodaSteps < (48+43+10+15+14+30)){
-"476
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i 386  ]
-{
-[; ;main.c: 477: S3mode = 1;
-"477
-[e = _S3mode -> 1 `i ]
-[; ;main.c: 478: S2mode = 4;
-"478
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 479: sodaCnt = 0;
-"479
-[e = _sodaCnt -> 0 `i ]
-"480
-}
-[; ;main.c: 480: }
-[e $U 387  ]
-"481
-[e :U 386 ]
-[; ;main.c: 481: else if(sodaSteps < (48+43+10+15+14+30+50)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i -> 50 `i 388  ]
-{
-[; ;main.c: 482: S3mode = 2;
-"482
-[e = _S3mode -> 2 `i ]
-[; ;main.c: 483: S2mode = 4;
-"483
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 484: sodaAlign = 2;
-"484
-[e = _sodaAlign -> 2 `i ]
-[; ;main.c: 485: sodaI = 1;
-"485
-[e = _sodaI -> 1 `i ]
-"486
-}
-[; ;main.c: 486: }
-[e $U 389  ]
-"487
-[e :U 388 ]
-[; ;main.c: 487: else {
-{
-[; ;main.c: 488: S2mode = 4;
-"488
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 489: S3mode = 4;
-"489
 [e = _S3mode -> 4 `i ]
-[; ;main.c: 490: updateS3(sodaAlign);
+[; ;main.c: 474: S2mode = 1;
+"474
+[e = _S2mode -> 1 `i ]
+[; ;main.c: 475: readADC(3);
+"475
+[e ( _readADC (1 -> -> 3 `i `uc ]
+[; ;main.c: 476: if(ADRESH<=1){tabState = 1;}
+"476
+[e $ ! <= -> _ADRESH `i -> 1 `i 384  ]
+{
+[e = _tabState -> 1 `i ]
+}
+[e :U 384 ]
+"478
+}
+[; ;main.c: 478: }
+[e $U 385  ]
+"479
+[e :U 383 ]
+[; ;main.c: 479: else if (sodaSteps < (48+43+10+15+14)){
+[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i 386  ]
+{
+[; ;main.c: 480: S3mode = 4;
+"480
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 481: S2mode = 2;
+"481
+[e = _S2mode -> 2 `i ]
+"482
+}
+[; ;main.c: 482: }
+[e $U 387  ]
+"483
+[e :U 386 ]
+[; ;main.c: 483: else if (tabState == 1){
+[e $ ! == _tabState -> 1 `i 388  ]
+{
+[; ;main.c: 484: if(sodaSteps < (48+43+10+15+14+30)){
+"484
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i 389  ]
+{
+[; ;main.c: 485: S3mode = 1;
+"485
+[e = _S3mode -> 1 `i ]
+[; ;main.c: 486: S2mode = 4;
+"486
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 487: sodaCnt = 0;
+"487
+[e = _sodaCnt -> 0 `i ]
+"488
+}
+[; ;main.c: 488: }
+[e $U 390  ]
+"489
+[e :U 389 ]
+[; ;main.c: 489: else if(sodaSteps < (48+43+10+15+14+30+55)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i -> 55 `i 391  ]
+{
+[; ;main.c: 490: S3mode = 2;
 "490
-[e ( _updateS3 (1 _sodaAlign ]
-[; ;main.c: 491: readADC(5);
+[e = _S3mode -> 2 `i ]
+[; ;main.c: 491: S2mode = 4;
 "491
-[e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 492: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 492: sodaAlign = 2;
 "492
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 390  ]
+[e = _sodaAlign -> 2 `i ]
+[; ;main.c: 493: sodaI = 1;
+"493
+[e = _sodaI -> 1 `i ]
+"494
+}
+[; ;main.c: 494: }
+[e $U 392  ]
+"495
+[e :U 391 ]
+[; ;main.c: 495: else {
+{
+[; ;main.c: 496: S2mode = 4;
+"496
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 497: S3mode = 4;
+"497
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 498: updateS3(sodaAlign);
+"498
+[e ( _updateS3 (1 _sodaAlign ]
+[; ;main.c: 499: readADC(5);
+"499
+[e ( _readADC (1 -> -> 5 `i `uc ]
+[; ;main.c: 500: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
+"500
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 393  ]
 {
 [e = _tabState -> 101 `i ]
 }
-[e :U 390 ]
-[; ;main.c: 493: prevSodaIR = ADRES;
-"493
-[e = _prevSodaIR -> _ADRES `i ]
-[; ;main.c: 494: printf(" %x", ADRES);
-"494
-[e ( _printf , (. :s 30C -> _ADRES `i ]
-"495
-}
-[e :U 389 ]
-[e :U 387 ]
-"496
-}
-[; ;main.c: 495: }
-[; ;main.c: 496: }
-[e $U 391  ]
-"497
-[e :U 385 ]
-[; ;main.c: 497: else if(tabState == 0){
-[e $ ! == _tabState -> 0 `i 392  ]
-{
-[; ;main.c: 498: if(sodaSteps < (48+43+10+15+14+(43+75))){
-"498
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i 393  ]
-{
-[; ;main.c: 499: S3mode = 2;
-"499
-[e = _S3mode -> 2 `i ]
-[; ;main.c: 500: S2mode = 4;
-"500
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 501: sodaCnt = 0;
-"501
-[e = _sodaCnt -> 0 `i ]
-"502
-}
-[; ;main.c: 502: }
-[e $U 394  ]
-"503
 [e :U 393 ]
-[; ;main.c: 503: else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i -> 65 `i 395  ]
-{
-[; ;main.c: 504: S3mode = 1;
-"504
-[e = _S3mode -> 1 `i ]
-[; ;main.c: 505: S2mode = 4;
-"505
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 506: sodaAlign = 1;
-"506
-[e = _sodaAlign -> 1 `i ]
-[; ;main.c: 507: sodaI = 1;
-"507
-[e = _sodaI -> 1 `i ]
-"508
+[; ;main.c: 501: prevSodaIR = ADRES;
+"501
+[e = _prevSodaIR -> _ADRES `i ]
+"503
 }
-[; ;main.c: 508: }
-[e $U 396  ]
-"509
-[e :U 395 ]
-[; ;main.c: 509: else {
+[e :U 392 ]
+[e :U 390 ]
+"504
+}
+[; ;main.c: 503: }
+[; ;main.c: 504: }
+[e $U 394  ]
+"505
+[e :U 388 ]
+[; ;main.c: 505: else if(tabState == 0){
+[e $ ! == _tabState -> 0 `i 395  ]
 {
-[; ;main.c: 510: S3mode = 4;
-"510
-[e = _S3mode -> 4 `i ]
-[; ;main.c: 511: S2mode = 4;
-"511
+[; ;main.c: 506: if(sodaSteps < (48+43+10+15+14+(43+75))){
+"506
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i 396  ]
+{
+[; ;main.c: 507: S3mode = 2;
+"507
+[e = _S3mode -> 2 `i ]
+[; ;main.c: 508: S2mode = 4;
+"508
 [e = _S2mode -> 4 `i ]
-[; ;main.c: 512: updateS3(sodaAlign);
+[; ;main.c: 509: sodaCnt = 0;
+"509
+[e = _sodaCnt -> 0 `i ]
+"510
+}
+[; ;main.c: 510: }
+[e $U 397  ]
+"511
+[e :U 396 ]
+[; ;main.c: 511: else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i -> 65 `i 398  ]
+{
+[; ;main.c: 512: S3mode = 1;
 "512
-[e ( _updateS3 (1 _sodaAlign ]
-[; ;main.c: 513: readADC(5);
+[e = _S3mode -> 1 `i ]
+[; ;main.c: 513: S2mode = 4;
 "513
-[e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 514: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 100;}
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 514: sodaAlign = 1;
 "514
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 397  ]
+[e = _sodaAlign -> 1 `i ]
+[; ;main.c: 515: sodaI = 1;
+"515
+[e = _sodaI -> 1 `i ]
+"516
+}
+[; ;main.c: 516: }
+[e $U 399  ]
+"517
+[e :U 398 ]
+[; ;main.c: 517: else {
+{
+[; ;main.c: 518: S3mode = 4;
+"518
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 519: S2mode = 4;
+"519
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 520: updateS3(sodaAlign);
+"520
+[e ( _updateS3 (1 _sodaAlign ]
+[; ;main.c: 521: readADC(5);
+"521
+[e ( _readADC (1 -> -> 5 `i `uc ]
+[; ;main.c: 522: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 100;}
+"522
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 400  ]
 {
 [e = _tabState -> 100 `i ]
 }
-[e :U 397 ]
-[; ;main.c: 515: prevSodaIR = ADRES;
-"515
+[e :U 400 ]
+[; ;main.c: 523: prevSodaIR = ADRES;
+"523
 [e = _prevSodaIR -> _ADRES `i ]
-[; ;main.c: 516: printf(" %x", ADRES);
-"516
-[e ( _printf , (. :s 31C -> _ADRES `i ]
-"517
+"525
 }
-[e :U 396 ]
-[e :U 394 ]
-"518
+[e :U 399 ]
+[e :U 397 ]
+"526
 }
-[; ;main.c: 517: }
-[; ;main.c: 518: }
-[e $U 398  ]
-"519
-[e :U 392 ]
-[; ;main.c: 519: else{
+[; ;main.c: 525: }
+[; ;main.c: 526: }
+[e $U 401  ]
+"527
+[e :U 395 ]
+[; ;main.c: 527: else{
 {
-[; ;main.c: 520: if(tabState==101){sodaT++;}
-"520
-[e $ ! == _tabState -> 101 `i 399  ]
+[; ;main.c: 528: if(tabState==101){sodaT++;}
+"528
+[e $ ! == _tabState -> 101 `i 402  ]
 {
 [e ++ _sodaT -> 1 `i ]
 }
-[e $U 400  ]
-"521
-[e :U 399 ]
-[; ;main.c: 521: else if(tabState==100){sodaNT++;}
-[e $ ! == _tabState -> 100 `i 401  ]
+[e $U 403  ]
+"529
+[e :U 402 ]
+[; ;main.c: 529: else if(tabState==100){sodaNT++;}
+[e $ ! == _tabState -> 100 `i 404  ]
 {
 [e ++ _sodaNT -> 1 `i ]
 }
-[e :U 401 ]
-"522
-[e :U 400 ]
-[; ;main.c: 522: sodaSteps = 0;
+[e :U 404 ]
+"530
+[e :U 403 ]
+[; ;main.c: 530: sodaSteps = 0;
 [e = _sodaSteps -> 0 `i ]
-[; ;main.c: 523: tabState = 0;
-"523
+[; ;main.c: 531: tabState = 0;
+"531
 [e = _tabState -> 0 `i ]
-[; ;main.c: 524: prevSodaIR = 0;
-"524
+[; ;main.c: 532: prevSodaIR = 0;
+"532
 [e = _prevSodaIR -> 0 `i ]
-[; ;main.c: 525: if (sodaCnt == 0) {sodaSort = 0;}
-"525
-[e $ ! == _sodaCnt -> 0 `i 402  ]
+[; ;main.c: 533: if (sodaCnt == 0) {sodaSort = 0;}
+"533
+[e $ ! == _sodaCnt -> 0 `i 405  ]
 {
 [e = _sodaSort -> 0 `i ]
 }
-[e :U 402 ]
-[; ;main.c: 527: if(s3 == 2 || s3 == 3){S3mode = 3;}
-"527
-[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 403  ]
+[e :U 405 ]
+[; ;main.c: 535: if(s3 == 2 || s3 == 3){S3mode = 3;}
+"535
+[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 406  ]
 {
 [e = _S3mode -> 3 `i ]
 }
-[e $U 404  ]
-"528
-[e :U 403 ]
-[; ;main.c: 528: else{S3mode = 5;}
+[e $U 407  ]
+"536
+[e :U 406 ]
+[; ;main.c: 536: else{S3mode = 5;}
 {
 [e = _S3mode -> 5 `i ]
 }
-[e :U 404 ]
-"529
+[e :U 407 ]
+"537
 }
-[e :U 398 ]
-[e :U 391 ]
-[e :U 384 ]
+[e :U 401 ]
+[e :U 394 ]
+[e :U 387 ]
+[e :U 385 ]
 [e :U 382 ]
 [e :U 379 ]
 [e :U 377 ]
 [e :U 375 ]
-"530
+"538
 }
 [e :U 373 ]
-[; ;main.c: 529: }
-[; ;main.c: 530: }
-[; ;main.c: 533: if(seconds%6==4){PWM2(800,2);}
-"533
-[e $ ! == % _seconds -> 6 `i -> 4 `i 405  ]
-{
-[e ( _PWM2 (2 , -> 800 `i -> 2 `i ]
-}
-[e $U 406  ]
-"534
-[e :U 405 ]
-[; ;main.c: 534: else if(seconds%6 == 0){PWM2(800, 1);}
-[e $ ! == % _seconds -> 6 `i -> 0 `i 407  ]
-{
-[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
-}
-[e :U 407 ]
-"536
-[e :U 406 ]
-[; ;main.c: 536: keyinterrupt();
-[e ( _keyinterrupt ..  ]
-"537
-}
-[; ;main.c: 537: }while(keypress==(0) &&
-[; ;main.c: 538: ((seconds -prevSoupLoad) < 10 || (seconds-prevSodaLoad) < 10)
-[; ;main.c: 539: && seconds < 180);
-"539
-[e $ && && == -> _keypress `i -> 0 `i || < - _seconds _prevSoupLoad -> 10 `i < - _seconds _prevSodaLoad -> 10 `i < _seconds -> 180 `i 344  ]
-[e :U 343 ]
-[; ;main.c: 541: standby = 1;
+[; ;main.c: 537: }
+[; ;main.c: 538: }
+[; ;main.c: 541: if(seconds%7==2){PWM2slow(750);}
 "541
-[e = _standby -> 1 `i ]
-[; ;main.c: 542: PWM2off();
+[e $ ! == % _seconds -> 7 `i -> 2 `i 408  ]
+{
+[e ( _PWM2slow (1 -> 750 `i ]
+}
+[e $U 409  ]
 "542
-[e ( _PWM2off ..  ]
-[; ;main.c: 543: PWM1off();
+[e :U 408 ]
+[; ;main.c: 542: else if(seconds%7==5){PWM2(900,2);}
+[e $ ! == % _seconds -> 7 `i -> 5 `i 410  ]
+{
+[e ( _PWM2 (2 , -> 900 `i -> 2 `i ]
+}
+[e $U 411  ]
 "543
-[e ( _PWM1off ..  ]
-[; ;main.c: 544: S1mode = 0;
-"544
-[e = _S1mode -> 0 `i ]
-[; ;main.c: 545: S2mode = 0;
+[e :U 410 ]
+[; ;main.c: 543: else if(seconds%7 == 0){PWM2(900, 1);}
+[e $ ! == % _seconds -> 7 `i -> 0 `i 412  ]
+{
+[e ( _PWM2 (2 , -> 900 `i -> 1 `i ]
+}
+[e :U 412 ]
 "545
-[e = _S2mode -> 0 `i ]
-[; ;main.c: 546: S3mode = 0;
+[e :U 411 ]
+[e :U 409 ]
+[; ;main.c: 545: keyinterrupt();
+[e ( _keyinterrupt ..  ]
 "546
-[e = _S3mode -> 0 `i ]
-[; ;main.c: 549: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
-"549
-[e ( _addRun (4 , , , , , , , , , , _seconds -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i _sodaT _sodaNT _soupL _soupNL ]
-[; ;main.c: 551: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+}
+[; ;main.c: 546: }while(keypress==(0) &&
+[; ;main.c: 547: ((seconds -prevSoupLoad) < 13 || (seconds-prevSodaLoad) < 13)
+[; ;main.c: 548: && seconds < 180);
+"548
+[e $ && && == -> _keypress `i -> 0 `i || < - _seconds _prevSoupLoad -> 13 `i < - _seconds _prevSodaLoad -> 13 `i < _seconds -> 180 `i 344  ]
+[e :U 343 ]
+[; ;main.c: 550: standby = 1;
+"550
+[e = _standby -> 1 `i ]
+[; ;main.c: 551: PWM2off();
 "551
+[e ( _PWM2off ..  ]
+[; ;main.c: 552: PWM1off();
+"552
+[e ( _PWM1off ..  ]
+[; ;main.c: 553: S1mode = 0;
+"553
+[e = _S1mode -> 0 `i ]
+[; ;main.c: 554: S2mode = 0;
+"554
+[e = _S2mode -> 0 `i ]
+[; ;main.c: 555: S3mode = 0;
+"555
+[e = _S3mode -> 0 `i ]
+[; ;main.c: 558: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
+"558
+[e ( _addRun (4 , , , , , , , , , , _seconds -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i _sodaT _sodaNT _soupL _soupNL ]
+[; ;main.c: 560: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"560
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 552: printf("Sort done! A:No");
-"552
-[e ( _printf :s 32C ]
-[; ;main.c: 553: lcdInst(0b11000000);;
-"553
+[; ;main.c: 561: printf("Sort done! A:No");
+"561
+[e ( _printf :s 22C ]
+[; ;main.c: 562: lcdInst(0b11000000);;
+"562
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 554: printf("View Logs? B:Yes");
-"554
-[e ( _printf :s 33C ]
-[; ;main.c: 555: keycheck();
-"555
+[; ;main.c: 563: printf("View Logs? B:Yes");
+"563
+[e ( _printf :s 23C ]
+[; ;main.c: 564: keycheck();
+"564
 [e ( _keycheck ..  ]
-[; ;main.c: 556: if(keypress == 7){
-"556
-[e $ ! == -> _keypress `i -> 7 `i 408  ]
+[; ;main.c: 565: if(keypress == 7){
+"565
+[e $ ! == -> _keypress `i -> 7 `i 413  ]
 {
-[; ;main.c: 557: displayLog(1);
-"557
+[; ;main.c: 566: displayLog(1);
+"566
 [e ( _displayLog (1 -> 1 `i ]
-"558
+"567
 }
-[e :U 408 ]
-"559
+[e :U 413 ]
+"568
 }
 [e :U 341 ]
 [e :U 300 ]
-"560
+"569
 }
 [e :U 281 ]
 "150
 [e $U 282  ]
 [e :U 283 ]
-[; ;main.c: 558: }
-[; ;main.c: 559: }
-[; ;main.c: 560: }
-[; ;main.c: 561: return;
-"561
+[; ;main.c: 567: }
+[; ;main.c: 568: }
+[; ;main.c: 569: }
+[; ;main.c: 570: return;
+"570
 [e $UE 280  ]
-[; ;main.c: 562: }
-"562
+[; ;main.c: 571: }
+"571
 [e :UE 280 ]
 }
-[p f _printf 12583040 ]
-[a 23C 32 37 120 0 ]
-[a 25C 32 37 120 0 ]
-[a 27C 32 37 120 0 ]
-[a 29C 32 37 120 0 ]
-[a 30C 32 37 120 0 ]
-[a 31C 32 37 120 0 ]
+[p f _printf 12582912 ]
 [a 9C 37 120 0 ]
 [a 12C 37 120 0 ]
 [a 11C 116 101 115 116 105 110 103 32 83 51 32 112 105 110 115 0 ]
 [a 10C 116 101 115 116 105 110 103 32 83 50 32 112 105 110 115 0 ]
 [a 8C 116 101 115 116 105 110 103 32 83 49 32 112 105 110 115 0 ]
-[a 33C 86 105 101 119 32 76 111 103 115 63 32 66 58 89 101 115 0 ]
+[a 23C 86 105 101 119 32 76 111 103 115 63 32 66 58 89 101 115 0 ]
 [a 2C 65 110 121 32 107 101 121 32 116 111 32 115 116 111 112 0 ]
-[a 32C 83 111 114 116 32 100 111 110 101 33 32 65 58 78 111 0 ]
+[a 22C 83 111 114 116 32 100 111 110 101 33 32 65 58 78 111 0 ]
 [a 5C 116 101 115 116 105 110 103 32 83 32 102 0 ]
 [a 7C 116 101 115 116 105 110 103 32 83 32 115 104 97 107 101 0 ]
-[a 22C 115 111 117 112 58 32 37 120 32 37 100 0 ]
-[a 28C 115 111 100 97 58 32 37 120 32 37 100 0 ]
-[a 24C 32 37 100 0 ]
-[a 26C 32 37 100 0 ]
 [a 19C 108 97 98 101 108 32 32 32 116 97 98 0 ]
 [a 6C 116 101 115 116 105 110 103 32 83 32 98 0 ]
 [a 4C 116 101 115 116 105 110 103 32 80 87 77 50 32 67 67 87 0 ]
