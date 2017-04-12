@@ -19,9 +19,10 @@
 
 extern unsigned char time[7]; 
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 
 //LCD Control Registers
@@ -63,7 +64,7 @@ extern int t3;
 #define IR4         5   //sodaWheel
 
 #define wheelThresh     0x3aa
-#define canThresh       0x250
+#define canThresh       0x130
 
 //logic
 #define currMom()  (bcd_to_num(time[0]) + 60*bcd_to_num(time[1]) + 3600*bcd_to_num(time[2]))

@@ -3902,9 +3902,10 @@ void calibrateWheels(void);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 # 11 "lcd.c"
 void initLCD(void) {

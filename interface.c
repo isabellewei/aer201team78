@@ -91,11 +91,7 @@ void displayLog(int run){
         currRun++;
         if (currRun > 4){currRun = 1;}
     }
-    
-    lcd_clear();
-    lcd_home();
-    printf("%d %d", eepromRead(0), currRun);
-    keycheck();
+        
     lcd_clear();
     printf("Run#%d    A:Next", run);
     lcd_newline();
@@ -109,7 +105,7 @@ void displayLog(int run){
     lcd_clear();
     printf("Run#%d    A:Next", run);
     lcd_newline();
-    printf("Start: %d:%d:%d", eepromRead(currRun*0x10 + 5), eepromRead(currRun*0x10 + 6), eepromRead(currRun*0x10 + 7));
+    printf("Start: %02x:%02x:%02x", eepromRead(currRun*0x10 + 5), eepromRead(currRun*0x10 + 6), eepromRead(currRun*0x10 + 7));
     keycheck();        
     lcd_clear();
     printf("Run#%d    A:Next", run);

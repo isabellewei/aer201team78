@@ -3,9 +3,10 @@
 [d edition pro ]
 [d chip 18F4620 ]
 [d frameptr 4065 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
-[v i2___awmod __awmod `(i  1 e 2 0 ]
 "464 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\float.c
@@ -36,6 +37,7 @@
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
+[v i2___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "20 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
@@ -81,11 +83,11 @@
 [v i2_startTMR1 startTMR1 `(i  1 e 2 0 ]
 "31
 [v _calibrateWheels calibrateWheels `(v  1 e 1 0 ]
-"27 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+"31 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
 [v _handler handler `II(v  1 e 1 0 ]
-"86
+"72
 [v _initialize initialize `(v  1 e 1 0 ]
-"132
+"118
 [v _main main `(i  1 e 2 0 ]
 "14 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _PWM1 PWM1 `(v  1 e 1 0 ]
@@ -98,14 +100,14 @@
 "66
 [v _updateS1 updateS1 `(v  1 e 1 0 ]
 [v i2_updateS1 updateS1 `(v  1 e 1 0 ]
-"121
+"137
 [v _updateS2 updateS2 `(v  1 e 1 0 ]
-"168
+"182
 [v _updateS3 updateS3 `(v  1 e 1 0 ]
 [v i2_updateS3 updateS3 `(v  1 e 1 0 ]
 "185 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
-[s S895 . 1 `uc 1 RB0 1 0 :1:0 
+[s S898 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -115,7 +117,7 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "226
-[s S904 . 1 `uc 1 INT0 1 0 :1:0 
+[s S907 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 CCP2 1 0 :1:3 
@@ -124,7 +126,7 @@
 `uc 1 KBI2 1 0 :1:6 
 `uc 1 KBI3 1 0 :1:7 
 ]
-[s S913 . 1 `uc 1 AN12 1 0 :1:0 
+[s S916 . 1 `uc 1 AN12 1 0 :1:0 
 `uc 1 AN10 1 0 :1:1 
 `uc 1 AN8 1 0 :1:2 
 `uc 1 AN9 1 0 :1:3 
@@ -133,14 +135,14 @@
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S922 . 1 `uc 1 . 1 0 :3:0 
+[s S925 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S925 . 1 `S895 1 . 1 0 `S904 1 . 1 0 `S913 1 . 1 0 `S922 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES925  1 e 1 @3969 ]
+[u S928 . 1 `S898 1 . 1 0 `S907 1 . 1 0 `S916 1 . 1 0 `S925 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES928  1 e 1 @3969 ]
 "872
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S423 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S425 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -150,7 +152,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "899
-[s S432 . 1 `uc 1 LA0 1 0 :1:0 
+[s S434 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -159,11 +161,11 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S441 . 1 `S423 1 . 1 0 `S432 1 . 1 0 ]
-[v _LATAbits LATAbits `VES441  1 e 1 @3977 ]
+[u S443 . 1 `S425 1 . 1 0 `S434 1 . 1 0 ]
+[v _LATAbits LATAbits `VES443  1 e 1 @3977 ]
 "983
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S317 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S319 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -173,7 +175,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "1010
-[s S326 . 1 `uc 1 LB0 1 0 :1:0 
+[s S328 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -182,11 +184,11 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S335 . 1 `S317 1 . 1 0 `S326 1 . 1 0 ]
-[v _LATBbits LATBbits `VES335  1 e 1 @3978 ]
+[u S337 . 1 `S319 1 . 1 0 `S328 1 . 1 0 ]
+[v _LATBbits LATBbits `VES337  1 e 1 @3978 ]
 "1094
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S363 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S365 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -196,7 +198,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1121
-[s S372 . 1 `uc 1 LC0 1 0 :1:0 
+[s S374 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -205,11 +207,11 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S381 . 1 `S363 1 . 1 0 `S372 1 . 1 0 ]
-[v _LATCbits LATCbits `VES381  1 e 1 @3979 ]
+[u S383 . 1 `S365 1 . 1 0 `S374 1 . 1 0 ]
+[v _LATCbits LATCbits `VES383  1 e 1 @3979 ]
 "1205
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S277 . 1 `uc 1 LATD0 1 0 :1:0 
+[s S279 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -219,7 +221,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "1232
-[s S286 . 1 `uc 1 LD0 1 0 :1:0 
+[s S288 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -228,21 +230,21 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S295 . 1 `S277 1 . 1 0 `S286 1 . 1 0 ]
-[v _LATDbits LATDbits `VES295  1 e 1 @3980 ]
+[u S297 . 1 `S279 1 . 1 0 `S288 1 . 1 0 ]
+[v _LATDbits LATDbits `VES297  1 e 1 @3980 ]
 "1316
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
-[s S403 . 1 `uc 1 LATE0 1 0 :1:0 
+[s S405 . 1 `uc 1 LATE0 1 0 :1:0 
 `uc 1 LATE1 1 0 :1:1 
 `uc 1 LATE2 1 0 :1:2 
 ]
 "1333
-[s S407 . 1 `uc 1 LE0 1 0 :1:0 
+[s S409 . 1 `uc 1 LE0 1 0 :1:0 
 `uc 1 LE1 1 0 :1:1 
 `uc 1 LE2 1 0 :1:2 
 ]
-[u S411 . 1 `S403 1 . 1 0 `S407 1 . 1 0 ]
-[v _LATEbits LATEbits `VES411  1 e 1 @3981 ]
+[u S413 . 1 `S405 1 . 1 0 `S409 1 . 1 0 ]
+[v _LATEbits LATEbits `VES413  1 e 1 @3981 ]
 "1367
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
 "1588
@@ -267,7 +269,7 @@
 ]
 [u S108 . 1 `S97 1 . 1 0 `S102 1 . 1 0 ]
 [v _OSCTUNEbits OSCTUNEbits `VES108  1 e 1 @3995 ]
-[s S999 . 1 `uc 1 CCP2IF 1 0 :1:0 
+[s S1002 . 1 `uc 1 CCP2IF 1 0 :1:0 
 `uc 1 TMR3IF 1 0 :1:1 
 `uc 1 HLVDIF 1 0 :1:2 
 `uc 1 BCLIF 1 0 :1:3 
@@ -277,12 +279,12 @@
 `uc 1 OSCFIF 1 0 :1:7 
 ]
 "2792
-[s S1008 . 1 `uc 1 . 1 0 :2:0 
+[s S1011 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LVDIF 1 0 :1:2 
 ]
-[u S1011 . 1 `S999 1 . 1 0 `S1008 1 . 1 0 ]
-[v _PIR2bits PIR2bits `VES1011  1 e 1 @4001 ]
-[s S969 . 1 `uc 1 RD 1 0 :1:0 
+[u S1014 . 1 `S1002 1 . 1 0 `S1011 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES1014  1 e 1 @4001 ]
+[s S972 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -292,11 +294,11 @@
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "2922
-[s S978 . 1 `uc 1 . 1 0 :6:0 
+[s S981 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 EEFS 1 0 :1:6 
 ]
-[u S981 . 1 `S969 1 . 1 0 `S978 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES981  1 e 1 @4006 ]
+[u S984 . 1 `S972 1 . 1 0 `S981 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES984  1 e 1 @4006 ]
 "2966
 [v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
 "2972
@@ -333,33 +335,33 @@
 [v _CVRCON CVRCON `VEuc  1 e 1 @4021 ]
 "4110
 [v _CCP2CON CCP2CON `VEuc  1 e 1 @4026 ]
-[s S728 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S731 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B 1 0 :2:4 
 ]
 "4134
-[s S731 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S734 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[s S738 . 1 `uc 1 . 1 0 :4:0 
+[s S741 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
-[u S742 . 1 `S728 1 . 1 0 `S731 1 . 1 0 `S738 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES742  1 e 1 @4026 ]
+[u S745 . 1 `S731 1 . 1 0 `S734 1 . 1 0 `S741 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES745  1 e 1 @4026 ]
 "4194
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @4027 ]
 "4206
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
-[s S688 . 1 `uc 1 CCP1M 1 0 :4:0 
+[s S691 . 1 `uc 1 CCP1M 1 0 :4:0 
 `uc 1 DC1B 1 0 :2:4 
 `uc 1 P1M 1 0 :2:6 
 ]
 "4233
-[s S692 . 1 `uc 1 CCP1M0 1 0 :1:0 
+[s S695 . 1 `uc 1 CCP1M0 1 0 :1:0 
 `uc 1 CCP1M1 1 0 :1:1 
 `uc 1 CCP1M2 1 0 :1:2 
 `uc 1 CCP1M3 1 0 :1:3 
@@ -368,12 +370,12 @@
 `uc 1 P1M0 1 0 :1:6 
 `uc 1 P1M1 1 0 :1:7 
 ]
-[s S701 . 1 `uc 1 . 1 0 :4:0 
+[s S704 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 DC1B0 1 0 :1:4 
 `uc 1 DC1B1 1 0 :1:5 
 ]
-[u S705 . 1 `S688 1 . 1 0 `S692 1 . 1 0 `S701 1 . 1 0 ]
-[v _CCP1CONbits CCP1CONbits `VES705  1 e 1 @4029 ]
+[u S708 . 1 `S691 1 . 1 0 `S695 1 . 1 0 `S704 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES708  1 e 1 @4029 ]
 "4308
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
 "4320
@@ -382,38 +384,38 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "4474
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S1101 . 1 `uc 1 . 1 0 :1:0 
+[s S1103 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "4518
-[s S1104 . 1 `uc 1 ADON 1 0 :1:0 
+[s S1106 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 ]
-[s S1108 . 1 `uc 1 . 1 0 :1:0 
+[s S1110 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S1115 . 1 `uc 1 . 1 0 :1:0 
+[s S1117 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S1118 . 1 `uc 1 . 1 0 :1:0 
+[s S1120 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S1121 . 1 `uc 1 . 1 0 :1:0 
+[s S1123 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S1124 . 1 `uc 1 . 1 0 :1:0 
+[s S1126 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S1127 . 1 `uc 1 . 1 0 :1:0 
+[s S1129 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S1130 . 1 `S1101 1 . 1 0 `S1104 1 . 1 0 `S1108 1 . 1 0 `S1115 1 . 1 0 `S1118 1 . 1 0 `S1121 1 . 1 0 `S1124 1 . 1 0 `S1127 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES1130  1 e 1 @4034 ]
+[u S1132 . 1 `S1103 1 . 1 0 `S1106 1 . 1 0 `S1110 1 . 1 0 `S1117 1 . 1 0 `S1120 1 . 1 0 `S1123 1 . 1 0 `S1126 1 . 1 0 `S1129 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES1132  1 e 1 @4034 ]
 "4592
 [v _ADRES ADRES `VEus  1 e 2 @4035 ]
 "4604
@@ -553,6 +555,14 @@
 [v _sodaAlign sodaAlign `i  1 e 2 0 ]
 "24
 [v _soupAlign soupAlign `i  1 e 2 0 ]
+"25
+[v _soupI soupI `i  1 e 2 0 ]
+"26
+[v _sodaI sodaI `i  1 e 2 0 ]
+"27
+[v _soupCnt soupCnt `i  1 e 2 0 ]
+"28
+[v _sodaCnt sodaCnt `i  1 e 2 0 ]
 "4 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _s1 s1 `i  1 e 2 0 ]
 "5
@@ -565,52 +575,50 @@
 [v _t2 t2 `i  1 e 2 0 ]
 "10
 [v _t3 t3 `i  1 e 2 0 ]
-"132 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+"118 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"136
-[v main@standby standby `i  1 a 2 28 ]
+"122
+[v main@standby standby `i  1 a 2 45 ]
+"125
+[v main@prevSoupIR prevSoupIR `i  1 a 2 43 ]
+"124
+[v main@prevSodaIR prevSodaIR `i  1 a 2 41 ]
+"133
+[v main@sodaSort sodaSort `i  1 a 2 39 ]
+"131
+[v main@soupSort soupSort `i  1 a 2 37 ]
 "139
-[v main@prevSoupIR prevSoupIR `i  1 a 2 26 ]
+[v main@sodaNT sodaNT `i  1 a 2 35 ]
 "138
-[v main@prevSodaIR prevSodaIR `i  1 a 2 24 ]
-"147
-[v main@sodaSort sodaSort `i  1 a 2 22 ]
-"145
-[v main@soupSort soupSort `i  1 a 2 20 ]
-"148
-[v main@prevSodaLoad prevSodaLoad `i  1 a 2 18 ]
-"146
-[v main@prevSoupLoad prevSoupLoad `i  1 a 2 16 ]
-"153
-[v main@sodaNT sodaNT `i  1 a 2 14 ]
-"152
-[v main@sodaT sodaT `i  1 a 2 12 ]
-"151
-[v main@soupNL soupNL `i  1 a 2 10 ]
-"150
-[v main@soupL soupL `i  1 a 2 8 ]
+[v main@sodaT sodaT `i  1 a 2 33 ]
 "137
-[v main@s s `i  1 a 2 6 ]
-"162
-[v main@ee ee `i  1 a 2 4 ]
-"142
-[v main@sodaLoad sodaLoad `i  1 a 2 2 ]
-"141
-[v main@soupLoad soupLoad `i  1 a 2 0 ]
-"576
+[v main@soupNL soupNL `i  1 a 2 31 ]
+"136
+[v main@soupL soupL `i  1 a 2 29 ]
+"134
+[v main@prevSodaLoad prevSodaLoad `i  1 a 2 27 ]
+"132
+[v main@prevSoupLoad prevSoupLoad `i  1 a 2 25 ]
+"123
+[v main@s s `i  1 a 2 23 ]
+"128
+[v main@sodaLoad sodaLoad `i  1 a 2 21 ]
+"127
+[v main@soupLoad soupLoad `i  1 a 2 19 ]
+"562
 } 0
 "89 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
 [v _updateTime updateTime `(v  1 e 1 0 ]
 {
 "99
-[v updateTime@j j `uc  1 a 1 23 ]
+[v updateTime@j j `uc  1 a 1 35 ]
 "104
 } 0
 "54
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
 {
-[v I2C_Master_Write@d d `ui  1 p 2 21 ]
+[v I2C_Master_Write@d d `ui  1 p 2 33 ]
 "58
 } 0
 "48
@@ -628,11 +636,11 @@
 {
 [v I2C_Master_Read@a a `uc  1 a 1 wreg ]
 "62
-[v I2C_Master_Read@temp temp `uc  1 a 1 22 ]
+[v I2C_Master_Read@temp temp `uc  1 a 1 34 ]
 "60
 [v I2C_Master_Read@a a `uc  1 a 1 wreg ]
 "63
-[v I2C_Master_Read@a a `uc  1 a 1 21 ]
+[v I2C_Master_Read@a a `uc  1 a 1 33 ]
 "71
 } 0
 "31
@@ -645,10 +653,10 @@
 {
 "25
 } 0
-"86 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+"72 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
 [v _initialize initialize `(v  1 e 1 0 ]
 {
-"130
+"116
 } 0
 "11 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
 [v _initLCD initLCD `(v  1 e 1 0 ]
@@ -658,19 +666,19 @@
 "20 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\I2C.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
-[v I2C_Master_Init@c c `Cul  1 p 4 33 ]
+[v I2C_Master_Init@c c `Cul  1 p 4 45 ]
 "29
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "11
-[v ___lldiv@quotient quotient `ul  1 a 4 28 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 40 ]
 "12
-[v ___lldiv@counter counter `uc  1 a 1 32 ]
+[v ___lldiv@counter counter `uc  1 a 1 44 ]
 "8
-[v ___lldiv@dividend dividend `ul  1 p 4 20 ]
-[v ___lldiv@divisor divisor `ul  1 p 4 24 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 32 ]
+[v ___lldiv@divisor divisor `ul  1 p 4 36 ]
 "31
 } 0
 "3 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\interface.c
@@ -682,32 +690,32 @@
 [v _displayLog displayLog `(v  1 e 1 0 ]
 {
 "88
-[v displayLog@currRun currRun `i  1 a 2 61 ]
+[v displayLog@currRun currRun `i  1 a 2 15 ]
 "89
-[v displayLog@i i `i  1 a 2 59 ]
+[v displayLog@i i `i  1 a 2 13 ]
 "87
-[v displayLog@run run `i  1 p 2 54 ]
-"134
+[v displayLog@run run `i  1 p 2 56 ]
+"130
 } 0
 "464 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 {
 "1500
-[v printf@idx idx `uc  1 a 1 44 ]
+[v printf@idx idx `uc  1 a 1 0 ]
 "501
-[v printf@width width `i  1 a 2 51 ]
+[v printf@width width `i  1 a 2 7 ]
 "528
-[v printf@val val `ui  1 a 2 48 ]
+[v printf@val val `ui  1 a 2 4 ]
 "466
-[v printf@ap ap `[1]*.39v  1 a 2 45 ]
+[v printf@ap ap `[1]*.39v  1 a 2 1 ]
 "499
-[v printf@c c `c  1 a 1 53 ]
+[v printf@c c `c  1 a 1 9 ]
 "508
-[v printf@flag flag `uc  1 a 1 50 ]
+[v printf@flag flag `uc  1 a 1 6 ]
 "506
-[v printf@prec prec `c  1 a 1 47 ]
+[v printf@prec prec `c  1 a 1 3 ]
 "464
-[v printf@f f `*.25Cuc  1 p 2 32 ]
+[v printf@f f `*.25Cuc  1 p 2 44 ]
 "1541
 } 0
 "27 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
@@ -715,7 +723,7 @@
 {
 [v putch@data data `uc  1 a 1 wreg ]
 [v putch@data data `uc  1 a 1 wreg ]
-[v putch@data data `uc  1 a 1 22 ]
+[v putch@data data `uc  1 a 1 34 ]
 "30
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\isdigit.c
@@ -724,39 +732,39 @@
 [v isdigit@c c `uc  1 a 1 wreg ]
 [v isdigit@c c `uc  1 a 1 wreg ]
 "14
-[v isdigit@c c `uc  1 a 1 22 ]
+[v isdigit@c c `uc  1 a 1 34 ]
 "15
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
-[v ___wmul@product product `ui  1 a 2 24 ]
+[v ___wmul@product product `ui  1 a 2 36 ]
 "15
-[v ___wmul@multiplier multiplier `ui  1 p 2 20 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 22 ]
+[v ___wmul@multiplier multiplier `ui  1 p 2 32 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 34 ]
 "53
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwmod@counter counter `uc  1 a 1 31 ]
+[v ___lwmod@counter counter `uc  1 a 1 43 ]
 "8
-[v ___lwmod@dividend dividend `ui  1 p 2 27 ]
-[v ___lwmod@divisor divisor `ui  1 p 2 29 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 39 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 41 ]
 "26
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwdiv@quotient quotient `ui  1 a 2 25 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 37 ]
 "12
-[v ___lwdiv@counter counter `uc  1 a 1 24 ]
+[v ___lwdiv@counter counter `uc  1 a 1 36 ]
 "8
-[v ___lwdiv@dividend dividend `ui  1 p 2 20 ]
-[v ___lwdiv@divisor divisor `ui  1 p 2 22 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 32 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 34 ]
 "31
 } 0
 "22 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\lcd.c
@@ -764,7 +772,7 @@
 {
 [v lcdInst@data data `uc  1 a 1 wreg ]
 [v lcdInst@data data `uc  1 a 1 wreg ]
-[v lcdInst@data data `uc  1 a 1 22 ]
+[v lcdInst@data data `uc  1 a 1 34 ]
 "25
 } 0
 "32
@@ -772,11 +780,11 @@
 {
 [v lcdNibble@data data `uc  1 a 1 wreg ]
 "34
-[v lcdNibble@temp temp `uc  1 a 1 20 ]
+[v lcdNibble@temp temp `uc  1 a 1 32 ]
 "32
 [v lcdNibble@data data `uc  1 a 1 wreg ]
 "34
-[v lcdNibble@data data `uc  1 a 1 21 ]
+[v lcdNibble@data data `uc  1 a 1 33 ]
 "53
 } 0
 "12 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\interface.c
@@ -788,22 +796,22 @@
 [v _calibrateWheels calibrateWheels `(v  1 e 1 0 ]
 {
 "33
-[v calibrateWheels@i i `i  1 a 2 25 ]
+[v calibrateWheels@i i `i  1 a 2 37 ]
 "34
-[v calibrateWheels@prev prev `i  1 a 2 23 ]
+[v calibrateWheels@prev prev `i  1 a 2 35 ]
 "61
 } 0
-"168 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"182 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _updateS3 updateS3 `(v  1 e 1 0 ]
 {
-[v updateS3@mode mode `i  1 p 2 20 ]
-"214
+[v updateS3@mode mode `i  1 p 2 32 ]
+"237
 } 0
 "66
 [v _updateS1 updateS1 `(v  1 e 1 0 ]
 {
-[v updateS1@mode mode `i  1 p 2 20 ]
-"119
+[v updateS1@mode mode `i  1 p 2 32 ]
+"135
 } 0
 "24 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\logic.c
 [v _startTMR1 startTMR1 `(i  1 e 2 0 ]
@@ -816,26 +824,26 @@
 [v readADC@channel channel `uc  1 a 1 wreg ]
 [v readADC@channel channel `uc  1 a 1 wreg ]
 "11
-[v readADC@channel channel `uc  1 a 1 21 ]
+[v readADC@channel channel `uc  1 a 1 33 ]
 "15
 } 0
 "69 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\interface.c
 [v _addRun addRun `(v  1 e 1 0 ]
 {
 "70
-[v addRun@currRun currRun `i  1 a 2 49 ]
+[v addRun@currRun currRun `i  1 a 2 58 ]
 "69
-[v addRun@dur dur `i  1 p 2 24 ]
-[v addRun@year year `i  1 p 2 26 ]
-[v addRun@month month `i  1 p 2 28 ]
-[v addRun@date date `i  1 p 2 30 ]
-[v addRun@hours hours `i  1 p 2 32 ]
-[v addRun@mins mins `i  1 p 2 34 ]
-[v addRun@secs secs `i  1 p 2 36 ]
-[v addRun@sodaT sodaT `i  1 p 2 38 ]
-[v addRun@sodaNT sodaNT `i  1 p 2 40 ]
-[v addRun@soupL soupL `i  1 p 2 42 ]
-[v addRun@soupNL soupNL `i  1 p 2 44 ]
+[v addRun@dur dur `i  1 p 2 36 ]
+[v addRun@year year `i  1 p 2 38 ]
+[v addRun@month month `i  1 p 2 40 ]
+[v addRun@date date `i  1 p 2 42 ]
+[v addRun@hours hours `i  1 p 2 44 ]
+[v addRun@mins mins `i  1 p 2 46 ]
+[v addRun@secs secs `i  1 p 2 48 ]
+[v addRun@sodaT sodaT `i  1 p 2 50 ]
+[v addRun@sodaNT sodaNT `i  1 p 2 52 ]
+[v addRun@soupL soupL `i  1 p 2 54 ]
+[v addRun@soupNL soupNL `i  1 p 2 56 ]
 "85
 } 0
 "43
@@ -843,9 +851,9 @@
 {
 [v eepromWrite@address address `c  1 a 1 wreg ]
 [v eepromWrite@address address `c  1 a 1 wreg ]
-[v eepromWrite@data data `c  1 p 1 20 ]
+[v eepromWrite@data data `c  1 p 1 32 ]
 "45
-[v eepromWrite@address address `c  1 a 1 23 ]
+[v eepromWrite@address address `c  1 a 1 35 ]
 "67
 } 0
 "27
@@ -854,18 +862,18 @@
 [v eepromRead@address address `c  1 a 1 wreg ]
 [v eepromRead@address address `c  1 a 1 wreg ]
 "29
-[v eepromRead@address address `c  1 a 1 22 ]
+[v eepromRead@address address `c  1 a 1 34 ]
 "41
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
 {
 "11
-[v ___awmod@sign sign `uc  1 a 1 25 ]
-[v ___awmod@counter counter `uc  1 a 1 24 ]
+[v ___awmod@sign sign `uc  1 a 1 37 ]
+[v ___awmod@counter counter `uc  1 a 1 36 ]
 "8
-[v ___awmod@dividend dividend `i  1 p 2 20 ]
-[v ___awmod@divisor divisor `i  1 p 2 22 ]
+[v ___awmod@dividend dividend `i  1 p 2 32 ]
+[v ___awmod@divisor divisor `i  1 p 2 34 ]
 "35
 } 0
 "60 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
@@ -876,8 +884,8 @@
 "34
 [v _PWM2 PWM2 `(v  1 e 1 0 ]
 {
-[v PWM2@duty duty `i  1 p 2 20 ]
-[v PWM2@dir dir `i  1 p 2 22 ]
+[v PWM2@duty duty `i  1 p 2 32 ]
+[v PWM2@dir dir `i  1 p 2 34 ]
 "58
 } 0
 "28
@@ -888,43 +896,55 @@
 "14
 [v _PWM1 PWM1 `(v  1 e 1 0 ]
 {
-[v PWM1@duty duty `i  1 p 2 20 ]
+[v PWM1@duty duty `i  1 p 2 32 ]
 "26
 } 0
-"27 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
+"31 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\main.c
 [v _handler handler `II(v  1 e 1 0 ]
 {
-"84
+"70
 } 0
-"168 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"182 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v i2_updateS3 updateS3 `(v  1 e 1 0 ]
 {
 [v i2updateS3@mode mode `i  1 p 2 0 ]
-"214
+"237
 } 0
 "66
 [v i2_updateS1 updateS1 `(v  1 e 1 0 ]
 {
 [v i2updateS1@mode mode `i  1 p 2 0 ]
-"119
+"135
 } 0
 "24 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\logic.c
 [v i2_startTMR1 startTMR1 `(i  1 e 2 0 ]
 {
 "29
 } 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awmod.c
-[v i2___awmod __awmod `(i  1 e 2 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
+[v i2___wmul __wmul `(ui  1 e 2 0 ]
 {
-[v i2___awmod@sign __awmod `uc  1 a 1 5 ]
-[v i2___awmod@counter __awmod `uc  1 a 1 4 ]
-[v i2___awmod@dividend dividend `i  1 p 2 0 ]
-[v i2___awmod@divisor divisor `i  1 p 2 2 ]
-"35
+[v i2___wmul@product __wmul `ui  1 a 2 4 ]
+[v i2___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v i2___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
 } 0
-"121 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
+"137 C:\Users\Isabelle\Documents\Academia\AER201\UserInterface.X\motors.c
 [v _updateS2 updateS2 `(v  1 e 1 0 ]
 {
 [v updateS2@mode mode `i  1 p 2 0 ]
-"166
+"180
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient quotient `i  1 a 2 12 ]
+"12
+[v ___awdiv@sign sign `uc  1 a 1 11 ]
+[v ___awdiv@counter counter `uc  1 a 1 10 ]
+"8
+[v ___awdiv@dividend dividend `i  1 p 2 6 ]
+[v ___awdiv@divisor divisor `i  1 p 2 8 ]
+"42
 } 0

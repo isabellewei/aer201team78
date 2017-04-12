@@ -2851,9 +2851,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 54: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
-[; ;declarations.h: 22: extern int t;
-[; ;declarations.h: 23: extern int t2;
-[; ;declarations.h: 24: extern int t3;
+[; ;declarations.h: 22: extern int s3;
+[; ;declarations.h: 23: extern int t3;
+[; ;declarations.h: 24: extern int s1;
+[; ;declarations.h: 25: extern int t;
 "9 configBits.h
 [p x OSC=INTIO67 ]
 "10
@@ -2926,25 +2927,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 :U ..
 -> -> 48 `i `uc
 "13
--> -> 38 `i `uc
+-> -> 3 `i `uc
 "14
--> -> 19 `i `uc
+-> -> 1 `i `uc
 "15
 -> -> 4 `i `uc
 "16
--> -> 1 `i `uc
+-> -> 18 `i `uc
 "17
--> -> 3 `i `uc
+-> -> 4 `i `uc
 "18
 -> -> 23 `i `uc
 ..
 ]
 [; ;I2C.c: 12: const char currtime[7] = { 0x30,
-[; ;I2C.c: 13: 0x26,
-[; ;I2C.c: 14: 0x13,
+[; ;I2C.c: 13: 0x03,
+[; ;I2C.c: 14: 0x01,
 [; ;I2C.c: 15: 0x04,
-[; ;I2C.c: 16: 0x01,
-[; ;I2C.c: 17: 0x03,
+[; ;I2C.c: 16: 0x12,
+[; ;I2C.c: 17: 0x04,
 [; ;I2C.c: 18: 0x17};
 "20
 [v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]

@@ -22,6 +22,10 @@ int tabState = 0; //0:no, 1: yes
 int labelState = 0; //1:no label, 0: label
 int sodaAlign; //direction of soda wheel
 int soupAlign; //direction of soup wheel
+int soupI;  //#of sweeps of soup wheel for realignment
+int sodaI;  //#of sweeps of soda wheel for realignment
+int soupCnt; //continue sorting after current can?
+int sodaCnt;
     
 
 void interrupt handler(void) {   
@@ -41,41 +45,23 @@ void interrupt handler(void) {
     
     if(TMR1IF){
         TMR1IF = 0;
+        updateS1(S1mode);
         updateS2(S2mode);
-        if (S1mode!=10){updateS1(S1mode);}
-        if (S3mode!=10){updateS3(S3mode);}
+        updateS3(S3mode);
         soupSteps ++;
         sodaSteps ++;
-        //211 305;
-        if(tabState == 0){
-            if(sodaSteps > 599 && sodaSteps % 400 == 200){
-                if(sodaAlign == 1){
-                    sodaAlign = 2;
-                }
-                else{
-                    sodaAlign = 1;
-                }
-            }
+        
+        if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
+           ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 300)))){
+            if(sodaAlign == 1){sodaAlign = 2;}
+            else{sodaAlign = 1;}  
+            sodaI++;
         }
-        else{
-            if(sodaSteps > 499 && sodaSteps % 400 == 100){
-                if(sodaAlign == 1){
-                    sodaAlign = 2;
-                }
-                else{
-                    sodaAlign = 1;
-                }
-            }
-        }        
-        /*if(sodaSteps%300 == 0){
-            if(sodaSteps > 300 || (tabState == 0 && sodaSteps > 410)){
-                if(sodaAlign == 1){sodaAlign == 2;}
-                else{sodaAlign == 1;}
-            }
-        }*/
-        if(soupSteps > 499 && soupSteps % 400 == 100){
+                
+        if(soupSteps == (soupI*(soupI+1)/2*100 + 400)){
             if(soupAlign == 1){soupAlign = 2;}
             else{soupAlign = 1;}
+            soupI ++;
         }   
         TMR1ON = 0;
         
@@ -158,13 +144,10 @@ int main(void) {
     T0CONbits.TMR0ON = 1;
     startTMR1();
     // </editor-fold>
-    
-    int ee = 0x100;
-            
+                 
     __delay_ms(10);       
             
-    while(1){
-        //34updateTime();                
+    while(1){   
         if (standby == 1){            
             keypress = NULL;
             while(keypress == NULL){
@@ -188,18 +171,22 @@ int main(void) {
                 sodaT = 0;
                 sodaNT = 0;
                 prevSoupIR = 0;
-                prevSodaIR = 0;               
+                prevSodaIR = 0;  
                 
                 lcd_clear();
                 printf("Sorting cans...");
                 lcd_newline();
                 printf("Any key to stop");
-                                
-                while(soupSteps < 8){
+                       
+                while(soupSteps < 12){
                     S2mode = 2; //arm out
                 }                
                 S2mode = 4;
-                calibrateWheels();                
+                calibrateWheels(); 
+                if(s1 == 2 || s1 == 3){S1mode = 3;}
+                else{S1mode = 5;}
+                if(s3 == 2 || s3 == 3){S3mode = 3;}
+                else{S3mode = 5;}
                 PWM2(drumSpeed, 1); //CW
                 PWM1(400);
                 
@@ -254,9 +241,9 @@ int main(void) {
             S3mode = 3;
             keycheck();
                         
-            S1mode = 0;
-            S2mode = 0;
-            S3mode = 0;
+            S1mode = 4;
+            S2mode = 4;
+            S3mode = 4;
             
             keypress = NULL;
             lcd_clear();
@@ -316,24 +303,16 @@ int main(void) {
                 lcd_newline();
                 printf("%x", ADRES);
             }
+            
+            S1mode = 0;
+            S2mode = 0;
+            S3mode = 0;
 
             lcd_clear();
             printf("testing PWM1");
             PWM1(400);
             keycheck();
             PWM1off();
-
-            keypress = NULL;
-            seconds = 0;              
-            while(keypress==NULL){
-                keypress = NULL;
-                //__delay_ms(50);
-                lcd_clear();
-                printf("testing TMR0");
-                lcd_newline();
-                printf("%d", seconds);
-                keyinterrupt();
-            }
 
             keypress = NULL;
             while(keypress==NULL){
@@ -382,6 +361,7 @@ int main(void) {
                 readADC(IR3);
                 if(ADRES <= canThresh){
                     prevSoupLoad = seconds;
+                    soupCnt = 1;
                     if (!soupSort){
                         soupSort = 1;
                         soupSteps = 0;
@@ -393,7 +373,6 @@ int main(void) {
 
                 if (soupSort){    
                     if (soupSteps < 80){
-                        S1mode = 3; //shake
                         readADC(label);                
                         if(ADRES<0x200){labelState = 1;} //no label 
                         printf(" %x",ADRES);
@@ -401,14 +380,15 @@ int main(void) {
                     else if (labelState == 1){ //no label
                         if(soupSteps < (80+70)){
                             S1mode = 1;
-                            prevSoupLoad = 0;
+                            soupCnt = 0;
                         }
                         else if(soupSteps < (80+70+55)){
                             S1mode = 2;     
                             soupAlign = 2;
+                            soupI = 1;
                         }
                         else{
-                            S1mode = 10;  
+                            S1mode = 4;  
                             printf(" %d", soupAlign);
                             updateS1(soupAlign);
                             readADC(IR1);                        
@@ -421,14 +401,15 @@ int main(void) {
                     else if(labelState == 0){ //label
                         if(soupSteps < (80+70)){
                             S1mode = 2;     
-                            prevSoupLoad = 0;
+                            soupCnt = 0;
                         }
                         else if(soupSteps < (80+70+58)){
                             S1mode = 1;    
                             soupAlign = 1;
+                            soupI = 1;
                         }
                         else{
-                            S1mode = 10;
+                            S1mode = 4;
                             printf(" %d", soupAlign);
                             updateS1(soupAlign);
                             readADC(IR1);                       
@@ -443,12 +424,13 @@ int main(void) {
                         soupSteps = 0;
                         prevSoupIR = 0;
                         labelState = 0;
-                        if (prevSoupLoad == 0) {soupSort = 0;}
+                        if (soupCnt == 0) {soupSort = 0;}
+                        
+                        if(s1 == 2 || s1 == 3){S1mode = 3;}
+                        else{S1mode = 5;}
                     }
                 }
-                else{
-                    S1mode = 3; //shake
-                }
+                
             // </editor-fold>           
 
                 lcd_newline();
@@ -456,6 +438,7 @@ int main(void) {
                 readADC(IR2);            
                 if(ADRES <= canThresh){
                     prevSodaLoad = seconds;
+                    sodaCnt = 1;
                     if (!sodaSort){
                         sodaSort = 1;
                         sodaSteps = 0;                    
@@ -467,42 +450,43 @@ int main(void) {
 
                 if (sodaSort){
                     if(sodaSteps < 48){
-                        S3mode = 3; //motor shake
-                        S2mode = 4; //arm steady
+                        //wheel shake, arm steady
+                        S2mode = 4;
                     }
                     else if (sodaSteps < (48+43)){      //go to sorting position
                         S3mode = 1; //motor outwards
-                        S2mode = 4; //arm steady
+                         //arm steady
                     }
                     else if (sodaSteps < (48+43+10)){ //bring arm in
                         S3mode = 4; //motor steady  
                         S2mode = 1; //arm in
                     }
-                    else if (sodaSteps < (48+43+10+12)){ //test
-                        S2mode = 4;
-                        S3mode = 4;
+                    else if (sodaSteps < (48+43+10+15)){ //test
+                        S3mode = 4; //everything steady
+                        S2mode = 0;
                         readADC(tab);                
                         if(ADRESH<=1){tabState = 1;} //tab
                         printf(" %x",ADRESH);
                     }
-                    else if (sodaSteps < (48+43+10+12+10)){ //bring arm out
-                        S2mode = 2; //arm out
+                    else if (sodaSteps < (48+43+10+15+14)){ //bring arm out
                         S3mode = 4; //motor steady
+                        S2mode = 2; //arm out                        
                     }
                     else if (tabState == 1){ //tab
-                        if(sodaSteps < (48+43+10+12+10+30)){ //sort                        
+                        if(sodaSteps < (48+43+10+15+14+30)){ //sort                        
                             S3mode = 1;  //motor outwards
                             S2mode = 4;  //arm steady
-                            prevSodaLoad = 0;                        
+                            sodaCnt = 0;                        
                         }
-                        else if(sodaSteps < (48+43+10+12+10+30+57)){ //return                    
+                        else if(sodaSteps < (48+43+10+15+14+30+50)){ //return                    
                             S3mode = 2;  //motor inwards
                             S2mode = 4;  //arm steady
                             sodaAlign = 2;
+                            sodaI = 1;
                         }
                         else { //return
                             S2mode = 4;  //arm steady
-                            S3mode = 10;                              
+                            S3mode = 4;                              
                             updateS3(sodaAlign);      
                             readADC(IR4);
                             if(ADRES <prevSodaIR && ADRES > wheelThresh){tabState = 101;}
@@ -511,18 +495,19 @@ int main(void) {
                         }
                     }
                     else if(tabState == 0){ //no tab
-                        if(sodaSteps < (48+43+10+12+10+(44+75))){ //sort                        
+                        if(sodaSteps < (48+43+10+15+14+(43+75))){ //sort                        
                             S3mode = 2;  //motor inwards
                             S2mode = 4;  //arm steady
-                            prevSodaLoad = 0;
+                            sodaCnt = 0;
                         }
-                        else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){ //return                        
+                        else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){ //return                        
                             S3mode = 1;  //motor outwards
                             S2mode = 4;  //arm steady
                             sodaAlign = 1;
+                            sodaI = 1;
                         }
                         else {
-                            S3mode = 10;  
+                            S3mode = 4;  //avoid updating
                             S2mode = 4;  //arm steady                                                        
                             updateS3(sodaAlign);
                             readADC(IR4);
@@ -533,24 +518,25 @@ int main(void) {
                     }
                     else{
                         if(tabState==101){sodaT++;}
-                        else if(tabState==10){sodaNT++;}
+                        else if(tabState==100){sodaNT++;}
                         sodaSteps = 0;
                         tabState = 0;
                         prevSodaIR = 0;
-                        if (prevSodaLoad == 0) {sodaSort = 0;}
+                        if (sodaCnt == 0) {sodaSort = 0;}
+                        
+                        if(s3 == 2 || s3 == 3){S3mode = 3;}
+                        else{S3mode = 5;}
                     }
-                }
-                else{
-                    S3mode = 3; //motor shake
-                    S2mode = 4; //arm steady   
                 }
                 // </editor-fold>
                 
-                if(seconds%12==10){PWM2(drumSpeed,2);}
-                else if(seconds%12 == 0){PWM2(drumSpeed, 1);}
+                if(seconds%6==4){PWM2(drumSpeed,2);}         //CCW
+                else if(seconds%6 == 0){PWM2(drumSpeed, 1);} //CW
 
                 keyinterrupt();
-            }while(/*((seconds -prevSoupLoad) > 10 && (seconds-prevSodaLoad) > 10)||*/keypress==NULL);   
+            }while(keypress==NULL &&
+                   ((seconds -prevSoupLoad) < 10 || (seconds-prevSodaLoad) < 10)
+                    && seconds < 180);   
             
             standby = 1;   
             PWM2off();
@@ -559,7 +545,7 @@ int main(void) {
             S2mode = 0;
             S3mode = 0; 
 
-            updateTime();
+            //updateTime();
             addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
 
             lcd_clear();

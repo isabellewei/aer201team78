@@ -85,6 +85,22 @@ void updateS1(int mode){
         if (t == 4 || t==5){S1_4 = 1;}
         else{S1_4 = 0;}          
     }
+    else if(mode == 5){
+        t++;
+        if (t>8) {t=1;} 
+        __delay_ms(5);
+        if (t == 1 || t==8){S1_3 = 1;}
+        else{S1_3 = 0;} 
+        if (t == 2 || t==7){S1_4 = 1;}
+        else{S1_4 = 0;}
+        if (t == 3 || t==6){S1_1 = 1;}
+        else{S1_1 = 0;}
+        if (t == 4 || t==5){S1_2 = 1;}
+        else{S1_2 = 0;}          
+    }
+    else if(mode == 4){
+        //do nothing
+    }
     else{
         __delay_ms(10);
         
@@ -128,10 +144,7 @@ void updateS2(int mode){
         S2_4 = 0;
     }
     else if(mode == 4){
-        S2_1 = 1;
-        S2_2 = 0;
-        S2_3 = 0;
-        S2_4 = 0;
+        //do nothing
     }
     else if(mode == 3){
         t2++;
@@ -152,8 +165,9 @@ void updateS2(int mode){
         }
         else if(mode == 2){
            s2 --;
-        if (s2<1) {s2=4;} 
+            if (s2<1) {s2=4;} 
         }
+        
         if (s2 == 1){S2_1 = 1;}
         else{S2_1 = 0;} 
         if (s2 == 2){S2_2 = 1;}
@@ -175,23 +189,32 @@ void updateS3(int mode){
         S3_4 = 0;
     }
     else if(mode == 4){
-        S3_1 = 1;
-        S3_2 = 0;
-        S3_3 = 0;
-        S3_4 = 0;
+        //do nothing
     }
     else if(mode == 3){
-            t3++;
-            if (t3>8) {t3=1;} 
-            if (t3 == 1 || t3==8){S3_1 = 1;}
-            else{S3_1 = 0;} 
-            if (t3 == 2 || t3==7){S3_2 = 1;}
-            else{S3_2 = 0;}
-            if (t3 == 3 || t3==6){S3_3 = 1;}
-            else{S3_3 = 0;}
-            if (t3 == 4 || t3==5){S3_4 = 1;}
-            else{S3_4 = 0;}          
-        }
+        t3++;
+        if (t3>8) {t3=1;} 
+        if (t3 == 1 || t3==8){S3_1 = 1;}
+        else{S3_1 = 0;} 
+        if (t3 == 2 || t3==7){S3_2 = 1;}
+        else{S3_2 = 0;}
+        if (t3 == 3 || t3==6){S3_3 = 1;}
+        else{S3_3 = 0;}
+        if (t3 == 4 || t3==5){S3_4 = 1;}
+        else{S3_4 = 0;}          
+    }
+    else if(mode == 5){
+        t3++;
+        if (t3>8) {t3=1;} 
+        if (t3 == 1 || t3==8){S3_3 = 1;}
+        else{S3_3 = 0;} 
+        if (t3 == 2 || t3==7){S3_4 = 1;}
+        else{S3_4 = 0;}
+        if (t3 == 3 || t3==6){S3_1 = 1;}
+        else{S3_1 = 0;}
+        if (t3 == 4 || t3==5){S3_2 = 1;}
+        else{S3_2 = 0;}          
+    }
     else{
         if(mode == 1){
             s3 ++;

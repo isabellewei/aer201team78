@@ -25,15 +25,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
 "7574
 [v _TMR1IF `Vb ~T0 @X0 0 e@31984 ]
-"34 functions.h
-[v _updateS2 `(v ~T0 @X0 0 ef1`i ]
-"33
+"33 functions.h
 [v _updateS1 `(v ~T0 @X0 0 ef1`i ]
+"34
+[v _updateS2 `(v ~T0 @X0 0 ef1`i ]
 "35
 [v _updateS3 `(v ~T0 @X0 0 ef1`i ]
 "7578 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _TMR1ON `Vb ~T0 @X0 0 e@32360 ]
-"82 main.c
+"68 main.c
 [v _startTMR1 `(i ~T0 @X0 0 ef ]
 "5705 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4620.h
 [v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
@@ -142,7 +142,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "54 functions.h
 [v _calibrateWheels `(v ~T0 @X0 0 ef ]
-"31
+"24 declarations.h
+[v _s1 `i ~T0 @X0 0 e ]
+"22
+[v _s3 `i ~T0 @X0 0 e ]
+"31 functions.h
 [v _PWM2 `(v ~T0 @X0 0 ef2`i`i ]
 "29
 [v _PWM1 `(v ~T0 @X0 0 ef1`i ]
@@ -3103,9 +3107,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 54: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
-[; ;declarations.h: 22: extern int t;
-[; ;declarations.h: 23: extern int t2;
-[; ;declarations.h: 24: extern int t3;
+[; ;declarations.h: 22: extern int s3;
+[; ;declarations.h: 23: extern int t3;
+[; ;declarations.h: 24: extern int s1;
+[; ;declarations.h: 25: extern int t;
 "12 main.c
 [v _keys `Cuc ~T0 @X0 -> 0 `x e ]
 [i _keys
@@ -3187,1488 +3192,1510 @@ Version 3.2 HI-TECH Software Intermediate Code
 "24
 [v _soupAlign `i ~T0 @X0 1 e ]
 [; ;main.c: 24: int soupAlign;
-[v F3236 `(v ~T0 @X0 1 tf ]
+"25
+[v _soupI `i ~T0 @X0 1 e ]
+[; ;main.c: 25: int soupI;
+"26
+[v _sodaI `i ~T0 @X0 1 e ]
+[; ;main.c: 26: int sodaI;
 "27
-[v _handler `IF3236 ~T0 @X0 1 e ]
+[v _soupCnt `i ~T0 @X0 1 e ]
+[; ;main.c: 27: int soupCnt;
+"28
+[v _sodaCnt `i ~T0 @X0 1 e ]
+[; ;main.c: 28: int sodaCnt;
+[v F3241 `(v ~T0 @X0 1 tf ]
+"31
+[v _handler `IF3241 ~T0 @X0 1 e ]
 {
-[; ;main.c: 27: void interrupt handler(void) {
+[; ;main.c: 31: void interrupt handler(void) {
 [e :U _handler ]
 [f ]
-[; ;main.c: 29: (INTCONbits.GIE = 0);
-"29
+[; ;main.c: 33: (INTCONbits.GIE = 0);
+"33
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;main.c: 30: if(TMR0IF){
-"30
+[; ;main.c: 34: if(TMR0IF){
+"34
 [e $ ! _TMR0IF 271  ]
 {
-[; ;main.c: 31: TMR0IF = 0;
-"31
+[; ;main.c: 35: TMR0IF = 0;
+"35
 [e = _TMR0IF -> -> 0 `i `b ]
-[; ;main.c: 32: seconds++;
-"32
-[e ++ _seconds -> 1 `i ]
-[; ;main.c: 33: TMR0ON = 0;
-"33
-[e = _TMR0ON -> -> 0 `i `b ]
-[; ;main.c: 36: T0CON = 0b00010111;
+[; ;main.c: 36: seconds++;
 "36
-[e = _T0CON -> -> 23 `i `uc ]
-[; ;main.c: 37: TMR0H = 0b10000101;
+[e ++ _seconds -> 1 `i ]
+[; ;main.c: 37: TMR0ON = 0;
 "37
-[e = _TMR0H -> -> 133 `i `uc ]
-[; ;main.c: 38: TMR0L = 0b10101110;
-"38
-[e = _TMR0L -> -> 174 `i `uc ]
-[; ;main.c: 39: T0CON = T0CON | 0b10000000;
-"39
-[e = _T0CON -> | -> _T0CON `i -> 128 `i `uc ]
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 40: T0CON = 0b00010111;
 "40
+[e = _T0CON -> -> 23 `i `uc ]
+[; ;main.c: 41: TMR0H = 0b10000101;
+"41
+[e = _TMR0H -> -> 133 `i `uc ]
+[; ;main.c: 42: TMR0L = 0b10101110;
+"42
+[e = _TMR0L -> -> 174 `i `uc ]
+[; ;main.c: 43: T0CON = T0CON | 0b10000000;
+"43
+[e = _T0CON -> | -> _T0CON `i -> 128 `i `uc ]
+"44
 }
 [e :U 271 ]
-[; ;main.c: 40: }
-[; ;main.c: 42: if(TMR1IF){
-"42
+[; ;main.c: 44: }
+[; ;main.c: 46: if(TMR1IF){
+"46
 [e $ ! _TMR1IF 272  ]
 {
-[; ;main.c: 43: TMR1IF = 0;
-"43
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;main.c: 44: updateS2(S2mode);
-"44
-[e ( _updateS2 (1 _S2mode ]
-[; ;main.c: 45: if (S1mode!=10){updateS1(S1mode);}
-"45
-[e $ ! != _S1mode -> 10 `i 273  ]
-{
-[e ( _updateS1 (1 _S1mode ]
-}
-[e :U 273 ]
-[; ;main.c: 46: if (S3mode!=10){updateS3(S3mode);}
-"46
-[e $ ! != _S3mode -> 10 `i 274  ]
-{
-[e ( _updateS3 (1 _S3mode ]
-}
-[e :U 274 ]
-[; ;main.c: 47: soupSteps ++;
+[; ;main.c: 47: TMR1IF = 0;
 "47
-[e ++ _soupSteps -> 1 `i ]
-[; ;main.c: 48: sodaSteps ++;
+[e = _TMR1IF -> -> 0 `i `b ]
+[; ;main.c: 48: updateS1(S1mode);
 "48
-[e ++ _sodaSteps -> 1 `i ]
-[; ;main.c: 50: if(tabState == 0){
+[e ( _updateS1 (1 _S1mode ]
+[; ;main.c: 49: updateS2(S2mode);
+"49
+[e ( _updateS2 (1 _S2mode ]
+[; ;main.c: 50: updateS3(S3mode);
 "50
-[e $ ! == _tabState -> 0 `i 275  ]
-{
-[; ;main.c: 51: if(sodaSteps > 599 && sodaSteps % 400 == 200){
+[e ( _updateS3 (1 _S3mode ]
+[; ;main.c: 51: soupSteps ++;
 "51
-[e $ ! && > _sodaSteps -> 599 `i == % _sodaSteps -> 400 `i -> 200 `i 276  ]
-{
-[; ;main.c: 52: if(sodaAlign == 1){
+[e ++ _soupSteps -> 1 `i ]
+[; ;main.c: 52: sodaSteps ++;
 "52
-[e $ ! == _sodaAlign -> 1 `i 277  ]
-{
-[; ;main.c: 53: sodaAlign = 2;
-"53
-[e = _sodaAlign -> 2 `i ]
-"54
-}
-[; ;main.c: 54: }
-[e $U 278  ]
+[e ++ _sodaSteps -> 1 `i ]
+[; ;main.c: 54: if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
+[; ;main.c: 55: ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 300)))){
 "55
-[e :U 277 ]
-[; ;main.c: 55: else{
+[e $ ! || && == _tabState -> 0 `i == _sodaSteps + * / * _sodaI + _sodaI -> 2 `i -> 2 `i -> 100 `i -> 500 `i && == _tabState -> 1 `i == _sodaSteps + * / * _sodaI + _sodaI -> 1 `i -> 2 `i -> 100 `i -> 300 `i 273  ]
 {
-[; ;main.c: 56: sodaAlign = 1;
+[; ;main.c: 56: if(sodaAlign == 1){sodaAlign = 2;}
 "56
-[e = _sodaAlign -> 1 `i ]
+[e $ ! == _sodaAlign -> 1 `i 274  ]
+{
+[e = _sodaAlign -> 2 `i ]
+}
+[e $U 275  ]
 "57
+[e :U 274 ]
+[; ;main.c: 57: else{sodaAlign = 1;}
+{
+[e = _sodaAlign -> 1 `i ]
 }
-[e :U 278 ]
+[e :U 275 ]
+[; ;main.c: 58: sodaI++;
 "58
-}
-[e :U 276 ]
+[e ++ _sodaI -> 1 `i ]
 "59
 }
-[; ;main.c: 57: }
-[; ;main.c: 58: }
+[e :U 273 ]
 [; ;main.c: 59: }
-[e $U 279  ]
-"60
-[e :U 275 ]
-[; ;main.c: 60: else{
-{
-[; ;main.c: 61: if(sodaSteps > 499 && sodaSteps % 400 == 100){
+[; ;main.c: 61: if(soupSteps == (soupI*(soupI+1)/2*100 + 400)){
 "61
-[e $ ! && > _sodaSteps -> 499 `i == % _sodaSteps -> 400 `i -> 100 `i 280  ]
+[e $ ! == _soupSteps + * / * _soupI + _soupI -> 1 `i -> 2 `i -> 100 `i -> 400 `i 276  ]
 {
-[; ;main.c: 62: if(sodaAlign == 1){
+[; ;main.c: 62: if(soupAlign == 1){soupAlign = 2;}
 "62
-[e $ ! == _sodaAlign -> 1 `i 281  ]
-{
-[; ;main.c: 63: sodaAlign = 2;
-"63
-[e = _sodaAlign -> 2 `i ]
-"64
-}
-[; ;main.c: 64: }
-[e $U 282  ]
-"65
-[e :U 281 ]
-[; ;main.c: 65: else{
-{
-[; ;main.c: 66: sodaAlign = 1;
-"66
-[e = _sodaAlign -> 1 `i ]
-"67
-}
-[e :U 282 ]
-"68
-}
-[e :U 280 ]
-"69
-}
-[e :U 279 ]
-[; ;main.c: 67: }
-[; ;main.c: 68: }
-[; ;main.c: 69: }
-[; ;main.c: 76: if(soupSteps > 499 && soupSteps % 400 == 100){
-"76
-[e $ ! && > _soupSteps -> 499 `i == % _soupSteps -> 400 `i -> 100 `i 283  ]
-{
-[; ;main.c: 77: if(soupAlign == 1){soupAlign = 2;}
-"77
-[e $ ! == _soupAlign -> 1 `i 284  ]
+[e $ ! == _soupAlign -> 1 `i 277  ]
 {
 [e = _soupAlign -> 2 `i ]
 }
-[e $U 285  ]
-"78
-[e :U 284 ]
-[; ;main.c: 78: else{soupAlign = 1;}
+[e $U 278  ]
+"63
+[e :U 277 ]
+[; ;main.c: 63: else{soupAlign = 1;}
 {
 [e = _soupAlign -> 1 `i ]
 }
-[e :U 285 ]
-"79
+[e :U 278 ]
+[; ;main.c: 64: soupI ++;
+"64
+[e ++ _soupI -> 1 `i ]
+"65
 }
-[e :U 283 ]
-[; ;main.c: 79: }
-[; ;main.c: 80: TMR1ON = 0;
-"80
+[e :U 276 ]
+[; ;main.c: 65: }
+[; ;main.c: 66: TMR1ON = 0;
+"66
 [e = _TMR1ON -> -> 0 `i `b ]
-[; ;main.c: 82: startTMR1();
-"82
+[; ;main.c: 68: startTMR1();
+"68
 [e ( _startTMR1 ..  ]
-"83
+"69
 }
 [e :U 272 ]
-[; ;main.c: 83: }
-[; ;main.c: 84: }
-"84
+[; ;main.c: 69: }
+[; ;main.c: 70: }
+"70
 [e :UE 270 ]
 }
-"86
+"72
 [v _initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 86: void initialize(void){
+[; ;main.c: 72: void initialize(void){
 [e :U _initialize ]
 [f ]
-[; ;main.c: 88: OSCCON = 0xF0;
-"88
+[; ;main.c: 74: OSCCON = 0xF0;
+"74
 [e = _OSCCON -> -> 240 `i `uc ]
-[; ;main.c: 89: OSCTUNEbits.PLLEN = 1;
-"89
+[; ;main.c: 75: OSCTUNEbits.PLLEN = 1;
+"75
 [e = . . _OSCTUNEbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 91: TRISA = 0b00101111;
-"91
+[; ;main.c: 77: TRISA = 0b00101111;
+"77
 [e = _TRISA -> -> 47 `i `uc ]
-[; ;main.c: 92: TRISB = 0b11110010;
-"92
+[; ;main.c: 78: TRISB = 0b11110010;
+"78
 [e = _TRISB -> -> 242 `i `uc ]
-[; ;main.c: 93: TRISC = 0b00000000;
-"93
+[; ;main.c: 79: TRISC = 0b00000000;
+"79
 [e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 95: TRISD = 0x00;
-"95
+[; ;main.c: 81: TRISD = 0x00;
+"81
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 96: TRISE = 0b00000001;
-"96
+[; ;main.c: 82: TRISE = 0b00000001;
+"82
 [e = _TRISE -> -> 1 `i `uc ]
-[; ;main.c: 98: PR2 = 0xff;
-"98
+[; ;main.c: 84: PR2 = 0xff;
+"84
 [e = _PR2 -> -> 255 `i `uc ]
-[; ;main.c: 99: CCP1CON = 0b00001100;
-"99
+[; ;main.c: 85: CCP1CON = 0b00001100;
+"85
 [e = _CCP1CON -> -> 12 `i `uc ]
-[; ;main.c: 100: CCPR1L = 0x00;
-"100
+[; ;main.c: 86: CCPR1L = 0x00;
+"86
 [e = _CCPR1L -> -> 0 `i `uc ]
-[; ;main.c: 101: CCP2CON = 0b00001100;
-"101
+[; ;main.c: 87: CCP2CON = 0b00001100;
+"87
 [e = _CCP2CON -> -> 12 `i `uc ]
-[; ;main.c: 102: CCPR2L = 0x00;
-"102
+[; ;main.c: 88: CCPR2L = 0x00;
+"88
 [e = _CCPR2L -> -> 0 `i `uc ]
-[; ;main.c: 103: T2CON = 0b00000101;
-"103
+[; ;main.c: 89: T2CON = 0b00000101;
+"89
 [e = _T2CON -> -> 5 `i `uc ]
-[; ;main.c: 105: LATA = 0x00;
-"105
+[; ;main.c: 91: LATA = 0x00;
+"91
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 106: LATB = 0x00;
-"106
+[; ;main.c: 92: LATB = 0x00;
+"92
 [e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 107: LATC = 0x00;
-"107
+[; ;main.c: 93: LATC = 0x00;
+"93
 [e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 108: LATD = 0x00;
-"108
+[; ;main.c: 94: LATD = 0x00;
+"94
 [e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 109: LATE = 0x00;
-"109
+[; ;main.c: 95: LATE = 0x00;
+"95
 [e = _LATE -> -> 0 `i `uc ]
-[; ;main.c: 111: initLCD();
-"111
+[; ;main.c: 97: initLCD();
+"97
 [e ( _initLCD ..  ]
-[; ;main.c: 113: I2C_Master_Init(32000);
-"113
+[; ;main.c: 99: I2C_Master_Init(32000);
+"99
 [e ( _I2C_Master_Init (1 -> -> -> 32000 `i `l `ul ]
-[; ;main.c: 116: nRBPU = 0;
-"116
+[; ;main.c: 102: nRBPU = 0;
+"102
 [e = _nRBPU -> -> 0 `i `b ]
-[; ;main.c: 118: ADCON1 = 0b00001001;
-"118
+[; ;main.c: 104: ADCON1 = 0b00001001;
+"104
 [e = _ADCON1 -> -> 9 `i `uc ]
-[; ;main.c: 119: ADCON2 = 0b10001001;
-"119
+[; ;main.c: 105: ADCON2 = 0b10001001;
+"105
 [e = _ADCON2 -> -> 137 `i `uc ]
-[; ;main.c: 120: CVRCON = 0x00;
-"120
+[; ;main.c: 106: CVRCON = 0x00;
+"106
 [e = _CVRCON -> -> 0 `i `uc ]
-[; ;main.c: 121: CMCONbits.CIS = 0;
-"121
+[; ;main.c: 107: CMCONbits.CIS = 0;
+"107
 [e = . . _CMCONbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 122: ADFM = 1;
-"122
+[; ;main.c: 108: ADFM = 1;
+"108
 [e = _ADFM -> -> 1 `i `b ]
-[; ;main.c: 124: TMR0IE = 1;
-"124
+[; ;main.c: 110: TMR0IE = 1;
+"110
 [e = _TMR0IE -> -> 1 `i `b ]
-[; ;main.c: 125: TMR1IE = 1;
-"125
+[; ;main.c: 111: TMR1IE = 1;
+"111
 [e = _TMR1IE -> -> 1 `i `b ]
-[; ;main.c: 127: PEIE = 1;
-"127
+[; ;main.c: 113: PEIE = 1;
+"113
 [e = _PEIE -> -> 1 `i `b ]
-[; ;main.c: 129: (INTCONbits.GIE = 1);
-"129
+[; ;main.c: 115: (INTCONbits.GIE = 1);
+"115
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 130: }
-"130
-[e :UE 286 ]
+[; ;main.c: 116: }
+"116
+[e :UE 279 ]
 }
-"132
+"118
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 132: int main(void) {
+[; ;main.c: 118: int main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 133: LATA = 0;
-"133
+[; ;main.c: 119: LATA = 0;
+"119
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 135: initialize();
-"135
+[; ;main.c: 121: initialize();
+"121
 [e ( _initialize ..  ]
-"136
+"122
 [v _standby `i ~T0 @X0 1 a ]
-[; ;main.c: 136: int standby = 1;
+[; ;main.c: 122: int standby = 1;
 [e = _standby -> 1 `i ]
-"137
+"123
 [v _s `i ~T0 @X0 1 a ]
-[; ;main.c: 137: int s = 0;
+[; ;main.c: 123: int s = 0;
 [e = _s -> 0 `i ]
-"138
+"124
 [v _prevSodaIR `i ~T0 @X0 1 a ]
-"139
+"125
 [v _prevSoupIR `i ~T0 @X0 1 a ]
-"141
+"127
 [v _soupLoad `i ~T0 @X0 1 a ]
-[; ;main.c: 138: int prevSodaIR;
-[; ;main.c: 139: int prevSoupIR;
-[; ;main.c: 141: int soupLoad = 1;
+[; ;main.c: 124: int prevSodaIR;
+[; ;main.c: 125: int prevSoupIR;
+[; ;main.c: 127: int soupLoad = 1;
 [e = _soupLoad -> 1 `i ]
-"142
+"128
 [v _sodaLoad `i ~T0 @X0 1 a ]
-[; ;main.c: 142: int sodaLoad = 1;
+[; ;main.c: 128: int sodaLoad = 1;
 [e = _sodaLoad -> 1 `i ]
-"145
+"131
 [v _soupSort `i ~T0 @X0 1 a ]
-"146
+"132
 [v _prevSoupLoad `i ~T0 @X0 1 a ]
-"147
+"133
 [v _sodaSort `i ~T0 @X0 1 a ]
-"148
+"134
 [v _prevSodaLoad `i ~T0 @X0 1 a ]
-"150
+"136
 [v _soupL `i ~T0 @X0 1 a ]
-"151
+"137
 [v _soupNL `i ~T0 @X0 1 a ]
-"152
+"138
 [v _sodaT `i ~T0 @X0 1 a ]
-"153
+"139
 [v _sodaNT `i ~T0 @X0 1 a ]
-[; ;main.c: 145: int soupSort;
-[; ;main.c: 146: int prevSoupLoad;
-[; ;main.c: 147: int sodaSort;
-[; ;main.c: 148: int prevSodaLoad;
-[; ;main.c: 150: int soupL;
-[; ;main.c: 151: int soupNL ;
-[; ;main.c: 152: int sodaT;
-[; ;main.c: 153: int sodaNT;
-[; ;main.c: 155: T0CON = 0b00010111;
-"155
+[; ;main.c: 131: int soupSort;
+[; ;main.c: 132: int prevSoupLoad;
+[; ;main.c: 133: int sodaSort;
+[; ;main.c: 134: int prevSodaLoad;
+[; ;main.c: 136: int soupL;
+[; ;main.c: 137: int soupNL ;
+[; ;main.c: 138: int sodaT;
+[; ;main.c: 139: int sodaNT;
+[; ;main.c: 141: T0CON = 0b00010111;
+"141
 [e = _T0CON -> -> 23 `i `uc ]
-[; ;main.c: 156: TMR0H = 0b10000101;
-"156
+[; ;main.c: 142: TMR0H = 0b10000101;
+"142
 [e = _TMR0H -> -> 133 `i `uc ]
-[; ;main.c: 157: TMR0L = 0b10101110;
-"157
+[; ;main.c: 143: TMR0L = 0b10101110;
+"143
 [e = _TMR0L -> -> 174 `i `uc ]
-[; ;main.c: 158: T0CONbits.TMR0ON = 1;
-"158
+[; ;main.c: 144: T0CONbits.TMR0ON = 1;
+"144
 [e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 159: startTMR1();
-"159
+[; ;main.c: 145: startTMR1();
+"145
 [e ( _startTMR1 ..  ]
-"162
-[v _ee `i ~T0 @X0 1 a ]
-[; ;main.c: 162: int ee = 0x100;
-[e = _ee -> 256 `i ]
-[; ;main.c: 164: _delay((unsigned long)((10)*(32000000/4000.0)));
-"164
+[; ;main.c: 148: _delay((unsigned long)((10)*(32000000/4000.0)));
+"148
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 166: while(1){
-"166
-[e :U 289 ]
+[; ;main.c: 150: while(1){
+"150
+[e :U 282 ]
 {
-[; ;main.c: 168: if (standby == 1){
-"168
-[e $ ! == _standby -> 1 `i 291  ]
+[; ;main.c: 151: if (standby == 1){
+"151
+[e $ ! == _standby -> 1 `i 284  ]
 {
-[; ;main.c: 169: keypress = (0);
-"169
+[; ;main.c: 152: keypress = (0);
+"152
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 170: while(keypress == (0)){
-"170
-[e $U 292  ]
-[e :U 293 ]
+[; ;main.c: 153: while(keypress == (0)){
+"153
+[e $U 285  ]
+[e :U 286 ]
 {
-[; ;main.c: 171: updateTime();
-"171
+[; ;main.c: 154: updateTime();
+"154
 [e ( _updateTime ..  ]
-[; ;main.c: 172: homescreen();
-"172
+[; ;main.c: 155: homescreen();
+"155
 [e ( _homescreen ..  ]
-[; ;main.c: 173: keyinterrupt();
-"173
+[; ;main.c: 156: keyinterrupt();
+"156
 [e ( _keyinterrupt ..  ]
-"174
+"157
 }
-[e :U 292 ]
-"170
-[e $ == -> _keypress `i -> 0 `i 293  ]
-[e :U 294 ]
-[; ;main.c: 174: }
-[; ;main.c: 176: if(keypress == 2){
-"176
-[e $ ! == -> _keypress `i -> 2 `i 295  ]
+[e :U 285 ]
+"153
+[e $ == -> _keypress `i -> 0 `i 286  ]
+[e :U 287 ]
+[; ;main.c: 157: }
+[; ;main.c: 159: if(keypress == 2){
+"159
+[e $ ! == -> _keypress `i -> 2 `i 288  ]
 {
-[; ;main.c: 178: standby = 0;
-"178
+[; ;main.c: 161: standby = 0;
+"161
 [e = _standby -> 0 `i ]
-[; ;main.c: 179: seconds = 0;
-"179
+[; ;main.c: 162: seconds = 0;
+"162
 [e = _seconds -> 0 `i ]
-[; ;main.c: 180: labelState = 0;
-"180
+[; ;main.c: 163: labelState = 0;
+"163
 [e = _labelState -> 0 `i ]
-[; ;main.c: 181: soupSort = 0;
-"181
+[; ;main.c: 164: soupSort = 0;
+"164
 [e = _soupSort -> 0 `i ]
-[; ;main.c: 182: tabState = 0;
-"182
+[; ;main.c: 165: tabState = 0;
+"165
 [e = _tabState -> 0 `i ]
-[; ;main.c: 183: sodaSort = 0;
-"183
+[; ;main.c: 166: sodaSort = 0;
+"166
 [e = _sodaSort -> 0 `i ]
-[; ;main.c: 184: soupSteps = 0;
-"184
+[; ;main.c: 167: soupSteps = 0;
+"167
 [e = _soupSteps -> 0 `i ]
-[; ;main.c: 185: sodaSteps = 0;
-"185
+[; ;main.c: 168: sodaSteps = 0;
+"168
 [e = _sodaSteps -> 0 `i ]
-[; ;main.c: 186: soupL = 0;
-"186
+[; ;main.c: 169: soupL = 0;
+"169
 [e = _soupL -> 0 `i ]
-[; ;main.c: 187: soupNL = 0;
-"187
+[; ;main.c: 170: soupNL = 0;
+"170
 [e = _soupNL -> 0 `i ]
-[; ;main.c: 188: sodaT = 0;
-"188
+[; ;main.c: 171: sodaT = 0;
+"171
 [e = _sodaT -> 0 `i ]
-[; ;main.c: 189: sodaNT = 0;
-"189
+[; ;main.c: 172: sodaNT = 0;
+"172
 [e = _sodaNT -> 0 `i ]
-[; ;main.c: 190: prevSoupIR = 0;
-"190
+[; ;main.c: 173: prevSoupIR = 0;
+"173
 [e = _prevSoupIR -> 0 `i ]
-[; ;main.c: 191: prevSodaIR = 0;
-"191
+[; ;main.c: 174: prevSodaIR = 0;
+"174
 [e = _prevSodaIR -> 0 `i ]
-[; ;main.c: 193: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"193
+[; ;main.c: 176: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"176
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 194: printf("Sorting cans...");
-"194
+[; ;main.c: 177: printf("Sorting cans...");
+"177
 [e ( _printf :s 1C ]
-[; ;main.c: 195: lcdInst(0b11000000);;
-"195
+[; ;main.c: 178: lcdInst(0b11000000);;
+"178
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 196: printf("Any key to stop");
-"196
+[; ;main.c: 179: printf("Any key to stop");
+"179
 [e ( _printf :s 2C ]
-[; ;main.c: 198: while(soupSteps < 8){
-"198
-[e $U 296  ]
-[e :U 297 ]
+[; ;main.c: 181: while(soupSteps < 12){
+"181
+[e $U 289  ]
+[e :U 290 ]
 {
-[; ;main.c: 199: S2mode = 2;
-"199
+[; ;main.c: 182: S2mode = 2;
+"182
 [e = _S2mode -> 2 `i ]
-"200
+"183
 }
-[e :U 296 ]
-"198
-[e $ < _soupSteps -> 8 `i 297  ]
-[e :U 298 ]
-[; ;main.c: 200: }
-[; ;main.c: 201: S2mode = 4;
-"201
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 202: calibrateWheels();
-"202
-[e ( _calibrateWheels ..  ]
-[; ;main.c: 203: PWM2(800, 1);
-"203
-[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
-[; ;main.c: 204: PWM1(400);
-"204
-[e ( _PWM1 (1 -> 400 `i ]
-[; ;main.c: 206: keypress = (0);
-"206
-[e = _keypress -> -> 0 `i `uc ]
-"208
-}
-[; ;main.c: 208: }
-[e $U 299  ]
-"209
-[e :U 295 ]
-[; ;main.c: 209: else if(keypress == 3){
-[e $ ! == -> _keypress `i -> 3 `i 300  ]
-{
-[; ;main.c: 210: displayLog(1);
-"210
-[e ( _displayLog (1 -> 1 `i ]
-[; ;main.c: 211: displayLog(2);
-"211
-[e ( _displayLog (1 -> 2 `i ]
-[; ;main.c: 212: displayLog(3);
-"212
-[e ( _displayLog (1 -> 3 `i ]
-[; ;main.c: 213: displayLog(4);
-"213
-[e ( _displayLog (1 -> 4 `i ]
-"214
-}
-[; ;main.c: 214: }
-[e $U 301  ]
-"215
-[e :U 300 ]
-[; ;main.c: 215: else if(keypress == 15 ) {
-[e $ ! == -> _keypress `i -> 15 `i 302  ]
-{
-[; ;main.c: 216: standby = 2;
-"216
-[e = _standby -> 2 `i ]
-[; ;main.c: 217: s = 1;
-"217
-[e = _s -> 1 `i ]
-"218
-}
-[e :U 302 ]
-"220
-[e :U 301 ]
-[e :U 299 ]
-}
-[; ;main.c: 218: }
-[; ;main.c: 220: }
-[e $U 303  ]
-"221
+[e :U 289 ]
+"181
+[e $ < _soupSteps -> 12 `i 290  ]
 [e :U 291 ]
-[; ;main.c: 221: else if(standby == 2){
-[e $ ! == _standby -> 2 `i 304  ]
+[; ;main.c: 183: }
+[; ;main.c: 184: S2mode = 4;
+"184
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 185: calibrateWheels();
+"185
+[e ( _calibrateWheels ..  ]
+[; ;main.c: 186: if(s1 == 2 || s1 == 3){S1mode = 3;}
+"186
+[e $ ! || == _s1 -> 2 `i == _s1 -> 3 `i 292  ]
 {
-[; ;main.c: 224: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"224
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 225: printf("testing PWM2 CW");
-"225
-[e ( _printf :s 3C ]
-[; ;main.c: 226: PWM2(800, 1);
-"226
-[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
-[; ;main.c: 227: keycheck();
-"227
-[e ( _keycheck ..  ]
-[; ;main.c: 229: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"229
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 230: printf("testing PWM2 CCW");
-"230
-[e ( _printf :s 4C ]
-[; ;main.c: 231: PWM2(800, 2);
-"231
-[e ( _PWM2 (2 , -> 800 `i -> 2 `i ]
-[; ;main.c: 232: keycheck();
-"232
-[e ( _keycheck ..  ]
-[; ;main.c: 234: PWM2off();
-"234
-[e ( _PWM2off ..  ]
-[; ;main.c: 236: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"236
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 237: printf("testing S f");
-"237
-[e ( _printf :s 5C ]
-[; ;main.c: 238: S1mode = 1;
-"238
-[e = _S1mode -> 1 `i ]
-[; ;main.c: 239: S2mode = 1;
-"239
-[e = _S2mode -> 1 `i ]
-[; ;main.c: 240: S3mode = 1;
-"240
-[e = _S3mode -> 1 `i ]
-[; ;main.c: 241: keycheck();
-"241
-[e ( _keycheck ..  ]
-[; ;main.c: 243: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"243
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 244: printf("testing S b");
-"244
-[e ( _printf :s 6C ]
-[; ;main.c: 245: S1mode = 2;
-"245
-[e = _S1mode -> 2 `i ]
-[; ;main.c: 246: S2mode = 2;
-"246
-[e = _S2mode -> 2 `i ]
-[; ;main.c: 247: S3mode = 2;
-"247
-[e = _S3mode -> 2 `i ]
-[; ;main.c: 248: keycheck();
-"248
-[e ( _keycheck ..  ]
-[; ;main.c: 250: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"250
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 251: printf("testing S shake");
-"251
-[e ( _printf :s 7C ]
-[; ;main.c: 252: S1mode = 3;
-"252
 [e = _S1mode -> 3 `i ]
-[; ;main.c: 253: S2mode = 3;
-"253
-[e = _S2mode -> 3 `i ]
-[; ;main.c: 254: S3mode = 3;
-"254
+}
+[e $U 293  ]
+"187
+[e :U 292 ]
+[; ;main.c: 187: else{S1mode = 5;}
+{
+[e = _S1mode -> 5 `i ]
+}
+[e :U 293 ]
+[; ;main.c: 188: if(s3 == 2 || s3 == 3){S3mode = 3;}
+"188
+[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 294  ]
+{
 [e = _S3mode -> 3 `i ]
-[; ;main.c: 255: keycheck();
-"255
-[e ( _keycheck ..  ]
-[; ;main.c: 257: S1mode = 0;
-"257
-[e = _S1mode -> 0 `i ]
-[; ;main.c: 258: S2mode = 0;
-"258
-[e = _S2mode -> 0 `i ]
-[; ;main.c: 259: S3mode = 0;
-"259
-[e = _S3mode -> 0 `i ]
-[; ;main.c: 261: keypress = (0);
-"261
+}
+[e $U 295  ]
+"189
+[e :U 294 ]
+[; ;main.c: 189: else{S3mode = 5;}
+{
+[e = _S3mode -> 5 `i ]
+}
+[e :U 295 ]
+[; ;main.c: 190: PWM2(800, 1);
+"190
+[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
+[; ;main.c: 191: PWM1(400);
+"191
+[e ( _PWM1 (1 -> 400 `i ]
+[; ;main.c: 193: keypress = (0);
+"193
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 262: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"262
+"195
+}
+[; ;main.c: 195: }
+[e $U 296  ]
+"196
+[e :U 288 ]
+[; ;main.c: 196: else if(keypress == 3){
+[e $ ! == -> _keypress `i -> 3 `i 297  ]
+{
+[; ;main.c: 197: displayLog(1);
+"197
+[e ( _displayLog (1 -> 1 `i ]
+[; ;main.c: 198: displayLog(2);
+"198
+[e ( _displayLog (1 -> 2 `i ]
+[; ;main.c: 199: displayLog(3);
+"199
+[e ( _displayLog (1 -> 3 `i ]
+[; ;main.c: 200: displayLog(4);
+"200
+[e ( _displayLog (1 -> 4 `i ]
+"201
+}
+[; ;main.c: 201: }
+[e $U 298  ]
+"202
+[e :U 297 ]
+[; ;main.c: 202: else if(keypress == 15 ) {
+[e $ ! == -> _keypress `i -> 15 `i 299  ]
+{
+[; ;main.c: 203: standby = 2;
+"203
+[e = _standby -> 2 `i ]
+[; ;main.c: 204: s = 1;
+"204
+[e = _s -> 1 `i ]
+"205
+}
+[e :U 299 ]
+"207
+[e :U 298 ]
+[e :U 296 ]
+}
+[; ;main.c: 205: }
+[; ;main.c: 207: }
+[e $U 300  ]
+"208
+[e :U 284 ]
+[; ;main.c: 208: else if(standby == 2){
+[e $ ! == _standby -> 2 `i 301  ]
+{
+[; ;main.c: 211: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"211
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 263: printf("testing S1 pins");
-"263
+[; ;main.c: 212: printf("testing PWM2 CW");
+"212
+[e ( _printf :s 3C ]
+[; ;main.c: 213: PWM2(800, 1);
+"213
+[e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
+[; ;main.c: 214: keycheck();
+"214
+[e ( _keycheck ..  ]
+[; ;main.c: 216: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"216
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 217: printf("testing PWM2 CCW");
+"217
+[e ( _printf :s 4C ]
+[; ;main.c: 218: PWM2(800, 2);
+"218
+[e ( _PWM2 (2 , -> 800 `i -> 2 `i ]
+[; ;main.c: 219: keycheck();
+"219
+[e ( _keycheck ..  ]
+[; ;main.c: 221: PWM2off();
+"221
+[e ( _PWM2off ..  ]
+[; ;main.c: 223: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"223
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 224: printf("testing S f");
+"224
+[e ( _printf :s 5C ]
+[; ;main.c: 225: S1mode = 1;
+"225
+[e = _S1mode -> 1 `i ]
+[; ;main.c: 226: S2mode = 1;
+"226
+[e = _S2mode -> 1 `i ]
+[; ;main.c: 227: S3mode = 1;
+"227
+[e = _S3mode -> 1 `i ]
+[; ;main.c: 228: keycheck();
+"228
+[e ( _keycheck ..  ]
+[; ;main.c: 230: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"230
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 231: printf("testing S b");
+"231
+[e ( _printf :s 6C ]
+[; ;main.c: 232: S1mode = 2;
+"232
+[e = _S1mode -> 2 `i ]
+[; ;main.c: 233: S2mode = 2;
+"233
+[e = _S2mode -> 2 `i ]
+[; ;main.c: 234: S3mode = 2;
+"234
+[e = _S3mode -> 2 `i ]
+[; ;main.c: 235: keycheck();
+"235
+[e ( _keycheck ..  ]
+[; ;main.c: 237: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"237
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 238: printf("testing S shake");
+"238
+[e ( _printf :s 7C ]
+[; ;main.c: 239: S1mode = 3;
+"239
+[e = _S1mode -> 3 `i ]
+[; ;main.c: 240: S2mode = 3;
+"240
+[e = _S2mode -> 3 `i ]
+[; ;main.c: 241: S3mode = 3;
+"241
+[e = _S3mode -> 3 `i ]
+[; ;main.c: 242: keycheck();
+"242
+[e ( _keycheck ..  ]
+[; ;main.c: 244: S1mode = 4;
+"244
+[e = _S1mode -> 4 `i ]
+[; ;main.c: 245: S2mode = 4;
+"245
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 246: S3mode = 4;
+"246
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 248: keypress = (0);
+"248
+[e = _keypress -> -> 0 `i `uc ]
+[; ;main.c: 249: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"249
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 250: printf("testing S1 pins");
+"250
 [e ( _printf :s 8C ]
-[; ;main.c: 264: while(keypress!=3){
-"264
-[e $U 305  ]
-[e :U 306 ]
+[; ;main.c: 251: while(keypress!=3){
+"251
+[e $U 302  ]
+[e :U 303 ]
 {
-[; ;main.c: 266: keyinterrupt();
-"266
+[; ;main.c: 253: keyinterrupt();
+"253
 [e ( _keyinterrupt ..  ]
-[; ;main.c: 268: if (keypress == 2){LATDbits.LATD1 = 1;}
-"268
-[e $ ! == -> _keypress `i -> 2 `i 308  ]
+[; ;main.c: 255: if (keypress == 2){LATDbits.LATD1 = 1;}
+"255
+[e $ ! == -> _keypress `i -> 2 `i 305  ]
 {
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
 }
-[e $U 309  ]
-"269
-[e :U 308 ]
-[; ;main.c: 269: else{LATDbits.LATD1 = 0;}
+[e $U 306  ]
+"256
+[e :U 305 ]
+[; ;main.c: 256: else{LATDbits.LATD1 = 0;}
 {
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 309 ]
-[; ;main.c: 270: if (keypress == 6){LATBbits.LATB3 = 1;}
-"270
-[e $ ! == -> _keypress `i -> 6 `i 310  ]
+[e :U 306 ]
+[; ;main.c: 257: if (keypress == 6){LATBbits.LATB3 = 1;}
+"257
+[e $ ! == -> _keypress `i -> 6 `i 307  ]
 {
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
 }
-[e $U 311  ]
-"271
-[e :U 310 ]
-[; ;main.c: 271: else{LATBbits.LATB3 = 0;}
+[e $U 308  ]
+"258
+[e :U 307 ]
+[; ;main.c: 258: else{LATBbits.LATB3 = 0;}
 {
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 }
-[e :U 311 ]
-[; ;main.c: 272: if (keypress == 10){LATBbits.LATB2 = 1;}
-"272
-[e $ ! == -> _keypress `i -> 10 `i 312  ]
+[e :U 308 ]
+[; ;main.c: 259: if (keypress == 10){LATBbits.LATB2 = 1;}
+"259
+[e $ ! == -> _keypress `i -> 10 `i 309  ]
 {
 [e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
 }
-[e $U 313  ]
-"273
-[e :U 312 ]
-[; ;main.c: 273: else{LATBbits.LATB2 = 0;}
+[e $U 310  ]
+"260
+[e :U 309 ]
+[; ;main.c: 260: else{LATBbits.LATB2 = 0;}
 {
 [e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 313 ]
-[; ;main.c: 274: if (keypress == 14){LATBbits.LATB0 = 1;}
-"274
-[e $ ! == -> _keypress `i -> 14 `i 314  ]
+[e :U 310 ]
+[; ;main.c: 261: if (keypress == 14){LATBbits.LATB0 = 1;}
+"261
+[e $ ! == -> _keypress `i -> 14 `i 311  ]
 {
 [e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 315  ]
-"275
-[e :U 314 ]
-[; ;main.c: 275: else{LATBbits.LATB0 = 0;}
+[e $U 312  ]
+"262
+[e :U 311 ]
+[; ;main.c: 262: else{LATBbits.LATB0 = 0;}
 {
 [e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 315 ]
-[; ;main.c: 277: readADC(1);
-"277
-[e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 278: lcdInst(0b11000000);;
-"278
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 279: printf("%x", ADRES);
-"279
-[e ( _printf , (. :s 9C -> _ADRES `i ]
-"280
-}
-[e :U 305 ]
+[e :U 312 ]
+[; ;main.c: 264: readADC(1);
 "264
-[e $ != -> _keypress `i -> 3 `i 306  ]
-[e :U 307 ]
-[; ;main.c: 280: }
-[; ;main.c: 282: keypress = (0);
-"282
+[e ( _readADC (1 -> -> 1 `i `uc ]
+[; ;main.c: 265: lcdInst(0b11000000);;
+"265
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 266: printf("%x", ADRES);
+"266
+[e ( _printf , (. :s 9C -> _ADRES `i ]
+"267
+}
+[e :U 302 ]
+"251
+[e $ != -> _keypress `i -> 3 `i 303  ]
+[e :U 304 ]
+[; ;main.c: 267: }
+[; ;main.c: 269: keypress = (0);
+"269
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 283: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"283
+[; ;main.c: 270: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"270
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 284: printf("testing S2 pins");
-"284
+[; ;main.c: 271: printf("testing S2 pins");
+"271
 [e ( _printf :s 10C ]
-[; ;main.c: 285: while(keypress!=3){
-"285
-[e $U 316  ]
-[e :U 317 ]
+[; ;main.c: 272: while(keypress!=3){
+"272
+[e $U 313  ]
+[e :U 314 ]
 {
-[; ;main.c: 287: keyinterrupt();
-"287
+[; ;main.c: 274: keyinterrupt();
+"274
 [e ( _keyinterrupt ..  ]
-[; ;main.c: 289: if (keypress == 2){LATCbits.LATC7 = 1;}
-"289
-[e $ ! == -> _keypress `i -> 2 `i 319  ]
+[; ;main.c: 276: if (keypress == 2){LATCbits.LATC7 = 1;}
+"276
+[e $ ! == -> _keypress `i -> 2 `i 316  ]
 {
 [e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
 }
-[e $U 320  ]
-"290
-[e :U 319 ]
-[; ;main.c: 290: else{LATCbits.LATC7 = 0;}
+[e $U 317  ]
+"277
+[e :U 316 ]
+[; ;main.c: 277: else{LATCbits.LATC7 = 0;}
 {
 [e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
 }
-[e :U 320 ]
-[; ;main.c: 291: if (keypress == 6){LATCbits.LATC6 = 1;}
-"291
-[e $ ! == -> _keypress `i -> 6 `i 321  ]
+[e :U 317 ]
+[; ;main.c: 278: if (keypress == 6){LATCbits.LATC6 = 1;}
+"278
+[e $ ! == -> _keypress `i -> 6 `i 318  ]
 {
 [e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
 }
-[e $U 322  ]
-"292
-[e :U 321 ]
-[; ;main.c: 292: else{LATCbits.LATC6 = 0;}
+[e $U 319  ]
+"279
+[e :U 318 ]
+[; ;main.c: 279: else{LATCbits.LATC6 = 0;}
 {
 [e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
 }
-[e :U 322 ]
-[; ;main.c: 293: if (keypress == 10){LATCbits.LATC0 = 1;}
-"293
-[e $ ! == -> _keypress `i -> 10 `i 323  ]
+[e :U 319 ]
+[; ;main.c: 280: if (keypress == 10){LATCbits.LATC0 = 1;}
+"280
+[e $ ! == -> _keypress `i -> 10 `i 320  ]
 {
 [e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 324  ]
-"294
-[e :U 323 ]
-[; ;main.c: 294: else{LATCbits.LATC0 = 0;}
+[e $U 321  ]
+"281
+[e :U 320 ]
+[; ;main.c: 281: else{LATCbits.LATC0 = 0;}
 {
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 324 ]
-[; ;main.c: 295: if (keypress == 14){LATCbits.LATC5 = 1;}
-"295
-[e $ ! == -> _keypress `i -> 14 `i 325  ]
+[e :U 321 ]
+[; ;main.c: 282: if (keypress == 14){LATCbits.LATC5 = 1;}
+"282
+[e $ ! == -> _keypress `i -> 14 `i 322  ]
 {
 [e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
 }
-[e $U 326  ]
-"296
-[e :U 325 ]
-[; ;main.c: 296: else{LATCbits.LATC5 = 0;}
+[e $U 323  ]
+"283
+[e :U 322 ]
+[; ;main.c: 283: else{LATCbits.LATC5 = 0;}
 {
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 326 ]
-"297
+[e :U 323 ]
+"284
 }
-[e :U 316 ]
-"285
-[e $ != -> _keypress `i -> 3 `i 317  ]
-[e :U 318 ]
-[; ;main.c: 297: }
-[; ;main.c: 299: keypress = (0);
-"299
+[e :U 313 ]
+"272
+[e $ != -> _keypress `i -> 3 `i 314  ]
+[e :U 315 ]
+[; ;main.c: 284: }
+[; ;main.c: 286: keypress = (0);
+"286
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 300: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"300
+[; ;main.c: 287: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"287
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 301: printf("testing S3 pins");
-"301
+[; ;main.c: 288: printf("testing S3 pins");
+"288
 [e ( _printf :s 11C ]
-[; ;main.c: 302: while(keypress!=3){
-"302
-[e $U 327  ]
-[e :U 328 ]
+[; ;main.c: 289: while(keypress!=3){
+"289
+[e $U 324  ]
+[e :U 325 ]
 {
-[; ;main.c: 304: keyinterrupt();
-"304
+[; ;main.c: 291: keyinterrupt();
+"291
 [e ( _keyinterrupt ..  ]
-[; ;main.c: 306: if (keypress == 2){LATEbits.LATE2 = 1;}
-"306
-[e $ ! == -> _keypress `i -> 2 `i 330  ]
+[; ;main.c: 293: if (keypress == 2){LATEbits.LATE2 = 1;}
+"293
+[e $ ! == -> _keypress `i -> 2 `i 327  ]
 {
 [e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
 }
-[e $U 331  ]
-"307
-[e :U 330 ]
-[; ;main.c: 307: else{LATEbits.LATE2 = 0;}
+[e $U 328  ]
+"294
+[e :U 327 ]
+[; ;main.c: 294: else{LATEbits.LATE2 = 0;}
 {
 [e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 331 ]
-[; ;main.c: 308: if (keypress == 6){LATEbits.LATE1 = 1;}
-"308
-[e $ ! == -> _keypress `i -> 6 `i 332  ]
+[e :U 328 ]
+[; ;main.c: 295: if (keypress == 6){LATEbits.LATE1 = 1;}
+"295
+[e $ ! == -> _keypress `i -> 6 `i 329  ]
 {
 [e = . . _LATEbits 0 1 -> -> 1 `i `uc ]
 }
-[e $U 333  ]
-"309
-[e :U 332 ]
-[; ;main.c: 309: else{LATEbits.LATE1 = 0;}
+[e $U 330  ]
+"296
+[e :U 329 ]
+[; ;main.c: 296: else{LATEbits.LATE1 = 0;}
 {
 [e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 333 ]
-[; ;main.c: 310: if (keypress == 10){LATAbits.LATA4 = 1;}
-"310
-[e $ ! == -> _keypress `i -> 10 `i 334  ]
+[e :U 330 ]
+[; ;main.c: 297: if (keypress == 10){LATAbits.LATA4 = 1;}
+"297
+[e $ ! == -> _keypress `i -> 10 `i 331  ]
 {
 [e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 }
-[e $U 335  ]
-"311
-[e :U 334 ]
-[; ;main.c: 311: else{LATAbits.LATA4 = 0;}
+[e $U 332  ]
+"298
+[e :U 331 ]
+[; ;main.c: 298: else{LATAbits.LATA4 = 0;}
 {
 [e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 335 ]
-[; ;main.c: 312: if (keypress == 14){LATDbits.LATD0 = 1;}
-"312
-[e $ ! == -> _keypress `i -> 14 `i 336  ]
+[e :U 332 ]
+[; ;main.c: 299: if (keypress == 14){LATDbits.LATD0 = 1;}
+"299
+[e $ ! == -> _keypress `i -> 14 `i 333  ]
 {
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 }
-[e $U 337  ]
-"313
-[e :U 336 ]
-[; ;main.c: 313: else{LATDbits.LATD0 = 0;}
+[e $U 334  ]
+"300
+[e :U 333 ]
+[; ;main.c: 300: else{LATDbits.LATD0 = 0;}
 {
 [e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 337 ]
-[; ;main.c: 315: readADC(5);
-"315
-[e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 316: lcdInst(0b11000000);;
-"316
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 317: printf("%x", ADRES);
-"317
-[e ( _printf , (. :s 12C -> _ADRES `i ]
-"318
-}
-[e :U 327 ]
+[e :U 334 ]
+[; ;main.c: 302: readADC(5);
 "302
-[e $ != -> _keypress `i -> 3 `i 328  ]
-[e :U 329 ]
-[; ;main.c: 318: }
-[; ;main.c: 320: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"320
+[e ( _readADC (1 -> -> 5 `i `uc ]
+[; ;main.c: 303: lcdInst(0b11000000);;
+"303
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 304: printf("%x", ADRES);
+"304
+[e ( _printf , (. :s 12C -> _ADRES `i ]
+"305
+}
+[e :U 324 ]
+"289
+[e $ != -> _keypress `i -> 3 `i 325  ]
+[e :U 326 ]
+[; ;main.c: 305: }
+[; ;main.c: 307: S1mode = 0;
+"307
+[e = _S1mode -> 0 `i ]
+[; ;main.c: 308: S2mode = 0;
+"308
+[e = _S2mode -> 0 `i ]
+[; ;main.c: 309: S3mode = 0;
+"309
+[e = _S3mode -> 0 `i ]
+[; ;main.c: 311: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"311
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 321: printf("testing PWM1");
-"321
+[; ;main.c: 312: printf("testing PWM1");
+"312
 [e ( _printf :s 13C ]
-[; ;main.c: 322: PWM1(400);
-"322
+[; ;main.c: 313: PWM1(400);
+"313
 [e ( _PWM1 (1 -> 400 `i ]
-[; ;main.c: 323: keycheck();
-"323
+[; ;main.c: 314: keycheck();
+"314
 [e ( _keycheck ..  ]
-[; ;main.c: 324: PWM1off();
-"324
+[; ;main.c: 315: PWM1off();
+"315
 [e ( _PWM1off ..  ]
-[; ;main.c: 326: keypress = (0);
-"326
+[; ;main.c: 317: keypress = (0);
+"317
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 327: seconds = 0;
+[; ;main.c: 318: while(keypress==(0)){
+"318
+[e $U 335  ]
+[e :U 336 ]
+{
+[; ;main.c: 319: keypress = (0);
+"319
+[e = _keypress -> -> 0 `i `uc ]
+[; ;main.c: 321: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"321
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 322: printf("testing IR");
+"322
+[e ( _printf :s 14C ]
+[; ;main.c: 323: lcdInst(0b11000000);;
+"323
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 324: readADC(1);
+"324
+[e ( _readADC (1 -> -> 1 `i `uc ]
+[; ;main.c: 325: printf("%x ", ADRES);
+"325
+[e ( _printf , (. :s 15C -> _ADRES `i ]
+[; ;main.c: 326: readADC(0);
+"326
+[e ( _readADC (1 -> -> 0 `i `uc ]
+[; ;main.c: 327: printf("%x ", ADRES);
 "327
-[e = _seconds -> 0 `i ]
-[; ;main.c: 328: while(keypress==(0)){
+[e ( _printf , (. :s 16C -> _ADRES `i ]
+[; ;main.c: 328: readADC(2);
 "328
+[e ( _readADC (1 -> -> 2 `i `uc ]
+[; ;main.c: 329: printf("%x ", ADRES);
+"329
+[e ( _printf , (. :s 17C -> _ADRES `i ]
+[; ;main.c: 330: readADC(5);
+"330
+[e ( _readADC (1 -> -> 5 `i `uc ]
+[; ;main.c: 331: printf("%x ", ADRES);
+"331
+[e ( _printf , (. :s 18C -> _ADRES `i ]
+[; ;main.c: 332: keyinterrupt();
+"332
+[e ( _keyinterrupt ..  ]
+[; ;main.c: 333: _delay((unsigned long)((100)*(32000000/4000.0)));
+"333
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"334
+}
+[e :U 335 ]
+"318
+[e $ == -> _keypress `i -> 0 `i 336  ]
+[e :U 337 ]
+[; ;main.c: 334: }
+[; ;main.c: 336: keypress = (0);
+"336
+[e = _keypress -> -> 0 `i `uc ]
+[; ;main.c: 337: while(keypress==(0)){
+"337
 [e $U 338  ]
 [e :U 339 ]
 {
-[; ;main.c: 329: keypress = (0);
-"329
-[e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 331: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"331
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 332: printf("testing TMR0");
-"332
-[e ( _printf :s 14C ]
-[; ;main.c: 333: lcdInst(0b11000000);;
-"333
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 334: printf("%d", seconds);
-"334
-[e ( _printf , (. :s 15C _seconds ]
-[; ;main.c: 335: keyinterrupt();
-"335
-[e ( _keyinterrupt ..  ]
-"336
-}
-[e :U 338 ]
-"328
-[e $ == -> _keypress `i -> 0 `i 339  ]
-[e :U 340 ]
-[; ;main.c: 336: }
 [; ;main.c: 338: keypress = (0);
 "338
 [e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 339: while(keypress==(0)){
+[; ;main.c: 339: _delay((unsigned long)((50)*(32000000/4000.0)));
 "339
-[e $U 341  ]
-[e :U 342 ]
-{
-[; ;main.c: 340: keypress = (0);
-"340
-[e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 342: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"342
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 343: printf("testing IR");
-"343
-[e ( _printf :s 16C ]
-[; ;main.c: 344: lcdInst(0b11000000);;
-"344
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 345: readADC(1);
-"345
-[e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 346: printf("%x ", ADRES);
-"346
-[e ( _printf , (. :s 17C -> _ADRES `i ]
-[; ;main.c: 347: readADC(0);
-"347
-[e ( _readADC (1 -> -> 0 `i `uc ]
-[; ;main.c: 348: printf("%x ", ADRES);
-"348
-[e ( _printf , (. :s 18C -> _ADRES `i ]
-[; ;main.c: 349: readADC(2);
-"349
-[e ( _readADC (1 -> -> 2 `i `uc ]
-[; ;main.c: 350: printf("%x ", ADRES);
-"350
-[e ( _printf , (. :s 19C -> _ADRES `i ]
-[; ;main.c: 351: readADC(5);
-"351
-[e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 352: printf("%x ", ADRES);
-"352
-[e ( _printf , (. :s 20C -> _ADRES `i ]
-[; ;main.c: 353: keyinterrupt();
-"353
-[e ( _keyinterrupt ..  ]
-[; ;main.c: 354: _delay((unsigned long)((100)*(32000000/4000.0)));
-"354
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"355
-}
-[e :U 341 ]
-"339
-[e $ == -> _keypress `i -> 0 `i 342  ]
-[e :U 343 ]
-[; ;main.c: 355: }
-[; ;main.c: 357: keypress = (0);
-"357
-[e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 358: while(keypress==(0)){
-"358
-[e $U 344  ]
-[e :U 345 ]
-{
-[; ;main.c: 359: keypress = (0);
-"359
-[e = _keypress -> -> 0 `i `uc ]
-[; ;main.c: 360: _delay((unsigned long)((50)*(32000000/4000.0)));
-"360
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 361: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"361
+[; ;main.c: 340: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"340
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 362: printf("label   tab");
-"362
-[e ( _printf :s 21C ]
-[; ;main.c: 363: lcdInst(0b11000000);;
-"363
+[; ;main.c: 341: printf("label   tab");
+"341
+[e ( _printf :s 19C ]
+[; ;main.c: 342: lcdInst(0b11000000);;
+"342
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 364: readADC(4);
-"364
+[; ;main.c: 343: readADC(4);
+"343
 [e ( _readADC (1 -> -> 4 `i `uc ]
-[; ;main.c: 365: printf("%x      ", ADRES);
-"365
-[e ( _printf , (. :s 22C -> _ADRES `i ]
-[; ;main.c: 366: readADC(3);
-"366
+[; ;main.c: 344: printf("%x      ", ADRES);
+"344
+[e ( _printf , (. :s 20C -> _ADRES `i ]
+[; ;main.c: 345: readADC(3);
+"345
 [e ( _readADC (1 -> -> 3 `i `uc ]
-[; ;main.c: 367: printf("%x      ", ADRES);
-"367
-[e ( _printf , (. :s 23C -> _ADRES `i ]
-[; ;main.c: 368: keyinterrupt();
-"368
+[; ;main.c: 346: printf("%x      ", ADRES);
+"346
+[e ( _printf , (. :s 21C -> _ADRES `i ]
+[; ;main.c: 347: keyinterrupt();
+"347
 [e ( _keyinterrupt ..  ]
+"348
+}
+[e :U 338 ]
+"337
+[e $ == -> _keypress `i -> 0 `i 339  ]
+[e :U 340 ]
+[; ;main.c: 348: }
+[; ;main.c: 350: standby = 1;
+"350
+[e = _standby -> 1 `i ]
+"356
+}
+[; ;main.c: 356: }
+[e $U 341  ]
+"357
+[e :U 301 ]
+[; ;main.c: 357: else{
+{
+[; ;main.c: 358: do{
+"358
+[e :U 344 ]
+{
+[; ;main.c: 359: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"359
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;main.c: 361: readADC(2);
+"361
+[e ( _readADC (1 -> -> 2 `i `uc ]
+[; ;main.c: 362: if(ADRES <= 0x130){
+"362
+[e $ ! <= -> _ADRES `ui -> -> 304 `i `ui 345  ]
+{
+[; ;main.c: 363: prevSoupLoad = seconds;
+"363
+[e = _prevSoupLoad _seconds ]
+[; ;main.c: 364: soupCnt = 1;
+"364
+[e = _soupCnt -> 1 `i ]
+[; ;main.c: 365: if (!soupSort){
+"365
+[e $ ! ! != _soupSort -> 0 `i 346  ]
+{
+[; ;main.c: 366: soupSort = 1;
+"366
+[e = _soupSort -> 1 `i ]
+[; ;main.c: 367: soupSteps = 0;
+"367
+[e = _soupSteps -> 0 `i ]
+[; ;main.c: 368: _delay((unsigned long)((150)*(32000000/4000.0)));
+"368
+[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
 "369
 }
-[e :U 344 ]
-"358
-[e $ == -> _keypress `i -> 0 `i 345  ]
 [e :U 346 ]
+"370
+}
+[e :U 345 ]
 [; ;main.c: 369: }
-[; ;main.c: 371: standby = 1;
-"371
-[e = _standby -> 1 `i ]
-"377
-}
-[; ;main.c: 377: }
-[e $U 347  ]
-"378
-[e :U 304 ]
-[; ;main.c: 378: else{
+[; ;main.c: 370: }
+[; ;main.c: 372: printf("soup: %x %d", ADRES, soupSteps);
+"372
+[e ( _printf , , (. :s 22C -> _ADRES `i _soupSteps ]
+[; ;main.c: 374: if (soupSort){
+"374
+[e $ ! != _soupSort -> 0 `i 347  ]
 {
-[; ;main.c: 379: do{
-"379
-[e :U 350 ]
+[; ;main.c: 375: if (soupSteps < 80){
+"375
+[e $ ! < _soupSteps -> 80 `i 348  ]
 {
-[; ;main.c: 380: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"380
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 382: readADC(2);
-"382
-[e ( _readADC (1 -> -> 2 `i `uc ]
-[; ;main.c: 383: if(ADRES <= 0x250){
-"383
-[e $ ! <= -> _ADRES `ui -> -> 592 `i `ui 351  ]
-{
-[; ;main.c: 384: prevSoupLoad = seconds;
-"384
-[e = _prevSoupLoad _seconds ]
-[; ;main.c: 385: if (!soupSort){
-"385
-[e $ ! ! != _soupSort -> 0 `i 352  ]
-{
-[; ;main.c: 386: soupSort = 1;
-"386
-[e = _soupSort -> 1 `i ]
-[; ;main.c: 387: soupSteps = 0;
-"387
-[e = _soupSteps -> 0 `i ]
-[; ;main.c: 388: _delay((unsigned long)((150)*(32000000/4000.0)));
-"388
-[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"389
-}
-[e :U 352 ]
-"390
-}
-[e :U 351 ]
-[; ;main.c: 389: }
-[; ;main.c: 390: }
-[; ;main.c: 392: printf("soup: %x %d", ADRES, soupSteps);
-"392
-[e ( _printf , , (. :s 24C -> _ADRES `i _soupSteps ]
-[; ;main.c: 394: if (soupSort){
-"394
-[e $ ! != _soupSort -> 0 `i 353  ]
-{
-[; ;main.c: 395: if (soupSteps < 80){
-"395
-[e $ ! < _soupSteps -> 80 `i 354  ]
-{
-[; ;main.c: 396: S1mode = 3;
-"396
-[e = _S1mode -> 3 `i ]
-[; ;main.c: 397: readADC(4);
-"397
+[; ;main.c: 376: readADC(4);
+"376
 [e ( _readADC (1 -> -> 4 `i `uc ]
-[; ;main.c: 398: if(ADRES<0x200){labelState = 1;}
-"398
-[e $ ! < -> _ADRES `ui -> -> 512 `i `ui 355  ]
+[; ;main.c: 377: if(ADRES<0x200){labelState = 1;}
+"377
+[e $ ! < -> _ADRES `ui -> -> 512 `i `ui 349  ]
 {
 [e = _labelState -> 1 `i ]
 }
-[e :U 355 ]
-[; ;main.c: 399: printf(" %x",ADRES);
-"399
-[e ( _printf , (. :s 25C -> _ADRES `i ]
-"400
+[e :U 349 ]
+[; ;main.c: 378: printf(" %x",ADRES);
+"378
+[e ( _printf , (. :s 23C -> _ADRES `i ]
+"379
 }
-[; ;main.c: 400: }
-[e $U 356  ]
-"401
-[e :U 354 ]
-[; ;main.c: 401: else if (labelState == 1){
-[e $ ! == _labelState -> 1 `i 357  ]
+[; ;main.c: 379: }
+[e $U 350  ]
+"380
+[e :U 348 ]
+[; ;main.c: 380: else if (labelState == 1){
+[e $ ! == _labelState -> 1 `i 351  ]
 {
-[; ;main.c: 402: if(soupSteps < (80+70)){
-"402
-[e $ ! < _soupSteps + -> 80 `i -> 70 `i 358  ]
+[; ;main.c: 381: if(soupSteps < (80+70)){
+"381
+[e $ ! < _soupSteps + -> 80 `i -> 70 `i 352  ]
 {
-[; ;main.c: 403: S1mode = 1;
-"403
+[; ;main.c: 382: S1mode = 1;
+"382
 [e = _S1mode -> 1 `i ]
-[; ;main.c: 404: prevSoupLoad = 0;
-"404
-[e = _prevSoupLoad -> 0 `i ]
-"405
+[; ;main.c: 383: soupCnt = 0;
+"383
+[e = _soupCnt -> 0 `i ]
+"384
 }
-[; ;main.c: 405: }
-[e $U 359  ]
-"406
-[e :U 358 ]
-[; ;main.c: 406: else if(soupSteps < (80+70+55)){
-[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 55 `i 360  ]
+[; ;main.c: 384: }
+[e $U 353  ]
+"385
+[e :U 352 ]
+[; ;main.c: 385: else if(soupSteps < (80+70+55)){
+[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 55 `i 354  ]
 {
-[; ;main.c: 407: S1mode = 2;
-"407
+[; ;main.c: 386: S1mode = 2;
+"386
 [e = _S1mode -> 2 `i ]
-[; ;main.c: 408: soupAlign = 2;
-"408
+[; ;main.c: 387: soupAlign = 2;
+"387
 [e = _soupAlign -> 2 `i ]
-"409
+[; ;main.c: 388: soupI = 1;
+"388
+[e = _soupI -> 1 `i ]
+"389
 }
-[; ;main.c: 409: }
-[e $U 361  ]
-"410
-[e :U 360 ]
-[; ;main.c: 410: else{
+[; ;main.c: 389: }
+[e $U 355  ]
+"390
+[e :U 354 ]
+[; ;main.c: 390: else{
 {
-[; ;main.c: 411: S1mode = 10;
-"411
-[e = _S1mode -> 10 `i ]
-[; ;main.c: 412: printf(" %d", soupAlign);
-"412
-[e ( _printf , (. :s 26C _soupAlign ]
-[; ;main.c: 413: updateS1(soupAlign);
-"413
+[; ;main.c: 391: S1mode = 4;
+"391
+[e = _S1mode -> 4 `i ]
+[; ;main.c: 392: printf(" %d", soupAlign);
+"392
+[e ( _printf , (. :s 24C _soupAlign ]
+[; ;main.c: 393: updateS1(soupAlign);
+"393
 [e ( _updateS1 (1 _soupAlign ]
-[; ;main.c: 414: readADC(1);
-"414
+[; ;main.c: 394: readADC(1);
+"394
 [e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 415: printf(" %x", ADRES);
-"415
-[e ( _printf , (. :s 27C -> _ADRES `i ]
-[; ;main.c: 416: if (ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 101;}
-"416
-[e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 362  ]
+[; ;main.c: 395: printf(" %x", ADRES);
+"395
+[e ( _printf , (. :s 25C -> _ADRES `i ]
+[; ;main.c: 396: if (ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 101;}
+"396
+[e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 356  ]
 {
 [e = _labelState -> 101 `i ]
 }
-[e :U 362 ]
-[; ;main.c: 417: prevSoupIR = ADRES;
+[e :U 356 ]
+[; ;main.c: 397: prevSoupIR = ADRES;
+"397
+[e = _prevSoupIR -> _ADRES `i ]
+"399
+}
+[e :U 355 ]
+[e :U 353 ]
+"400
+}
+[; ;main.c: 399: }
+[; ;main.c: 400: }
+[e $U 357  ]
+"401
+[e :U 351 ]
+[; ;main.c: 401: else if(labelState == 0){
+[e $ ! == _labelState -> 0 `i 358  ]
+{
+[; ;main.c: 402: if(soupSteps < (80+70)){
+"402
+[e $ ! < _soupSteps + -> 80 `i -> 70 `i 359  ]
+{
+[; ;main.c: 403: S1mode = 2;
+"403
+[e = _S1mode -> 2 `i ]
+[; ;main.c: 404: soupCnt = 0;
+"404
+[e = _soupCnt -> 0 `i ]
+"405
+}
+[; ;main.c: 405: }
+[e $U 360  ]
+"406
+[e :U 359 ]
+[; ;main.c: 406: else if(soupSteps < (80+70+58)){
+[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 58 `i 361  ]
+{
+[; ;main.c: 407: S1mode = 1;
+"407
+[e = _S1mode -> 1 `i ]
+[; ;main.c: 408: soupAlign = 1;
+"408
+[e = _soupAlign -> 1 `i ]
+[; ;main.c: 409: soupI = 1;
+"409
+[e = _soupI -> 1 `i ]
+"410
+}
+[; ;main.c: 410: }
+[e $U 362  ]
+"411
+[e :U 361 ]
+[; ;main.c: 411: else{
+{
+[; ;main.c: 412: S1mode = 4;
+"412
+[e = _S1mode -> 4 `i ]
+[; ;main.c: 413: printf(" %d", soupAlign);
+"413
+[e ( _printf , (. :s 26C _soupAlign ]
+[; ;main.c: 414: updateS1(soupAlign);
+"414
+[e ( _updateS1 (1 _soupAlign ]
+[; ;main.c: 415: readADC(1);
+"415
+[e ( _readADC (1 -> -> 1 `i `uc ]
+[; ;main.c: 416: printf(" %x", ADRES);
+"416
+[e ( _printf , (. :s 27C -> _ADRES `i ]
+[; ;main.c: 417: if(ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 100;}
 "417
+[e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 363  ]
+{
+[e = _labelState -> 100 `i ]
+}
+[e :U 363 ]
+[; ;main.c: 418: prevSoupIR = ADRES;
+"418
 [e = _prevSoupIR -> _ADRES `i ]
 "419
 }
-[e :U 361 ]
-[e :U 359 ]
+[e :U 362 ]
+[e :U 360 ]
 "420
 }
 [; ;main.c: 419: }
 [; ;main.c: 420: }
-[e $U 363  ]
+[e $U 364  ]
 "421
-[e :U 357 ]
-[; ;main.c: 421: else if(labelState == 0){
-[e $ ! == _labelState -> 0 `i 364  ]
+[e :U 358 ]
+[; ;main.c: 421: else{
 {
-[; ;main.c: 422: if(soupSteps < (80+70)){
+[; ;main.c: 422: if(labelState == 101){soupNL++;}
 "422
-[e $ ! < _soupSteps + -> 80 `i -> 70 `i 365  ]
-{
-[; ;main.c: 423: S1mode = 2;
-"423
-[e = _S1mode -> 2 `i ]
-[; ;main.c: 424: prevSoupLoad = 0;
-"424
-[e = _prevSoupLoad -> 0 `i ]
-"425
-}
-[; ;main.c: 425: }
-[e $U 366  ]
-"426
-[e :U 365 ]
-[; ;main.c: 426: else if(soupSteps < (80+70+58)){
-[e $ ! < _soupSteps + + -> 80 `i -> 70 `i -> 58 `i 367  ]
-{
-[; ;main.c: 427: S1mode = 1;
-"427
-[e = _S1mode -> 1 `i ]
-[; ;main.c: 428: soupAlign = 1;
-"428
-[e = _soupAlign -> 1 `i ]
-"429
-}
-[; ;main.c: 429: }
-[e $U 368  ]
-"430
-[e :U 367 ]
-[; ;main.c: 430: else{
-{
-[; ;main.c: 431: S1mode = 10;
-"431
-[e = _S1mode -> 10 `i ]
-[; ;main.c: 432: printf(" %d", soupAlign);
-"432
-[e ( _printf , (. :s 28C _soupAlign ]
-[; ;main.c: 433: updateS1(soupAlign);
-"433
-[e ( _updateS1 (1 _soupAlign ]
-[; ;main.c: 434: readADC(1);
-"434
-[e ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 435: printf(" %x", ADRES);
-"435
-[e ( _printf , (. :s 29C -> _ADRES `i ]
-[; ;main.c: 436: if(ADRES < prevSoupIR && ADRES > 0x3aa){labelState = 100;}
-"436
-[e $ ! && < -> _ADRES `ui -> _prevSoupIR `ui > -> _ADRES `ui -> -> 938 `i `ui 369  ]
-{
-[e = _labelState -> 100 `i ]
-}
-[e :U 369 ]
-[; ;main.c: 437: prevSoupIR = ADRES;
-"437
-[e = _prevSoupIR -> _ADRES `i ]
-"438
-}
-[e :U 368 ]
-[e :U 366 ]
-"439
-}
-[; ;main.c: 438: }
-[; ;main.c: 439: }
-[e $U 370  ]
-"440
-[e :U 364 ]
-[; ;main.c: 440: else{
-{
-[; ;main.c: 441: if(labelState == 101){soupNL++;}
-"441
-[e $ ! == _labelState -> 101 `i 371  ]
+[e $ ! == _labelState -> 101 `i 365  ]
 {
 [e ++ _soupNL -> 1 `i ]
 }
-[e $U 372  ]
-"442
-[e :U 371 ]
-[; ;main.c: 442: else if(labelState == 100){soupL++;}
-[e $ ! == _labelState -> 100 `i 373  ]
+[e $U 366  ]
+"423
+[e :U 365 ]
+[; ;main.c: 423: else if(labelState == 100){soupL++;}
+[e $ ! == _labelState -> 100 `i 367  ]
 {
 [e ++ _soupL -> 1 `i ]
 }
-[e :U 373 ]
-"443
-[e :U 372 ]
-[; ;main.c: 443: soupSteps = 0;
+[e :U 367 ]
+"424
+[e :U 366 ]
+[; ;main.c: 424: soupSteps = 0;
 [e = _soupSteps -> 0 `i ]
-[; ;main.c: 444: prevSoupIR = 0;
-"444
+[; ;main.c: 425: prevSoupIR = 0;
+"425
 [e = _prevSoupIR -> 0 `i ]
-[; ;main.c: 445: labelState = 0;
-"445
+[; ;main.c: 426: labelState = 0;
+"426
 [e = _labelState -> 0 `i ]
-[; ;main.c: 446: if (prevSoupLoad == 0) {soupSort = 0;}
-"446
-[e $ ! == _prevSoupLoad -> 0 `i 374  ]
+[; ;main.c: 427: if (soupCnt == 0) {soupSort = 0;}
+"427
+[e $ ! == _soupCnt -> 0 `i 368  ]
 {
 [e = _soupSort -> 0 `i ]
 }
-[e :U 374 ]
-"447
+[e :U 368 ]
+[; ;main.c: 429: if(s1 == 2 || s1 == 3){S1mode = 3;}
+"429
+[e $ ! || == _s1 -> 2 `i == _s1 -> 3 `i 369  ]
+{
+[e = _S1mode -> 3 `i ]
+}
+[e $U 370  ]
+"430
+[e :U 369 ]
+[; ;main.c: 430: else{S1mode = 5;}
+{
+[e = _S1mode -> 5 `i ]
 }
 [e :U 370 ]
-[e :U 363 ]
-[e :U 356 ]
-"448
+"431
 }
-[; ;main.c: 447: }
-[; ;main.c: 448: }
-[e $U 375  ]
-"449
-[e :U 353 ]
-[; ;main.c: 449: else{
-{
-[; ;main.c: 450: S1mode = 3;
-"450
-[e = _S1mode -> 3 `i ]
-"451
+[e :U 364 ]
+[e :U 357 ]
+[e :U 350 ]
+"432
 }
-[e :U 375 ]
-[; ;main.c: 451: }
-[; ;main.c: 454: lcdInst(0b11000000);;
-"454
+[e :U 347 ]
+[; ;main.c: 431: }
+[; ;main.c: 432: }
+[; ;main.c: 436: lcdInst(0b11000000);;
+"436
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 456: readADC(0);
-"456
+[; ;main.c: 438: readADC(0);
+"438
 [e ( _readADC (1 -> -> 0 `i `uc ]
-[; ;main.c: 457: if(ADRES <= 0x250){
-"457
-[e $ ! <= -> _ADRES `ui -> -> 592 `i `ui 376  ]
+[; ;main.c: 439: if(ADRES <= 0x130){
+"439
+[e $ ! <= -> _ADRES `ui -> -> 304 `i `ui 371  ]
 {
-[; ;main.c: 458: prevSodaLoad = seconds;
-"458
+[; ;main.c: 440: prevSodaLoad = seconds;
+"440
 [e = _prevSodaLoad _seconds ]
-[; ;main.c: 459: if (!sodaSort){
-"459
-[e $ ! ! != _sodaSort -> 0 `i 377  ]
+[; ;main.c: 441: sodaCnt = 1;
+"441
+[e = _sodaCnt -> 1 `i ]
+[; ;main.c: 442: if (!sodaSort){
+"442
+[e $ ! ! != _sodaSort -> 0 `i 372  ]
 {
-[; ;main.c: 460: sodaSort = 1;
-"460
+[; ;main.c: 443: sodaSort = 1;
+"443
 [e = _sodaSort -> 1 `i ]
-[; ;main.c: 461: sodaSteps = 0;
-"461
+[; ;main.c: 444: sodaSteps = 0;
+"444
 [e = _sodaSteps -> 0 `i ]
-[; ;main.c: 462: _delay((unsigned long)((150)*(32000000/4000.0)));
-"462
+[; ;main.c: 445: _delay((unsigned long)((150)*(32000000/4000.0)));
+"445
 [e ( __delay (1 -> * -> -> 150 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"446
+}
+[e :U 372 ]
+"447
+}
+[e :U 371 ]
+[; ;main.c: 446: }
+[; ;main.c: 447: }
+[; ;main.c: 449: printf("soda: %x %d", ADRES, sodaSteps);
+"449
+[e ( _printf , , (. :s 28C -> _ADRES `i _sodaSteps ]
+[; ;main.c: 451: if (sodaSort){
+"451
+[e $ ! != _sodaSort -> 0 `i 373  ]
+{
+[; ;main.c: 452: if(sodaSteps < 48){
+"452
+[e $ ! < _sodaSteps -> 48 `i 374  ]
+{
+[; ;main.c: 454: S2mode = 4;
+"454
+[e = _S2mode -> 4 `i ]
+"455
+}
+[; ;main.c: 455: }
+[e $U 375  ]
+"456
+[e :U 374 ]
+[; ;main.c: 456: else if (sodaSteps < (48+43)){
+[e $ ! < _sodaSteps + -> 48 `i -> 43 `i 376  ]
+{
+[; ;main.c: 457: S3mode = 1;
+"457
+[e = _S3mode -> 1 `i ]
+"459
+}
+[; ;main.c: 459: }
+[e $U 377  ]
+"460
+[e :U 376 ]
+[; ;main.c: 460: else if (sodaSteps < (48+43+10)){
+[e $ ! < _sodaSteps + + -> 48 `i -> 43 `i -> 10 `i 378  ]
+{
+[; ;main.c: 461: S3mode = 4;
+"461
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 462: S2mode = 1;
+"462
+[e = _S2mode -> 1 `i ]
 "463
 }
-[e :U 377 ]
-"464
-}
-[e :U 376 ]
 [; ;main.c: 463: }
-[; ;main.c: 464: }
-[; ;main.c: 466: printf("soda: %x %d", ADRES, sodaSteps);
+[e $U 379  ]
+"464
+[e :U 378 ]
+[; ;main.c: 464: else if (sodaSteps < (48+43+10+15)){
+[e $ ! < _sodaSteps + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i 380  ]
+{
+[; ;main.c: 465: S3mode = 4;
+"465
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 466: S2mode = 0;
 "466
-[e ( _printf , , (. :s 30C -> _ADRES `i _sodaSteps ]
-[; ;main.c: 468: if (sodaSort){
-"468
-[e $ ! != _sodaSort -> 0 `i 378  ]
-{
-[; ;main.c: 469: if(sodaSteps < 48){
-"469
-[e $ ! < _sodaSteps -> 48 `i 379  ]
-{
-[; ;main.c: 470: S3mode = 3;
-"470
-[e = _S3mode -> 3 `i ]
-[; ;main.c: 471: S2mode = 4;
-"471
-[e = _S2mode -> 4 `i ]
-"472
-}
-[; ;main.c: 472: }
-[e $U 380  ]
-"473
-[e :U 379 ]
-[; ;main.c: 473: else if (sodaSteps < (48+43)){
-[e $ ! < _sodaSteps + -> 48 `i -> 43 `i 381  ]
-{
-[; ;main.c: 474: S3mode = 1;
-"474
-[e = _S3mode -> 1 `i ]
-[; ;main.c: 475: S2mode = 4;
-"475
-[e = _S2mode -> 4 `i ]
-"476
-}
-[; ;main.c: 476: }
-[e $U 382  ]
-"477
-[e :U 381 ]
-[; ;main.c: 477: else if (sodaSteps < (48+43+10)){
-[e $ ! < _sodaSteps + + -> 48 `i -> 43 `i -> 10 `i 383  ]
-{
-[; ;main.c: 478: S3mode = 4;
-"478
-[e = _S3mode -> 4 `i ]
-[; ;main.c: 479: S2mode = 1;
-"479
-[e = _S2mode -> 1 `i ]
-"480
-}
-[; ;main.c: 480: }
-[e $U 384  ]
-"481
-[e :U 383 ]
-[; ;main.c: 481: else if (sodaSteps < (48+43+10+12)){
-[e $ ! < _sodaSteps + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i 385  ]
-{
-[; ;main.c: 482: S2mode = 4;
-"482
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 483: S3mode = 4;
-"483
-[e = _S3mode -> 4 `i ]
-[; ;main.c: 484: readADC(3);
-"484
+[e = _S2mode -> 0 `i ]
+[; ;main.c: 467: readADC(3);
+"467
 [e ( _readADC (1 -> -> 3 `i `uc ]
-[; ;main.c: 485: if(ADRESH<=1){tabState = 1;}
-"485
-[e $ ! <= -> _ADRESH `i -> 1 `i 386  ]
+[; ;main.c: 468: if(ADRESH<=1){tabState = 1;}
+"468
+[e $ ! <= -> _ADRESH `i -> 1 `i 381  ]
 {
 [e = _tabState -> 1 `i ]
 }
-[e :U 386 ]
-[; ;main.c: 486: printf(" %x",ADRESH);
-"486
-[e ( _printf , (. :s 31C -> _ADRESH `i ]
-"487
+[e :U 381 ]
+[; ;main.c: 469: printf(" %x",ADRESH);
+"469
+[e ( _printf , (. :s 29C -> _ADRESH `i ]
+"470
 }
-[; ;main.c: 487: }
-[e $U 387  ]
-"488
-[e :U 385 ]
-[; ;main.c: 488: else if (sodaSteps < (48+43+10+12+10)){
-[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i 388  ]
+[; ;main.c: 470: }
+[e $U 382  ]
+"471
+[e :U 380 ]
+[; ;main.c: 471: else if (sodaSteps < (48+43+10+15+14)){
+[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i 383  ]
 {
-[; ;main.c: 489: S2mode = 2;
-"489
-[e = _S2mode -> 2 `i ]
-[; ;main.c: 490: S3mode = 4;
-"490
+[; ;main.c: 472: S3mode = 4;
+"472
 [e = _S3mode -> 4 `i ]
-"491
+[; ;main.c: 473: S2mode = 2;
+"473
+[e = _S2mode -> 2 `i ]
+"474
 }
-[; ;main.c: 491: }
-[e $U 389  ]
-"492
-[e :U 388 ]
-[; ;main.c: 492: else if (tabState == 1){
-[e $ ! == _tabState -> 1 `i 390  ]
+[; ;main.c: 474: }
+[e $U 384  ]
+"475
+[e :U 383 ]
+[; ;main.c: 475: else if (tabState == 1){
+[e $ ! == _tabState -> 1 `i 385  ]
 {
-[; ;main.c: 493: if(sodaSteps < (48+43+10+12+10+30)){
-"493
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i 391  ]
+[; ;main.c: 476: if(sodaSteps < (48+43+10+15+14+30)){
+"476
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i 386  ]
 {
-[; ;main.c: 494: S3mode = 1;
-"494
+[; ;main.c: 477: S3mode = 1;
+"477
 [e = _S3mode -> 1 `i ]
-[; ;main.c: 495: S2mode = 4;
-"495
+[; ;main.c: 478: S2mode = 4;
+"478
 [e = _S2mode -> 4 `i ]
-[; ;main.c: 496: prevSodaLoad = 0;
-"496
-[e = _prevSodaLoad -> 0 `i ]
-"497
+[; ;main.c: 479: sodaCnt = 0;
+"479
+[e = _sodaCnt -> 0 `i ]
+"480
 }
-[; ;main.c: 497: }
-[e $U 392  ]
+[; ;main.c: 480: }
+[e $U 387  ]
+"481
+[e :U 386 ]
+[; ;main.c: 481: else if(sodaSteps < (48+43+10+15+14+30+50)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i -> 50 `i 388  ]
+{
+[; ;main.c: 482: S3mode = 2;
+"482
+[e = _S3mode -> 2 `i ]
+[; ;main.c: 483: S2mode = 4;
+"483
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 484: sodaAlign = 2;
+"484
+[e = _sodaAlign -> 2 `i ]
+[; ;main.c: 485: sodaI = 1;
+"485
+[e = _sodaI -> 1 `i ]
+"486
+}
+[; ;main.c: 486: }
+[e $U 389  ]
+"487
+[e :U 388 ]
+[; ;main.c: 487: else {
+{
+[; ;main.c: 488: S2mode = 4;
+"488
+[e = _S2mode -> 4 `i ]
+[; ;main.c: 489: S3mode = 4;
+"489
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 490: updateS3(sodaAlign);
+"490
+[e ( _updateS3 (1 _sodaAlign ]
+[; ;main.c: 491: readADC(5);
+"491
+[e ( _readADC (1 -> -> 5 `i `uc ]
+[; ;main.c: 492: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
+"492
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 390  ]
+{
+[e = _tabState -> 101 `i ]
+}
+[e :U 390 ]
+[; ;main.c: 493: prevSodaIR = ADRES;
+"493
+[e = _prevSodaIR -> _ADRES `i ]
+[; ;main.c: 494: printf(" %x", ADRES);
+"494
+[e ( _printf , (. :s 30C -> _ADRES `i ]
+"495
+}
+[e :U 389 ]
+[e :U 387 ]
+"496
+}
+[; ;main.c: 495: }
+[; ;main.c: 496: }
+[e $U 391  ]
+"497
+[e :U 385 ]
+[; ;main.c: 497: else if(tabState == 0){
+[e $ ! == _tabState -> 0 `i 392  ]
+{
+[; ;main.c: 498: if(sodaSteps < (48+43+10+15+14+(43+75))){
 "498
-[e :U 391 ]
-[; ;main.c: 498: else if(sodaSteps < (48+43+10+12+10+30+57)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i -> 30 `i -> 57 `i 393  ]
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i 393  ]
 {
 [; ;main.c: 499: S3mode = 2;
 "499
@@ -4676,320 +4703,261 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 500: S2mode = 4;
 "500
 [e = _S2mode -> 4 `i ]
-[; ;main.c: 501: sodaAlign = 2;
+[; ;main.c: 501: sodaCnt = 0;
 "501
-[e = _sodaAlign -> 2 `i ]
+[e = _sodaCnt -> 0 `i ]
 "502
 }
 [; ;main.c: 502: }
 [e $U 394  ]
 "503
 [e :U 393 ]
-[; ;main.c: 503: else {
+[; ;main.c: 503: else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i -> 65 `i 395  ]
 {
-[; ;main.c: 504: S2mode = 4;
+[; ;main.c: 504: S3mode = 1;
 "504
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 505: S3mode = 10;
-"505
-[e = _S3mode -> 10 `i ]
-[; ;main.c: 506: updateS3(sodaAlign);
-"506
-[e ( _updateS3 (1 _sodaAlign ]
-[; ;main.c: 507: readADC(5);
-"507
-[e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 508: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
-"508
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 395  ]
-{
-[e = _tabState -> 101 `i ]
-}
-[e :U 395 ]
-[; ;main.c: 509: prevSodaIR = ADRES;
-"509
-[e = _prevSodaIR -> _ADRES `i ]
-[; ;main.c: 510: printf(" %x", ADRES);
-"510
-[e ( _printf , (. :s 32C -> _ADRES `i ]
-"511
-}
-[e :U 394 ]
-[e :U 392 ]
-"512
-}
-[; ;main.c: 511: }
-[; ;main.c: 512: }
-[e $U 396  ]
-"513
-[e :U 390 ]
-[; ;main.c: 513: else if(tabState == 0){
-[e $ ! == _tabState -> 0 `i 397  ]
-{
-[; ;main.c: 514: if(sodaSteps < (48+43+10+12+10+(44+75))){
-"514
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i 398  ]
-{
-[; ;main.c: 515: S3mode = 2;
-"515
-[e = _S3mode -> 2 `i ]
-[; ;main.c: 516: S2mode = 4;
-"516
-[e = _S2mode -> 4 `i ]
-[; ;main.c: 517: prevSodaLoad = 0;
-"517
-[e = _prevSodaLoad -> 0 `i ]
-"518
-}
-[; ;main.c: 518: }
-[e $U 399  ]
-"519
-[e :U 398 ]
-[; ;main.c: 519: else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 12 `i -> 10 `i + -> 44 `i -> 75 `i -> 62 `i 400  ]
-{
-[; ;main.c: 520: S3mode = 1;
-"520
 [e = _S3mode -> 1 `i ]
-[; ;main.c: 521: S2mode = 4;
-"521
+[; ;main.c: 505: S2mode = 4;
+"505
 [e = _S2mode -> 4 `i ]
-[; ;main.c: 522: sodaAlign = 1;
-"522
+[; ;main.c: 506: sodaAlign = 1;
+"506
 [e = _sodaAlign -> 1 `i ]
-"523
+[; ;main.c: 507: sodaI = 1;
+"507
+[e = _sodaI -> 1 `i ]
+"508
 }
-[; ;main.c: 523: }
-[e $U 401  ]
-"524
-[e :U 400 ]
-[; ;main.c: 524: else {
+[; ;main.c: 508: }
+[e $U 396  ]
+"509
+[e :U 395 ]
+[; ;main.c: 509: else {
 {
-[; ;main.c: 525: S3mode = 10;
-"525
-[e = _S3mode -> 10 `i ]
-[; ;main.c: 526: S2mode = 4;
-"526
+[; ;main.c: 510: S3mode = 4;
+"510
+[e = _S3mode -> 4 `i ]
+[; ;main.c: 511: S2mode = 4;
+"511
 [e = _S2mode -> 4 `i ]
-[; ;main.c: 527: updateS3(sodaAlign);
-"527
+[; ;main.c: 512: updateS3(sodaAlign);
+"512
 [e ( _updateS3 (1 _sodaAlign ]
-[; ;main.c: 528: readADC(5);
-"528
+[; ;main.c: 513: readADC(5);
+"513
 [e ( _readADC (1 -> -> 5 `i `uc ]
-[; ;main.c: 529: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 100;}
-"529
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 402  ]
+[; ;main.c: 514: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 100;}
+"514
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 397  ]
 {
 [e = _tabState -> 100 `i ]
 }
-[e :U 402 ]
-[; ;main.c: 530: prevSodaIR = ADRES;
-"530
-[e = _prevSodaIR -> _ADRES `i ]
-[; ;main.c: 531: printf(" %x", ADRES);
-"531
-[e ( _printf , (. :s 33C -> _ADRES `i ]
-"532
-}
-[e :U 401 ]
-[e :U 399 ]
-"533
-}
-[; ;main.c: 532: }
-[; ;main.c: 533: }
-[e $U 403  ]
-"534
 [e :U 397 ]
-[; ;main.c: 534: else{
+[; ;main.c: 515: prevSodaIR = ADRES;
+"515
+[e = _prevSodaIR -> _ADRES `i ]
+[; ;main.c: 516: printf(" %x", ADRES);
+"516
+[e ( _printf , (. :s 31C -> _ADRES `i ]
+"517
+}
+[e :U 396 ]
+[e :U 394 ]
+"518
+}
+[; ;main.c: 517: }
+[; ;main.c: 518: }
+[e $U 398  ]
+"519
+[e :U 392 ]
+[; ;main.c: 519: else{
 {
-[; ;main.c: 535: if(tabState==101){sodaT++;}
-"535
-[e $ ! == _tabState -> 101 `i 404  ]
+[; ;main.c: 520: if(tabState==101){sodaT++;}
+"520
+[e $ ! == _tabState -> 101 `i 399  ]
 {
 [e ++ _sodaT -> 1 `i ]
 }
-[e $U 405  ]
-"536
-[e :U 404 ]
-[; ;main.c: 536: else if(tabState==10){sodaNT++;}
-[e $ ! == _tabState -> 10 `i 406  ]
+[e $U 400  ]
+"521
+[e :U 399 ]
+[; ;main.c: 521: else if(tabState==100){sodaNT++;}
+[e $ ! == _tabState -> 100 `i 401  ]
 {
 [e ++ _sodaNT -> 1 `i ]
 }
-[e :U 406 ]
-"537
-[e :U 405 ]
-[; ;main.c: 537: sodaSteps = 0;
+[e :U 401 ]
+"522
+[e :U 400 ]
+[; ;main.c: 522: sodaSteps = 0;
 [e = _sodaSteps -> 0 `i ]
-[; ;main.c: 538: tabState = 0;
-"538
+[; ;main.c: 523: tabState = 0;
+"523
 [e = _tabState -> 0 `i ]
-[; ;main.c: 539: prevSodaIR = 0;
-"539
+[; ;main.c: 524: prevSodaIR = 0;
+"524
 [e = _prevSodaIR -> 0 `i ]
-[; ;main.c: 540: if (prevSodaLoad == 0) {sodaSort = 0;}
-"540
-[e $ ! == _prevSodaLoad -> 0 `i 407  ]
+[; ;main.c: 525: if (sodaCnt == 0) {sodaSort = 0;}
+"525
+[e $ ! == _sodaCnt -> 0 `i 402  ]
 {
 [e = _sodaSort -> 0 `i ]
 }
-[e :U 407 ]
-"541
+[e :U 402 ]
+[; ;main.c: 527: if(s3 == 2 || s3 == 3){S3mode = 3;}
+"527
+[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 403  ]
+{
+[e = _S3mode -> 3 `i ]
 }
+[e $U 404  ]
+"528
 [e :U 403 ]
-[e :U 396 ]
-[e :U 389 ]
-[e :U 387 ]
+[; ;main.c: 528: else{S3mode = 5;}
+{
+[e = _S3mode -> 5 `i ]
+}
+[e :U 404 ]
+"529
+}
+[e :U 398 ]
+[e :U 391 ]
 [e :U 384 ]
 [e :U 382 ]
-[e :U 380 ]
-"542
+[e :U 379 ]
+[e :U 377 ]
+[e :U 375 ]
+"530
 }
-[; ;main.c: 541: }
-[; ;main.c: 542: }
-[e $U 408  ]
-"543
-[e :U 378 ]
-[; ;main.c: 543: else{
-{
-[; ;main.c: 544: S3mode = 3;
-"544
-[e = _S3mode -> 3 `i ]
-[; ;main.c: 545: S2mode = 4;
-"545
-[e = _S2mode -> 4 `i ]
-"546
-}
-[e :U 408 ]
-[; ;main.c: 546: }
-[; ;main.c: 549: if(seconds%12==10){PWM2(800,2);}
-"549
-[e $ ! == % _seconds -> 12 `i -> 10 `i 409  ]
+[e :U 373 ]
+[; ;main.c: 529: }
+[; ;main.c: 530: }
+[; ;main.c: 533: if(seconds%6==4){PWM2(800,2);}
+"533
+[e $ ! == % _seconds -> 6 `i -> 4 `i 405  ]
 {
 [e ( _PWM2 (2 , -> 800 `i -> 2 `i ]
 }
-[e $U 410  ]
-"550
-[e :U 409 ]
-[; ;main.c: 550: else if(seconds%12 == 0){PWM2(800, 1);}
-[e $ ! == % _seconds -> 12 `i -> 0 `i 411  ]
+[e $U 406  ]
+"534
+[e :U 405 ]
+[; ;main.c: 534: else if(seconds%6 == 0){PWM2(800, 1);}
+[e $ ! == % _seconds -> 6 `i -> 0 `i 407  ]
 {
 [e ( _PWM2 (2 , -> 800 `i -> 1 `i ]
 }
-[e :U 411 ]
-"552
-[e :U 410 ]
-[; ;main.c: 552: keyinterrupt();
+[e :U 407 ]
+"536
+[e :U 406 ]
+[; ;main.c: 536: keyinterrupt();
 [e ( _keyinterrupt ..  ]
-"553
+"537
 }
-[; ;main.c: 553: }while( keypress==(0));
-[e $ == -> _keypress `i -> 0 `i 350  ]
-[e :U 349 ]
-[; ;main.c: 555: standby = 1;
-"555
+[; ;main.c: 537: }while(keypress==(0) &&
+[; ;main.c: 538: ((seconds -prevSoupLoad) < 10 || (seconds-prevSodaLoad) < 10)
+[; ;main.c: 539: && seconds < 180);
+"539
+[e $ && && == -> _keypress `i -> 0 `i || < - _seconds _prevSoupLoad -> 10 `i < - _seconds _prevSodaLoad -> 10 `i < _seconds -> 180 `i 344  ]
+[e :U 343 ]
+[; ;main.c: 541: standby = 1;
+"541
 [e = _standby -> 1 `i ]
-[; ;main.c: 556: PWM2off();
-"556
+[; ;main.c: 542: PWM2off();
+"542
 [e ( _PWM2off ..  ]
-[; ;main.c: 557: PWM1off();
-"557
+[; ;main.c: 543: PWM1off();
+"543
 [e ( _PWM1off ..  ]
-[; ;main.c: 558: S1mode = 0;
-"558
+[; ;main.c: 544: S1mode = 0;
+"544
 [e = _S1mode -> 0 `i ]
-[; ;main.c: 559: S2mode = 0;
-"559
+[; ;main.c: 545: S2mode = 0;
+"545
 [e = _S2mode -> 0 `i ]
-[; ;main.c: 560: S3mode = 0;
-"560
+[; ;main.c: 546: S3mode = 0;
+"546
 [e = _S3mode -> 0 `i ]
-[; ;main.c: 562: updateTime();
-"562
-[e ( _updateTime ..  ]
-[; ;main.c: 563: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
-"563
+[; ;main.c: 549: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
+"549
 [e ( _addRun (4 , , , , , , , , , , _seconds -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i _sodaT _sodaNT _soupL _soupNL ]
-[; ;main.c: 565: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"565
+[; ;main.c: 551: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"551
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 566: printf("Sort done! A:No");
-"566
-[e ( _printf :s 34C ]
-[; ;main.c: 567: lcdInst(0b11000000);;
-"567
+[; ;main.c: 552: printf("Sort done! A:No");
+"552
+[e ( _printf :s 32C ]
+[; ;main.c: 553: lcdInst(0b11000000);;
+"553
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 568: printf("View Logs? B:Yes");
-"568
-[e ( _printf :s 35C ]
-[; ;main.c: 569: keycheck();
-"569
+[; ;main.c: 554: printf("View Logs? B:Yes");
+"554
+[e ( _printf :s 33C ]
+[; ;main.c: 555: keycheck();
+"555
 [e ( _keycheck ..  ]
-[; ;main.c: 570: if(keypress == 7){
-"570
-[e $ ! == -> _keypress `i -> 7 `i 412  ]
+[; ;main.c: 556: if(keypress == 7){
+"556
+[e $ ! == -> _keypress `i -> 7 `i 408  ]
 {
-[; ;main.c: 571: displayLog(1);
-"571
+[; ;main.c: 557: displayLog(1);
+"557
 [e ( _displayLog (1 -> 1 `i ]
-"572
+"558
 }
-[e :U 412 ]
-"573
+[e :U 408 ]
+"559
 }
-[e :U 347 ]
-[e :U 303 ]
-"574
+[e :U 341 ]
+[e :U 300 ]
+"560
 }
-[e :U 288 ]
-"166
-[e $U 289  ]
-[e :U 290 ]
-[; ;main.c: 572: }
-[; ;main.c: 573: }
-[; ;main.c: 574: }
-[; ;main.c: 575: return;
-"575
-[e $UE 287  ]
-[; ;main.c: 576: }
-"576
-[e :UE 287 ]
+[e :U 281 ]
+"150
+[e $U 282  ]
+[e :U 283 ]
+[; ;main.c: 558: }
+[; ;main.c: 559: }
+[; ;main.c: 560: }
+[; ;main.c: 561: return;
+"561
+[e $UE 280  ]
+[; ;main.c: 562: }
+"562
+[e :UE 280 ]
 }
 [p f _printf 12583040 ]
+[a 23C 32 37 120 0 ]
 [a 25C 32 37 120 0 ]
 [a 27C 32 37 120 0 ]
 [a 29C 32 37 120 0 ]
+[a 30C 32 37 120 0 ]
 [a 31C 32 37 120 0 ]
-[a 32C 32 37 120 0 ]
-[a 33C 32 37 120 0 ]
 [a 9C 37 120 0 ]
 [a 12C 37 120 0 ]
 [a 11C 116 101 115 116 105 110 103 32 83 51 32 112 105 110 115 0 ]
 [a 10C 116 101 115 116 105 110 103 32 83 50 32 112 105 110 115 0 ]
 [a 8C 116 101 115 116 105 110 103 32 83 49 32 112 105 110 115 0 ]
-[a 35C 86 105 101 119 32 76 111 103 115 63 32 66 58 89 101 115 0 ]
+[a 33C 86 105 101 119 32 76 111 103 115 63 32 66 58 89 101 115 0 ]
 [a 2C 65 110 121 32 107 101 121 32 116 111 32 115 116 111 112 0 ]
-[a 34C 83 111 114 116 32 100 111 110 101 33 32 65 58 78 111 0 ]
+[a 32C 83 111 114 116 32 100 111 110 101 33 32 65 58 78 111 0 ]
 [a 5C 116 101 115 116 105 110 103 32 83 32 102 0 ]
 [a 7C 116 101 115 116 105 110 103 32 83 32 115 104 97 107 101 0 ]
-[a 24C 115 111 117 112 58 32 37 120 32 37 100 0 ]
-[a 30C 115 111 100 97 58 32 37 120 32 37 100 0 ]
+[a 22C 115 111 117 112 58 32 37 120 32 37 100 0 ]
+[a 28C 115 111 100 97 58 32 37 120 32 37 100 0 ]
+[a 24C 32 37 100 0 ]
 [a 26C 32 37 100 0 ]
-[a 28C 32 37 100 0 ]
-[a 15C 37 100 0 ]
-[a 21C 108 97 98 101 108 32 32 32 116 97 98 0 ]
+[a 19C 108 97 98 101 108 32 32 32 116 97 98 0 ]
 [a 6C 116 101 115 116 105 110 103 32 83 32 98 0 ]
 [a 4C 116 101 115 116 105 110 103 32 80 87 77 50 32 67 67 87 0 ]
 [a 3C 116 101 115 116 105 110 103 32 80 87 77 50 32 67 87 0 ]
-[a 16C 116 101 115 116 105 110 103 32 73 82 0 ]
+[a 14C 116 101 115 116 105 110 103 32 73 82 0 ]
 [a 13C 116 101 115 116 105 110 103 32 80 87 77 49 0 ]
-[a 14C 116 101 115 116 105 110 103 32 84 77 82 48 0 ]
 [a 1C 83 111 114 116 105 110 103 32 99 97 110 115 46 46 46 0 ]
+[a 15C 37 120 32 0 ]
+[a 16C 37 120 32 0 ]
 [a 17C 37 120 32 0 ]
 [a 18C 37 120 32 0 ]
-[a 19C 37 120 32 0 ]
-[a 20C 37 120 32 0 ]
-[a 22C 37 120 32 32 32 32 32 32 0 ]
-[a 23C 37 120 32 32 32 32 32 32 0 ]
+[a 20C 37 120 32 32 32 32 32 32 0 ]
+[a 21C 37 120 32 32 32 32 32 32 0 ]

@@ -3846,9 +3846,10 @@ void calibrateWheels(void);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 # 3 "interface.c"
 void homescreen(void){
@@ -3944,10 +3945,6 @@ if (currRun > 4){currRun = 1;}
 }
 
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-lcdInst(0b10000000);;
-printf("%d %d", eepromRead(0), currRun);
-keycheck();
-lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#%d    A:Next", run);
 lcdInst(0b11000000);;
 printf("Runtime: %d", eepromRead(currRun*0x10 + 1));
@@ -3960,7 +3957,7 @@ keycheck();
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#%d    A:Next", run);
 lcdInst(0b11000000);;
-printf("Start: %d:%d:%d", eepromRead(currRun*0x10 + 5), eepromRead(currRun*0x10 + 6), eepromRead(currRun*0x10 + 7));
+printf("Start: %02x:%02x:%02x", eepromRead(currRun*0x10 + 5), eepromRead(currRun*0x10 + 6), eepromRead(currRun*0x10 + 7));
 keycheck();
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("Run#%d    A:Next", run);

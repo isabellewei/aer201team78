@@ -2878,9 +2878,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 54: void calibrateWheels(void);
 [; ;declarations.h: 20: extern unsigned char time[7];
 [; ;declarations.h: 21: extern volatile unsigned char keypress;
-[; ;declarations.h: 22: extern int t;
-[; ;declarations.h: 23: extern int t2;
-[; ;declarations.h: 24: extern int t3;
+[; ;declarations.h: 22: extern int s3;
+[; ;declarations.h: 23: extern int t3;
+[; ;declarations.h: 24: extern int s1;
+[; ;declarations.h: 25: extern int t;
 "4 logic.c
 [v _timePassed `(i ~T0 @X0 1 ef1`i ]
 {

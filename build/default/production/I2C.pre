@@ -3846,9 +3846,10 @@ void calibrateWheels(void);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 
 # 9 "configBits.h"
@@ -3908,11 +3909,11 @@ extern int t3;
 
 # 12 "I2C.c"
 const char currtime[7] = { 0x30,
-0x26,
-0x13,
-0x04,
-0x01,
 0x03,
+0x01,
+0x04,
+0x12,
+0x04,
 0x17};
 
 void I2C_Master_Init(const unsigned long c)

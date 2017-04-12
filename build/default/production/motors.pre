@@ -3846,9 +3846,10 @@ void calibrateWheels(void);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdint.h"
 typedef signed char int8_t;
@@ -4015,6 +4016,22 @@ else{LATBbits.LATB2 = 0;}
 if (t == 4 || t==5){LATBbits.LATB0 = 1;}
 else{LATBbits.LATB0 = 0;}
 }
+else if(mode == 5){
+t++;
+if (t>8) {t=1;}
+_delay((unsigned long)((5)*(32000000/4000.0)));
+if (t == 1 || t==8){LATBbits.LATB2 = 1;}
+else{LATBbits.LATB2 = 0;}
+if (t == 2 || t==7){LATBbits.LATB0 = 1;}
+else{LATBbits.LATB0 = 0;}
+if (t == 3 || t==6){LATDbits.LATD1 = 1;}
+else{LATDbits.LATD1 = 0;}
+if (t == 4 || t==5){LATBbits.LATB3 = 1;}
+else{LATBbits.LATB3 = 0;}
+}
+else if(mode == 4){
+
+}
 else{
 _delay((unsigned long)((10)*(32000000/4000.0)));
 
@@ -4058,10 +4075,7 @@ LATCbits.LATC0 = 0;
 LATCbits.LATC5 = 0;
 }
 else if(mode == 4){
-LATCbits.LATC7 = 1;
-LATCbits.LATC6 = 0;
-LATCbits.LATC0 = 0;
-LATCbits.LATC5 = 0;
+
 }
 else if(mode == 3){
 t2++;
@@ -4084,6 +4098,7 @@ else if(mode == 2){
 s2 --;
 if (s2<1) {s2=4;}
 }
+
 if (s2 == 1){LATCbits.LATC7 = 1;}
 else{LATCbits.LATC7 = 0;}
 if (s2 == 2){LATCbits.LATC6 = 1;}
@@ -4105,10 +4120,7 @@ LATAbits.LATA4 = 0;
 LATDbits.LATD0 = 0;
 }
 else if(mode == 4){
-LATEbits.LATE2 = 1;
-LATEbits.LATE1 = 0;
-LATAbits.LATA4 = 0;
-LATDbits.LATD0 = 0;
+
 }
 else if(mode == 3){
 t3++;
@@ -4121,6 +4133,18 @@ if (t3 == 3 || t3==6){LATAbits.LATA4 = 1;}
 else{LATAbits.LATA4 = 0;}
 if (t3 == 4 || t3==5){LATDbits.LATD0 = 1;}
 else{LATDbits.LATD0 = 0;}
+}
+else if(mode == 5){
+t3++;
+if (t3>8) {t3=1;}
+if (t3 == 1 || t3==8){LATAbits.LATA4 = 1;}
+else{LATAbits.LATA4 = 0;}
+if (t3 == 2 || t3==7){LATDbits.LATD0 = 1;}
+else{LATDbits.LATD0 = 0;}
+if (t3 == 3 || t3==6){LATEbits.LATE2 = 1;}
+else{LATEbits.LATE2 = 0;}
+if (t3 == 4 || t3==5){LATEbits.LATE1 = 1;}
+else{LATEbits.LATE1 = 0;}
 }
 else{
 if(mode == 1){

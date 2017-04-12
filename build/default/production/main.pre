@@ -3902,9 +3902,10 @@ void calibrateWheels(void);
 # 20 "declarations.h"
 extern unsigned char time[7];
 extern volatile unsigned char keypress;
-extern int t;
-extern int t2;
+extern int s3;
 extern int t3;
+extern int s1;
+extern int t;
 
 # 12 "main.c"
 const char keys[] = "123A456B789C*0#D";
@@ -3920,6 +3921,10 @@ int tabState = 0;
 int labelState = 0;
 int sodaAlign;
 int soupAlign;
+int soupI;
+int sodaI;
+int soupCnt;
+int sodaCnt;
 
 
 void interrupt handler(void) {
@@ -3939,37 +3944,23 @@ T0CON = T0CON | 0b10000000;
 
 if(TMR1IF){
 TMR1IF = 0;
+updateS1(S1mode);
 updateS2(S2mode);
-if (S1mode!=10){updateS1(S1mode);}
-if (S3mode!=10){updateS3(S3mode);}
+updateS3(S3mode);
 soupSteps ++;
 sodaSteps ++;
 
-if(tabState == 0){
-if(sodaSteps > 599 && sodaSteps % 400 == 200){
-if(sodaAlign == 1){
-sodaAlign = 2;
-}
-else{
-sodaAlign = 1;
-}
-}
-}
-else{
-if(sodaSteps > 499 && sodaSteps % 400 == 100){
-if(sodaAlign == 1){
-sodaAlign = 2;
-}
-else{
-sodaAlign = 1;
-}
-}
+if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
+((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 300)))){
+if(sodaAlign == 1){sodaAlign = 2;}
+else{sodaAlign = 1;}
+sodaI++;
 }
 
-# 76
-if(soupSteps > 499 && soupSteps % 400 == 100){
+if(soupSteps == (soupI*(soupI+1)/2*100 + 400)){
 if(soupAlign == 1){soupAlign = 2;}
 else{soupAlign = 1;}
+soupI ++;
 }
 TMR1ON = 0;
 
@@ -4053,12 +4044,9 @@ T0CONbits.TMR0ON = 1;
 startTMR1();
 
 
-int ee = 0x100;
-
 _delay((unsigned long)((10)*(32000000/4000.0)));
 
 while(1){
-
 if (standby == 1){
 keypress = (0);
 while(keypress == (0)){
@@ -4089,11 +4077,15 @@ printf("Sorting cans...");
 lcdInst(0b11000000);;
 printf("Any key to stop");
 
-while(soupSteps < 8){
+while(soupSteps < 12){
 S2mode = 2;
 }
 S2mode = 4;
 calibrateWheels();
+if(s1 == 2 || s1 == 3){S1mode = 3;}
+else{S1mode = 5;}
+if(s3 == 2 || s3 == 3){S3mode = 3;}
+else{S3mode = 5;}
 PWM2(800, 1);
 PWM1(400);
 
@@ -4148,9 +4140,9 @@ S2mode = 3;
 S3mode = 3;
 keycheck();
 
-S1mode = 0;
-S2mode = 0;
-S3mode = 0;
+S1mode = 4;
+S2mode = 4;
+S3mode = 4;
 
 keypress = (0);
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
@@ -4211,23 +4203,15 @@ lcdInst(0b11000000);;
 printf("%x", ADRES);
 }
 
+S1mode = 0;
+S2mode = 0;
+S3mode = 0;
+
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 printf("testing PWM1");
 PWM1(400);
 keycheck();
 PWM1off();
-
-keypress = (0);
-seconds = 0;
-while(keypress==(0)){
-keypress = (0);
-
-lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-printf("testing TMR0");
-lcdInst(0b11000000);;
-printf("%d", seconds);
-keyinterrupt();
-}
 
 keypress = (0);
 while(keypress==(0)){
@@ -4264,15 +4248,16 @@ keyinterrupt();
 
 standby = 1;
 
-# 377
+# 356
 }
 else{
 do{
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
 
 readADC(2);
-if(ADRES <= 0x250){
+if(ADRES <= 0x130){
 prevSoupLoad = seconds;
+soupCnt = 1;
 if (!soupSort){
 soupSort = 1;
 soupSteps = 0;
@@ -4284,7 +4269,6 @@ printf("soup: %x %d", ADRES, soupSteps);
 
 if (soupSort){
 if (soupSteps < 80){
-S1mode = 3;
 readADC(4);
 if(ADRES<0x200){labelState = 1;}
 printf(" %x",ADRES);
@@ -4292,14 +4276,15 @@ printf(" %x",ADRES);
 else if (labelState == 1){
 if(soupSteps < (80+70)){
 S1mode = 1;
-prevSoupLoad = 0;
+soupCnt = 0;
 }
 else if(soupSteps < (80+70+55)){
 S1mode = 2;
 soupAlign = 2;
+soupI = 1;
 }
 else{
-S1mode = 10;
+S1mode = 4;
 printf(" %d", soupAlign);
 updateS1(soupAlign);
 readADC(1);
@@ -4312,14 +4297,15 @@ prevSoupIR = ADRES;
 else if(labelState == 0){
 if(soupSteps < (80+70)){
 S1mode = 2;
-prevSoupLoad = 0;
+soupCnt = 0;
 }
 else if(soupSteps < (80+70+58)){
 S1mode = 1;
 soupAlign = 1;
+soupI = 1;
 }
 else{
-S1mode = 10;
+S1mode = 4;
 printf(" %d", soupAlign);
 updateS1(soupAlign);
 readADC(1);
@@ -4334,19 +4320,21 @@ else if(labelState == 100){soupL++;}
 soupSteps = 0;
 prevSoupIR = 0;
 labelState = 0;
-if (prevSoupLoad == 0) {soupSort = 0;}
+if (soupCnt == 0) {soupSort = 0;}
+
+if(s1 == 2 || s1 == 3){S1mode = 3;}
+else{S1mode = 5;}
 }
 }
-else{
-S1mode = 3;
-}
+
 
 
 lcdInst(0b11000000);;
 
 readADC(0);
-if(ADRES <= 0x250){
+if(ADRES <= 0x130){
 prevSodaLoad = seconds;
+sodaCnt = 1;
 if (!sodaSort){
 sodaSort = 1;
 sodaSteps = 0;
@@ -4358,42 +4346,43 @@ printf("soda: %x %d", ADRES, sodaSteps);
 
 if (sodaSort){
 if(sodaSteps < 48){
-S3mode = 3;
+
 S2mode = 4;
 }
 else if (sodaSteps < (48+43)){
 S3mode = 1;
-S2mode = 4;
+
 }
 else if (sodaSteps < (48+43+10)){
 S3mode = 4;
 S2mode = 1;
 }
-else if (sodaSteps < (48+43+10+12)){
-S2mode = 4;
+else if (sodaSteps < (48+43+10+15)){
 S3mode = 4;
+S2mode = 0;
 readADC(3);
 if(ADRESH<=1){tabState = 1;}
 printf(" %x",ADRESH);
 }
-else if (sodaSteps < (48+43+10+12+10)){
-S2mode = 2;
+else if (sodaSteps < (48+43+10+15+14)){
 S3mode = 4;
+S2mode = 2;
 }
 else if (tabState == 1){
-if(sodaSteps < (48+43+10+12+10+30)){
+if(sodaSteps < (48+43+10+15+14+30)){
 S3mode = 1;
 S2mode = 4;
-prevSodaLoad = 0;
+sodaCnt = 0;
 }
-else if(sodaSteps < (48+43+10+12+10+30+57)){
+else if(sodaSteps < (48+43+10+15+14+30+50)){
 S3mode = 2;
 S2mode = 4;
 sodaAlign = 2;
+sodaI = 1;
 }
 else {
 S2mode = 4;
-S3mode = 10;
+S3mode = 4;
 updateS3(sodaAlign);
 readADC(5);
 if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
@@ -4402,18 +4391,19 @@ printf(" %x", ADRES);
 }
 }
 else if(tabState == 0){
-if(sodaSteps < (48+43+10+12+10+(44+75))){
+if(sodaSteps < (48+43+10+15+14+(43+75))){
 S3mode = 2;
 S2mode = 4;
-prevSodaLoad = 0;
+sodaCnt = 0;
 }
-else if(sodaSteps < (48+43+10+12+10+(44+75)+62)){
+else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
 S3mode = 1;
 S2mode = 4;
 sodaAlign = 1;
+sodaI = 1;
 }
 else {
-S3mode = 10;
+S3mode = 4;
 S2mode = 4;
 updateS3(sodaAlign);
 readADC(5);
@@ -4424,24 +4414,25 @@ printf(" %x", ADRES);
 }
 else{
 if(tabState==101){sodaT++;}
-else if(tabState==10){sodaNT++;}
+else if(tabState==100){sodaNT++;}
 sodaSteps = 0;
 tabState = 0;
 prevSodaIR = 0;
-if (prevSodaLoad == 0) {sodaSort = 0;}
+if (sodaCnt == 0) {sodaSort = 0;}
+
+if(s3 == 2 || s3 == 3){S3mode = 3;}
+else{S3mode = 5;}
 }
-}
-else{
-S3mode = 3;
-S2mode = 4;
 }
 
 
-if(seconds%12==10){PWM2(800,2);}
-else if(seconds%12 == 0){PWM2(800, 1);}
+if(seconds%6==4){PWM2(800,2);}
+else if(seconds%6 == 0){PWM2(800, 1);}
 
 keyinterrupt();
-}while( keypress==(0));
+}while(keypress==(0) &&
+((seconds -prevSoupLoad) < 10 || (seconds-prevSodaLoad) < 10)
+&& seconds < 180);
 
 standby = 1;
 PWM2off();
@@ -4450,7 +4441,7 @@ S1mode = 0;
 S2mode = 0;
 S3mode = 0;
 
-updateTime();
+
 addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
 
 lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
