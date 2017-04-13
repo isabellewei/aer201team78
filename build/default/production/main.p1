@@ -3271,10 +3271,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 52: sodaSteps ++;
 "52
 [e ++ _sodaSteps -> 1 `i ]
-[; ;main.c: 54: if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
-[; ;main.c: 55: ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 350)))){
+[; ;main.c: 54: if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 480))) ||
+[; ;main.c: 55: ((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 325)))){
 "55
-[e $ ! || && == _tabState -> 0 `i == _sodaSteps + * / * _sodaI + _sodaI -> 2 `i -> 2 `i -> 100 `i -> 500 `i && == _tabState -> 1 `i == _sodaSteps + * / * _sodaI + _sodaI -> 1 `i -> 2 `i -> 100 `i -> 350 `i 273  ]
+[e $ ! || && == _tabState -> 0 `i == _sodaSteps + * / * _sodaI + _sodaI -> 2 `i -> 2 `i -> 100 `i -> 480 `i && == _tabState -> 1 `i == _sodaSteps + * / * _sodaI + _sodaI -> 1 `i -> 2 `i -> 100 `i -> 325 `i 273  ]
 {
 [; ;main.c: 56: if(sodaAlign == 1){sodaAlign = 2;}
 "56
@@ -3603,7 +3603,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 179: printf("Any key to stop");
 "179
 [e ( _printf :s 2C ]
-[; ;main.c: 181: while(soupSteps < 12){
+[; ;main.c: 181: while(soupSteps < 14){
 "181
 [e $U 289  ]
 [e :U 290 ]
@@ -3615,7 +3615,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 289 ]
 "181
-[e $ < _soupSteps -> 12 `i 290  ]
+[e $ < _soupSteps -> 14 `i 290  ]
 [e :U 291 ]
 [; ;main.c: 183: }
 [; ;main.c: 184: S2mode = 4;
@@ -4573,35 +4573,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [; ;main.c: 471: }
 [e $U 382  ]
-"472
-[e :U 380 ]
-[; ;main.c: 472: else if (sodaSteps < (48+43+10+15+4)){
-[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 4 `i 383  ]
-{
-[; ;main.c: 473: S3mode = 4;
-"473
-[e = _S3mode -> 4 `i ]
-[; ;main.c: 474: S2mode = 1;
-"474
-[e = _S2mode -> 1 `i ]
-[; ;main.c: 475: readADC(3);
-"475
-[e ( _readADC (1 -> -> 3 `i `uc ]
-[; ;main.c: 476: if(ADRESH<=1){tabState = 1;}
-"476
-[e $ ! <= -> _ADRESH `i -> 1 `i 384  ]
-{
-[e = _tabState -> 1 `i ]
-}
-[e :U 384 ]
-"478
-}
-[; ;main.c: 478: }
-[e $U 385  ]
 "479
-[e :U 383 ]
-[; ;main.c: 479: else if (sodaSteps < (48+43+10+15+14)){
-[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i 386  ]
+[e :U 380 ]
+[; ;main.c: 479: else if (sodaSteps < (48+43+10+15+20)){
+[e $ ! < _sodaSteps + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 20 `i 383  ]
 {
 [; ;main.c: 480: S3mode = 4;
 "480
@@ -4612,15 +4587,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 "482
 }
 [; ;main.c: 482: }
-[e $U 387  ]
+[e $U 384  ]
 "483
-[e :U 386 ]
+[e :U 383 ]
 [; ;main.c: 483: else if (tabState == 1){
-[e $ ! == _tabState -> 1 `i 388  ]
+[e $ ! == _tabState -> 1 `i 385  ]
 {
-[; ;main.c: 484: if(sodaSteps < (48+43+10+15+14+30)){
+[; ;main.c: 484: if(sodaSteps < (48+43+10+15+20+30)){
 "484
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i 389  ]
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 20 `i -> 30 `i 386  ]
 {
 [; ;main.c: 485: S3mode = 1;
 "485
@@ -4634,11 +4609,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "488
 }
 [; ;main.c: 488: }
-[e $U 390  ]
+[e $U 387  ]
 "489
-[e :U 389 ]
-[; ;main.c: 489: else if(sodaSteps < (48+43+10+15+14+30+55)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i -> 30 `i -> 55 `i 391  ]
+[e :U 386 ]
+[; ;main.c: 489: else if(sodaSteps < (48+43+10+15+20+30+55)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 20 `i -> 30 `i -> 55 `i 388  ]
 {
 [; ;main.c: 490: S3mode = 2;
 "490
@@ -4655,9 +4630,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "494
 }
 [; ;main.c: 494: }
-[e $U 392  ]
+[e $U 389  ]
 "495
-[e :U 391 ]
+[e :U 388 ]
 [; ;main.c: 495: else {
 {
 [; ;main.c: 496: S2mode = 4;
@@ -4674,31 +4649,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _readADC (1 -> -> 5 `i `uc ]
 [; ;main.c: 500: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 101;}
 "500
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 393  ]
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 390  ]
 {
 [e = _tabState -> 101 `i ]
 }
-[e :U 393 ]
+[e :U 390 ]
 [; ;main.c: 501: prevSodaIR = ADRES;
 "501
 [e = _prevSodaIR -> _ADRES `i ]
 "503
 }
-[e :U 392 ]
-[e :U 390 ]
+[e :U 389 ]
+[e :U 387 ]
 "504
 }
 [; ;main.c: 503: }
 [; ;main.c: 504: }
-[e $U 394  ]
+[e $U 391  ]
 "505
-[e :U 388 ]
+[e :U 385 ]
 [; ;main.c: 505: else if(tabState == 0){
-[e $ ! == _tabState -> 0 `i 395  ]
+[e $ ! == _tabState -> 0 `i 392  ]
 {
-[; ;main.c: 506: if(sodaSteps < (48+43+10+15+14+(43+75))){
+[; ;main.c: 506: if(sodaSteps < (48+43+10+15+20+(43+75))){
 "506
-[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i 396  ]
+[e $ ! < _sodaSteps + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 20 `i + -> 43 `i -> 75 `i 393  ]
 {
 [; ;main.c: 507: S3mode = 2;
 "507
@@ -4712,11 +4687,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "510
 }
 [; ;main.c: 510: }
-[e $U 397  ]
+[e $U 394  ]
 "511
-[e :U 396 ]
-[; ;main.c: 511: else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
-[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 14 `i + -> 43 `i -> 75 `i -> 65 `i 398  ]
+[e :U 393 ]
+[; ;main.c: 511: else if(sodaSteps < (48+43+10+15+20+(43+75)+65)){
+[e $ ! < _sodaSteps + + + + + + -> 48 `i -> 43 `i -> 10 `i -> 15 `i -> 20 `i + -> 43 `i -> 75 `i -> 65 `i 395  ]
 {
 [; ;main.c: 512: S3mode = 1;
 "512
@@ -4733,9 +4708,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "516
 }
 [; ;main.c: 516: }
-[e $U 399  ]
+[e $U 396  ]
 "517
-[e :U 398 ]
+[e :U 395 ]
 [; ;main.c: 517: else {
 {
 [; ;main.c: 518: S3mode = 4;
@@ -4752,44 +4727,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _readADC (1 -> -> 5 `i `uc ]
 [; ;main.c: 522: if(ADRES <prevSodaIR && ADRES > 0x3aa){tabState = 100;}
 "522
-[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 400  ]
+[e $ ! && < -> _ADRES `ui -> _prevSodaIR `ui > -> _ADRES `ui -> -> 938 `i `ui 397  ]
 {
 [e = _tabState -> 100 `i ]
 }
-[e :U 400 ]
+[e :U 397 ]
 [; ;main.c: 523: prevSodaIR = ADRES;
 "523
 [e = _prevSodaIR -> _ADRES `i ]
 "525
 }
-[e :U 399 ]
-[e :U 397 ]
+[e :U 396 ]
+[e :U 394 ]
 "526
 }
 [; ;main.c: 525: }
 [; ;main.c: 526: }
-[e $U 401  ]
+[e $U 398  ]
 "527
-[e :U 395 ]
+[e :U 392 ]
 [; ;main.c: 527: else{
 {
 [; ;main.c: 528: if(tabState==101){sodaT++;}
 "528
-[e $ ! == _tabState -> 101 `i 402  ]
+[e $ ! == _tabState -> 101 `i 399  ]
 {
 [e ++ _sodaT -> 1 `i ]
 }
-[e $U 403  ]
+[e $U 400  ]
 "529
-[e :U 402 ]
+[e :U 399 ]
 [; ;main.c: 529: else if(tabState==100){sodaNT++;}
-[e $ ! == _tabState -> 100 `i 404  ]
+[e $ ! == _tabState -> 100 `i 401  ]
 {
 [e ++ _sodaNT -> 1 `i ]
 }
-[e :U 404 ]
+[e :U 401 ]
 "530
-[e :U 403 ]
+[e :U 400 ]
 [; ;main.c: 530: sodaSteps = 0;
 [e = _sodaSteps -> 0 `i ]
 [; ;main.c: 531: tabState = 0;
@@ -4800,31 +4775,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _prevSodaIR -> 0 `i ]
 [; ;main.c: 533: if (sodaCnt == 0) {sodaSort = 0;}
 "533
-[e $ ! == _sodaCnt -> 0 `i 405  ]
+[e $ ! == _sodaCnt -> 0 `i 402  ]
 {
 [e = _sodaSort -> 0 `i ]
 }
-[e :U 405 ]
+[e :U 402 ]
 [; ;main.c: 535: if(s3 == 2 || s3 == 3){S3mode = 3;}
 "535
-[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 406  ]
+[e $ ! || == _s3 -> 2 `i == _s3 -> 3 `i 403  ]
 {
 [e = _S3mode -> 3 `i ]
 }
-[e $U 407  ]
+[e $U 404  ]
 "536
-[e :U 406 ]
+[e :U 403 ]
 [; ;main.c: 536: else{S3mode = 5;}
 {
 [e = _S3mode -> 5 `i ]
 }
-[e :U 407 ]
+[e :U 404 ]
 "537
 }
-[e :U 401 ]
-[e :U 394 ]
-[e :U 387 ]
-[e :U 385 ]
+[e :U 398 ]
+[e :U 391 ]
+[e :U 384 ]
 [e :U 382 ]
 [e :U 379 ]
 [e :U 377 ]
@@ -4834,107 +4808,116 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 373 ]
 [; ;main.c: 537: }
 [; ;main.c: 538: }
-[; ;main.c: 541: if(seconds%7==2){PWM2slow(750);}
+[; ;main.c: 541: if(seconds%7==1 && seconds <7){PWM2slow(750);}
 "541
-[e $ ! == % _seconds -> 7 `i -> 2 `i 408  ]
+[e $ ! && == % _seconds -> 7 `i -> 1 `i < _seconds -> 7 `i 405  ]
 {
 [e ( _PWM2slow (1 -> 750 `i ]
 }
-[e $U 409  ]
+[e $U 406  ]
 "542
-[e :U 408 ]
-[; ;main.c: 542: else if(seconds%7==5){PWM2(900,2);}
-[e $ ! == % _seconds -> 7 `i -> 5 `i 410  ]
+[e :U 405 ]
+[; ;main.c: 542: else if(seconds%7==2){PWM2slow(750);}
+[e $ ! == % _seconds -> 7 `i -> 2 `i 407  ]
+{
+[e ( _PWM2slow (1 -> 750 `i ]
+}
+[e $U 408  ]
+"543
+[e :U 407 ]
+[; ;main.c: 543: else if(seconds%7==5){PWM2(900,2);}
+[e $ ! == % _seconds -> 7 `i -> 5 `i 409  ]
 {
 [e ( _PWM2 (2 , -> 900 `i -> 2 `i ]
 }
-[e $U 411  ]
-"543
-[e :U 410 ]
-[; ;main.c: 543: else if(seconds%7 == 0){PWM2(900, 1);}
-[e $ ! == % _seconds -> 7 `i -> 0 `i 412  ]
+[e $U 410  ]
+"544
+[e :U 409 ]
+[; ;main.c: 544: else if(seconds%7 == 0){PWM2(900, 1);}
+[e $ ! == % _seconds -> 7 `i -> 0 `i 411  ]
 {
 [e ( _PWM2 (2 , -> 900 `i -> 1 `i ]
 }
-[e :U 412 ]
-"545
 [e :U 411 ]
-[e :U 409 ]
-[; ;main.c: 545: keyinterrupt();
-[e ( _keyinterrupt ..  ]
 "546
+[e :U 410 ]
+[e :U 408 ]
+[e :U 406 ]
+[; ;main.c: 546: keyinterrupt();
+[e ( _keyinterrupt ..  ]
+"547
 }
-[; ;main.c: 546: }while(keypress==(0) &&
-[; ;main.c: 547: ((seconds -prevSoupLoad) < 13 || (seconds-prevSodaLoad) < 13)
-[; ;main.c: 548: && seconds < 180);
-"548
+[; ;main.c: 547: }while(keypress==(0) &&
+[; ;main.c: 548: ((seconds -prevSoupLoad) < 13 || (seconds-prevSodaLoad) < 13)
+[; ;main.c: 549: && seconds < 180);
+"549
 [e $ && && == -> _keypress `i -> 0 `i || < - _seconds _prevSoupLoad -> 13 `i < - _seconds _prevSodaLoad -> 13 `i < _seconds -> 180 `i 344  ]
 [e :U 343 ]
-[; ;main.c: 550: standby = 1;
-"550
-[e = _standby -> 1 `i ]
-[; ;main.c: 551: PWM2off();
+[; ;main.c: 551: standby = 1;
 "551
-[e ( _PWM2off ..  ]
-[; ;main.c: 552: PWM1off();
+[e = _standby -> 1 `i ]
+[; ;main.c: 552: PWM2off();
 "552
-[e ( _PWM1off ..  ]
-[; ;main.c: 553: S1mode = 0;
+[e ( _PWM2off ..  ]
+[; ;main.c: 553: PWM1off();
 "553
-[e = _S1mode -> 0 `i ]
-[; ;main.c: 554: S2mode = 0;
+[e ( _PWM1off ..  ]
+[; ;main.c: 554: S1mode = 0;
 "554
-[e = _S2mode -> 0 `i ]
-[; ;main.c: 555: S3mode = 0;
+[e = _S1mode -> 0 `i ]
+[; ;main.c: 555: S2mode = 0;
 "555
+[e = _S2mode -> 0 `i ]
+[; ;main.c: 556: S3mode = 0;
+"556
 [e = _S3mode -> 0 `i ]
-[; ;main.c: 558: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
-"558
+[; ;main.c: 559: addRun(seconds, time[6], time[5], time[4], time[2], time[1], time[0], sodaT, sodaNT, soupL, soupNL);
+"559
 [e ( _addRun (4 , , , , , , , , , , _seconds -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i _sodaT _sodaNT _soupL _soupNL ]
-[; ;main.c: 560: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
-"560
+[; ;main.c: 561: lcdInst(0b00000001); _delay((unsigned long)((5)*(32000000/4000.0)));;
+"561
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;main.c: 561: printf("Sort done! A:No");
-"561
-[e ( _printf :s 22C ]
-[; ;main.c: 562: lcdInst(0b11000000);;
+[; ;main.c: 562: printf("Sort done! A:No");
 "562
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 563: printf("View Logs? B:Yes");
+[e ( _printf :s 22C ]
+[; ;main.c: 563: lcdInst(0b11000000);;
 "563
-[e ( _printf :s 23C ]
-[; ;main.c: 564: keycheck();
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 564: printf("View Logs? B:Yes");
 "564
-[e ( _keycheck ..  ]
-[; ;main.c: 565: if(keypress == 7){
+[e ( _printf :s 23C ]
+[; ;main.c: 565: keycheck();
 "565
-[e $ ! == -> _keypress `i -> 7 `i 413  ]
-{
-[; ;main.c: 566: displayLog(1);
+[e ( _keycheck ..  ]
+[; ;main.c: 566: if(keypress == 7){
 "566
-[e ( _displayLog (1 -> 1 `i ]
+[e $ ! == -> _keypress `i -> 7 `i 412  ]
+{
+[; ;main.c: 567: displayLog(1);
 "567
-}
-[e :U 413 ]
+[e ( _displayLog (1 -> 1 `i ]
 "568
+}
+[e :U 412 ]
+"569
 }
 [e :U 341 ]
 [e :U 300 ]
-"569
+"570
 }
 [e :U 281 ]
 "150
 [e $U 282  ]
 [e :U 283 ]
-[; ;main.c: 567: }
 [; ;main.c: 568: }
 [; ;main.c: 569: }
-[; ;main.c: 570: return;
-"570
-[e $UE 280  ]
-[; ;main.c: 571: }
+[; ;main.c: 570: }
+[; ;main.c: 571: return;
 "571
+[e $UE 280  ]
+[; ;main.c: 572: }
+"572
 [e :UE 280 ]
 }
 [p f _printf 12582912 ]

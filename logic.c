@@ -23,7 +23,7 @@ void startTMR3(void){
 
 void startTMR1(void){
     T1CON = 0b10110000;
-    TMR1H = 0b11101001;
+    TMR1H = 0b11011001;
     TMR1L = 0b01011011;
     TMR1ON = 1; 
 }

@@ -3952,8 +3952,8 @@ updateS3(S3mode);
 soupSteps ++;
 sodaSteps ++;
 
-if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 500))) ||
-((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 350)))){
+if(((tabState == 0) && (sodaSteps == (sodaI*(sodaI+2)/2*100 + 480))) ||
+((tabState == 1) && (sodaSteps == (sodaI*(sodaI+1)/2*100 + 325)))){
 if(sodaAlign == 1){sodaAlign = 2;}
 else{sodaAlign = 1;}
 sodaI++;
@@ -4079,7 +4079,7 @@ printf("Sorting cans...");
 lcdInst(0b11000000);;
 printf("Any key to stop");
 
-while(soupSteps < 12){
+while(soupSteps < 14){
 S2mode = 2;
 }
 S2mode = 4;
@@ -4367,24 +4367,19 @@ if(ADRESH<=1){tabState = 1;}
 
 s2 = 1;
 }
-else if (sodaSteps < (48+43+10+15+4)){
-S3mode = 4;
-S2mode = 1;
-readADC(3);
-if(ADRESH<=1){tabState = 1;}
 
-}
-else if (sodaSteps < (48+43+10+15+14)){
+# 479
+else if (sodaSteps < (48+43+10+15+20)){
 S3mode = 4;
 S2mode = 2;
 }
 else if (tabState == 1){
-if(sodaSteps < (48+43+10+15+14+30)){
+if(sodaSteps < (48+43+10+15+20+30)){
 S3mode = 1;
 S2mode = 4;
 sodaCnt = 0;
 }
-else if(sodaSteps < (48+43+10+15+14+30+55)){
+else if(sodaSteps < (48+43+10+15+20+30+55)){
 S3mode = 2;
 S2mode = 4;
 sodaAlign = 2;
@@ -4401,12 +4396,12 @@ prevSodaIR = ADRES;
 }
 }
 else if(tabState == 0){
-if(sodaSteps < (48+43+10+15+14+(43+75))){
+if(sodaSteps < (48+43+10+15+20+(43+75))){
 S3mode = 2;
 S2mode = 4;
 sodaCnt = 0;
 }
-else if(sodaSteps < (48+43+10+15+14+(43+75)+65)){
+else if(sodaSteps < (48+43+10+15+20+(43+75)+65)){
 S3mode = 1;
 S2mode = 4;
 sodaAlign = 1;
@@ -4436,7 +4431,8 @@ else{S3mode = 5;}
 }
 
 
-if(seconds%7==2){PWM2slow(750);}
+if(seconds%7==1 && seconds <7){PWM2slow(750);}
+else if(seconds%7==2){PWM2slow(750);}
 else if(seconds%7==5){PWM2(900,2);}
 else if(seconds%7 == 0){PWM2(900, 1);}
 

@@ -2972,9 +2972,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;logic.c: 25: T1CON = 0b10110000;
 "25
 [e = _T1CON -> -> 176 `i `uc ]
-[; ;logic.c: 26: TMR1H = 0b11101001;
+[; ;logic.c: 26: TMR1H = 0b11011001;
 "26
-[e = _TMR1H -> -> 233 `i `uc ]
+[e = _TMR1H -> -> 217 `i `uc ]
 [; ;logic.c: 27: TMR1L = 0b01011011;
 "27
 [e = _TMR1L -> -> 91 `i `uc ]
