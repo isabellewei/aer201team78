@@ -4,12 +4,9 @@
 int s1 = 0;
 int s2 = 0;
 int s3 = 0;
-int s = 0;
 int t = 0;
 int t2 = 0;
 int t3 = 0;
-int prev = 0;
-int curr;
 
 void PWM1(int duty){
     // Tosc = 1/32 Mhz = 0.0000003125
